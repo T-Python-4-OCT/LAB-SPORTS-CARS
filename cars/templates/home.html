@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<!-- ================= HERO ================= -->
+<section class="hero" style="--hero-img: url('{% static 'images/hero-home.jpg' %}')">
+    <div class="container hero-content">
+        <h1>Performance<br>Without Limits</h1>
+        <p>Explore a curated collection of <br>iconic sports cars.</p>
+        <a href="{% url 'all_cars' %}" class="btn btn-primary">
+            Browse Cars <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+    </div>
+    <div class="container hero-dots" aria-hidden="true">
+        <i class="active"></i><i></i><i></i><i></i>
+    </div>
+</section>
+
+<!-- ================= HIGHLIGHTS ================= -->
+<section class="container highlights">
+    <div class="highlight">
+        <span class="material-symbols-outlined">bolt</span>
+        <p>High Performance</p>
+    </div>
+    <div class="highlight">
+        <span class="material-symbols-outlined">diamond</span>
+        <p>Premium Selection</p>
+    </div>
+    <div class="highlight">
+        <span class="material-symbols-outlined">verified_user</span>
+        <p>Verified &amp; Inspected</p>
+    </div>
+    <div class="highlight">
+        <span class="material-symbols-outlined">support_agent</span>
+        <p>Dedicated Support</p>
+    </div>
+</section>
+
+<!-- ================= FEATURED CARS ================= -->
+<section class="container section">
+    <div class="section-head">
+        <h2>Featured Cars</h2>
+        <a href="{% url 'all_cars' %}" class="link-arrow">
+            View All <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+    </div>
+
+    <div class="cards-grid">
+
+        <article class="car-card">
+            <a href="{% url 'car_detail' 'ferrari-f8-tributo' %}">
+                <div class="card-img">
+                    <img src="{% static 'images/ferrari-card.jpg' %}" alt="Ferrari F8 Tributo">
+                </div>
+                <div class="card-body">
+                    <div>
+                        <h3>Ferrari F8 Tributo</h3>
+                        <p class="card-price">SAR 1,490,000</p>
+                    </div>
+                    <span class="material-symbols-outlined card-heart">favorite</span>
+                </div>
+            </a>
+        </article>
+
+        <article class="car-card">
+            <a href="{% url 'car_detail' 'porsche-911-turbo-s' %}">
+                <div class="card-img">
+                    <img src="{% static 'images/porsche-card.jpg' %}" alt="Porsche 911 Turbo S">
+                </div>
+                <div class="card-body">
+                    <div>
+                        <h3>Porsche 911 Turbo S</h3>
+                        <p class="card-price">SAR 1,295,000</p>
+                    </div>
+                    <span class="material-symbols-outlined card-heart">favorite</span>
+                </div>
+            </a>
+        </article>
+
+        <article class="car-card">
+            <a href="{% url 'car_detail' 'lamborghini-huracan' %}">
+                <div class="card-img">
+                    <img src="{% static 'images/lamborghini-card.jpg' %}" alt="Lamborghini Huracán">
+                </div>
+                <div class="card-body">
+                    <div>
+                        <h3>Lamborghini Huracán</h3>
+                        <p class="card-price">SAR 1,420,000</p>
+                    </div>
+                    <span class="material-symbols-outlined card-heart">favorite</span>
+                </div>
+            </a>
+        </article>
+
+    </div>
+</section>
+
+<!-- ================= THE EXPERIENCE ================= -->
+<section class="experience">
+    <div class="experience-img">
+        <img src="{% static 'images/experience.jpg' %}" alt="Car rear lights" loading="lazy">
+    </div>
+    <div class="experience-text">
+        <span class="eyebrow">The Experience</span>
+        <h2>More Than a Car</h2>
+        <p>A seamless journey from discovery to ownership, with expert support every step of the way.</p>
+        <a href="{% url 'about' %}" class="btn btn-primary btn-sm">
+            Learn More <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+    </div>
+</section>
+
+<!-- ================= WHY CHOOSE US ================= -->
+<section class="container section">
+    <div class="section-head">
+        <h2>Why Choose Us</h2>
+    </div>
+
+    <div class="why-grid">
+        <div class="why-item">
+            <span class="material-symbols-outlined">emoji_events</span>
+            <h3>Iconic Models</h3>
+            <p>A handpicked range of world-class cars.</p>
+        </div>
+        <div class="why-item">
+            <span class="material-symbols-outlined">verified_user</span>
+            <h3>Full Transparency</h3>
+            <p>Detailed history and inspection.</p>
+        </div>
+        <div class="why-item">
+            <span class="material-symbols-outlined">star</span>
+            <h3>Expert Guidance</h3>
+            <p>Personalized advice from automotive experts.</p>
+        </div>
+        <div class="why-item">
+            <span class="material-symbols-outlined">diamond</span>
+            <h3>After-Sales Care</h3>
+            <p>Ongoing support and exclusive benefits.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ================= CALL TO ACTION ================= -->
+<section class="container">
+    <div class="cta" style="--cta-img: url('{% static 'images/cta.jpg' %}')">
+        <h2>Ready to Drive<br>Your Dream Car?</h2>
+        <a href="{% url 'all_cars' %}" class="btn btn-primary btn-sm">
+            Browse Collection <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+    </div>
+</section>
+
+{% endblock %}
