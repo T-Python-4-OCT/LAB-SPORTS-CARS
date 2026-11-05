@@ -1,5 +1,6 @@
 {% extends 'main/base.html' %}
 {% load static %}
+{% load humanize %}
 
 {% block title %}All Cars | SportCars{% endblock %}
 
@@ -24,7 +25,7 @@
                         </div>
                         <div class="car-info">
                             <h3>{{ car.brand }} {{ car.name }}</h3>
-                            <p class="car-price">SAR {{ car.price }}</p>
+                            <p class="car-price">SAR {{ car.price|intcomma }}</p>
                         </div>
                     </a>
                 </div>

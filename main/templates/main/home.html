@@ -1,5 +1,6 @@
 {% extends 'main/base.html' %}
 {% load static %}
+{% load humanize %}
 
 {% block title %}SportCars | Performance Without Limits{% endblock %}
 
@@ -20,26 +21,84 @@
         <div class="container">
             <div class="row g-4 text-center">
                 <div class="col-6 col-lg-3">
-                    <span class="material-symbols-outlined feature-icon">bolt</span>
-                    <h6>High Performance</h6>
-                    <p>Engineered for speed and precision.</p>
+                    <div class="feature-card">
+                        <div class="feature-icon-wrap">
+                            <span class="material-symbols-outlined">bolt</span>
+                        </div>
+                        <h6>High Performance</h6>
+                        <p>Engineered for speed and precision.</p>
+                    </div>
                 </div>
                 <div class="col-6 col-lg-3">
-                    <span class="material-symbols-outlined feature-icon">diamond</span>
-                    <h6>Premium Selection</h6>
-                    <p>Handpicked luxury sports cars.</p>
+                    <div class="feature-card">
+                        <div class="feature-icon-wrap">
+                            <span class="material-symbols-outlined">diamond</span>
+                        </div>
+                        <h6>Premium Selection</h6>
+                        <p>Handpicked luxury sports cars.</p>
+                    </div>
                 </div>
                 <div class="col-6 col-lg-3">
-                    <span class="material-symbols-outlined feature-icon">verified_user</span>
-                    <h6>Verified &amp; Inspected</h6>
-                    <p>Every car is fully checked.</p>
+                    <div class="feature-card">
+                        <div class="feature-icon-wrap">
+                            <span class="material-symbols-outlined">verified_user</span>
+                        </div>
+                        <h6>Verified &amp; Inspected</h6>
+                        <p>Every car is fully checked.</p>
+                    </div>
                 </div>
                 <div class="col-6 col-lg-3">
-                    <span class="material-symbols-outlined feature-icon">support_agent</span>
-                    <h6>Dedicated Support</h6>
-                    <p>We are here whenever you need us.</p>
+                    <div class="feature-card">
+                        <div class="feature-icon-wrap">
+                            <span class="material-symbols-outlined">support_agent</span>
+                        </div>
+                        <h6>Dedicated Support</h6>
+                        <p>We are here whenever you need us.</p>
+                    </div>
                 </div>
             </div>
+        </div>
+    </section>
+        <!-- Featured Cars -->
+    <section class="container featured-section">
+        <div class="section-head">
+            <h2>Featured Cars</h2>
+            <a href="{% url 'main:cars_view' %}" class="view-all">View All <span class="material-symbols-outlined">arrow_forward</span></a>
+        </div>
+
+        <div class="row g-4">
+            {% for car in cars %}
+                <div class="col-lg-4 col-md-6">
+                    <a href="{% url 'main:car_detail_view' car.id %}" class="car-card">
+                        <div class="car-image">
+                            <img src="{% static car.image %}" alt="{{ car.brand }} {{ car.name }}">
+                        </div>
+                        <div class="car-info">
+                            <h3>{{ car.brand }} {{ car.name }}</h3>
+                            <p class="car-price">SAR {{ car.price|intcomma }}</p>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- More Than a Car -->
+    <section class="experience" style="background-image: url('{% static 'images/ferrari.jpg' %}');">
+        <div class="container">
+            <p class="eyebrow">The Experience</p>
+            <h2>More Than a Car</h2>
+            <p class="hero-text">A seamless journey from discovery to ownership, with expert support at every step of the way.</p>
+            <a href="{% url 'main:about_view' %}" class="btn-accent">Learn More <span class="material-symbols-outlined">arrow_forward</span></a>
+        </div>
+    </section>
+
+    <!-- Ready to Drive -->
+    <section class="cta">
+        <div class="container text-center">
+            <h2>Ready to Drive Your Dream Car?</h2>
+            <p>Browse our full collection and find the one that fits you.</p>
+            <a href="{% url 'main:cars_view' %}" class="btn-accent">Browse Collection <span class="material-symbols-outlined">arrow_forward</span></a>
         </div>
     </section>
 {% endblock %}
