@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}FordKSA | {{ car.name }}{% endblock %}
+
+{% block content %}
+<section class="section detail">
+  <p class="crumbs"><a href="{% url 'cars' %}">Cars</a> &rsaquo; {{ car.category }} &rsaquo; {{ car.name }}</p>
+
+  <div class="detail-grid">
+    <img class="detail-img" src="{% static car.image %}" alt="{{ car.name }}">
+    <div>
+      <h1>{{ car.name }}</h1>
+      <p class="price">SAR {{ car.price|floatformat:"0g" }}</p>
+      <ul class="specs">
+        <li><span class="material-symbols-outlined">settings</span> Engine <b>{{ car.engine }}</b></li>
+        <li><span class="material-symbols-outlined">bolt</span> Power <b>{{ car.power }} hp</b></li>
+        <li><span class="material-symbols-outlined">airline_seat_recline_normal</span> Seats <b>{{ car.seats }}</b></li>
+        <li><span class="material-symbols-outlined">swap_driving_apps_wheel</span> Drive <b>{{ car.drive }}</b></li>
+      </ul>
+      <a class="btn" href="mailto:sales@fordksa.example">Inquire Now</a>
+      <a class="btn outline" href="#"><span class="material-symbols-outlined">favorite</span> Save to Wishlist</a>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" data-tab="overview">Overview</button>
+    <button class="tab" data-tab="specs">Specifications</button>
+    <button class="tab" data-tab="features">Features</button>
+  </div>
+  <div class="tab-panel active" id="overview"><h2>{{ car.tagline }}</h2><p>{{ car.description }}</p></div>
+  <div class="tab-panel" id="specs"><p>{{ car.year }} &middot; {{ car.engine }} &middot; {{ car.power }} hp &middot; {{ car.drive }} &middot; {{ car.seats }} seats</p></div>
+  <div class="tab-panel" id="features"><p>Touchscreen infotainment, driver-assist safety suite, climate control and connected services.</p></div>
+
+  <h2 class="mt">Key Features</h2>
+  <div class="grid four">
+    <div class="reveal feat"><span class="material-symbols-outlined">shield</span><h4>Safety Suite</h4><p>Driver-assist technology for confident driving.</p></div>
+    <div class="reveal feat"><span class="material-symbols-outlined">weekend</span><h4>Premium Interior</h4><p>A driver-focused cabin with refined materials.</p></div>
+    <div class="reveal feat"><span class="material-symbols-outlined">local_gas_station</span><h4>Efficient Power</h4><p>Strong output with smart fuel economy.</p></div>
+  </div>
+
+  <h2 class="mt">You may also like</h2>
+  <div class="grid">
+    {% for car in related %}{% include 'partials/car_card.html' %}{% endfor %}
+  </div>
+</section>
+{% endblock %}
