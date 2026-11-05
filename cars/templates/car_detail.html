@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Car Details{% endblock %}
+
+{% block content %}
+
+{% if car_slug == 'genesis-gv80-coupe' %}
+    {% include 'car_page.html' with name='Genesis GV80 Coupe' price='SAR 329,000' card='ferrari-card.jpg' gallery2='feature-aero.jpg' gallery3='feature-brakes.jpg' overview_img='g80-overview.jpg' engine='3.5 L Twin-Turbo V6' engine_short='3.5 L' engine_label='Twin-Turbo V6' power='380 hp' speed_0_100='5.7 s' top_speed='240 km/h' year='2026' headline='The GV80 Coupe, Redefined' overview='Athletic coupe lines meet the comfort of a luxury SUV, with a powerful twin-turbo V6 and a cabin crafted for every journey.' %}
+
+{% elif car_slug == 'genesis-g70' %}
+    {% include 'car_page.html' with name='Genesis G70' price='SAR 192,435' card='porsche-card.jpg' gallery2='g70-1.jpg' gallery3='g70-2.jpg' overview_img='g80-overview.jpg' engine='2.0 L Turbo' engine_short='2.0 L' engine_label='Turbo' power='248 hp' speed_0_100='6.1 s' top_speed='240 km/h' year='2026' headline='The G70, Pure Driving' overview='A compact sports sedan built around the driver, with sharp handling, a responsive turbo engine and a refined interior.' %}
+
+{% elif car_slug == 'genesis-g80' %}
+    {% include 'car_page.html' with name='Genesis G80' price='SAR 201,500' card='genses-car3.jpg' gallery2='g80-1.jpg' gallery3='g80-2.jpg' overview_img='g80-overview.jpg' engine='2.5 L Turbo' engine_short='2.5 L' engine_label='Turbo' power='304 hp' speed_0_100='6.0 s' top_speed='240 km/h' year='2026' headline='The G80, Elegance in Motion' overview='A perfect balance of quiet luxury and confident performance, the G80 turns every drive into a first-class experience.' %}
+
+{% else %}
+    <section class="container section not-found">
+        <h1>Car Not Found</h1>
+        <p>The car you are looking for is not in our collection.</p>
+        <a href="{% url 'all_cars' %}" class="btn btn-primary">Browse Cars</a>
+    </section>
+{% endif %}
+
+{% endblock %}
