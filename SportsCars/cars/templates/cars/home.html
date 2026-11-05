@@ -1,0 +1,16 @@
+{% extends 'Cars/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Performance Without Limits</h1>
+        <p>Discover your dream sports car.</p>
+        <a href="#" class="btn-primary">Browse Cars</a>
+    </div>
+
+    <img src="{% static 'images/home page.avif' %}" alt="Porsche Sports Car" class="hero-image">
+</section>
+
+{% endblock %}
