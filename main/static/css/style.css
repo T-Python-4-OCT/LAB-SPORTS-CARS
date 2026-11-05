@@ -1,0 +1,225 @@
+/* ========== المتغيرات (Light / Dark) ========== */
+:root {
+    --bg: #ffffff;
+    --bg-soft: #f6f6f7;
+    --text: #15161a;
+    --text-muted: #6b6f76;
+    --border: #e5e6e8;
+    --accent: #d7263d;
+    --accent-hover: #b81d31;
+    --card: #ffffff;
+    --shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+}
+
+body.dark {
+    --bg: #0e0f12;
+    --bg-soft: #17181c;
+    --text: #f2f3f5;
+    --text-muted: #a0a4ab;
+    --border: #2a2c32;
+    --card: #1a1b20;
+    --shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* ========== عام ========== */
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6, .brand-mark, .nav-link, .footer-brand {
+    font-family: 'Phudu', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+main {
+    min-height: 60vh;
+}
+
+.material-symbols-outlined {
+    vertical-align: middle;
+}
+
+/* ========== الـ Header ========== */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    transition: background-color 0.3s ease;
+}
+
+.brand-mark {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--accent) !important;
+    letter-spacing: -2px;
+}
+
+.site-header .nav-link {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    padding: 0.5rem 1rem;
+    position: relative;
+    transition: color 0.25s ease;
+}
+
+.site-header .nav-link:hover,
+.site-header .nav-link.active {
+    color: var(--text);
+}
+
+/* خط أحمر تحت الرابط الحالي */
+.site-header .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 1rem;
+    right: 1rem;
+    bottom: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.site-header .nav-link:hover::after,
+.site-header .nav-link.active::after {
+    transform: scaleX(1);
+}
+
+.nav-icons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.nav-icons a {
+    color: var(--text);
+    transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.nav-icons a:hover {
+    color: var(--accent);
+    transform: scale(1.15);
+}
+
+.navbar-toggler {
+    border: none;
+    color: var(--text);
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+/* ========== الـ Footer ========== */
+.site-footer {
+    background: var(--bg-soft);
+    border-top: 1px solid var(--border);
+    padding: 3rem 0 1.5rem;
+    color: var(--text-muted);
+    transition: background-color 0.3s ease;
+}
+
+.footer-brand {
+    font-size: 1.3rem;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+}
+
+.footer-text {
+    font-size: 0.9rem;
+}
+
+.site-footer h6 {
+    color: var(--text);
+    margin-bottom: 1rem;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-links a,
+.footer-bottom a {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    transition: color 0.25s ease;
+}
+
+.footer-links a:hover,
+.footer-bottom a:hover {
+    color: var(--accent);
+}
+
+/* خانة الاشتراك */
+.subscribe {
+    display: flex;
+    max-width: 360px;
+    margin-bottom: 1rem;
+}
+
+.subscribe input {
+    flex: 1;
+    padding: 0.6rem 0.9rem;
+    border: 1px solid var(--border);
+    border-right: none;
+    border-radius: 8px 0 0 8px;
+    background: var(--card);
+    color: var(--text);
+    outline: none;
+}
+
+.subscribe button {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 0 1rem;
+    border-radius: 0 8px 8px 0;
+    transition: background 0.25s ease;
+}
+
+.subscribe button:hover {
+    background: var(--accent-hover);
+}
+
+/* السوشيال */
+.socials {
+    display: flex;
+    gap: 1rem;
+}
+
+.socials a {
+    color: var(--text);
+    font-size: 1.2rem;
+    transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.socials a:hover {
+    color: var(--accent);
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.85rem;
+}
