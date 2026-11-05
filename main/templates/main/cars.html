@@ -1,5 +1,34 @@
 {% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}All Cars | SportCars{% endblock %}
 
 {% block content %}
-    <h1>Cars</h1>
+    <section class="page-hero" style="background-image: url('{% static 'images/hero.jpg' %}');">
+        <div class="container">
+            <p class="eyebrow">Our Collection</p>
+            <h1>All Cars</h1>
+            <p class="hero-text">Explore our complete collection of iconic sports cars.</p>
+        </div>
+    </section>
+
+    <section class="container cars-section">
+        <p class="cars-count">{{ cars|length }} Cars Found</p>
+
+        <div class="row g-4">
+            {% for car in cars %}
+                <div class="col-lg-4 col-md-6">
+                    <a href="{% url 'main:car_detail_view' car.id %}" class="car-card">
+                        <div class="car-image">
+                            <img src="{% static car.image %}" alt="{{ car.brand }} {{ car.name }}">
+                        </div>
+                        <div class="car-info">
+                            <h3>{{ car.brand }} {{ car.name }}</h3>
+                            <p class="car-price">SAR {{ car.price }}</p>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
 {% endblock %}

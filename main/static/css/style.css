@@ -223,3 +223,94 @@ main {
     border-top: 1px solid var(--border);
     font-size: 0.85rem;
 }
+/* ========== Page Hero ========== */
+.page-hero {
+    background-size: cover;
+    background-position: center;
+    padding: 5rem 0;
+    color: #fff;
+    position: relative;
+}
+
+.page-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(0,0,0,0.75), rgba(0,0,0,0.25));
+}
+
+.page-hero .container {
+    position: relative;
+}
+
+.page-hero h1 {
+    font-size: clamp(2.2rem, 6vw, 3.5rem);
+}
+
+.eyebrow {
+    color: var(--accent);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.hero-text {
+    max-width: 420px;
+    opacity: 0.9;
+}
+
+/* ========== بطاقات السيارات ========== */
+.cars-section {
+    padding: 3rem 0;
+}
+
+.cars-count {
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+}
+
+.car-card {
+    display: block;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.car-card:hover {
+    transform: translateY(-8px);
+}
+
+.car-image {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+}
+
+.car-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.car-card:hover .car-image img {
+    transform: scale(1.08);
+}
+
+.car-info {
+    padding: 1.2rem;
+}
+
+.car-info h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+}
+
+.car-price {
+    color: var(--accent);
+    font-weight: 600;
+    margin: 0;
+}
