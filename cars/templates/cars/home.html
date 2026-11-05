@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}FordKSA | Home{% endblock %}
+
+{% block content %}
+<section class="hero" style="background-image:url('{% static 'images/hero.svg' %}')">
+  <div class="hero-text">
+    <h1>Drive Saudi Arabia's<br>Favorite Fords</h1>
+    <p>Explore the best-selling Ford models in the Kingdom.</p>
+    <a class="btn" href="{% url 'cars' %}">Browse Cars <span class="material-symbols-outlined">arrow_forward</span></a>
+  </div>
+</section>
+
+<section class="strip">
+  <div><span class="material-symbols-outlined">bolt</span>High Performance</div>
+  <div><span class="material-symbols-outlined">diamond</span>Premium Selection</div>
+  <div><span class="material-symbols-outlined">verified_user</span>Verified &amp; Inspected</div>
+  <div><span class="material-symbols-outlined">support_agent</span>Dedicated Support</div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <h2>Best Sellers</h2>
+    <a class="link" href="{% url 'cars' %}">View All</a>
+  </div>
+  <div class="grid">
+    {% for car in featured %}{% include 'partials/car_card.html' %}{% endfor %}
+  </div>
+</section>
+
+<section class="banner" style="background-image:url('{% static 'images/hero.svg' %}')">
+  <div class="banner-text">
+    <h2>More Than a Car</h2>
+    <p>A seamless journey from discovery to ownership, with expert support every step of the way.</p>
+    <a class="btn" href="{% url 'about' %}">Learn More <span class="material-symbols-outlined">arrow_forward</span></a>
+  </div>
+</section>
+
+<section class="section why">
+  <h2>Why Choose Us</h2>
+  <div class="grid four">
+    <div class="reveal"><span class="material-symbols-outlined">emoji_events</span><h4>Iconic Models</h4><p>Handpicked legends of the road.</p></div>
+    <div class="reveal"><span class="material-symbols-outlined">visibility</span><h4>Full Transparency</h4><p>Detailed history and inspection.</p></div>
+    <div class="reveal"><span class="material-symbols-outlined">star</span><h4>Expert Guidance</h4><p>Personalized advice from experts.</p></div>
+    <div class="reveal"><span class="material-symbols-outlined">handshake</span><h4>After-Sales Care</h4><p>Ongoing support and benefits.</p></div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>Ready to Drive Your Dream Car?</h2>
+  <a class="btn" href="{% url 'cars' %}">Browse Collection <span class="material-symbols-outlined">arrow_forward</span></a>
+</section>
+{% endblock %}
