@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}FordKSA | About Us{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <small>About us</small>
+  <h1>Driven by Passion</h1>
+  <p>A team of automotive enthusiasts dedicated to bringing Saudi Arabia's favorite Ford cars closer to you.</p>
+</section>
+
+<section class="section">
+  <h2>Our Story</h2>
+  <p class="narrow">Founded in Saudi Arabia, we bring together a deep passion for performance, design, and engineering excellence, offering a curated selection of Ford's best-selling cars and a premium ownership experience.</p>
+</section>
+
+<section class="section why">
+  <h2>Our Values</h2>
+  <div class="grid">
+    <div class="reveal"><span class="material-symbols-outlined">diamond</span><h4>Excellence</h4><p>A commitment to world-class standards.</p></div>
+    <div class="reveal"><span class="material-symbols-outlined">verified_user</span><h4>Trust</h4><p>Transparent, honest, and customer-first.</p></div>
+    <div class="reveal"><span class="material-symbols-outlined">star</span><h4>Passion</h4><p>A shared love for exceptional cars.</p></div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>More Than a Dealer</h2>
+  <p>We are your partner in the journey of owning and enjoying an exceptional car.</p>
+  <a class="btn" href="{% url 'cars' %}">Browse Cars <span class="material-symbols-outlined">arrow_forward</span></a>
+</section>
+{% endblock %}
