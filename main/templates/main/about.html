@@ -1,0 +1,47 @@
+{% extends 'main/base.html' %}
+
+{% block title %}About Us | MASAR MOTORS{% endblock %}
+
+{% block content %}
+<section class="featured-cars">
+    <div class="section-heading">
+        <div>
+            <span class="section-label">ABOUT US</span>
+            <h2>Driven by <span>Passion</span></h2>
+        </div>
+    </div>
+
+    <p>
+        MASAR MOTORS is a home for classic automobiles and the stories behind them.
+        We bring together a carefully selected collection for people who appreciate
+        timeless design and automotive heritage.
+    </p>
+
+    <h2>Our Values</h2>
+
+    <div class="car-grid">
+        <article class="car-card">
+            <div class="car-info">
+                <h3>Authenticity</h3>
+                <p>We celebrate the character and history of classic cars.</p>
+            </div>
+        </article>
+
+        <article class="car-card">
+            <div class="car-info">
+                <h3>Quality</h3>
+                <p>We present every car with care and clear information.</p>
+            </div>
+        </article>
+
+        <article class="car-card">
+            <div class="car-info">
+                <h3>Passion</h3>
+                <p>We share our appreciation for timeless automobiles.</p>
+            </div>
+        </article>
+    </div>
+
+    <a href="{% url 'all_cars' %}" class="car-link">EXPLORE OUR CARS →</a>
+</section>
+{% endblock %}

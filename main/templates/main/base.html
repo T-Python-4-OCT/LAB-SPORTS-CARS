@@ -1,0 +1,115 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}MASAR MOTORS{% endblock %}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Phudu:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'main/output.css' %}">
+
+    <link rel="stylesheet" href="{% static 'main/style.css' %}">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+
+        <a href="{% url 'home' %}" class="logo">
+            MASAR <span>MOTORS</span>
+        </a>
+
+        <nav>
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'all_cars' %}">Cars</a>
+            <a href="{% url 'about' %}">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="navbar-actions">
+
+            <a href="#" class="nav-icon">⌕</a>
+
+            <div class="theme-switch">
+                <input type="checkbox" id="theme-toggle">
+
+                <label for="theme-toggle" class="theme-label">
+                    <span class="sun">☀</span>
+                    <span class="moon">☾</span>
+                </label>
+            </div>
+
+            <a href="#" class="nav-icon">♙</a>
+
+            <a href="#contact" class="contact-btn">Contact Us</a>
+
+        </div>
+
+    </header>
+
+    <!-- PAGE CONTENT -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+
+        <div class="footer-brand">
+            <h2>MASAR <span>MOTORS</span></h2>
+            <p>Timeless automobiles.<br>Lasting memories.</p>
+        </div>
+
+        <div class="footer-links">
+            <h3>EXPLORE</h3>
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'all_cars' %}">Cars</a>
+            <a href="{% url 'about' %}">About Us</a>
+            <a href="#contact">Contact</a>
+        </div>
+
+        <div class="footer-links">
+            <h3>SUPPORT</h3>
+            <a href="#">FAQs</a>
+            <a href="#">Financing</a>
+            <a href="#">Customer Support</a>
+            <a href="#">Privacy Policy</a>
+        </div>
+
+        <div class="footer-newsletter">
+            <h3>STAY IN THE LOOP</h3>
+            <p>Get the latest collection updates and news.</p>
+
+            <div class="newsletter-form">
+                <input type="email" placeholder="Your email">
+                <button type="button" aria-label="Subscribe">→</button>
+            </div>
+
+            <div class="footer-social" id="contact">
+                <a href="https://www.instagram.com/reel/DABWc5Nz0rd/?srtk=MTV2YnJxZDZtcWU1eQ==" aria-label="Instagram">◎</a>
+                <a href="https://youtu.be/-rbHpTKYxx4?si=JwY2rLPA_zMBspBJ" aria-label="YouTube">▶</a>
+                <a href="https://www.linkedin.com/newsletters/6975032815662891008" aria-label="LinkedIn">in</a>
+                <a href="https://x.com/restomod804?s=11&t=Y0TLof_fPXofioQZ9Zxkng" aria-label="X">𝕏</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span>© 2026 MASAR MOTORS. All Rights Reserved.</span>
+
+            <div>
+               <span>Privacy Policy</span>
+                <span>Terms of Service</span> 
+            </div>
+        </div>
+
+    </footer>
+
+</body>
+</html>

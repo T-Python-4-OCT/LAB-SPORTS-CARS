@@ -1,0 +1,73 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}MASAR MOTORS | All Cars{% endblock %}
+
+{% block content %}
+<section class="featured-cars">
+    <div class="section-heading">
+        <div>
+            <span class="section-label">OUR COLLECTION</span>
+            <h2>All Classic <span>Cars</span></h2>
+        </div>
+        <span id="car-count">6 Cars Found</span>
+    </div>
+
+    <div class="mb-8 flex flex-wrap items-end gap-4">
+        <label class="grid gap-2 text-sm">
+            Filter by body style
+            <select id="body-filter"
+                    class="rounded border border-[#dce3e6] bg-white px-4! py-2! text-[#172126]">
+                <option value="all">All styles</option>
+                <option value="sedan">Sedan</option>
+                <option value="saloon">Saloon</option>
+                <option value="pickup">Pickup</option>
+                <option value="coupe">Coupe</option>
+            </select>
+        </label>
+    </div>
+
+    <div class="car-grid" id="car-grid">
+        {% for car in cars %}
+        <article class="car-card" data-body="{{ car.body_style|lower }}">
+            <div class="car-image">
+                <img src="{% static car.image %}"
+                alt="{{ car.name }}"
+                class="{% if car.id == 2 %}object-[center_80%]{% endif %}">
+            </div>
+
+            <div class="car-info">
+                <span class="car-category">{{ car.category }}</span>
+                <h3>{{ car.name }}</h3>
+                <p>{{ car.description }}</p>
+                <a href="{% url 'car_detail' car.id %}" class="car-link">
+                    VIEW DETAILS →
+                </a>
+            </div>
+        </article>
+        {% empty %}
+        <p>No cars are available right now.</p>
+        {% endfor %}
+    </div>
+</section>
+
+<script>
+    const bodyFilter = document.getElementById("body-filter");
+    const carCards = document.querySelectorAll("#car-grid .car-card");
+    const carCount = document.getElementById("car-count");
+
+    bodyFilter.addEventListener("change", function () {
+        let visibleCars = 0;
+
+        carCards.forEach(function (card) {
+            const matches = bodyFilter.value === "all"
+                || card.dataset.body === bodyFilter.value;
+
+            card.hidden = !matches;
+            if (matches) visibleCars++;
+        });
+
+        carCount.textContent = visibleCars + " Cars Found";
+    });
+</script>
+{% endblock %}

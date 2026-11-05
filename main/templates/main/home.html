@@ -1,59 +1,207 @@
+
+{% extends 'main/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MASAR MOTORS</title>
-    <link rel="stylesheet" href="{% static 'main/style.css' %}">
-    <link href="https://fonts.googleapis.com/css2?family=Phudu:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+{% block title %}MASAR MOTORS | Home{% endblock %}
 
-</head>
-<body>
-    <header class="navbar">
-       
+{% block content %}
 
-        <a href="#" class="logo">
-    <span class="logo-icon">
-    <svg viewBox="0 0 60 40" width="42" height="32">
-        <path d="M2 21 H13 L20 8 L28 32 L37 14 L43 21 H58"
-              fill="none"
-              stroke="#00D4FF"
-              stroke-width="3"
-              stroke-linecap="round"
-              stroke-linejoin="round"/>
-    </svg>
-</span>
-    MASAR<span> MOTORS</span>
-</a>
+<!-- HERO SECTION -->
+<section class="hero">
 
-
-        <nav>
-            <a href="#">Home</a>
-            <a href="#">All Cars</a>
-            <a href="#">About Us</a>
-        </nav>
-
-        <a href="#" class="contact-btn">Contact Us</a>
-
-    </header>
-    <section class="hero">
     <div class="hero-content">
-        <span class="hero-label">THE ART OF PERFORMANCE</span>
+        <span class="text-[#00AFCB] text-[13px] tracking-[3px]">MASAR MOTORS COLLECTION</span>
 
         <h1>
-            YOUR PASSION.<br>
-            YOUR <span>PATH.</span>
+            TIMELESS<br>
+            <span>LEGENDS.</span>
         </h1>
 
         <p>
-            Discover exceptional sports cars.
-            Experience power, elegance and performance.
+            Discover timeless classics.
+            Experience elegance, heritage and the beauty
+            of legendary automobiles.
         </p>
 
-        <a href="#" class="hero-btn">EXPLORE CARS</a>
+        <a href="#featured-cars" class="inline-block bg-[#00D4FF] text-[#071014] px-6! py-3.5! rounded-[4px] text-[13px] font-extrabold tracking-[1px] no-underline transition duration-300 hover:bg-[#009fca] hover:-translate-y-[3px]">
+            EXPLORE COLLECTION
+        </a>
     </div>
+
+    <div class="hero-car">
+        <img src="{% static 'main/images/masar_car_6.jpg' %}"
+             alt="MASAR Classic Car">
+    </div>
+
 </section>
-</body>
-</html>
+
+<!-- FEATURES -->
+<section class="features">
+
+    <div class="feature">
+        <span class="feature-icon">✦</span>
+        <h3>CLASSIC COLLECTION</h3>
+        <p>Timeless automotive legends</p>
+    </div>
+
+    <div class="feature">
+        <span class="feature-icon">✓</span>
+        <h3>VERIFIED & INSPECTED</h3>
+        <p>Quality you can trust</p>
+    </div>
+
+    <div class="feature">
+        <span class="feature-icon">♧</span>
+        <h3>DEDICATED SUPPORT</h3>
+        <p>Here for every journey</p>
+    </div>
+
+</section>
+
+<!-- FEATURED CARS -->
+<section class="featured-cars" id="featured-cars">
+
+    <div class="section-heading">
+        <div>
+            <span class="section-label">OUR COLLECTION</span>
+            <h2>Featured <span>Cars</span></h2>
+        </div>
+
+        <a href="{% url 'all_cars' %}">VIEW ALL →</a>
+    </div>
+
+    <div class="car-grid">
+
+        <article class="car-card">
+            <div class="car-image">
+                <img src="{% static 'main/images/masar_car_1.jpg' %}"
+                     alt="Classic Car One">
+            </div>
+            <div class="car-info">
+                <span class="car-category">CLASSIC COLLECTION</span>
+                <h3>Classic Legend</h3>
+                <p>Timeless design. Unforgettable presence.</p>
+                <a href="{% url 'car_detail' 1 %}" class="car-link">VIEW DETAILS →</a>
+            </div>
+        </article>
+
+        <article class="car-card">
+            <div class="car-image">
+                <img src="{% static 'main/images/masar_car_2.jpg' %}"
+                alt="Classic Car Two"
+                class="middle-car">
+            </div>
+            <div class="car-info">
+                <span class="car-category">PREMIUM COLLECTION</span>
+                <h3>Vintage Elegance</h3>
+                <p>A beautiful expression of automotive heritage.</p>
+                <a href="{% url 'car_detail' 2 %}" class="car-link">VIEW DETAILS →</a>
+            </div>
+        </article>
+
+        <article class="car-card">
+            <div class="car-image">
+                <img src="{% static 'main/images/masar_car_3.jpg' %}"
+                     alt="Classic Car Three">
+            </div>
+            <div class="car-info">
+                <span class="car-category">ICONIC COLLECTION</span>
+                <h3>Timeless Icon</h3>
+                <p>Classic character with lasting appeal.</p>
+                <a href="{% url 'car_detail' 3 %}" class="car-link">VIEW DETAILS →</a>
+            </div>
+        </article>
+
+    </div>
+
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="why-us">
+
+    <div class="why-content">
+        <span class="section-label">THE MASAR EXPERIENCE</span>
+        <h2>More Than <span>A Car.</span></h2>
+
+        <p>
+            At MASAR MOTORS, we believe every classic car
+            carries a story. We bring together timeless
+            automobiles and people who appreciate them.
+        </p>
+
+        <a href="#" class="hero-btn">LEARN MORE</a>
+    </div>
+
+    <div class="why-grid">
+
+        <div class="why-item">
+            <span>◇</span>
+            <h3>ICONIC MODELS</h3>
+            <p>A collection of remarkable classic cars.</p>
+        </div>
+
+        <div class="why-item">
+            <span>✓</span>
+            <h3>TRUST & QUALITY</h3>
+            <p>Care and attention in every detail.</p>
+        </div>
+
+        <div class="why-item">
+            <span>☆</span>
+            <h3>PASSION</h3>
+            <p>Built around a love for automobiles.</p>
+        </div>
+
+        <div class="why-item">
+            <span>♧</span>
+            <h3>SUPPORT</h3>
+            <p>Helping you throughout your journey.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ABOUT PREVIEW -->
+<section class="about-preview">
+
+    <div class="about-image">
+        <img src="{% static 'main/images/masar_car_4.jpg' %}"
+             alt="MASAR Motors Collection">
+    </div>
+
+    <div class="about-content">
+        <span class="section-label">ABOUT MASAR MOTORS</span>
+        <h2>Driven by <span>Passion.</span></h2>
+
+        <p>
+            MASAR MOTORS is inspired by the beauty
+            of classic automobiles and the stories
+            behind every legendary design.
+        </p>
+
+        <a href="#" class="car-link">DISCOVER OUR STORY →</a>
+    </div>
+
+</section>
+
+<!-- CALL TO ACTION -->
+<section class="cta-section">
+
+    <span class="section-label">FIND YOUR NEXT LEGEND</span>
+
+    <h2>Every Car Has a Story.<br>
+        <span>Find Yours.</span>
+    </h2>
+
+    <p>Explore our collection and discover your next journey.</p>
+
+    <a href="#featured-cars" class="hero-btn">
+        BROWSE COLLECTION
+    </a>
+
+</section>
+
+
+
+{% endblock %}

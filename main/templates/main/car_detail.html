@@ -1,0 +1,50 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}{{ car.name }} | MASAR MOTORS{% endblock %}
+
+{% block content %}
+<section class="car-detail-page">
+
+    <div style="width: 100%; max-width: 480px; height: 320px; margin: 0 auto; overflow: hidden; background: #101719; border-radius: 8px;">
+    <img
+        src="{% static car.image %}"
+        alt="{{ car.name }}"
+        style="display: block; width: 100%; height: 100%; object-fit: contain;"
+    >
+</div>
+
+    <div class="flex flex-col justify-center">
+        <span class="car-category">{{ car.category }}</span>
+        <h1 class="mt-3 text-4xl font-bold">{{ car.name }}</h1>
+        <p class="mt-5 text-lg">{{ car.description }}</p>
+
+        <dl class="mt-6 grid grid-cols-2 gap-4">
+            <div>
+                <dt class="font-bold">Body style</dt>
+                <dd>{{ car.body_style }}</dd>
+            </div>
+            <div>
+                <dt class="font-bold">Color</dt>
+                <dd>{{ car.color }}</dd>
+            </div>
+        </dl>
+
+        {% if car.manufacturer_url %}
+        <a
+            href="{{ car.manufacturer_url }}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="car-link mt-6"
+        >
+            VISIT MANUFACTURER →
+        </a>
+        {% endif %}
+
+        <a href="{% url 'all_cars' %}" class="car-link mt-6">
+            ← BACK TO ALL CARS
+        </a>
+    </div>
+
+</section>
+{% endblock %}

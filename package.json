@@ -1,0 +1,25 @@
+{
+  "name": "lab-sports-cars",
+  "version": "1.0.0",
+  "description": "- use templates & templates inheritance.\r - use google fonts (choose the same font `Phudu` , or a similar one) [https://fonts.google.com](https://fonts.google.com)\r - use google fonts icons (choose similar icons) [https://fonts.google.com/icons](https://fonts.google.com/icons)\r - use images and icons of your chosing (not necessarily like the below image, You can find image in the resources folder).\r - use static for your static files (css, images, videos, etc.)\r - use icons of your choosing (not necessarily like the below image)\r - Implement dark mode.\r - Use CSS Transitions and Animations to add vitality to your page.\r - Use fake urls for links, or demo links (real links for example to instagram online car dealer)\r - It should be responsive (looks good on desktop & mobile)\r - you can use css libraries like (bootstrap, tailwinds, etc.) along with your own css.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abdulrahman2004al-alt/LAB-SPORTS-CARS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/abdulrahman2004al-alt/LAB-SPORTS-CARS/issues"
+  },
+  "homepage": "https://github.com/abdulrahman2004al-alt/LAB-SPORTS-CARS#readme",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.3.4",
+    "tailwindcss": "^4.3.4"
+  }
+}
