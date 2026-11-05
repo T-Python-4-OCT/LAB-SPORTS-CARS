@@ -59,10 +59,10 @@ SportsCars | Home
     <h2 class="fw-bold m-0">Featured Cars</h2>
 
     <!-- النص والسهم معاً داخل الرابط -->
-    <a href="#" class="text-decoration-none text-dark d-flex align-items-center gap-1 fw-semibold">
-        <span>View all</span>
-        <span class="material-symbols-outlined fs-5">arrow_forward</span>
-    </a>
+    <a href="{% url 'SportsCars:all_cars' %}" class="text-decoration-none text-dark d-flex align-items-center gap-1 fw-semibold">
+    <span>View all</span>
+    <span class="material-symbols-outlined fs-5">arrow_forward</span>
+</a>
 </div>
     
   <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -136,6 +136,60 @@ SportsCars | Home
       
       <a href="#" class="btn btn-danger btn-lg px-4 py-2 rounded-3 fs-6 fw-semibold shadow-sm">
         Learn More <span class="ms-1">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<div class="container my-5">
+    <h2 class="fw-bold m-0 text-right">Why Choose US</h2>
+  <div class="row text-center py-4 g-0 border-top border-bottom custom-features-row">
+    
+    
+    <!-- Item 1 -->
+    <div class="col-md-3 col-6 feature-col">
+      <span class="material-symbols-outlined">trophy</span>
+      <h6 class="fw-bold mb-0">High Performance</h6>
+    </div>
+
+    <!-- Item 2 -->
+    <div class="col-md-3 col-6 feature-col">
+      <span class="material-symbols-outlined">verified_user</span>
+      <h6 class="fw-bold mb-0">Premium Selection</h6>
+    </div>
+
+    <!-- Item 3 -->
+    <div class="col-md-3 col-6 feature-col">
+      <span class="material-symbols-outlined">star</span>
+      <h6 class="fw-bold mb-0">Verified & Inspected</h6>
+    </div>
+
+    <!-- Item 4 -->
+    <div class="col-md-3 col-6 feature-col border-0">
+      <span class="material-symbols-outlined">diamond</span>
+      <h6 class="fw-bold mb-0">Dedicated Support</h6>
+    </div>
+  </div>
+</div>
+<div class="container my-5">
+  <div class="position-relative rounded-4 overflow-hidden shadow-sm d-flex align-items-center p-4 p-md-5" style="min-height: 280px;">
+    
+    <!-- صورة الخلفية -->
+    <img src="/static/imgas/Car1.jpg" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover z-0" alt="Ready to Drive Your Dream Car?">
+
+    <!-- طبقة شفافية خفيفة فوق الخلفية لضمان وضوح النص على اليسار -->
+    <div class="position-absolute top-0 start-0 w-100 h-100 z-1" style="background: linear-gradient(90deg, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.4) 40%, rgba(255,255,255,0) 100%);"></div>
+
+    <!-- المحتوى النصي والزر -->
+    <div class="position-relative z-2 text-start max-width-content ms-md-3">
+      <h2 class="display-6 fw-bold text-dark mb-4 lh-sm">
+        Ready to Drive<br>Your Dream Car?
+      </h2>
+      
+      <a href="#" class="btn btn-danger btn-lg px-4 py-2 rounded-3 fs-6 fw-semibold shadow-sm align-items-center d-inline-flex gap-2">
+        <span>Browse Collection</span>
+        <span class="material-symbols-outlined fs-5">arrow_forward</span>
       </a>
     </div>
 

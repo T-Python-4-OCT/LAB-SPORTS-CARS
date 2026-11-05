@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
-<body>
+<body class="{% if request.COOKIES.dark_mode == 'dark' %}dark-mode{% endif %}">
 
     <!-- Header Section -->
    <header class="navbar navbar-expand-lg bg-white border-bottom py-3">
@@ -50,19 +50,19 @@
                 </svg>
             </button>
 
-            <button class="btn btn-link text-dark p-0 border-0" aria-label="Toggle Theme">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="5"></circle>
-                    <line x1="12" y1="1" x2="12" y2="3"></line>
-                    <line x1="12" y1="21" x2="12" y2="23"></line>
-                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                    <line x1="1" y1="12" x2="3" y2="12"></line>
-                    <line x1="21" y1="12" x2="23" y2="12"></line>
-                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                </svg>
-            </button>
+            <form method="POST" action="{% url 'SportsCars:dark_mode' %}">
+    {% csrf_token %}
+
+                <a href="{% url 'SportsCars:dark_mode' %}" class="theme-toggle">
+
+                    {% if request.COOKIES.dark_mode == 'dark' %}
+                        ☀️
+                    {% else %}
+                        🌙
+                    {% endif %}
+
+                </a>
+            </form>
 
             <a href="#" class="text-dark p-0" aria-label="User Account">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
