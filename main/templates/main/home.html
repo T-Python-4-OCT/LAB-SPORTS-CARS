@@ -1,5 +1,45 @@
 {% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}SportCars | Performance Without Limits{% endblock %}
 
 {% block content %}
-    <h1>Home</h1>
+    <!-- Hero -->
+    <section class="home-hero" style="background-image: url('{% static 'images/hero.jpg' %}');">
+        <div class="container">
+            <h1>Performance<br>Without Limits</h1>
+            <p class="hero-text">Explore a curated collection of iconic sports cars.</p>
+            <a href="{% url 'main:cars_view' %}" class="btn-accent">
+                Browse Cars <span class="material-symbols-outlined">arrow_forward</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- المميزات -->
+    <section class="features">
+        <div class="container">
+            <div class="row g-4 text-center">
+                <div class="col-6 col-lg-3">
+                    <span class="material-symbols-outlined feature-icon">bolt</span>
+                    <h6>High Performance</h6>
+                    <p>Engineered for speed and precision.</p>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <span class="material-symbols-outlined feature-icon">diamond</span>
+                    <h6>Premium Selection</h6>
+                    <p>Handpicked luxury sports cars.</p>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <span class="material-symbols-outlined feature-icon">verified_user</span>
+                    <h6>Verified &amp; Inspected</h6>
+                    <p>Every car is fully checked.</p>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <span class="material-symbols-outlined feature-icon">support_agent</span>
+                    <h6>Dedicated Support</h6>
+                    <p>We are here whenever you need us.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}
