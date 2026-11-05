@@ -1,7 +1,3 @@
-/* =========================================================
-   VARIABLES: لوحة ألوان لكل وضع
-   ========================================================= */
-
 :root {
     --bg: #f2f3f4;
     --surface: #ffffff;
@@ -38,9 +34,6 @@ body[data-theme="dark"] {
     --shadow-hover: 0 16px 38px rgba(0, 0, 0, .6);
 }
 
-/* =========================================================
-   RESET
-   ========================================================= */
 
 * {
     margin: 0;
@@ -85,7 +78,6 @@ label {
     cursor: pointer;
 }
 
-/* الحاوية: المحتوى في المنتصف، والخلفيات بعرض الشاشة كاملة */
 .container {
     width: 100%;
     max-width: var(--container);
@@ -93,7 +85,6 @@ label {
     padding: 0 48px;
 }
 
-/* الأيقونات: حجم ثابت حتى لا يظهر اسمها كنص طويل قبل تحميل الخط */
 .material-symbols-outlined {
     display: inline-block;
     width: 1em;
@@ -103,7 +94,6 @@ label {
     line-height: 1;
 }
 
-/* إخفاء السهم الافتراضي لعنصر details */
 summary {
     list-style: none;
 }
@@ -112,9 +102,7 @@ summary::-webkit-details-marker {
     display: none;
 }
 
-/* =========================================================
-   LOGO (صورة شعار Genesis من مجلد images)
-   ========================================================= */
+
 
 .logo img {
     height: 28px;
@@ -132,15 +120,12 @@ summary::-webkit-details-marker {
     transform: scale(1.04);
 }
 
-/* الشعار أسود، فنقلبه للأبيض في الوضع الليلي */
 body[data-theme="dark"] .logo img,
 body[data-theme="dark"] .footer-logo img {
     filter: invert(1);
 }
 
-/* =========================================================
-   HEADER
-   ========================================================= */
+
 
 .header {
     position: sticky;
@@ -177,7 +162,6 @@ body[data-theme="dark"] .footer-logo img {
     transition: color .3s;
 }
 
-/* الخط الملوّن تحت الرابط: يظهر للصفحة الحالية وعند الـ hover */
 .nav-links a::after {
     content: "";
     position: absolute;
@@ -311,9 +295,6 @@ body[data-theme="dark"] .footer-logo img {
     color: var(--accent);
 }
 
-/* =========================================================
-   FOOTER (بعرض الصفحة كاملة، ليس Card)
-   ========================================================= */
 
 .footer {
     margin-top: 60px;
@@ -329,7 +310,6 @@ body[data-theme="dark"] .footer-logo img {
     padding: 48px 0 40px;
 }
 
-/* الخطوط الفاصلة بين الأعمدة كما في التصميم */
 .footer-brand {
     padding-right: 40px;
 }
@@ -510,7 +490,6 @@ body[data-theme="dark"] .footer-logo img {
    RESPONSIVE (الهيدر والفوتر)
    ========================================================= */
 
-/* Laptop */
 @media (max-width: 1150px) {
     .footer-main {
         grid-template-columns: 1.2fr 1fr 1fr;
@@ -528,7 +507,6 @@ body[data-theme="dark"] .footer-logo img {
     }
 }
 
-/* Tablet */
 @media (max-width: 900px) {
     .container {
         padding: 0 24px;
@@ -690,9 +668,7 @@ body[data-theme="dark"] .footer-logo img {
     transform: translateX(4px);
 }
 
-/* =========================================================
-   CAR CARD (البطاقة المشتركة)
-   ========================================================= */
+
 
 .cards-grid {
     display: grid;
@@ -700,7 +676,6 @@ body[data-theme="dark"] .footer-logo img {
     gap: 22px;
 }
 
-/* ظهور البطاقات واحدة بعد الأخرى */
 .cards-grid > * {
     animation: fadeUp .8s ease both;
 }
@@ -775,9 +750,6 @@ body[data-theme="dark"] .footer-logo img {
     transform: scale(1.12);
 }
 
-/* =========================================================
-   HOME: HERO
-   ========================================================= */
 
 .hero {
     position: relative;
@@ -790,7 +762,6 @@ body[data-theme="dark"] .footer-logo img {
     background-color: var(--surface-2);
 }
 
-/* صورة الخلفية: تأتي من القالب عن طريق المتغير --hero-img */
 .hero::before {
     content: "";
     position: absolute;
@@ -800,7 +771,6 @@ body[data-theme="dark"] .footer-logo img {
     animation: heroZoom 1.6s ease both;
 }
 
-/* تدرّج من لون الخلفية حتى يبقى النص واضحًا فوق الصورة */
 .hero::after {
     content: "";
     position: absolute;
@@ -830,7 +800,6 @@ body[data-theme="dark"] .footer-logo img {
     color: var(--muted);
 }
 
-/* الشرطات الأربع أسفل الهيرو، والأولى تمتلئ بحركة */
 .hero-dots {
     position: absolute;
     left: 0;
@@ -867,9 +836,7 @@ body[data-theme="dark"] .footer-logo img {
     to   { transform: scaleX(1); }
 }
 
-/* =========================================================
-   HOME: HIGHLIGHTS
-   ========================================================= */
+
 
 .highlights {
     display: grid;
@@ -903,9 +870,7 @@ body[data-theme="dark"] .footer-logo img {
     transform: translateY(-3px);
 }
 
-/* =========================================================
-   HOME: THE EXPERIENCE
-   ========================================================= */
+
 
 .experience {
     display: grid;
@@ -927,7 +892,6 @@ body[data-theme="dark"] .footer-logo img {
     object-fit: cover;
 }
 
-/* الصورة تذوب في لون القسم من جهة النص */
 .experience-img::after {
     content: "";
     position: absolute;
@@ -952,9 +916,7 @@ body[data-theme="dark"] .footer-logo img {
     color: var(--muted);
 }
 
-/* =========================================================
-   HOME: WHY CHOOSE US
-   ========================================================= */
+
 
 .why-grid {
     display: grid;
@@ -1072,7 +1034,6 @@ body[data-theme="dark"] .footer-logo img {
     }
 }
 
-/* Mobile: النص فوق والسيارة تحت كما في تصميم الجوال */
 @media (max-width: 600px) {
     .hero {
         min-height: 560px;
@@ -1104,7 +1065,6 @@ body[data-theme="dark"] .footer-logo img {
         font-size: 22px;
     }
 
-    /* Highlights: قائمة عمودية بالأيقونة على اليسار */
     .highlights {
         grid-template-columns: 1fr;
         padding-top: 12px;
@@ -1138,5 +1098,160 @@ body[data-theme="dark"] .footer-logo img {
 
     .cta {
         padding: 32px 20px;
+    }
+}
+
+
+/* =========================================================
+   ALL CARS
+   ========================================================= */
+
+.hero-page {
+    min-height: 420px;
+}
+
+.hero-page p {
+    margin-bottom: 0;
+}
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+}
+
+.select {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.select select {
+    appearance: none;
+    min-width: 130px;
+    padding: 11px 40px 11px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: border-color .3s;
+}
+
+.select select:hover,
+.select select:focus {
+    border-color: var(--accent);
+    outline: 0;
+}
+
+.select .material-symbols-outlined {
+    position: absolute;
+    right: 12px;
+    font-size: 20px;
+    pointer-events: none;
+}
+
+.filter-btn {
+    width: 46px;
+    height: 46px;
+    display: grid;
+    place-items: center;
+    margin-left: auto;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    transition: background .3s, color .3s, border-color .3s;
+}
+
+.filter-btn:hover {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: var(--accent-text);
+}
+
+.results-head {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin: 32px 0 20px;
+}
+
+.results-count {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.clear-link {
+    font-size: 14px;
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.clear-link:hover {
+    text-decoration: underline;
+}
+
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 60px 20px;
+    border: 1.5px dashed var(--border);
+    border-radius: 10px;
+    color: var(--muted);
+    text-align: center;
+}
+
+.empty-state .material-symbols-outlined {
+    font-size: 44px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 44px;
+}
+
+.page-num,
+.page-arrow {
+    min-width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.page-num.active {
+    background: var(--accent);
+    color: var(--accent-text);
+}
+
+.page-arrow.disabled {
+    opacity: .35;
+}
+
+@media (max-width: 600px) {
+    .hero-page {
+        min-height: 440px;
+    }
+
+    .filters .select {
+        flex: 1 1 calc(50% - 6px);
+    }
+
+    .select select {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .filter-btn {
+        margin-left: 0;
     }
 }

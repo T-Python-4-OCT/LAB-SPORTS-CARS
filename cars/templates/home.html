@@ -19,7 +19,6 @@
     </div>
 </section>
 
-<!-- ================= HIGHLIGHTS ================= -->
 <section class="container highlights">
     <div class="highlight">
         <span class="material-symbols-outlined">bolt</span>
@@ -39,7 +38,6 @@
     </div>
 </section>
 
-<!-- ================= FEATURED CARS ================= -->
 <section class="container section">
     <div class="section-head">
         <h2>Featured Cars</h2>
@@ -51,14 +49,14 @@
     <div class="cards-grid">
 
         <article class="car-card">
-            <a href="{% url 'car_detail' 'ferrari-f8-tributo' %}">
+            <a href="{% url 'car_detail' 'genesis-gv80-coupe' %}">
                 <div class="card-img">
-                    <img src="{% static 'images/ferrari-card.jpg' %}" alt="Ferrari F8 Tributo">
+                    <img src="{% static 'images/ferrari-card.jpg' %}" alt="Genesis GV80 Coupe">
                 </div>
                 <div class="card-body">
                     <div>
-                        <h3>Ferrari F8 Tributo</h3>
-                        <p class="card-price">SAR 1,490,000</p>
+                        <h3>Genesis GV80 Coupe</h3>
+                        <p class="card-price">SAR 329,000</p>
                     </div>
                     <span class="material-symbols-outlined card-heart">favorite</span>
                 </div>
@@ -66,14 +64,14 @@
         </article>
 
         <article class="car-card">
-            <a href="{% url 'car_detail' 'porsche-911-turbo-s' %}">
+            <a href="{% url 'car_detail' 'genesis-g70' %}">
                 <div class="card-img">
-                    <img src="{% static 'images/porsche-card.jpg' %}" alt="Porsche 911 Turbo S">
+                    <img src="{% static 'images/porsche-card.jpg' %}" alt="Genesis G70">
                 </div>
                 <div class="card-body">
                     <div>
-                        <h3>Porsche 911 Turbo S</h3>
-                        <p class="card-price">SAR 1,295,000</p>
+                        <h3>Genesis G70</h3>
+                        <p class="card-price">SAR 192,435</p>
                     </div>
                     <span class="material-symbols-outlined card-heart">favorite</span>
                 </div>
@@ -81,14 +79,14 @@
         </article>
 
         <article class="car-card">
-            <a href="{% url 'car_detail' 'lamborghini-huracan' %}">
+            <a href="{% url 'car_detail' 'genesis-g80' %}">
                 <div class="card-img">
-                    <img src="{% static 'images/lamborghini-card.jpg' %}" alt="Lamborghini Huracán">
+                    <img src="{% static 'images/genses-car3.jpg' %}" alt="Genesis G80">
                 </div>
                 <div class="card-body">
                     <div>
-                        <h3>Lamborghini Huracán</h3>
-                        <p class="card-price">SAR 1,420,000</p>
+                        <h3>Genesis G90</h3>
+                        <p class="card-price">SAR 201,500</p>
                     </div>
                     <span class="material-symbols-outlined card-heart">favorite</span>
                 </div>
@@ -98,10 +96,9 @@
     </div>
 </section>
 
-<!-- ================= THE EXPERIENCE ================= -->
 <section class="experience">
     <div class="experience-img">
-        <img src="{% static 'images/experience.jpg' %}" alt="Car rear lights" loading="lazy">
+        <img src="{% static 'images/genses2.jpg' %}" alt="Genesis rear lights" loading="lazy">
     </div>
     <div class="experience-text">
         <span class="eyebrow">The Experience</span>
@@ -113,7 +110,6 @@
     </div>
 </section>
 
-<!-- ================= WHY CHOOSE US ================= -->
 <section class="container section">
     <div class="section-head">
         <h2>Why Choose Us</h2>
@@ -145,7 +141,7 @@
 
 <!-- ================= CALL TO ACTION ================= -->
 <section class="container">
-    <div class="cta" style="--cta-img: url('{% static 'images/cta.jpg' %}')">
+    <div class="cta" style="--cta-img: url('{% static 'images/genses5.jpg' %}')">
         <h2>Ready to Drive<br>Your Dream Car?</h2>
         <a href="{% url 'all_cars' %}" class="btn btn-primary btn-sm">
             Browse Collection <span class="material-symbols-outlined">arrow_forward</span>
