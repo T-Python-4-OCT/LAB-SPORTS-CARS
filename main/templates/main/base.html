@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Phudu:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'main/output.css' %}">
 
     <link rel="stylesheet" href="{% static 'main/style.css' %}">
@@ -34,19 +35,22 @@
 
         <div class="navbar-actions">
 
-            <a href="#" class="nav-icon">⌕</a>
+            <a href="{% url 'all_cars' %}#car-search" class="nav-icon" aria-label="Search">
+                <span class="material-symbols-outlined">search</span>
+            </a>
 
             <div class="theme-switch">
                 <input type="checkbox" id="theme-toggle">
 
                 <label for="theme-toggle" class="theme-label">
-                    <span class="sun">☀</span>
-                    <span class="moon">☾</span>
+                    <span class="sun material-symbols-outlined">light_mode</span>
+                    <span class="moon material-symbols-outlined">dark_mode</span>
                 </label>
             </div>
 
-            <a href="#" class="nav-icon">♙</a>
-
+            <span class="nav-icon" aria-hidden="true">
+    <span class="material-symbols-outlined">person</span>
+</span>
             <a href="#contact" class="contact-btn">Contact Us</a>
 
         </div>
@@ -76,12 +80,11 @@
         </div>
 
         <div class="footer-links">
-            <h3>SUPPORT</h3>
-            <a href="#">FAQs</a>
-            <a href="#">Financing</a>
-            <a href="#">Customer Support</a>
-            <a href="#">Privacy Policy</a>
-        </div>
+        <h3>SUPPORT</h3>
+        <span>FAQs</span>
+        <span>Financing</span>
+        <span>Customer Support</span>
+</div>
 
         <div class="footer-newsletter">
             <h3>STAY IN THE LOOP</h3>
@@ -93,10 +96,34 @@
             </div>
 
             <div class="footer-social" id="contact">
-                <a href="https://www.instagram.com/reel/DABWc5Nz0rd/?srtk=MTV2YnJxZDZtcWU1eQ==" aria-label="Instagram">◎</a>
-                <a href="https://youtu.be/-rbHpTKYxx4?si=JwY2rLPA_zMBspBJ" aria-label="YouTube">▶</a>
-                <a href="https://www.linkedin.com/newsletters/6975032815662891008" aria-label="LinkedIn">in</a>
-                <a href="https://x.com/restomod804?s=11&t=Y0TLof_fPXofioQZ9Zxkng" aria-label="X">𝕏</a>
+                <a href="https://www.instagram.com/reel/DABWc5Nz0rd/?srtk=MTV2YnJxZDZtcWU1eQ==" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24" width="20" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+                    </svg>
+                </a>
+                <a href="https://youtu.be/-rbHpTKYxx4?si=JwY2rLPA_zMBspBJ" aria-label="YouTube">
+                    <svg viewBox="0 0 24 24" width="20" fill="currentColor">
+                        <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8ZM9.6 15.6V8.4L15.8 12Z"/>
+                    </svg>
+                </a>
+                <a href="https://www.linkedin.com/newsletters/6975032815662891008" aria-label="LinkedIn">
+                    <svg viewBox="0 0 24 24" width="20" fill="currentColor">
+                        <text x="3" y="19" font-size="19" font-weight="700" font-family="Arial">
+                            in</text>
+                        </svg>
+                    </a>
+                
+                
+                
+                
+                
+                
+                
+                <a href="https://x.com/restomod804?s=11&t=Y0TLof_fPXofioQZ9Zxkng" >
+                <svg viewBox="0 0 24 24" width="20" fill="currentColor">
+                    <path d="M18.9 1.2h3.7l-8.1 9.3L24 22.8h-7.4l-5.8-7.6-6.7 7.6H.4l8.6-9.8L0 1.2h7.6l5.2 6.9zM17.6 20.5h2L6.5 3.4h-2z"/>
+                </svg>
+                </a>
             </div>
         </div>
 
@@ -110,6 +137,19 @@
         </div>
 
     </footer>
+<script>
+    const themeToggle = document.getElementById("theme-toggle");
 
+    if (themeToggle) {
+        themeToggle.checked = localStorage.getItem("masar-theme") === "dark";
+
+        themeToggle.addEventListener("change", function () {
+            localStorage.setItem(
+                "masar-theme",
+                this.checked ? "dark" : "light"
+            );
+        });
+    }
+</script>
 </body>
 </html>

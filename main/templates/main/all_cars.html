@@ -14,6 +14,21 @@
     </div>
 
     <div class="mb-8 flex flex-wrap items-end gap-4">
+        <label id="car-search" class="grid gap-2 text-sm">
+    Search for a car
+    <input
+        id="car-search-input"
+        type="search"
+        list="car-options"
+        placeholder="Type a car name..."
+        class="rounded border border-[#dce3e6] bg-white px-4! py-2! text-[#172126]"
+    >
+    <datalist id="car-options">
+        {% for car in cars %}
+            <option value="{{ car.name }}"></option>
+        {% endfor %}
+    </datalist>
+</label>
         <label class="grid gap-2 text-sm">
             Filter by body style
             <select id="body-filter"
@@ -55,6 +70,20 @@
     const bodyFilter = document.getElementById("body-filter");
     const carCards = document.querySelectorAll("#car-grid .car-card");
     const carCount = document.getElementById("car-count");
+    const carSearchInput = document.getElementById("car-search-input");
+
+carSearchInput.addEventListener("change", function () {
+    const searchValue = carSearchInput.value.trim().toLowerCase();
+
+    const matchingCard = Array.from(carCards).find(function (card) {
+        const carName = card.querySelector("h3").textContent.trim().toLowerCase();
+        return carName === searchValue;
+    });
+
+    if (matchingCard) {
+        window.location.href = matchingCard.querySelector(".car-link").href;
+    }
+});
 
     bodyFilter.addEventListener("change", function () {
         let visibleCars = 0;
