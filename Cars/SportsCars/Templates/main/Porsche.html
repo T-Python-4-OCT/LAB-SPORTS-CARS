@@ -5,76 +5,422 @@
 
 {% block content %}
 
-<div class="container py-5">
+<style>
+    .porsche-details-page {
+        --panel: #f1f2f4;
+        --card: #ffffff;
+        --text: #111111;
+        --secondary: #555555;
+        --border: #e5e5e5;
 
-    <nav class="mb-4">
-        <a href="{% url 'SportsCars:home_page' %}" class="text-danger text-decoration-none">Home</a>
-        /
-        <a href="{% url 'SportsCars:all_cars' %}" class="text-danger text-decoration-none">Cars</a>
-        / Porsche 911
-    </nav>
+        color: var(--text);
+    }
 
-    <div class="row align-items-center g-5">
+    .dark-mode .porsche-details-page {
+        --panel: #252525;
+        --card: #1c1c1c;
+        --text: #f5f5f5;
+        --secondary: #c5c5c5;
+        --border: #383838;
+    }
 
-        <div class="col-lg-6">
-            <img src="{% static 'imgas/Car1.jpg' %}"
-                 class="img-fluid rounded-4 shadow w-100"
+    .porsche-details-page .hero-section {
+        position: relative;
+        min-height: 600px;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        border-radius: 20px;
+        background: #111;
+    }
+
+    .porsche-details-page .hero-image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .porsche-details-page .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.88) 0%,
+            rgba(0, 0, 0, 0.65) 45%,
+            rgba(0, 0, 0, 0.15) 100%
+        );
+    }
+
+    .porsche-details-page .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 650px;
+        padding: 60px;
+        color: #ffffff;
+    }
+
+    .porsche-details-page .hero-badge {
+        display: inline-block;
+        padding: 8px 16px;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        border-radius: 30px;
+        color: #ffffff;
+        font-size: 13px;
+        letter-spacing: 2px;
+    }
+
+    .porsche-details-page .hero-content h1 {
+        font-size: clamp(40px, 6vw, 70px);
+        font-weight: 800;
+        margin-top: 25px;
+    }
+
+    .porsche-details-page .hero-content p {
+        color: #dddddd;
+        line-height: 1.9;
+        font-size: 16px;
+    }
+
+    .porsche-details-page .hero-price {
+        color: #ff4655;
+        font-size: 30px;
+        font-weight: 800;
+    }
+
+    .porsche-details-page .hero-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 25px 0;
+    }
+
+    .porsche-details-page .hero-tags span {
+        padding: 8px 14px;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 6px;
+        font-size: 13px;
+    }
+
+    .porsche-details-page .section-title {
+        color: var(--text);
+        font-weight: 800;
+    }
+
+    .porsche-details-page .section-description {
+        color: var(--secondary);
+        line-height: 1.9;
+    }
+
+    .porsche-details-page .spec-card,
+    .porsche-details-page .feature-card {
+        height: 100%;
+        padding: 30px 20px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        text-align: center;
+        transition: 0.3s ease;
+    }
+
+    .porsche-details-page .spec-card:hover,
+    .porsche-details-page .feature-card:hover {
+        transform: translateY(-5px);
+        border-color: #e63946;
+    }
+
+    .porsche-details-page .spec-card h3 {
+        color: #e63946;
+        font-size: 30px;
+        font-weight: 800;
+    }
+
+    .porsche-details-page .spec-card p,
+    .porsche-details-page .feature-card p {
+        color: var(--secondary);
+        margin-bottom: 0;
+    }
+
+    .porsche-details-page .feature-card h5 {
+        color: var(--text);
+        font-weight: 700;
+        margin: 15px 0 10px;
+    }
+
+    .porsche-details-page .feature-icon {
+        font-size: 35px;
+        color: #e63946;
+    }
+
+    .porsche-details-page .about-section {
+        padding: 40px;
+        background: var(--panel);
+        border-radius: 16px;
+    }
+
+    .porsche-details-page .cta-section {
+        padding: 45px 30px;
+        background: var(--panel);
+        border-radius: 16px;
+        text-align: center;
+    }
+
+    .porsche-details-page .breadcrumb-link {
+        color: #e63946;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .porsche-details-page .breadcrumb-link:hover {
+        text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+        .porsche-details-page .hero-section {
+            min-height: 650px;
+        }
+
+        .porsche-details-page .hero-overlay {
+            background: rgba(0, 0, 0, 0.72);
+        }
+
+        .porsche-details-page .hero-content {
+            padding: 30px 22px;
+        }
+
+        .porsche-details-page .about-section {
+            padding: 25px;
+        }
+    }
+</style>
+
+<div class="porsche-details-page">
+
+    <div class="container py-4">
+
+        <nav class="mb-4">
+            <a href="{% url 'SportsCars:home_page' %}"
+               class="breadcrumb-link">Home</a>
+            /
+            <a href="{% url 'SportsCars:all_cars' %}"
+               class="breadcrumb-link">Cars</a>
+            / Porsche 911
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+
+            <img src="{% static 'imgas/porsche.jpg' %}"
+                 class="hero-image"
                  alt="Porsche 911">
-        </div>
 
-        <div class="col-lg-6">
+            <div class="hero-overlay"></div>
 
-            <span class="text-danger fw-bold">SPORTSCARS COLLECTION</span>
+            <div class="hero-content">
 
-            <h1 class="display-4 fw-bold text-body mt-3">Porsche 911</h1>
+                <span class="hero-badge">
+                    SPORTSCARS COLLECTION
+                </span>
 
-            <h2 class="text-danger fw-bold my-4">SAR 450,000</h2>
+                <h1>Porsche 911</h1>
 
-            <p class="text-body-secondary lh-lg">
-                Experience the perfect combination of performance,
-                precision and timeless design.
-            </p>
+                <p class="mt-3">
+                    Experience the perfect combination of performance,
+                    precision and timeless design. The Porsche 911 delivers
+                    an unforgettable driving experience.
+                </p>
 
-            <div class="row g-3 my-4">
+                <div class="hero-price mt-4">
+                    SAR 450,000
+                </div>
 
-                <div class="col-4">
-                    <div class="bg-body-tertiary rounded-3 p-3 text-center">
-                        <h5 class="fw-bold text-body">3.2s</h5>
-                        <small class="text-body-secondary">0–100 km/h</small>
+                <div class="hero-tags">
+                    <span>Flat-Six Engine</span>
+                    <span>Sports Car</span>
+                    <span>German Engineering</span>
+                </div>
+
+                <a href="{% url 'SportsCars:contact' %}"
+                   class="btn btn-danger btn-lg px-4">
+                    Contact Dealer →
+                </a>
+
+            </div>
+
+        </section>
+
+        <!-- Technical Specifications -->
+        <section class="py-5">
+
+            <div class="text-center mb-5">
+                <span class="text-danger fw-bold small">
+                    PERFORMANCE
+                </span>
+
+                <h2 class="section-title mt-2">
+                    Technical Specifications
+                </h2>
+
+                <p class="section-description">
+                    Discover the performance behind the Porsche 911.
+                </p>
+            </div>
+
+            <div class="row g-4">
+
+                <div class="col-6 col-lg-3">
+                    <div class="spec-card">
+                        <h3>3.2s</h3>
+                        <p>0–100 km/h</p>
                     </div>
                 </div>
 
-                <div class="col-4">
-                    <div class="bg-body-tertiary rounded-3 p-3 text-center">
-                        <h5 class="fw-bold text-body">308</h5>
-                        <small class="text-body-secondary">Top Speed</small>
+                <div class="col-6 col-lg-3">
+                    <div class="spec-card">
+                        <h3>308</h3>
+                        <p>Top Speed km/h</p>
                     </div>
                 </div>
 
-                <div class="col-4">
-                    <div class="bg-body-tertiary rounded-3 p-3 text-center">
-                        <h5 class="fw-bold text-body">443 HP</h5>
-                        <small class="text-body-secondary">Power</small>
+                <div class="col-6 col-lg-3">
+                    <div class="spec-card">
+                        <h3>443 HP</h3>
+                        <p>Engine Power</p>
+                    </div>
+                </div>
+
+                <div class="col-6 col-lg-3">
+                    <div class="spec-card">
+                        <h3>6</h3>
+                        <p>Cylinder Engine</p>
                     </div>
                 </div>
 
             </div>
 
-            <a href="mailto:hello@sportscars.example"
-               class="btn btn-danger btn-lg w-100">
-                Contact Dealer →
-            </a>
+        </section>
 
-        </div>
+        <!-- About Section -->
+        <section class="about-section my-4">
 
-    </div>
+            <span class="text-danger fw-bold small">
+                ABOUT THE CAR
+            </span>
 
-    <div class="border-top mt-5 pt-4">
-        <h2 class="fw-bold text-body">About Porsche 911</h2>
-        <p class="text-body-secondary lh-lg">
-            The Porsche 911 combines iconic design, outstanding engineering
-            and exceptional driving performance.
-        </p>
+            <h2 class="section-title mt-2 mb-3">
+                About Porsche 911
+            </h2>
+
+            <p class="section-description mb-0">
+                The Porsche 911 combines iconic design, outstanding
+                engineering and exceptional driving performance.
+                Its distinctive styling, powerful engine and precise
+                handling make it one of the most recognizable sports cars
+                in the world.
+            </p>
+
+        </section>
+
+        <!-- Key Features -->
+        <section class="py-5">
+
+            <div class="text-center mb-5">
+                <span class="text-danger fw-bold small">
+                    WHAT MAKES IT SPECIAL
+                </span>
+
+                <h2 class="section-title mt-2">
+                    Key Features
+                </h2>
+            </div>
+
+            <div class="row g-4">
+
+                <div class="col-md-4">
+                    <div class="feature-card">
+
+                        <span class="material-symbols-outlined feature-icon">
+                            speed
+                        </span>
+
+                        <h5>Outstanding Performance</h5>
+
+                        <p>
+                            Experience impressive acceleration
+                            and exceptional driving performance.
+                        </p>
+
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="feature-card">
+
+                        <span class="material-symbols-outlined feature-icon">
+                            auto_awesome
+                        </span>
+
+                        <h5>Iconic Design</h5>
+
+                        <p>
+                            A timeless exterior design that combines
+                            elegance with a sporty character.
+                        </p>
+
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="feature-card">
+
+                        <span class="material-symbols-outlined feature-icon">
+                            engineering
+                        </span>
+
+                        <h5>German Engineering</h5>
+
+                        <p>
+                            Precision engineering designed to deliver
+                            control, comfort and reliability.
+                        </p>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Call To Action -->
+        <section class="cta-section my-4">
+
+            <h2 class="section-title">
+                Ready to Experience the Porsche 911?
+            </h2>
+
+            <p class="section-description mt-3">
+                Contact our team to learn more about this exceptional car.
+            </p>
+
+            <div class="d-flex justify-content-center flex-wrap gap-3 mt-4">
+
+                <a href="{% url 'SportsCars:contact' %}"
+                   class="btn btn-danger btn-lg px-4">
+                    Contact Us
+                </a>
+
+                <a href="{% url 'SportsCars:all_cars' %}"
+                   class="btn btn-outline-danger btn-lg px-4">
+                    Back to All Cars
+                </a>
+
+            </div>
+
+        </section>
+
     </div>
 
 </div>

@@ -26,21 +26,21 @@ def all_cars(request):
             "name": "Porsche 911",
             "brand": "porsche",
             "price": 450000,
-            "image": "images/porsche.jpg",
+            "image": "imgas/porsche.jpg",
             "url": "porsche"
         },
         {
             "name": "Ferrari F8",
             "brand": "ferrari",
             "price": 950000,
-            "image": "images/ferrari.jpg",
+            "image": "imgas/ferrari.jpg",
             "url": "ferrari"
         },
         {
             "name": "Lamborghini Huracan",
             "brand": "lamborghini",
             "price": 850000,
-            "image": "images/lamborghini.jpg",
+            "image": "imgas/lamborghini.jpg",
             "url": "lamborghini"
         }
     ]
