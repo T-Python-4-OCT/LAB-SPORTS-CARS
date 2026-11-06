@@ -8,19 +8,21 @@
 
     <title>SportsCars</title>
 
-    <!-- Google Fonts -->
+    
     <link href="https://fonts.googleapis.com/css2?family=Phudu:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Google Material Icons -->
+    
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
 
-    <!-- Main CSS -->
+    
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
 <body>
+    <input type="checkbox" id="dark-toggle" class="dark-toggle">
+    <div class="site-wrapper">
 
-    <!-- NAVBAR -->
+   
     <header class="navbar">
 
         <a href="{% url 'home' %}" class="logo">// SportCars</a>
@@ -34,17 +36,71 @@
 
         <div class="nav-icons">
             <span class="material-symbols-outlined">search</span>
-            <span class="material-symbols-outlined">dark_mode</span>
+            <label for="dark-toggle" class="theme-switch" title="Toggle Dark Mode">
+                 <span class="material-symbols-outlined">dark_mode</span>
+            </label>
             <span class="material-symbols-outlined">person</span>
         </div>
 
     </header>
 
-    <!-- PAGE CONTENT -->
+    
     <main>
         {% block content %}
         {% endblock %}
     </main>
+    
+
+<footer class="footer">
+    <div class="footer-grid">
+
+        <div class="footer-brand">
+            <h2>// SportCars</h2>
+            <p>Performance. Passion. Perfection.</p>
+
+            <div class="social-links">
+                <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a>
+                <a href="https://x.com/" target="_blank" rel="noopener noreferrer">X</a>
+                <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">YouTube</a>
+                <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
+        </div>
+
+        <div class="footer-column">
+            <h3>Explore</h3>
+            <a href="{% url 'home' %}">Home</a>
+            <a href="#">Cars</a>
+            <a href="#">About Us</a>
+            <a href="#">Contact</a>
+        </div>
+
+        <div class="footer-column">
+            <h3>Support</h3>
+            <a href="#">FAQs</a>
+            <a href="#">Financing</a>
+            <a href="#">Warranty</a>
+            <a href="#">After-Sales</a>
+        </div>
+
+        <div class="footer-column">
+            <h3>Stay in the Loop</h3>
+            <p>Get the latest news and exclusive offers.</p>
+
+            <form class="newsletter-form">
+                <input type="email" placeholder="Your email address">
+                <button type="button">Subscribe</button>
+            </form>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2026 SportCars. All rights reserved.</p>
+        <p>Privacy Policy | Terms of Service</p>
+    </div>
+</footer>
+</div>
+
 
 </body>
 </html>
