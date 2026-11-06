@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}All Cars{% endblock %}
+{% block content %}
+
+<section class="hero page cars-hero">
+  <div class="hero-text">
+    <small>OUR COLLECTION</small>
+    <h1>All Cars</h1>
+    <p>Explore our complete collection of iconic sports cars.</p>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="filters">
+    <details class="dd" name="filter">
+      <summary>Brand <span class="material-symbols-outlined">expand_more</span></summary>
+      <ul><li>Porsche</li><li>Ferrari</li><li>Lamborghini</li></ul>
+    </details>
+    <details class="dd" name="filter">
+      <summary>Model <span class="material-symbols-outlined">expand_more</span></summary>
+      <ul><li>911 Turbo S</li><li>F8 Tributo</li><li>Huracán</li></ul>
+    </details>
+    <details class="dd" name="filter">
+      <summary>Price <span class="material-symbols-outlined">expand_more</span></summary>
+      <ul><li>Under 1.3M</li><li>1.3M – 1.5M</li><li>Over 1.5M</li></ul>
+    </details>
+    <details class="dd" name="filter">
+      <summary>Year <span class="material-symbols-outlined">expand_more</span></summary>
+      <ul><li>2025</li><li>2024</li><li>2023</li></ul>
+    </details>
+  </div>
+
+  <h3 class="found">3 Cars Found</h3>
+  {% include "_cards.html" %}
+</section>
+
+{% endblock %}
