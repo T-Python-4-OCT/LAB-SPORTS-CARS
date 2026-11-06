@@ -1,0 +1,227 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}About Us | SportsCars{% endblock %}
+
+{% block content %}
+
+<!-- About Hero Section -->
+
+<div class="container py-5">
+
+    <div class="position-relative overflow-hidden rounded-4 bg-dark text-white p-4 p-lg-5 d-flex align-items-center"
+         style="min-height: 430px;">
+
+        <img
+            src="{% static 'imgas/Car1.jpg' %}"
+            class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover"
+            alt="Sports Car"
+        >
+
+        <div class="position-absolute top-0 start-0 w-100 h-100"
+             style="background: linear-gradient(90deg, #11151e 0%, rgba(17,21,30,.95) 25%, rgba(17,21,30,.7) 50%, rgba(17,21,30,.15) 100%);">
+        </div>
+
+        <div class="position-relative z-1" style="max-width: 480px;">
+
+            <span class="text-danger fw-bold text-uppercase small">
+                ABOUT US
+            </span>
+
+            <h1 class="display-4 fw-bold mt-3 mb-4">
+                Driven by <br>
+                <span class="text-danger">Passion</span>
+            </h1>
+
+            <p class="lead text-white-50 mb-4">
+                A team of automotive enthusiasts dedicated to bringing
+                the world's finest sports cars closer to you.
+            </p>
+
+            <a href="{% url 'SportsCars:all_cars' %}"
+               class="btn btn-danger btn-lg px-4 rounded-3">
+                Explore Our Cars →
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- Our Story Section -->
+
+<section class="container py-5">
+
+    <div class="row align-items-center g-5">
+
+        <div class="col-lg-6">
+
+            <span class="text-danger fw-bold text-uppercase small">
+                OUR STORY
+            </span>
+
+            <h2 class="display-6 fw-bold mt-3 mb-4">
+                More Than Just <span class="text-danger">Cars</span>
+            </h2>
+
+            <p class="text-secondary lh-lg">
+                SportsCars was created for people who appreciate the
+                beauty, engineering, and performance of exceptional
+                sports cars.
+            </p>
+
+            <p class="text-secondary lh-lg">
+                Our mission is to make discovering your dream sports car
+                simple and enjoyable by bringing together information
+                about some of the world's most remarkable vehicles.
+            </p>
+
+            <a href="{% url 'SportsCars:all_cars' %}"
+               class="btn btn-danger px-4 py-2 rounded-3 mt-3">
+                Browse Our Collection
+            </a>
+
+        </div>
+
+        <div class="col-lg-6">
+
+            <img
+                src="{% static 'imgas/Car1.jpg' %}"
+                alt="Sports Car"
+                class="img-fluid rounded-4 shadow w-100"
+                style="height: 380px; object-fit: cover;"
+            >
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Our Values Section -->
+
+<section class="container py-5">
+
+    <div class="text-center mb-5">
+
+        <span class="text-danger fw-bold text-uppercase small">
+            WHAT DRIVES US
+        </span>
+
+        <h2 class="display-6 fw-bold mt-3">
+            Our <span class="text-danger">Values</span>
+        </h2>
+
+        <p class="text-secondary">
+            The principles behind everything we do.
+        </p>
+
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-md-4">
+
+            <div class="card border-0 shadow-sm rounded-4 h-100 text-center p-4">
+
+                <div class="mb-3">
+                    <span class="material-symbols-outlined text-danger"
+                          style="font-size: 48px;">
+                        speed
+                    </span>
+                </div>
+
+                <h4 class="fw-bold mb-3">
+                    Performance
+                </h4>
+
+                <p class="text-secondary mb-0">
+                    We appreciate outstanding performance,
+                    innovation, and automotive engineering.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card border-0 shadow-sm rounded-4 h-100 text-center p-4">
+
+                <div class="mb-3">
+                    <span class="material-symbols-outlined text-danger"
+                          style="font-size: 48px;">
+                        workspace_premium
+                    </span>
+                </div>
+
+                <h4 class="fw-bold mb-3">
+                    Excellence
+                </h4>
+
+                <p class="text-secondary mb-0">
+                    We focus on quality, attention to detail,
+                    and delivering an excellent experience.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card border-0 shadow-sm rounded-4 h-100 text-center p-4">
+
+                <div class="mb-3">
+                    <span class="material-symbols-outlined text-danger"
+                          style="font-size: 48px;">
+                        favorite
+                    </span>
+                </div>
+
+                <h4 class="fw-bold mb-3">
+                    Passion
+                </h4>
+
+                <p class="text-secondary mb-0">
+                    Our passion for sports cars inspires
+                    everything we create and share.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Call To Action Section -->
+
+<section class="container py-5">
+
+    <div class="bg-dark text-white rounded-4 text-center p-5">
+
+        <h2 class="display-6 fw-bold mb-3">
+            Ready to Find Your <span class="text-danger">Dream Car?</span>
+        </h2>
+
+        <p class="text-white-50 mb-4">
+            Explore our collection and discover the world
+            of exceptional sports cars.
+        </p>
+
+        <a href="{% url 'SportsCars:all_cars' %}"
+           class="btn btn-danger btn-lg px-5 rounded-3">
+            Explore All Cars
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -4,8 +4,8 @@ from django.http import HttpRequest
 def home_page(request: HttpRequest):
  return render(request, "main/index.html")
 
-def trems_view(request: HttpRequest):
- return render(request, "main/Trems.html")
+def about_view(request):
+    return render(request, "main/About.html")
 
 def dark_mode(request):
  current_mode = request.COOKIES.get("dark_mode", "light")
@@ -46,4 +46,18 @@ def all_cars(request):
     ]
 
     return render(request, "main/AllCars.html", {"cars": cars})
+
+def porsche_view(request):
+    return render(request, "main/Porsche.html")
+
+
+def ferrari_view(request):
+    return render(request, "main/Ferrari.html")
+
+
+def lamborghini_view(request):
+    return render(request, "main/Lamborghini.html")
+
+def contact_view(request):
+    return render(request, "main/Contact.html")
 

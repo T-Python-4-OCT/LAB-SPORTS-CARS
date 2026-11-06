@@ -1,0 +1,424 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}
+Contact Us | SportsCars
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <!-- Breadcrumb -->
+
+    <nav class="mb-4 small">
+
+        <a href="{% url 'SportsCars:home_page' %}"
+           class="text-danger text-decoration-none">
+            Home
+        </a>
+
+        <span class="text-body-secondary mx-2">/</span>
+
+        <span class="text-body-secondary">
+            Contact Us
+        </span>
+
+    </nav>
+
+
+    <!-- Page Header -->
+
+    <section class="text-center py-5 mb-4">
+
+        <span class="text-danger fw-bold small text-uppercase">
+            GET IN TOUCH
+        </span>
+
+        <h1 class="display-4 fw-bold text-body mt-3">
+            Contact <span class="text-danger">Us</span>
+        </h1>
+
+        <p class="text-body-secondary mx-auto mt-3"
+           style="max-width: 650px; line-height: 1.9;">
+
+            Have a question or looking for your dream sports car?
+            Our team is here to help you find the perfect driving experience.
+
+        </p>
+
+    </section>
+
+
+    <!-- Contact Section -->
+
+    <section class="row g-4 mb-5">
+
+
+        <!-- Contact Information -->
+
+        <div class="col-lg-5">
+
+            <div class="bg-body-tertiary border rounded-4 p-4 p-lg-5 h-100">
+
+                <span class="text-danger fw-bold small text-uppercase">
+                    CONTACT INFORMATION
+                </span>
+
+                <h2 class="fw-bold text-body mt-3 mb-3">
+                    Let's Start a Conversation
+                </h2>
+
+                <p class="text-body-secondary lh-lg mb-5">
+
+                    Whether you need more information about our collection
+                    or want to ask about a specific vehicle, feel free
+                    to contact us.
+
+                </p>
+
+
+                <!-- Email -->
+
+                <div class="d-flex gap-3 mb-4">
+
+                    <div class="bg-danger-subtle rounded-3 p-3">
+
+                        <span class="material-symbols-outlined text-danger fs-3">
+                            mail
+                        </span>
+
+                    </div>
+
+                    <div>
+
+                        <h6 class="fw-bold text-body mb-1">
+                            Email Us
+                        </h6>
+
+                        <p class="text-body-secondary small mb-0">
+                            hello@sportscars.example
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Phone -->
+
+                <div class="d-flex gap-3 mb-4">
+
+                    <div class="bg-danger-subtle rounded-3 p-3">
+
+                        <span class="material-symbols-outlined text-danger fs-3">
+                            call
+                        </span>
+
+                    </div>
+
+                    <div>
+
+                        <h6 class="fw-bold text-body mb-1">
+                            Call Us
+                        </h6>
+
+                        <p class="text-body-secondary small mb-0">
+                            +966 50 000 0000
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Location -->
+
+                <div class="d-flex gap-3 mb-4">
+
+                    <div class="bg-danger-subtle rounded-3 p-3">
+
+                        <span class="material-symbols-outlined text-danger fs-3">
+                            location_on
+                        </span>
+
+                    </div>
+
+                    <div>
+
+                        <h6 class="fw-bold text-body mb-1">
+                            Our Location
+                        </h6>
+
+                        <p class="text-body-secondary small mb-0">
+                            Saudi Arabia
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <hr class="my-4">
+
+
+                <h6 class="fw-bold text-body mb-3">
+                    Follow Our Journey
+                </h6>
+
+                <div class="d-flex gap-3">
+
+                    <a href="#"
+                       class="btn btn-outline-secondary rounded-3">
+
+                        <span class="material-symbols-outlined align-middle">
+                            public
+                        </span>
+
+                    </a>
+
+                    <a href="#"
+                       class="btn btn-outline-secondary rounded-3">
+
+                        <span class="material-symbols-outlined align-middle">
+                            photo_camera
+                        </span>
+
+                    </a>
+
+                    <a href="#"
+                       class="btn btn-outline-secondary rounded-3">
+
+                        <span class="material-symbols-outlined align-middle">
+                            play_circle
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Contact Form -->
+
+        <div class="col-lg-7">
+
+            <div class="bg-body border rounded-4 shadow-sm p-4 p-lg-5 h-100">
+
+                <span class="text-danger fw-bold small text-uppercase">
+                    SEND US A MESSAGE
+                </span>
+
+                <h2 class="fw-bold text-body mt-3 mb-2">
+                    We'd Love to Hear From You
+                </h2>
+
+                <p class="text-body-secondary mb-4">
+                    Fill out the form below and we'll get back to you.
+                </p>
+
+
+                <form method="POST">
+
+                    {% csrf_token %}
+
+                    <div class="row g-3">
+
+
+                        <!-- Full Name -->
+
+                        <div class="col-md-6">
+
+                            <label for="fullName"
+                                   class="form-label fw-semibold text-body">
+                                Full Name
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control form-control-lg bg-body text-body"
+                                id="fullName"
+                                name="name"
+                                placeholder="Enter your name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- Email -->
+
+                        <div class="col-md-6">
+
+                            <label for="email"
+                                   class="form-label fw-semibold text-body">
+                                Email Address
+                            </label>
+
+                            <input
+                                type="email"
+                                class="form-control form-control-lg bg-body text-body"
+                                id="email"
+                                name="email"
+                                placeholder="Enter your email"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- Phone -->
+
+                        <div class="col-12">
+
+                            <label for="phone"
+                                   class="form-label fw-semibold text-body">
+                                Phone Number
+                            </label>
+
+                            <input
+                                type="tel"
+                                class="form-control form-control-lg bg-body text-body"
+                                id="phone"
+                                name="phone"
+                                placeholder="Enter your phone number"
+                            >
+
+                        </div>
+
+
+                        <!-- Subject -->
+
+                        <div class="col-12">
+
+                            <label for="subject"
+                                   class="form-label fw-semibold text-body">
+                                Subject
+                            </label>
+
+                            <select
+                                class="form-select form-select-lg bg-body text-body"
+                                id="subject"
+                                name="subject"
+                                required
+                            >
+
+                                <option value="" selected disabled>
+                                    Select a subject
+                                </option>
+
+                                <option value="car-inquiry">
+                                    Car Inquiry
+                                </option>
+
+                                <option value="pricing">
+                                    Pricing Information
+                                </option>
+
+                                <option value="test-drive">
+                                    Test Drive
+                                </option>
+
+                                <option value="other">
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- Message -->
+
+                        <div class="col-12">
+
+                            <label for="message"
+                                   class="form-label fw-semibold text-body">
+                                Your Message
+                            </label>
+
+                            <textarea
+                                class="form-control form-control-lg bg-body text-body"
+                                id="message"
+                                name="message"
+                                rows="5"
+                                placeholder="Write your message here..."
+                                required
+                            ></textarea>
+
+                        </div>
+
+
+                        <!-- Submit Button -->
+
+                        <div class="col-12 mt-4">
+
+                            <button
+                                type="submit"
+                                class="btn btn-danger btn-lg rounded-3 w-100 py-3"
+                            >
+
+                                Send Message
+
+                                <span class="material-symbols-outlined align-middle ms-2">
+                                    send
+                                </span>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Bottom Section -->
+
+    <section class="my-5">
+
+        <div class="bg-body-tertiary border rounded-4 p-4 p-lg-5 text-center">
+
+            <span class="material-symbols-outlined text-danger"
+                  style="font-size: 45px;">
+                directions_car
+            </span>
+
+            <h2 class="fw-bold text-body mt-3">
+                Your Dream Car Is Waiting
+            </h2>
+
+            <p class="text-body-secondary mt-3 mb-4">
+
+                Explore our exclusive collection and discover
+                the perfect sports car for you.
+
+            </p>
+
+            <a href="{% url 'SportsCars:all_cars' %}"
+               class="btn btn-danger btn-lg rounded-3 px-5">
+
+                Explore Our Collection
+
+                <span class="material-symbols-outlined align-middle ms-2">
+                    arrow_forward
+                </span>
+
+            </a>
+
+        </div>
+
+    </section>
+
+</div>
+
+{% endblock %}

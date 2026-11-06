@@ -1,0 +1,620 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}Lamborghini Huracan | SportsCars{% endblock %}
+
+{% block content %}
+
+<style>
+    .lamborghini-hero {
+        position: relative;
+        min-height: 580px;
+        overflow: hidden;
+        isolation: isolate;
+        border-radius: 1.5rem;
+        background: var(--bs-tertiary-bg);
+    }
+
+    .lamborghini-hero model-viewer {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        background: transparent;
+        --poster-color: transparent;
+    }
+
+    .lamborghini-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        background: linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.90) 0%,
+            rgba(0, 0, 0, 0.68) 38%,
+            rgba(0, 0, 0, 0.20) 100%
+        );
+    }
+
+    .lamborghini-content {
+        position: relative;
+        z-index: 2;
+        max-width: 650px;
+        padding: 75px 55px;
+        color: #ffffff;
+    }
+
+    .lamborghini-content h1 {
+        font-size: clamp(2.5rem, 5vw, 4.5rem);
+        font-weight: 800;
+        line-height: 1.1;
+    }
+
+    .lamborghini-content p {
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.9;
+    }
+
+    .hero-badge {
+        display: inline-block;
+        background: #dc3545;
+        color: #ffffff;
+        padding: 9px 16px;
+        border-radius: 50rem;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+
+    .spec-card,
+    .feature-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .spec-card:hover,
+    .feature-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    }
+    /* Dark Mode */
+
+[data-bs-theme="dark"] .lamborghini-hero {
+    background: #111111;
+    border: 1px solid #292929;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+[data-bs-theme="dark"] .lamborghini-hero::before {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.95) 0%,
+            rgba(0, 0, 0, 0.75) 40%,
+            rgba(0, 0, 0, 0.25) 100%
+        );
+}
+
+[data-bs-theme="dark"] .spec-card,
+[data-bs-theme="dark"] .feature-card {
+    background: #171717 !important;
+    border-color: #303030 !important;
+}
+
+[data-bs-theme="dark"] .spec-card:hover,
+[data-bs-theme="dark"] .feature-card:hover {
+    box-shadow: 0 12px 30px rgba(220, 53, 69, 0.12);
+}
+
+[data-bs-theme="dark"] section.border-top {
+    border-color: #303030 !important;
+}
+
+    @media (max-width: 768px) {
+        .lamborghini-hero {
+            min-height: 650px;
+        }
+
+        .lamborghini-content {
+            padding: 50px 25px;
+        }
+
+        .lamborghini-hero::before {
+            background: linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.95) 0%,
+                rgba(0, 0, 0, 0.65) 65%,
+                rgba(0, 0, 0, 0.30) 100%
+            );
+        }
+        
+    }
+</style>
+
+
+<div class="container py-5">
+
+    <!-- Breadcrumb -->
+
+    <nav class="mb-4 small">
+
+        <a href="{% url 'SportsCars:home_page' %}"
+           class="text-danger text-decoration-none">
+            Home
+        </a>
+
+        <span class="text-body-secondary mx-2">/</span>
+
+        <a href="{% url 'SportsCars:all_cars' %}"
+           class="text-danger text-decoration-none">
+            Cars
+        </a>
+
+        <span class="text-body-secondary mx-2">/</span>
+
+        <span class="text-body-secondary">
+            Lamborghini Huracan
+        </span>
+
+    </nav>
+
+
+    <!-- Hero Section -->
+
+    <section class="lamborghini-hero mb-5 shadow-sm">
+
+        <model-viewer
+            src="{% static 'models/Lamborghini.glb' %}"
+            alt="Lamborghini Huracan 3D Model"
+            camera-controls
+            auto-rotate
+            auto-rotate-delay="1000"
+            rotation-per-second="15deg"
+            shadow-intensity="1.5"
+            exposure="1.2"
+            environment-image="neutral"
+            interaction-prompt="auto"
+            loading="eager"
+            camera-orbit="0deg 75deg 3m"
+            field-of-view="25deg">
+        </model-viewer>
+
+        <div class="lamborghini-content">
+
+            <span class="hero-badge">
+                PREMIUM COLLECTION
+            </span>
+
+            <div class="text-danger fw-bold small text-uppercase mt-4">
+                Lamborghini Collection
+            </div>
+
+            <h1 class="mt-3">
+                Lamborghini Huracan
+            </h1>
+
+            <p class="mt-4">
+                Experience the extraordinary power of Italian engineering.
+                Discover a perfect combination of breathtaking design,
+                advanced technology and thrilling performance.
+            </p>
+
+            <div class="my-4">
+
+                <small class="text-white-50">
+                    Starting Price
+                </small>
+
+                <h2 class="text-danger fw-bold">
+                    SAR 850,000
+                </h2>
+
+            </div>
+
+            <div class="d-flex flex-wrap gap-2 mb-4">
+
+                <span class="badge bg-danger-subtle text-danger px-3 py-2">
+                    V10 Engine
+                </span>
+
+                <span class="badge bg-danger-subtle text-danger px-3 py-2">
+                    Supercar
+                </span>
+
+                <span class="badge bg-danger-subtle text-danger px-3 py-2">
+                    Italian Design
+                </span>
+
+            </div>
+
+            <a href="mailto:hello@sportscars.example"
+               class="btn btn-danger btn-lg rounded-3 px-5 py-3">
+
+                Contact Dealer
+
+                <span class="material-symbols-outlined align-middle ms-2">
+                    arrow_forward
+                </span>
+
+            </a>
+
+            <p class="small mt-4 mb-0">
+                <span class="material-symbols-outlined align-middle">
+                    360
+                </span>
+                Drag to rotate • Scroll to zoom
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Specifications -->
+
+    <section class="mb-5 py-4">
+
+        <div class="text-center mb-5">
+
+            <span class="text-danger fw-bold small text-uppercase">
+                PERFORMANCE
+            </span>
+
+            <h2 class="fw-bold text-body mt-2">
+                Technical Specifications
+            </h2>
+
+            <p class="text-body-secondary">
+                Discover the numbers behind the performance.
+            </p>
+
+        </div>
+
+
+        <div class="row g-3">
+
+            <div class="col-6 col-lg-3">
+
+                <div class="spec-card bg-body-tertiary border rounded-4 p-4 text-center h-100">
+
+                    <span class="material-symbols-outlined text-danger fs-1">
+                        speed
+                    </span>
+
+                    <h3 class="fw-bold text-body mt-3">
+                        2.9s
+                    </h3>
+
+                    <p class="text-body-secondary small mb-0">
+                        0–100 km/h
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-6 col-lg-3">
+
+                <div class="spec-card bg-body-tertiary border rounded-4 p-4 text-center h-100">
+
+                    <span class="material-symbols-outlined text-danger fs-1">
+                        rocket_launch
+                    </span>
+
+                    <h3 class="fw-bold text-body mt-3">
+                        325
+                    </h3>
+
+                    <p class="text-body-secondary small mb-0">
+                        Top Speed (km/h)
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-6 col-lg-3">
+
+                <div class="spec-card bg-body-tertiary border rounded-4 p-4 text-center h-100">
+
+                    <span class="material-symbols-outlined text-danger fs-1">
+                        bolt
+                    </span>
+
+                    <h3 class="fw-bold text-body mt-3">
+                        631 HP
+                    </h3>
+
+                    <p class="text-body-secondary small mb-0">
+                        Maximum Power
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-6 col-lg-3">
+
+                <div class="spec-card bg-body-tertiary border rounded-4 p-4 text-center h-100">
+
+                    <span class="material-symbols-outlined text-danger fs-1">
+                        settings
+                    </span>
+
+                    <h3 class="fw-bold text-body mt-3">
+                        V10
+                    </h3>
+
+                    <p class="text-body-secondary small mb-0">
+                        Engine Type
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- About Section -->
+
+    <section class="row align-items-center g-5 py-5 border-top">
+
+        <div class="col-lg-6">
+
+            <span class="text-danger fw-bold small text-uppercase">
+                ABOUT THE CAR
+            </span>
+
+            <h2 class="display-6 fw-bold text-body mt-3">
+                Designed to Inspire.
+                <span class="text-danger">Built to Perform.</span>
+            </h2>
+
+            <p class="text-body-secondary lh-lg mt-4">
+                The Lamborghini Huracan represents the perfect balance
+                between Italian craftsmanship and advanced automotive
+                engineering.
+            </p>
+
+            <p class="text-body-secondary lh-lg">
+                Its aggressive exterior, precision engineering and
+                powerful V10 engine create an unforgettable driving
+                experience.
+            </p>
+
+        </div>
+
+
+        <div class="col-lg-6">
+
+            <div class="bg-body-tertiary border rounded-4 p-4 p-lg-5 h-100">
+
+                <h4 class="fw-bold text-body mb-4">
+                    What Makes It Special?
+                </h4>
+
+                <div class="d-flex gap-3 mb-4">
+
+                    <span class="material-symbols-outlined text-danger fs-2">
+                        design_services
+                    </span>
+
+                    <div>
+
+                        <h6 class="fw-bold text-body">
+                            Iconic Italian Design
+                        </h6>
+
+                        <p class="text-body-secondary small mb-0">
+                            A bold exterior with aerodynamic details.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="d-flex gap-3 mb-4">
+
+                    <span class="material-symbols-outlined text-danger fs-2">
+                        bolt
+                    </span>
+
+                    <div>
+
+                        <h6 class="fw-bold text-body">
+                            Powerful Performance
+                        </h6>
+
+                        <p class="text-body-secondary small mb-0">
+                            An exciting engine designed for thrilling drives.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="d-flex gap-3">
+
+                    <span class="material-symbols-outlined text-danger fs-2">
+                        computer
+                    </span>
+
+                    <div>
+
+                        <h6 class="fw-bold text-body">
+                            Advanced Technology
+                        </h6>
+
+                        <p class="text-body-secondary small mb-0">
+                            Modern systems designed around the driver.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Key Features -->
+
+    <section class="py-5 border-top">
+
+        <div class="text-center mb-5">
+
+            <span class="text-danger fw-bold small text-uppercase">
+                THE DETAILS
+            </span>
+
+            <h2 class="display-6 fw-bold text-body mt-2">
+                Key Features
+            </h2>
+
+            <p class="text-body-secondary">
+                Every detail is designed to deliver something extraordinary.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+            <div class="col-md-4">
+
+                <div class="feature-card bg-body border rounded-4 p-4 h-100">
+
+                    <span class="material-symbols-outlined text-danger fs-1">
+                        air
+                    </span>
+
+                    <h5 class="fw-bold text-body mt-3">
+                        Aerodynamic Design
+                    </h5>
+
+                    <p class="text-body-secondary small mb-0">
+                        Sculpted bodywork designed to improve airflow
+                        and enhance stability.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="feature-card bg-body border rounded-4 p-4 h-100">
+
+                    <span class="material-symbols-outlined text-danger fs-1">
+                        sports_score
+                    </span>
+
+                    <h5 class="fw-bold text-body mt-3">
+                        Driving Experience
+                    </h5>
+
+                    <p class="text-body-secondary small mb-0">
+                        Responsive handling and exciting acceleration
+                        for an engaging drive.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="feature-card bg-body border rounded-4 p-4 h-100">
+
+                    <span class="material-symbols-outlined text-danger fs-1">
+                        chair
+                    </span>
+
+                    <h5 class="fw-bold text-body mt-3">
+                        Premium Interior
+                    </h5>
+
+                    <p class="text-body-secondary small mb-0">
+                        A driver-focused cabin with refined materials
+                        and modern technology.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Final CTA -->
+
+    <section class="my-5">
+
+        <div class="bg-body-tertiary border rounded-4 p-4 p-lg-5 text-center">
+
+            <span class="text-danger fw-bold small text-uppercase">
+                YOUR NEXT EXPERIENCE
+            </span>
+
+            <h2 class="display-6 fw-bold mt-3 text-body">
+                Ready to Experience Lamborghini?
+            </h2>
+
+            <p class="text-body-secondary mt-3 mb-4">
+                Discover the power, luxury and performance of the
+                Lamborghini Huracan.
+            </p>
+
+            <a href="mailto:hello@sportscars.example"
+               class="btn btn-danger btn-lg rounded-3 px-5">
+
+                Contact Dealer
+
+                <span class="material-symbols-outlined align-middle ms-2">
+                    arrow_forward
+                </span>
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- Back to Cars -->
+
+    <div class="text-center mt-5">
+
+        <a href="{% url 'SportsCars:all_cars' %}"
+           class="text-danger text-decoration-none fw-bold">
+
+            <span class="material-symbols-outlined align-middle">
+                arrow_back
+            </span>
+
+            Back to All Cars
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

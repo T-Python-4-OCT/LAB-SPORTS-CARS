@@ -1,199 +1,220 @@
 {% extends "main/base.html" %}
+{% load static %}
 
-{% block title %}
-SportsCars | Home
-{% endblock %}
+{% block title %}SportsCars | Home{% endblock %}
 
 {% block content %}
 
 <!-- Hero Section -->
+
 <div class="container col-xxl-8 px-4 py-5">
-  <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-    <div class="col-10 col-sm-8 col-lg-6">
-      <img src="/static/imgas/Car1.jpg" class="d-block mx-lg-auto img-fluid rounded-3" alt="Sports Car" width="700" height="500" loading="lazy">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+
+        <div class="col-10 col-sm-8 col-lg-6">
+            <img src="{% static 'imgas/Car1.jpg' %}"
+                 class="img-fluid rounded-4 shadow"
+                 alt="Sports Car">
+        </div>
+
+        <div class="col-lg-6">
+            <h1 class="display-5 fw-bold text-body mb-3">
+                Performance<br>
+                <span class="text-danger">Without Limits</span>
+            </h1>
+
+            <p class="lead text-body-secondary">
+                Explore a curated collection of iconic sports cars.
+            </p>
+
+            <a href="{% url 'SportsCars:all_cars' %}"
+               class="btn btn-danger btn-lg px-4">
+                Browse Cars →
+            </a>
+        </div>
+
     </div>
-    <div class="col-lg-6">
-      <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Performance<br>Without Limits</h1>
-      <p class="lead">Explore a curated collection of iconic sports cars.</p>
-      <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-        <button type="button" class="btn btn-danger btn-lg px-4 me-md-2">Browse Cars →</button>
-      </div>
-    </div>
-  </div>
 </div>
+
 
 <!-- Features Section -->
+
 <div class="container my-5">
-  <div class="row text-center py-4 g-0 border-top border-bottom custom-features-row">
-    
-    <!-- Item 1 -->
-    <div class="col-md-3 col-6 feature-col">
-      <span class="material-symbols-outlined fs-2 mb-2">bolt</span>
-      <h6 class="fw-bold mb-0">High Performance</h6>
-    </div>
+    <div class="row text-center py-4 g-0 border-top border-bottom">
 
-    <!-- Item 2 -->
-    <div class="col-md-3 col-6 feature-col">
-      <span class="material-symbols-outlined fs-2 mb-2">diamond</span>
-      <h6 class="fw-bold mb-0">Premium Selection</h6>
-    </div>
+        {% for icon, title in features %}
+        <div class="col-md-3 col-6 py-3">
+            <span class="material-symbols-outlined fs-2 text-danger">{{ icon }}</span>
+            <h6 class="fw-bold text-body">{{ title }}</h6>
+        </div>
+        {% endfor %}
 
-    <!-- Item 3 -->
-    <div class="col-md-3 col-6 feature-col">
-      <span class="material-symbols-outlined fs-2 mb-2">verified_user</span>
-      <h6 class="fw-bold mb-0">Verified & Inspected</h6>
-    </div>
+        <div class="col-md-3 col-6 py-3">
+            <span class="material-symbols-outlined fs-2 text-danger">bolt</span>
+            <h6 class="fw-bold text-body">High Performance</h6>
+        </div>
 
-    <!-- Item 4 -->
-    <div class="col-md-3 col-6 feature-col border-0">
-      <span class="material-symbols-outlined fs-2 mb-2">headset_mic</span>
-      <h6 class="fw-bold mb-0">Dedicated Support</h6>
-    </div>
+        <div class="col-md-3 col-6 py-3">
+            <span class="material-symbols-outlined fs-2 text-danger">diamond</span>
+            <h6 class="fw-bold text-body">Premium Selection</h6>
+        </div>
 
-  </div>
+        <div class="col-md-3 col-6 py-3">
+            <span class="material-symbols-outlined fs-2 text-danger">verified_user</span>
+            <h6 class="fw-bold text-body">Verified & Inspected</h6>
+        </div>
+
+        <div class="col-md-3 col-6 py-3">
+            <span class="material-symbols-outlined fs-2 text-danger">headset_mic</span>
+            <h6 class="fw-bold text-body">Dedicated Support</h6>
+        </div>
+
+    </div>
 </div>
 
-<!-- Cards Section -->
+
+<!-- Featured Cars -->
+
 <div class="container my-5">
+
     <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2 class="fw-bold m-0">Featured Cars</h2>
+        <h2 class="fw-bold text-body">Featured Cars</h2>
 
-    <!-- النص والسهم معاً داخل الرابط -->
-    <a href="{% url 'SportsCars:all_cars' %}" class="text-decoration-none text-dark d-flex align-items-center gap-1 fw-semibold">
-    <span>View all</span>
-    <span class="material-symbols-outlined fs-5">arrow_forward</span>
-</a>
-</div>
-    
-  <div class="row row-cols-1 row-cols-md-3 g-4">
-    
-    <div class="col">
-      <div class="card h-100 shadow-sm border-0">
-        <img src="/static/imgas/Car1.jpg" class="card-img-top" alt="not found">
-        <div class="card-body">
-          <h4 class="card-title">Card title</h4>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-        </div>
-        <div class="card-footer bg-transparent border-0">
-          <small class="text-muted">Last updated 3 mins ago</small>
-        </div>
-      </div>
+        <a href="{% url 'SportsCars:all_cars' %}"
+           class="text-danger text-decoration-none fw-semibold">
+            View All →
+        </a>
     </div>
 
-    <div class="col">
-      <div class="card h-100 shadow-sm border-0">
-        <img src="/static/imgas/Car1.jpg" class="card-img-top" alt="not found">
-        <div class="card-body">
-          <h4 class="card-title">Card title</h4>
-          <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-        </div>
-        <div class="card-footer bg-transparent border-0">
-          <small class="text-muted">Last updated 3 mins ago</small>
-        </div>
-      </div>
-    </div>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
 
-    <div class="col">
-      <div class="card h-100 shadow-sm border-0">
-        <img src="/static/imgas/Car1.jpg" class="card-img-top" alt="not found">
-        <div class="card-body">
-          <h4 class="card-title">Card title</h4>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-        </div>
-        <div class="card-footer bg-transparent border-0">
-          <small class="text-muted">Last updated 3 mins ago</small>
-        </div>
-      </div>
-    </div>
+        {% for car in "123" %}
+        <div class="col">
+            <div class="card h-100 bg-body text-body border shadow-sm rounded-4 overflow-hidden">
 
-  </div>
+                <img src="{% static 'imgas/Car1.jpg' %}"
+                     class="card-img-top"
+                     alt="Sports Car">
+
+                <div class="card-body">
+                    <h4 class="card-title fw-bold text-body">
+                        {% if forloop.counter == 1 %}
+                            Porsche 911
+                        {% elif forloop.counter == 2 %}
+                            Ferrari F8
+                        {% else %}
+                            Lamborghini
+                        {% endif %}
+                    </h4>
+
+                    <p class="card-text text-body-secondary">
+                        Experience exceptional performance and timeless design.
+                    </p>
+                </div>
+
+                <div class="card-footer bg-body border-0">
+                    <small class="text-body-secondary">Premium Sports Car</small>
+                </div>
+
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
 </div>
 
+
+<!-- Experience Section -->
 
 <div class="container my-5">
-  <div class="row align-items-center g-0 bg-light rounded-4 overflow-hidden border shadow-sm">
-    
-    <!-- الصورة على اليسار -->
-    <div class="col-lg-6 col-md-6 position-relative">
-      <img src="/static/imgas/Car1.jpg" class="w-100 h-100 object-fit-cover d-block" alt="The Experience" style="min-height: 320px;">
-      <!-- تدرج لوني خفيف لدمج الصورة مع الخلفية بشكل ناعم -->
-      <div class="position-absolute top-0 end-0 h-100 w-25 d-none d-md-block" style="background: linear-gradient(to right, transparent, #f8f9fa);"></div>
-    </div>
+    <div class="row align-items-center g-0 bg-body-tertiary rounded-4 overflow-hidden border shadow-sm">
 
-    <!-- النصوص والأزرار على اليمين -->
-    <div class="col-lg-6 col-md-6 p-4 p-lg-5">
-      <span class="text-uppercase tracking-widest fw-bold text-muted small d-block mb-2" style="letter-spacing: 2px; font-size: 12px;">
-        THE EXPERIENCE
-      </span>
-      
-      <h2 class="display-6 fw-bold text-dark mb-3">
-        More Than a Car
-      </h2>
-      
-      <p class="text-secondary mb-4 fs-6 lh-base">
-        A seamless journey from discovery to ownership, with expert support every step of the way.
-      </p>
-      
-      <a href="#" class="btn btn-danger btn-lg px-4 py-2 rounded-3 fs-6 fw-semibold shadow-sm">
-        Learn More <span class="ms-1">→</span>
-      </a>
+        <div class="col-lg-6">
+            <img src="{% static 'imgas/Car1.jpg' %}"
+                 class="w-100 object-fit-cover"
+                 style="min-height: 320px;"
+                 alt="The Experience">
+        </div>
+
+        <div class="col-lg-6 p-4 p-lg-5">
+            <span class="text-danger fw-bold small">THE EXPERIENCE</span>
+
+            <h2 class="display-6 fw-bold text-body my-3">
+                More Than a Car
+            </h2>
+
+            <p class="text-body-secondary mb-4">
+                A seamless journey from discovery to ownership,
+                with expert support every step of the way.
+            </p>
+
+            <a href="{% url 'SportsCars:about' %}"
+               class="btn btn-danger btn-lg px-4">
+                Learn More →
+            </a>
+        </div>
+
     </div>
-  </div>
 </div>
 
 
+<!-- Why Choose Us -->
+
 <div class="container my-5">
-    <h2 class="fw-bold m-0 text-right">Why Choose US</h2>
-  <div class="row text-center py-4 g-0 border-top border-bottom custom-features-row">
-    
-    
-    <!-- Item 1 -->
-    <div class="col-md-3 col-6 feature-col">
-      <span class="material-symbols-outlined">trophy</span>
-      <h6 class="fw-bold mb-0">High Performance</h6>
-    </div>
+    <h2 class="fw-bold text-body mb-4">Why Choose Us</h2>
 
-    <!-- Item 2 -->
-    <div class="col-md-3 col-6 feature-col">
-      <span class="material-symbols-outlined">verified_user</span>
-      <h6 class="fw-bold mb-0">Premium Selection</h6>
-    </div>
+    <div class="row text-center py-4 g-0 border-top border-bottom">
 
-    <!-- Item 3 -->
-    <div class="col-md-3 col-6 feature-col">
-      <span class="material-symbols-outlined">star</span>
-      <h6 class="fw-bold mb-0">Verified & Inspected</h6>
-    </div>
+        <div class="col-md-3 col-6 py-3">
+            <span class="material-symbols-outlined fs-2 text-danger">trophy</span>
+            <h6 class="fw-bold text-body">High Performance</h6>
+        </div>
 
-    <!-- Item 4 -->
-    <div class="col-md-3 col-6 feature-col border-0">
-      <span class="material-symbols-outlined">diamond</span>
-      <h6 class="fw-bold mb-0">Dedicated Support</h6>
+        <div class="col-md-3 col-6 py-3">
+            <span class="material-symbols-outlined fs-2 text-danger">verified_user</span>
+            <h6 class="fw-bold text-body">Premium Selection</h6>
+        </div>
+
+        <div class="col-md-3 col-6 py-3">
+            <span class="material-symbols-outlined fs-2 text-danger">star</span>
+            <h6 class="fw-bold text-body">Verified & Inspected</h6>
+        </div>
+
+        <div class="col-md-3 col-6 py-3">
+            <span class="material-symbols-outlined fs-2 text-danger">diamond</span>
+            <h6 class="fw-bold text-body">Dedicated Support</h6>
+        </div>
+
     </div>
-  </div>
 </div>
+
+
+<!-- Final CTA -->
+
 <div class="container my-5">
-  <div class="position-relative rounded-4 overflow-hidden shadow-sm d-flex align-items-center p-4 p-md-5" style="min-height: 280px;">
-    
-    <!-- صورة الخلفية -->
-    <img src="/static/imgas/Car1.jpg" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover z-0" alt="Ready to Drive Your Dream Car?">
+    <div class="position-relative rounded-4 overflow-hidden shadow-sm d-flex align-items-center p-4 p-md-5"
+         style="min-height: 300px;">
 
-    <!-- طبقة شفافية خفيفة فوق الخلفية لضمان وضوح النص على اليسار -->
-    <div class="position-absolute top-0 start-0 w-100 h-100 z-1" style="background: linear-gradient(90deg, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.4) 40%, rgba(255,255,255,0) 100%);"></div>
+        <img src="{% static 'imgas/Car1.jpg' %}"
+             class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover"
+             alt="Dream Sports Car">
 
-    <!-- المحتوى النصي والزر -->
-    <div class="position-relative z-2 text-start max-width-content ms-md-3">
-      <h2 class="display-6 fw-bold text-dark mb-4 lh-sm">
-        Ready to Drive<br>Your Dream Car?
-      </h2>
-      
-      <a href="#" class="btn btn-danger btn-lg px-4 py-2 rounded-3 fs-6 fw-semibold shadow-sm align-items-center d-inline-flex gap-2">
-        <span>Browse Collection</span>
-        <span class="material-symbols-outlined fs-5">arrow_forward</span>
-      </a>
+        <div class="position-absolute top-0 start-0 w-100 h-100"
+             style="background: linear-gradient(90deg, rgba(17,21,30,.98), rgba(17,21,30,.75), rgba(17,21,30,.2));">
+        </div>
+
+        <div class="position-relative">
+            <h2 class="display-6 fw-bold text-white mb-4">
+                Ready to Drive<br>
+                Your <span class="text-danger">Dream Car?</span>
+            </h2>
+
+            <a href="{% url 'SportsCars:all_cars' %}"
+               class="btn btn-danger btn-lg px-4">
+                Browse Collection →
+            </a>
+        </div>
+
     </div>
-
-  </div>
 </div>
 
 {% endblock %}

@@ -3,6 +3,10 @@
 <html lang="en">
 
 <head>
+    <script
+    type="module"
+    src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.4.0/model-viewer.min.js">
+</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -35,10 +39,10 @@
 
         <!-- روابط التنقل (وسط الهيدر) -->
         <nav class="nav nav-pills gap-4 align-items-center">
-            <a href="#" class="nav-link text-dark fw-bold position-relative active-nav-link p-0 pb-1">Home</a>
-            <a href="#" class="nav-link text-dark fw-bold p-0 pb-1">Cars</a>
-            <a href="#" class="nav-link text-dark fw-bold p-0 pb-1">About Us</a>
-            <a href="#" class="nav-link text-dark fw-bold p-0 pb-1">Contact</a>
+            <a href="{% url 'SportsCars:home_page' %}" class="nav-link text-dark fw-bold position-relative active-nav-link p-0 pb-1">Home</a>
+            <a href="{% url 'SportsCars:all_cars' %}" class="nav-link text-dark fw-bold p-0 pb-1">Cars</a>
+            <a href="{% url 'SportsCars:about' %}" class="nav-link text-dark fw-bold p-0 pb-1">About Us</a>
+            <a href="{% url 'SportsCars:contact' %}" class="nav-link text-dark fw-bold p-0 pb-1">Contact</a>
         </nav>
 
         <!-- الأيقونات (يمين الهيدر) -->
