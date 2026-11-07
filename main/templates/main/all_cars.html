@@ -1,0 +1,133 @@
+
+{% extends 'main/base.html' %}
+{% load static %}
+{% load humanize %}
+{% block title %}MASAR MOTORS | All Cars{% endblock %}
+
+{% block content %}
+<section class="featured-cars">
+    <div class="section-heading">
+        <div>
+            <span class="section-label">OUR COLLECTION</span>
+            <h2>All Classic <span>Cars</span></h2>
+        </div>
+        <span id="car-count">6 Cars Found</span>
+    </div>
+
+    <div class="mb-8 flex flex-wrap items-end gap-4">
+        <label id="car-search" class="grid gap-2 text-sm">
+    Search for a car
+    <input
+        id="car-search-input"
+        type="search"
+        list="car-options"
+        placeholder="Type a car name..."
+        class="rounded border border-[#dce3e6] bg-white px-4! py-2! text-[#172126]"
+    >
+    <datalist id="car-options">
+        {% for car in cars %}
+            <option value="{{ car.name }}"></option>
+        {% endfor %}
+    </datalist>
+</label>
+<label class="grid gap-2 text-sm">
+    Filter by brand
+    <select id="brand-filter" class="rounded border border-[#dce3e6] bg-white px-4! py-2! text-[#172126]">
+        <option value="all">All brands</option>
+        {% for car in cars %}
+            {% ifchanged car.brand %}
+                <option value="{{ car.brand|lower }}">{{ car.brand }}</option>
+            {% endifchanged %}
+        {% endfor %}
+    </select>
+</label>
+        <label class="grid gap-2 text-sm">
+            Filter by body style
+            <select id="body-filter"
+                    class="rounded border border-[#dce3e6] bg-white px-4! py-2! text-[#172126]">
+                <option value="all">All styles</option>
+                <option value="sedan">Sedan</option>
+                
+                <option value="pickup">Pickup</option>
+                <option value="coupe">Coupe</option>
+            </select>
+        </label>
+    </div>
+
+    <div class="car-grid" id="car-grid">
+        {% for car in cars %}
+        <article class="car-card" data-body="{{ car.body_style|lower }}">
+            <div class="car-image">
+                <img src="{% static car.image %}"
+                alt="{{ car.name }}"
+                class="{% if car.id == 2 %}object-[center_80%]{% endif %}">
+            </div>
+
+            <div class="car-info">
+                <span class="car-category">{{ car.category }}</span>
+                <h3>{{ car.name }}</h3>
+                <p class="car-brand">{{ car.brand }}</p>
+                <p class="car-price">{{ car.price|floatformat:0|intcomma }} SAR</p>
+                <p>{{ car.description }}</p>
+                <a href="{% url 'car_detail' car.id %}" class="car-link">
+                    VIEW DETAILS
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </a>
+            </div>
+        </article>
+        {% empty %}
+        <p>No cars are available right now.</p>
+        {% endfor %}
+    </div>
+</section>
+
+<script>
+    const bodyFilter = document.getElementById("body-filter");
+    const brandFilter = document.getElementById("brand-filter");
+    const carCards = document.querySelectorAll("#car-grid .car-card");
+    const carCount = document.getElementById("car-count");
+    const carSearchInput = document.getElementById("car-search-input");
+
+carSearchInput.addEventListener("change", function () {
+    const searchValue = carSearchInput.value.trim().toLowerCase();
+
+    const matchingCard = Array.from(carCards).find(function (card) {
+        const carName = card.querySelector("h3").textContent.trim().toLowerCase();
+        return carName === searchValue;
+    });
+
+    if (matchingCard) {
+        window.location.href = matchingCard.querySelector(".car-link").href;
+    }
+});
+
+   function filterCars() {
+    let visibleCars = 0;
+
+    carCards.forEach(function (card) {
+        const selectedBody = bodyFilter.value.toLowerCase();
+        const selectedBrand = brandFilter.value.toLowerCase();
+
+        const carBody = card.dataset.body.toLowerCase();
+        const carBrand = card.querySelector(".car-brand").textContent.trim().toLowerCase();
+
+        const matchesBody = selectedBody === "all" || carBody.includes(selectedBody);
+        const matchesBrand = selectedBrand === "all" || carBrand === selectedBrand;
+
+        card.hidden = !(matchesBody && matchesBrand);
+
+        if (!card.hidden) {
+            visibleCars++;
+        }
+    });
+
+    carCount.textContent = visibleCars + " Cars Found";
+}
+
+bodyFilter.addEventListener("change", filterCars);
+brandFilter.addEventListener("change", filterCars);
+
+
+    
+</script>
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% load humanize %}
+{% block title %}{{ car.name }} | MASAR MOTORS{% endblock %}
+
+{% block content %}
+<section class="car-detail-page">
+
+    <div style="width: 100%; max-width: 480px; height: 320px; margin: 0 auto; overflow: hidden; background: #101719; border-radius: 8px;">
+        <img
+            src="{% static car.image %}"
+            alt="{{ car.name }}"
+            style="display: block; width: 100%; height: 100%; object-fit: contain;"
+        >
+    </div>
+
+    <div class="car-detail-info">
+        <span class="car-category">{{ car.category }}</span>
+        <h1>{{ car.name }}</h1>
+        <p>{{ car.description }}</p>
+
+        <dl class="car-specs">
+            <div>
+                <dt class="font-bold">Model</dt>
+                <dd>{{ car.model }}</dd>
+            </div>
+            <div>
+    <dt class="font-bold">Price</dt>
+    <dd> {{ car.price|intcomma }} SAR</dd>
+</div>
+            <div>
+                <dt class="font-bold">Year</dt>
+                <dd>{{ car.year }}</dd>
+            </div>
+            <div>
+                <dt class="font-bold">
+    <span class="material-symbols-outlined">settings</span>
+    Engine
+</dt>
+                <dd>{{ car.engine }}</dd>
+            </div>
+            <div>
+                <dt class="font-bold">Horsepower</dt>
+                <dd>{{ car.horsepower }}</dd>
+            </div>
+            <div>
+                <dt class="font-bold">
+    <span class="material-symbols-outlined">speed</span>
+    Top Speed
+</dt>
+                <dd>{{ car.top_speed }}</dd>
+            </div>
+            <div>
+                <dt class="font-bold">Body Style</dt>
+                <dd>{{ car.body_style }}</dd>
+            </div>
+            <div>
+                <dt class="font-bold">Color</dt>
+                <dd>{{ car.color }}</dd>
+            </div>
+        </dl>
+
+        {% if car.manufacturer_url %}
+            <a
+                href="{{ car.manufacturer_url }}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="car-link mt-6"
+            >
+                VISIT MANUFACTURER
+                <span class="material-symbols-outlined">arrow_forward</span>
+            </a>
+        {% endif %}
+
+        <a href="{% url 'all_cars' %}" class="car-link mt-6">
+            <span class="material-symbols-outlined">arrow_back</span>
+            BACK TO ALL CARS
+        </a>
+    </div>
+
+</section>
+{% endblock %}
