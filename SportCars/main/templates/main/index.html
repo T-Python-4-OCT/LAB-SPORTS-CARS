@@ -1,0 +1,172 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<!-- Hero -->
+<section class="hero">
+    <div class="container hero-grid">
+        <div class="hero-text">
+            <span class="hero-badge fade-up"><span class="dot"></span> 2026 Collection</span>
+            <h1 class="fade-up delay-1">Performance <span>Without <em>Limits</em></span></h1>
+            <p class="fade-up delay-1">Explore a curated collection of iconic sports cars.</p>
+            <div class="hero-actions fade-up delay-2">
+                <a href="{% url 'main:cars_view' %}" class="btn">
+                    Browse Cars <span class="material-symbols-outlined">arrow_forward</span>
+                </a>
+                <a href="{% url 'main:about_view' %}" class="btn btn-ghost">About Us</a>
+            </div>
+            <div class="hero-stats fade-up delay-3">
+                <div><strong>740</strong><span>Max hp</span></div>
+                <div><strong>2.9s</strong><span>0 – 100 km/h</span></div>
+                <div><strong>350</strong><span>Top km/h</span></div>
+            </div>
+        </div>
+        <div class="hero-image" data-hero-slider>
+            <img src="{% static 'images/hero.jpg' %}" alt="Porsche 911 Carrera S" class="active">
+            <img src="{% static 'images/cars/huracan-front.jpg' %}" alt="Lamborghini Huracán EVO">
+            <img src="{% static 'images/cars/ferrari-f8-front.jpg' %}" alt="Ferrari F8 Tributo">
+            <div class="hero-dots">
+                <button type="button" class="active" aria-label="Show Porsche"></button>
+                <button type="button" aria-label="Show Lamborghini"></button>
+                <button type="button" aria-label="Show Ferrari"></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Highlights -->
+<section class="container highlights">
+    <div class="highlight reveal">
+        <span class="material-symbols-outlined">bolt</span>
+        <h4>High Performance</h4>
+    </div>
+    <div class="highlight reveal">
+        <span class="material-symbols-outlined">diamond</span>
+        <h4>Premium Selection</h4>
+    </div>
+    <div class="highlight reveal">
+        <span class="material-symbols-outlined">verified_user</span>
+        <h4>Verified &amp; Inspected</h4>
+    </div>
+    <div class="highlight reveal">
+        <span class="material-symbols-outlined">support_agent</span>
+        <h4>Dedicated Support</h4>
+    </div>
+</section>
+
+<!-- Brand strip: pure CSS animation (the list is repeated twice so it loops smoothly) -->
+<section class="marquee" aria-label="Brands we sell">
+    <div class="marquee-track">
+        {% for repeat in "12" %}
+        {% for brand in brands %}<a href="{% url 'main:cars_view' %}?brand={{ brand|urlencode }}" class="marquee-item">{{ brand }}</a><span class="marquee-sep">//</span>{% endfor %}
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Featured cars -->
+<section class="container section" id="featured">
+    <div class="section-head">
+        <h2>Featured Cars</h2>
+        <a href="{% url 'main:cars_view' %}" class="link-arrow">View All <span class="material-symbols-outlined">arrow_forward</span></a>
+    </div>
+    <!-- Brand tabs use a query parameter: ?featured=Ferrari -->
+    <nav class="brand-tabs" aria-label="Filter featured cars">
+        <a href="{{ request.path }}#featured" class="{% if not featured_brand %}active{% endif %}">All</a>
+        {% for brand in featured_brands %}
+        <a href="?featured={{ brand }}#featured" class="{% if brand == featured_brand %}active{% endif %}">{{ brand }}</a>
+        {% endfor %}
+    </nav>
+    <div class="cars-grid">
+        {% for car in featured_cars %}
+            {% include 'main/car_card.html' %}
+        {% endfor %}
+    </div>
+</section>
+
+{% if recent_cars %}
+<!-- Recently viewed: read from a signed cookie that the car detail page saves -->
+<section class="container section">
+    <div class="section-head">
+        <h2>Recently Viewed</h2>
+        <span class="eyebrow">Picked up where you left off</span>
+    </div>
+    <div class="recent-list">
+        {% for car in recent_cars %}
+        <a href="{% url 'main:car_detail_view' car.slug %}" class="recent-item reveal">
+            <img src="{% static car.image %}" alt="{{ car.brand }} {{ car.name }}">
+            <div>
+                <strong>{{ car.brand }} {{ car.name }}</strong>
+                <span>{{ car.year }} · {{ car.power }} hp</span>
+            </div>
+            <span class="material-symbols-outlined">chevron_right</span>
+        </a>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+
+<!-- Experience -->
+<section class="container section">
+    <div class="experience reveal">
+        <img src="{% static 'images/experience.jpg' %}" alt="Sports car tail lights">
+        <div class="experience-text">
+            <span class="eyebrow">The Experience</span>
+            <h2>More Than a Car</h2>
+            <p>A seamless journey from discovery to ownership, with expert support every step of the way.</p>
+            <ul class="checklist">
+                <li><span class="material-symbols-outlined">check</span> Private test drives</li>
+                <li><span class="material-symbols-outlined">check</span> Flexible financing</li>
+                <li><span class="material-symbols-outlined">check</span> Delivery to your door</li>
+            </ul>
+            <a href="{% url 'main:about_view' %}" class="btn btn-small">
+                Learn More <span class="material-symbols-outlined">arrow_forward</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Why choose us -->
+<section class="container section">
+    <h2>Why Choose Us</h2>
+    <div class="features-grid">
+        <div class="feature reveal">
+            <span class="material-symbols-outlined">workspace_premium</span>
+            <h4>Iconic Models</h4>
+            <p>A handpicked range of world-class cars.</p>
+        </div>
+        <div class="feature reveal">
+            <span class="material-symbols-outlined">shield</span>
+            <h4>Full Transparency</h4>
+            <p>Detailed history and inspection.</p>
+        </div>
+        <div class="feature reveal">
+            <span class="material-symbols-outlined">star</span>
+            <h4>Expert Guidance</h4>
+            <p>Personalized advice from automotive experts.</p>
+        </div>
+        <div class="feature reveal">
+            <span class="material-symbols-outlined">diamond</span>
+            <h4>After-Sales Care</h4>
+            <p>Ongoing support and exclusive benefits.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Call to action -->
+<section class="container section">
+    <div class="cta reveal" style="--cta-image: url('{% static 'images/cta-road.jpg' %}')">
+        <span class="eyebrow cta-eyebrow">Your next drive</span>
+        <h2>Ready to Drive<br>Your Dream Car?</h2>
+        <div class="hero-actions">
+            <a href="{% url 'main:cars_view' %}" class="btn btn-small">
+                Browse Collection <span class="material-symbols-outlined">arrow_forward</span>
+            </a>
+            <a href="#contact" class="btn btn-small btn-glass">Contact Us</a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
