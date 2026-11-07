@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}SportCars{% endblock %}</title>
+
+   
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Phudu:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Google Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+
+   
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="{% if request.COOKIES.theme == 'dark' %}dark{% endif %}">
+
+    <header class="site-header">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand brand-mark" href="{% url 'main:home_view' %}">//</a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-label="Menu">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="mainNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'home_view' %}active{% endif %}" href="{% url 'main:home_view' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'cars_view' or request.resolver_match.url_name == 'car_detail_view' %}active{% endif %}" href="{% url 'main:cars_view' %}">Cars</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'about_view' %}active{% endif %}" href="{% url 'main:about_view' %}">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'contact_view' %}active{% endif %}" href="{% url 'main:contact_view' %}">Contact</a>
+                        </li>
+                    </ul>
+
+                    <div class="nav-icons">
+                        <a href="#" aria-label="Search"><span class="material-symbols-outlined">search</span></a>
+                        <a href="{% url 'main:toggle_theme' %}" aria-label="Toggle theme">
+                       <span class="material-symbols-outlined">{% if request.COOKIES.theme == 'dark' %}light_mode{% else %}dark_mode{% endif %}</span>
+                        </a>
+                        <a href="#" aria-label="Account"><span class="material-symbols-outlined">person</span></a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-brand"><span class="brand-mark">//</span> SportCars</div>
+                    <p class="footer-text">Iconic sports cars for those who love to drive.</p>
+                </div>
+
+                <div class="col-lg-2 col-6">
+                    <h6>Explore</h6>
+                    <ul class="footer-links">
+                        <li><a href="{% url 'main:home_view' %}">Home</a></li>
+                        <li><a href="{% url 'main:cars_view' %}">Cars</a></li>
+                        <li><a href="{% url 'main:about_view' %}">About Us</a></li>
+                        <li><a href="{% url 'main:contact_view' %}">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-6">
+                    <h6>Support</h6>
+                    <ul class="footer-links">
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Financing</a></li>
+                        <li><a href="#">Warranty</a></li>
+                        <li><a href="#">After-Sales</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-5 col-md-6">
+                    <h6>Stay in the Loop</h6>
+                    <p class="footer-text">Get the latest arrivals, exclusive offers, and automotive news.</p>
+                    <form class="subscribe" onsubmit="return false;">
+                        <input type="email" placeholder="Your email" aria-label="Your email">
+                        <button type="submit" aria-label="Subscribe"><span class="material-symbols-outlined">arrow_forward</span></button>
+                    </form>
+                    <div class="socials">
+                        <a href="https://www.instagram.com/porsche/" target="_blank" rel="noopener" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="https://www.youtube.com/@porsche" target="_blank" rel="noopener" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+                        <a href="https://www.linkedin.com/company/porsche/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                        <a href="https://x.com/Porsche" target="_blank" rel="noopener" aria-label="X"><i class="bi bi-twitter-x"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>© 2026 SportCars. All rights reserved.</span>
+                <span><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

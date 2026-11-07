@@ -1,0 +1,43 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}All Cars | SportCars{% endblock %}
+
+{% block content %}
+    <section class="page-hero" style="background-image: url('{% static 'images/hero.jpg' %}');">
+        <div class="container">
+            <p class="eyebrow">Our Collection</p>
+            <h1>All Cars</h1>
+            <p class="hero-text">Explore our complete collection of iconic sports cars.</p>
+        </div>
+    </section>
+
+    <section class="container cars-section">
+        
+        <div class="filters">
+            <a href="{% url 'main:cars_view' %}" class="filter-btn {% if not selected_brand %}active{% endif %}">All</a>
+            {% for brand in brands %}
+                <a href="{% url 'main:cars_view' %}?brand={{ brand }}" class="filter-btn {% if selected_brand == brand %}active{% endif %}">{{ brand }}</a>
+            {% endfor %}
+        </div>
+
+        <p class="cars-count">{{ cars|length }} Cars Found</p>
+
+        <div class="row g-4">
+            {% for car in cars %}
+                <div class="col-lg-4 col-md-6">
+                    <a href="{% url 'main:car_detail_view' car.id %}" class="car-card">
+                        <div class="car-image">
+                            <img src="{% static car.image %}" alt="{{ car.brand }} {{ car.name }}">
+                        </div>
+                        <div class="car-info">
+                            <h3>{{ car.brand }} {{ car.name }}</h3>
+                            <p class="car-price">SAR {{ car.price|intcomma }}</p>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

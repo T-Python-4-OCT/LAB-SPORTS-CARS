@@ -1,0 +1,80 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}{{ car.brand }} {{ car.name }} | SportCars{% endblock %}
+
+{% block content %}
+    <section class="container detail-section">
+
+        <
+        <nav class="crumbs">
+            <a href="{% url 'main:cars_view' %}">Cars</a>
+            <span class="material-symbols-outlined">chevron_right</span>
+            <span>{{ car.brand }}</span>
+            <span class="material-symbols-outlined">chevron_right</span>
+            <span class="current">{{ car.name }}</span>
+        </nav>
+
+        <div class="row g-5">
+            
+            <div class="col-lg-7">
+                <div class="detail-image">
+                    <img src="{% static car.image %}" alt="{{ car.brand }} {{ car.name }}">
+                </div>
+            </div>
+
+           
+            <div class="col-lg-5">
+                <p class="eyebrow">{{ car.brand }}</p>
+                <h1 class="detail-title">{{ car.name }}</h1>
+                <p class="detail-price">SAR {{ car.price|intcomma }}</p>
+                <p class="detail-desc">{{ car.description }}</p>
+
+                <ul class="spec-list">
+                    <li><span class="material-symbols-outlined">settings</span> Engine <strong>{{ car.engine }}</strong></li>
+                    <li><span class="material-symbols-outlined">bolt</span> Power <strong>{{ car.power }}</strong></li>
+                    <li><span class="material-symbols-outlined">speed</span> 0 - 100 km/h <strong>{{ car.acceleration }}</strong></li>
+                    <li><span class="material-symbols-outlined">flag</span> Top Speed <strong>{{ car.top_speed }}</strong></li>
+                </ul>
+
+                <div class="detail-actions">
+                    <a href="#" class="btn-accent">Inquire Now</a>
+                    <a href="#" class="btn-outline">
+                        <span class="material-symbols-outlined">favorite</span> Save to Wishlist
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        
+        <h2 class="key-title">Key Features</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="key-card">
+                    <span class="material-symbols-outlined">airline_seat_recline_extra</span>
+                    <h6>Premium Interior</h6>
+                    <p>A driver-focused cabin with refined materials.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="key-card">
+                    <span class="material-symbols-outlined">tire_repair</span>
+                    <h6>Performance Brakes</h6>
+                    <p>Exceptional stopping power and control.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="key-card">
+                    <span class="material-symbols-outlined">air</span>
+                    <h6>Aerodynamic Design</h6>
+                    <p>Engineered for maximum stability and downforce.</p>
+                </div>
+            </div>
+        </div>
+
+        <a href="{% url 'main:cars_view' %}" class="back-link">
+            <span class="material-symbols-outlined">arrow_back</span> Back to all cars
+        </a>
+    </section>
+{% endblock %}
