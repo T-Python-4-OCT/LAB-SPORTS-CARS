@@ -5,7 +5,7 @@
 
 {% block content %}
 
-  <!-- ===== واجهة الصفحة ===== -->
+  <!-- ---------- واجهة الصفحة ---------- -->
   <section class="container">
     <div class="page-hero">
       <img src="{% static 'images/cars-hero.jpg' %}" alt="{{ t.all_cars }}" class="page-hero-img">
@@ -17,7 +17,7 @@
     </div>
   </section>
 
-  <!-- ===== الفلاتر ===== -->
+  <!-- ---------- الفلاتر ---------- -->
   <section class="container">
     <form class="filters" method="get" action="{% url 'main:cars' %}">
       <select name="model" class="select">
@@ -52,7 +52,7 @@
     <p class="results-count">{{ t.results }}: <strong>{{ cars|length }}</strong></p>
   </section>
 
-  <!-- ===== شبكة السيارات ===== -->
+  <!-- ---------- شبكة السيارات ---------- -->
   <section class="container">
     <div class="cards">
       {% for car in cars %}

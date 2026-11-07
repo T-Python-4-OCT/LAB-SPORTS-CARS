@@ -5,7 +5,7 @@
 
 {% block content %}
 
-  <!-- ===== الأعلى: معرض الصور + معلومات السيارة ===== -->
+  <!-- ---------- الأعلى: معرض الصور + معلومات السيارة ---------- -->
   <section class="container">
     <nav class="breadcrumb">
       <a href="{% url 'main:cars' %}">{{ t.nav_cars }}</a>
@@ -64,7 +64,7 @@
     </div>
   </section>
 
-  <!-- ===== التابات ===== -->
+  <!-- ---------- التابات ---------- -->
   <section class="container section">
     <nav class="tabs">
       <a href="#overview">{{ t.tab_overview }}</a>
@@ -91,7 +91,7 @@
     </div>
   </section>
 
-  <!-- ===== المميزات الرئيسية ===== -->
+  <!-- ---------- المميزات الرئيسية ---------- -->
   <section class="container section" id="features">
     <h2 class="section-title">{{ t.key_features }}</h2>
     <div class="key-features">
@@ -113,7 +113,7 @@
     </div>
   </section>
 
-  <!-- ===== سيارات ثانية قد تعجبك ===== -->
+  <!-- ---------- سيارات ثانية قد تعجبك ---------- -->
   <section class="container section" id="more">
     <div class="section-head">
       <h2>{{ t.also_like }}</h2>
