@@ -1,0 +1,124 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}SportsCars{% endblock %}</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Phudu:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+
+    <script>
+    if (localStorage.getItem("theme") === "dark") {
+        document.addEventListener("DOMContentLoaded", function () {
+            document.body.classList.add("dark-mode");
+        });
+    }
+</script>
+</head>
+
+<body>
+    <header class="navbar">
+        <a href="{% url 'main:home' %}" class="logo">
+            SPORTS<span>CARS</span>
+        </a>
+
+        
+<nav class="nav-links">
+    <a href="{% url 'main:home' %}">HOME</a>
+    <a href="{% url 'main:all_cars' %}">ALL CARS</a>
+    <a href="{% url 'main:about' %}">ABOUT US</a>
+    <a href="{% url 'main:contact' %}">CONTACT</a>
+</nav>
+
+
+        
+<div class="nav-actions">
+    <button class="nav-icon" type="button" aria-label="Search" title="Search">
+        <span class="material-symbols-outlined">search</span>
+    </button>
+
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle dark mode">
+        <span class="material-symbols-outlined">dark_mode</span>
+    </button>
+
+    <button class="nav-icon" type="button" aria-label="Account" title="Account">
+        <span class="material-symbols-outlined">person</span>
+    </button>
+</div>
+
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h2>🏁 SportCars</h2>
+                <p>Iconic sports cars for those<br>who love to drive.</p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Explore</h3>
+                <a href="{% url 'main:home' %}">Home</a>
+                <a href="{% url 'main:all_cars' %}">Cars</a>
+                <a href="{% url 'main:about' %}">About Us</a>
+                <a href="{% url 'main:contact' %}">Contact</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Support</h3>
+                <a href="#">FAQs</a>
+                <a href="#">Financing</a>
+                <a href="#">Warranty</a>
+                <a href="#">After-Sales</a>
+            </div>
+
+            <div class="footer-newsletter">
+                <h3>Stay in the Loop</h3>
+                <p>Get the latest arrivals, exclusive offers,<br>and automotive news.</p>
+
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Your email">
+                    <button type="button">➜</button>
+                </div>
+            </div>
+
+            <div class="footer-social">
+                <a href="https://www.instagram.com/bmw/" target="_blank" rel="noopener noreferrer" aria-label="BMW Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="https://www.youtube.com/@BMW" target="_blank" rel="noopener noreferrer" aria-label="BMW YouTube">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+                <a href="https://www.linkedin.com/company/bmw-group/" target="_blank" rel="noopener noreferrer" aria-label="BMW LinkedIn">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+                <a href="https://x.com/BMW" target="_blank" rel="noopener noreferrer" aria-label="BMW X">
+                    <i class="fa-brands fa-x-twitter"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 SportCars. All rights reserved.</p>
+            <div>
+                <a href="#">Privacy Policy</a>
+                <span>|</span>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'main/js/script.js' %}"></script>
+</body>
+</html>

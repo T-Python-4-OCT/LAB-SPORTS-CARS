@@ -1,0 +1,184 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Home | SportsCars{% endblock %}
+
+{% block content %}
+
+<section class="hero animated-hero">
+
+    <div class="hero-content">
+        <p class="hero-label">THE ULTIMATE DRIVING MACHINE</p>
+
+        <h1>
+            EXPERIENCE <br>
+            THE POWER OF <span>BMW</span>
+        </h1>
+
+        <p class="hero-description">
+            Discover the perfect combination of luxury,
+            performance, and innovation with our
+            exclusive BMW sports car collection.
+        </p>
+
+        <div class="hero-buttons">
+           <a href="{% url 'main:all_cars' %}" class="btn-primary">
+        EXPLORE CARS
+        <span class="material-symbols-outlined">
+        arrow_forward
+        </span>
+        </a>
+
+            <a href="{% url 'main:about' %}" class="btn-secondary">ABOUT US</a>
+        </div>
+    </div>
+
+    <div class="hero-image">
+        <img
+            src="{% static 'main/images/bmw-m4.jpg' %}"
+            alt="BMW M4 Competition"
+        >
+    </div>
+
+</section>
+
+<section class="featured-section">
+
+    <div class="section-header">
+        <div>
+            <p class="section-label">OUR COLLECTION</p>
+            <h2>Featured BMW Cars</h2>
+        </div>
+
+        <a href="{% url 'main:all_cars' %}" class="view-all">
+        View All
+        <span class="material-symbols-outlined">
+        arrow_forward
+        </span>
+        </a>
+    </div>
+
+    <div class="cars-grid">
+
+        <div class="car-card">
+            <img src="{% static 'main/images/bmw-m4.jpg' %}" alt="BMW M4">
+
+            <div class="car-info">
+                <h3>BMW M4 Competition</h3>
+                <p>SAR 425,000</p>
+            </div>
+        </div>
+
+        <div class="car-card">
+            <img src="{% static 'main/images/bmw-m3.jpg' %}" alt="BMW M3">
+
+            <div class="car-info">
+                <h3>BMW M3 Competition</h3>
+                <p>SAR 380,000</p>
+            </div>
+        </div>
+
+        <div class="car-card">
+            <img src="{% static 'main/images/bmw-m8.jpg' %}" alt="BMW M8">
+
+            <div class="car-info">
+                <h3>BMW M8 Competition</h3>
+                <p>SAR 715,000</p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+<section class="why-section">
+
+    <div class="why-heading">
+        <p class="section-label">THE SPORTSCARS EXPERIENCE</p>
+        <h2>Why Choose Us?</h2>
+    </div>
+
+    <div class="why-grid">
+
+        <div class="why-card">
+            <span class="material-symbols-outlined">verified</span>
+            <h3>Premium Quality</h3>
+            <p>Carefully selected BMW sports cars.</p>
+        </div>
+
+        <div class="why-card">
+            <span class="material-symbols-outlined">visibility</span>
+            <h3>Full Transparency</h3>
+            <p>Clear details and honest pricing.</p>
+        </div>
+
+        <div class="why-card">
+            <span class="material-symbols-outlined">workspace_premium</span>
+            <h3>Expert Guidance</h3>
+            <p>Professional support every step of the way.</p>
+        </div>
+
+        <div class="why-card">
+            <span class="material-symbols-outlined">support_agent</span>
+            <h3>Dedicated Support</h3>
+            <p>We're always here to help you.</p>
+        </div>
+
+    </div>
+
+</section>
+<section class="experience-section">
+
+    <div class="experience-card">
+
+        <div class="experience-content">
+            <p class="experience-label">THE EXPERIENCE</p>
+
+            <h2>More Than a Car</h2>
+
+            <p>
+                Experience the thrill of BMW performance,
+                luxury, and innovation. Every drive is
+                an unforgettable journey.
+            </p>
+
+            <a href="{% url 'main:about' %}" class="experience-btn">
+         DISCOVER MORE
+        <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="drive-section">
+
+    <div class="drive-content">
+        <p class="drive-label">YOUR NEXT ADVENTURE STARTS HERE</p>
+
+        <h2>
+            Ready to Drive <br>
+            Your Dream BMW?
+        </h2>
+
+        <p>
+            Discover our exclusive BMW collection
+            and find the perfect car for your journey.
+        </p>
+
+        <a href="{% url 'main:all_cars' %}" class="drive-btn">
+    Browse Collection
+    <span class="material-symbols-outlined">
+        arrow_forward
+    </span>
+    </a>
+    </div>
+
+    <div class="drive-image">
+        <img src="{% static 'main/images/bmw-m8.jpg' %}"
+             alt="BMW M8 Competition">
+    </div>
+
+</section>
+
+{% endblock %}
