@@ -1,0 +1,253 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}All Cars | Velaré Motors{% endblock %}
+
+{% block content %}
+
+<!-- Collection Hero -->
+<section class="cars-hero">
+    <img
+        src="{% static 'images/cars/rolls-royce-ghost/exterior/side.jpg' %}"
+        alt="Rolls-Royce Ghost side exterior view"
+        class="cars-hero__image"
+    >
+
+    <div class="container cars-hero__content">
+        <span class="lux-eyebrow">OUR COLLECTION</span>
+
+        <h1>All Luxury Cars</h1>
+
+        <p>
+            Explore our exclusive selection of luxury vehicles,
+            each chosen for exceptional craftsmanship,
+            elegance, and sophistication.
+        </p>
+    </div>
+</section>
+
+<!-- Filters -->
+<section class="container cars-controls">
+
+    <form
+        method="get"
+        action="{% url 'all_cars:index' %}"
+        class="cars-filter-form"
+        role="search"
+    >
+
+        <div class="cars-filter">
+            <label for="carSearch">Search</label>
+            <input
+                type="search"
+                id="carSearch"
+                name="q"
+                value="{{ selected.q }}"
+                placeholder="Search luxury cars..."
+            >
+        </div>
+
+        <div class="cars-filter">
+            <label for="brandFilter">Brand</label>
+            <select id="brandFilter" name="brand">
+                <option value="">All Brands</option>
+
+                {% for brand in brands %}
+                <option value="{{ brand }}"
+                    {% if selected.brand == brand %}selected{% endif %}>
+                    {{ brand }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="cars-filter">
+            <label for="modelFilter">Model</label>
+            <select id="modelFilter" name="model">
+                <option value="">All Models</option>
+
+                {% for model in models %}
+                <option value="{{ model }}"
+                    {% if selected.model == model %}selected{% endif %}>
+                    {{ model }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="cars-filter">
+            <label for="priceFilter">Price</label>
+            <select id="priceFilter" name="price">
+                <option value="">All Prices</option>
+
+                <option value="under"
+                    {% if selected.price == "under" %}selected{% endif %}>
+                    Under SAR 1.2M
+                </option>
+
+                <option value="middle"
+                    {% if selected.price == "middle" %}selected{% endif %}>
+                    SAR 1.2M – 1.5M
+                </option>
+
+                <option value="above"
+                    {% if selected.price == "above" %}selected{% endif %}>
+                    Above SAR 1.5M
+                </option>
+            </select>
+        </div>
+
+        <div class="cars-filter">
+            <label for="yearFilter">Year</label>
+            <select id="yearFilter" name="year">
+                <option value="">All Years</option>
+
+                {% for year in years %}
+                <option value="{{ year }}"
+                    {% if selected.year == year|stringformat:"s" %}selected{% endif %}>
+                    {{ year }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="cars-filter">
+            <label for="sortFilter">Sort By</label>
+            <select id="sortFilter" name="sort">
+                <option value="">Featured</option>
+
+                <option value="price_asc"
+                    {% if selected.sort == "price_asc" %}selected{% endif %}>
+                    Price: Low to High
+                </option>
+
+                <option value="price_desc"
+                    {% if selected.sort == "price_desc" %}selected{% endif %}>
+                    Price: High to Low
+                </option>
+
+                <option value="newest"
+                    {% if selected.sort == "newest" %}selected{% endif %}>
+                    Newest First
+                </option>
+            </select>
+        </div>
+
+        <div class="cars-filter-actions">
+            <button type="submit" class="cars-apply-btn">
+                <span class="material-symbols-outlined">
+                    tune
+                </span>
+                Apply Filters
+            </button>
+
+            <a
+                href="{% url 'all_cars:index' %}"
+                class="cars-reset-btn"
+            >
+                Reset
+            </a>
+        </div>
+
+    </form>
+</section>
+
+<!-- Car Collection -->
+<section class="lux-section container cars-collection reveal">
+
+    <div class="lux-section-heading">
+        <div>
+            <span class="lux-eyebrow">EXPLORE EXCELLENCE</span>
+            <h2>Our Collection</h2>
+        </div>
+
+        <span class="cars-result-count">
+            {{ car_count }} Vehicle{{ car_count|pluralize }} Found
+        </span>
+    </div>
+
+    <div class="lux-car-grid">
+
+        {% for car in cars %}
+
+        <article class="lux-car-card">
+
+            <a
+                href="{% url 'car_details:detail' car.slug %}"
+                class="lux-car-card__image"
+                aria-label="View {{ car.name }}"
+            >
+                <img
+                    src="{% static car.image %}"
+                    alt="{{ car.name }} front exterior view"
+                    loading="lazy"
+                >
+
+                <span class="lux-car-card__year">
+                    {{ car.year }}
+                </span>
+            </a>
+
+            <div class="lux-car-card__body">
+
+                <div class="lux-car-card__heading">
+                    <a href="{% url 'car_details:detail' car.slug %}">
+                        <h3>{{ car.name }}</h3>
+                    </a>
+
+                    <button
+                        type="button"
+                        class="lux-wishlist"
+                        data-wishlist="{{ car.slug }}"
+                            data-wishlist-name="{{ car.name }}"
+                        aria-label="Add {{ car.name }} to wishlist"
+                        aria-pressed="false"
+                    >
+                        <span class="material-symbols-outlined">
+                            favorite
+                        </span>
+                    </button>
+                </div>
+
+                <p>{{ car.brand }} · {{ car.year }}</p>
+
+                <div class="lux-car-card__bottom">
+                    <strong>{{ car.price_display }}</strong>
+
+                    <a
+                        href="{% url 'car_details:detail' car.slug %}"
+                        aria-label="View details for {{ car.name }}"
+                    >
+                        <span class="material-symbols-outlined">
+                            arrow_forward
+                        </span>
+                    </a>
+                </div>
+
+            </div>
+        </article>
+
+        {% empty %}
+
+        <div class="cars-empty">
+            <span class="material-symbols-outlined">
+                search_off
+            </span>
+
+            <h3>No vehicles found</h3>
+
+            <p>Try changing your search or filters.</p>
+
+            <a href="{% url 'all_cars:index' %}"
+               class="lux-btn lux-btn--primary">
+                View All Cars
+            </a>
+        </div>
+
+        {% endfor %}
+
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,285 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ car.name }} | Velaré Motors{% endblock %}
+
+{% block content %}
+
+<section class="detail-page container">
+
+    <!-- Breadcrumb -->
+    <nav class="detail-breadcrumb" aria-label="Breadcrumb">
+        <a href="{% url 'home:index' %}">Home</a>
+        <span>/</span>
+        <a href="{% url 'all_cars:index' %}">All Cars</a>
+        <span>/</span>
+        <span>{{ car.name }}</span>
+    </nav>
+
+    <!-- Page Heading -->
+    <div class="detail-header">
+        <div>
+            <span class="lux-eyebrow">
+                EXCLUSIVE LUXURY COLLECTION
+            </span>
+
+            <h1>{{ car.name }}</h1>
+            <p>{{ car.brand }} · {{ car.model }} · {{ car.year }}</p>
+        </div>
+
+        <div class="detail-header__price">
+            <span>Asking Price</span>
+            <strong>{{ car.price_display }}</strong>
+        </div>
+    </div>
+
+    <div class="detail-layout">
+
+        <!-- Interactive Gallery -->
+        <section
+            class="detail-gallery"
+            data-car-gallery
+            aria-label="Vehicle photo gallery"
+        >
+
+            <!-- Main Image -->
+            <div class="detail-gallery__stage">
+
+                <img
+                    src="{% static car.image %}"
+                    alt="{{ car.name }} exterior front view"
+                    data-gallery-main
+                >
+
+                <button
+                    type="button"
+                    class="detail-gallery__arrow detail-gallery__arrow--prev"
+                    data-gallery-prev
+                    aria-label="Previous photo"
+                >
+                    <span class="material-symbols-outlined">
+                        chevron_left
+                    </span>
+                </button>
+
+                <button
+                    type="button"
+                    class="detail-gallery__arrow detail-gallery__arrow--next"
+                    data-gallery-next
+                    aria-label="Next photo"
+                >
+                    <span class="material-symbols-outlined">
+                        chevron_right
+                    </span>
+                </button>
+
+                <button
+                    type="button"
+                    class="detail-gallery__expand"
+                    data-gallery-expand
+                    aria-label="View full-size photo"
+                >
+                    <span class="material-symbols-outlined">
+                        fullscreen
+                    </span>
+                </button>
+            </div>
+
+            <!-- Gallery Tabs -->
+            <div class="detail-gallery__toolbar">
+
+                <div class="detail-gallery__tabs"
+                     role="tablist"
+                     aria-label="Photo category">
+
+                    <button
+                        type="button"
+                        id="exteriorTab"
+                        role="tab"
+                        class="is-active"
+                        aria-selected="true"
+                        aria-controls="exteriorThumbs"
+                        data-gallery-tab="exterior"
+                    >
+                        Exterior
+                    </button>
+
+                    <button
+                        type="button"
+                        id="interiorTab"
+                        role="tab"
+                        aria-selected="false"
+                        aria-controls="interiorThumbs"
+                        data-gallery-tab="interior"
+                    >
+                        Interior
+                    </button>
+                </div>
+
+                <span data-gallery-counter aria-live="polite">
+                    1 / {{ car.exterior_images|length }}
+                </span>
+            </div>
+
+            <!-- Exterior Thumbnails -->
+            <div
+                id="exteriorThumbs"
+                class="detail-gallery__thumbs"
+                role="tabpanel"
+                aria-labelledby="exteriorTab"
+                data-gallery-panel="exterior"
+            >
+                {% for image in car.exterior_images %}
+
+                <button
+                    type="button"
+                    class="detail-gallery__thumb {% if forloop.first %}is-active{% endif %}"
+                    data-gallery-photo
+                    data-photo-src="{% static image %}"
+                    data-photo-alt="{{ car.name }} exterior {% if forloop.counter == 1 %}front{% elif forloop.counter == 2 %}side{% else %}rear{% endif %} view"
+                    aria-label="Show {{ car.name }} {% if forloop.counter == 1 %}front{% elif forloop.counter == 2 %}side{% else %}rear{% endif %} exterior view"
+                    aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}"
+                >
+                    <img src="{% static image %}"
+                         alt=""
+                         loading="lazy">
+                </button>
+
+                {% endfor %}
+            </div>
+
+            <!-- Interior Thumbnails -->
+            <div
+                id="interiorThumbs"
+                class="detail-gallery__thumbs"
+                role="tabpanel"
+                aria-labelledby="interiorTab"
+                data-gallery-panel="interior"
+                hidden
+            >
+                {% for image in car.interior_images %}
+
+                <button
+                    type="button"
+                    class="detail-gallery__thumb"
+                    data-gallery-photo
+                    data-photo-src="{% static image %}"
+                    data-photo-alt="{{ car.name }} interior {% if forloop.counter == 1 %}dashboard{% elif forloop.counter == 2 %}front seats{% else %}rear seats{% endif %}"
+                    aria-label="Show {{ car.name }} {% if forloop.counter == 1 %}dashboard{% elif forloop.counter == 2 %}front seats{% else %}rear seats{% endif %}"
+                    aria-pressed="false"
+                >
+                    <img src="{% static image %}"
+                         alt=""
+                         loading="lazy">
+                </button>
+
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Vehicle Information -->
+        <aside class="detail-summary">
+
+            <span class="lux-eyebrow">
+                VEHICLE OVERVIEW
+            </span>
+
+            <h2>{{ car.name }}</h2>
+
+            <p class="detail-summary__description">
+                {{ car.description }}
+            </p>
+
+            <div class="detail-summary__price">
+                <span>Vehicle Price</span>
+                <strong>{{ car.price_display }}</strong>
+            </div>
+
+            <h3>Specifications</h3>
+
+            <dl class="detail-specs">
+                <div>
+                    <dt>Manufacturer</dt>
+                    <dd>{{ car.brand }}</dd>
+                </div>
+
+                <div>
+                    <dt>Model</dt>
+                    <dd>{{ car.model }}</dd>
+                </div>
+
+                <div>
+                    <dt>Model Year</dt>
+                    <dd>{{ car.year }}</dd>
+                </div>
+
+                <div>
+                    <dt>Vehicle Type</dt>
+                    <dd>Luxury Sedan</dd>
+                </div>
+            </dl>
+
+            <div class="detail-summary__actions">
+                <a href="{% url 'all_cars:index' %}"
+                   class="lux-btn lux-btn--primary">
+                    Browse Other Cars
+                    <span class="material-symbols-outlined">
+                        arrow_forward
+                    </span>
+                </a>
+            </div>
+
+            <p class="detail-summary__note">
+                This is a demonstration vehicle listing.
+                Prices are illustrative.
+            </p>
+        </aside>
+
+    </div>
+
+    <!-- Additional Information -->
+    <section class="detail-information">
+
+        <div>
+            <span class="lux-eyebrow">THE EXPERIENCE</span>
+            <h2>Luxury in Every Detail</h2>
+
+            <p>
+                Discover refined craftsmanship, elegant design,
+                and an exceptional driving experience.
+                Explore the exterior and interior galleries
+                to appreciate every detail.
+            </p>
+        </div>
+
+        <a href="{% url 'all_cars:index' %}"
+           class="lux-text-link">
+            Explore Collection
+            <span class="material-symbols-outlined">
+                arrow_forward
+            </span>
+        </a>
+    </section>
+
+</section>
+
+<!-- Enlarged Image Dialog -->
+<dialog
+    class="detail-lightbox"
+    data-gallery-lightbox
+    aria-label="Enlarged vehicle photo"
+>
+    <button
+        type="button"
+        class="detail-lightbox__close"
+        data-lightbox-close
+        aria-label="Close image"
+    >
+        <span class="material-symbols-outlined">close</span>
+    </button>
+
+    <img data-lightbox-image alt="">
+</dialog>
+
+{% endblock %}

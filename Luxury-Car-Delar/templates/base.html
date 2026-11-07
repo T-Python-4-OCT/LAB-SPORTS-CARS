@@ -1,0 +1,190 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Velaré Motors{% endblock %}</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Phudu:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Google Material Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+          rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container nav-container">
+
+            <!-- Brand -->
+            <a href="{% url 'home:index' %}" class="brand">
+                <img
+                    src="{% static 'images/branding/logo.svg' %}"
+                    alt=""
+                    class="brand-logo"
+                >
+                <span class="brand-name">VELARÉ <span>MOTORS</span></span>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="desktop-nav" aria-label="Main navigation">
+                <a href="{% url 'home:index' %}"
+                   class="{% if request.resolver_match.app_name == 'home' %}active{% endif %}">
+                    Home
+                </a>
+
+                <a href="{% url 'all_cars:index' %}"
+                   class="{% if request.resolver_match.app_name == 'all_cars' or request.resolver_match.app_name == 'car_details' %}active{% endif %}">
+                    Cars
+                </a>
+
+                <a href="{% url 'about_us:index' %}"
+                   class="{% if request.resolver_match.app_name == 'about_us' %}active{% endif %}">
+                    About Us
+                </a>
+
+                <a href="{% url 'about_us:index' %}#contact">
+                    Contact
+                </a>
+            </nav>
+
+            <!-- Header Actions -->
+            <div class="nav-actions">
+
+                <a href="{% url 'all_cars:index' %}"
+                   class="icon-button"
+                   aria-label="Browse cars">
+                    <span class="material-symbols-outlined">search</span>
+                </a>
+
+                <button type="button"
+                        id="themeToggle"
+                        class="icon-button"
+                        aria-label="Toggle dark mode"
+                        aria-pressed="false">
+                    <span class="material-symbols-outlined">dark_mode</span>
+                </button>
+
+                <button type="button"
+                        id="menuToggle"
+                        class="icon-button menu-toggle"
+                        aria-label="Toggle navigation"
+                        aria-expanded="false"
+                        aria-controls="mobileNav">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <nav id="mobileNav" class="mobile-nav" aria-label="Mobile navigation" hidden>
+            <a href="{% url 'home:index' %}">Home</a>
+            <a href="{% url 'all_cars:index' %}">Cars</a>
+            <a href="{% url 'about_us:index' %}">About Us</a>
+            <a href="{% url 'about_us:index' %}#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Page Content -->
+    <main id="main-content" class="site-main">
+        {% block content %}
+
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container footer-container">
+
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+                    <a href="{% url 'home:index' %}" class="brand">
+                        <img
+                            src="{% static 'images/branding/logo.svg' %}"
+                            alt=""
+                            class="brand-logo"
+                        >
+                        <span class="brand-name">VELARÉ <span>MOTORS</span></span>
+                    </a>
+
+                    <p>
+                        Extraordinary vehicles for those
+                        who appreciate true luxury.
+                    </p>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Explore</h3>
+                    <a href="{% url 'home:index' %}">Home</a>
+                    <a href="{% url 'all_cars:index' %}">Cars</a>
+                    <a href="{% url 'about_us:index' %}">About Us</a>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Our Collection</h3>
+                    <a href="{% url 'car_details:detail' 'rolls-royce-ghost' %}">
+                        Rolls-Royce Ghost
+                    </a>
+                    <a href="{% url 'car_details:detail' 'bentley-flying-spur' %}">
+                        Bentley Flying Spur
+                    </a>
+                    <a href="{% url 'car_details:detail' 'mercedes-maybach-s680' %}">
+                        Mercedes-Maybach
+                    </a>
+                </div>
+
+                <div class="footer-social">
+                    <h3>Stay Inspired</h3>
+                    <p>Explore luxury automotive inspiration.</p>
+
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/bentleymotors/"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           aria-label="Bentley Motors Instagram">
+                            <span class="material-symbols-outlined">photo_camera</span>
+                        </a>
+
+                        <a href="https://www.youtube.com/rollsroycemotorcars"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           aria-label="Rolls-Royce Motor Cars YouTube">
+                            <span class="material-symbols-outlined">smart_display</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; {% now "Y" %} Velaré Motors. All rights reserved.</p>
+                <p>Luxury Redefined.</p>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="{% static 'js/main.js' %}" defer></script>
+
+    {% block extra_js %}{% endblock %}
+
+</body>
+</html>

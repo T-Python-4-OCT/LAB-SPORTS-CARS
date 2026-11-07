@@ -1,0 +1,258 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Home | Velaré Motors{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="lux-hero">
+    <div class="lux-hero__media">
+        <img src="{% static 'images/cars/rolls-royce-ghost/exterior/front.jpg' %}"
+             alt="Rolls-Royce Ghost front exterior view"
+             fetchpriority="high">
+    </div>
+
+    <div class="container lux-hero__content">
+        <div class="lux-hero__text">
+            <span class="lux-eyebrow">WELCOME TO VELARÉ MOTORS</span>
+
+            <h1>Luxury Without<br>Compromise.</h1>
+
+            <p>
+                Explore an exclusive collection of the world's
+                most distinguished luxury automobiles.
+            </p>
+
+            <a href="{% url 'all_cars:index' %}"
+               class="lux-btn lux-btn--primary">
+                Explore Collection
+                <span class="material-symbols-outlined">
+                    arrow_forward
+                </span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Dealership Highlights -->
+<section class="lux-highlights container">
+
+    <div class="lux-highlight">
+        <span class="material-symbols-outlined">diamond</span>
+        <span>Exceptional Luxury</span>
+    </div>
+
+    <div class="lux-highlight">
+        <span class="material-symbols-outlined">workspace_premium</span>
+        <span>Premium Selection</span>
+    </div>
+
+    <div class="lux-highlight">
+        <span class="material-symbols-outlined">verified_user</span>
+        <span>Verified & Inspected</span>
+    </div>
+
+    <div class="lux-highlight">
+        <span class="material-symbols-outlined">support_agent</span>
+        <span>Dedicated Support</span>
+    </div>
+
+</section>
+
+<!-- Featured Cars -->
+<section class="lux-section container reveal">
+
+    <div class="lux-section-heading">
+        <div>
+            <span class="lux-eyebrow">HANDPICKED FOR YOU</span>
+            <h2>Featured Vehicles</h2>
+        </div>
+
+        <a href="{% url 'all_cars:index' %}"
+           class="lux-text-link">
+            View All
+            <span class="material-symbols-outlined">
+                arrow_forward
+            </span>
+        </a>
+    </div>
+
+    <div class="lux-car-grid">
+
+        {% for car in featured_cars %}
+
+        <article class="lux-car-card">
+
+            <a href="{% url 'car_details:detail' car.slug %}"
+               class="lux-car-card__image">
+
+                <img src="{% static car.image %}"
+                     alt="{{ car.name }} front exterior view"
+                     loading="lazy">
+
+                <span class="lux-car-card__year">
+                    {{ car.year }}
+                </span>
+            </a>
+
+            <div class="lux-car-card__body">
+
+                <div class="lux-car-card__heading">
+
+                    <a href="{% url 'car_details:detail' car.slug %}">
+                        <h3>{{ car.name }}</h3>
+                    </a>
+
+                    <button type="button"
+                            class="lux-wishlist"
+                            data-wishlist="{{ car.slug }}"
+                            data-wishlist-name="{{ car.name }}"
+                            aria-label="Add {{ car.name }} to wishlist"
+                            aria-pressed="false">
+                        <span class="material-symbols-outlined">
+                            favorite
+                        </span>
+                    </button>
+
+                </div>
+
+                <p>{{ car.brand }} · {{ car.year }}</p>
+
+                <div class="lux-car-card__bottom">
+
+                    <strong>{{ car.price_display }}</strong>
+
+                    <a href="{% url 'car_details:detail' car.slug %}"
+                       aria-label="View {{ car.name }} details">
+                        <span class="material-symbols-outlined">
+                            arrow_forward
+                        </span>
+                    </a>
+
+                </div>
+            </div>
+        </article>
+
+        {% endfor %}
+
+    </div>
+</section>
+
+<!-- Luxury Experience -->
+<section class="lux-experience container reveal">
+
+    <div class="lux-experience__image">
+        <img src="{% static 'images/cars/rolls-royce-ghost/interior/rear-seats.jpg' %}"
+             alt="Rear passenger seats of the Rolls-Royce Ghost"
+             loading="lazy">
+    </div>
+
+    <div class="lux-experience__content">
+
+        <span class="lux-eyebrow">THE VELARÉ EXPERIENCE</span>
+
+        <h2>More Than a Car</h2>
+
+        <p>
+            We believe that owning a luxury vehicle is more
+            than transportation. It is a statement of character,
+            craftsmanship, and exceptional taste.
+        </p>
+
+        <a href="{% url 'about_us:index' %}"
+           class="lux-btn lux-btn--primary">
+            Discover Our Story
+            <span class="material-symbols-outlined">
+                arrow_forward
+            </span>
+        </a>
+
+    </div>
+</section>
+
+<!-- Why Choose Us -->
+<section class="lux-section lux-benefits container reveal">
+
+    <div class="lux-section-heading">
+        <div>
+            <span class="lux-eyebrow">THE DIFFERENCE</span>
+            <h2>Why Choose Us</h2>
+        </div>
+    </div>
+
+    <div class="lux-benefits-grid">
+
+        <article class="lux-benefit">
+            <span class="material-symbols-outlined">diamond</span>
+            <h3>Iconic Brands</h3>
+            <p>
+                An exceptional collection of the world's
+                finest luxury automobiles.
+            </p>
+        </article>
+
+        <article class="lux-benefit">
+            <span class="material-symbols-outlined">shield</span>
+            <h3>Full Transparency</h3>
+            <p>
+                Clear vehicle information and confidence
+                throughout your journey.
+            </p>
+        </article>
+
+        <article class="lux-benefit">
+            <span class="material-symbols-outlined">
+                workspace_premium
+            </span>
+            <h3>Expert Guidance</h3>
+            <p>
+                Personalized assistance from automotive
+                specialists.
+            </p>
+        </article>
+
+        <article class="lux-benefit">
+            <span class="material-symbols-outlined">
+                support_agent
+            </span>
+            <h3>After-Sales Care</h3>
+            <p>
+                Dedicated support that continues beyond
+                your purchase.
+            </p>
+        </article>
+
+    </div>
+</section>
+
+<!-- Final CTA -->
+<section class="lux-cta container reveal">
+
+    <img src="{% static 'images/cars/bentley-flying-spur/exterior/front.jpg' %}"
+         alt="Bentley Flying Spur front exterior view"
+         loading="lazy">
+
+    <div class="lux-cta__content">
+
+        <span class="lux-eyebrow">YOUR JOURNEY BEGINS HERE</span>
+
+        <h2>Find Your Dream Car</h2>
+
+        <p>
+            Discover a world where luxury meets excellence.
+        </p>
+
+        <a href="{% url 'all_cars:index' %}"
+           class="lux-btn lux-btn--primary">
+            Browse Collection
+            <span class="material-symbols-outlined">
+                arrow_forward
+            </span>
+        </a>
+
+    </div>
+</section>
+
+{% endblock %}

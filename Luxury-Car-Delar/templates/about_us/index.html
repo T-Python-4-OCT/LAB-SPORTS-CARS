@@ -1,0 +1,259 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}About Us | Velaré Motors{% endblock %}
+
+{% block content %}
+
+<!-- About Hero -->
+<section class="about-hero">
+
+    <img
+        src="{% static 'images/cars/rolls-royce-ghost/exterior/side.jpg' %}"
+        alt="Rolls-Royce Ghost side exterior view"
+        class="about-hero__image"
+        fetchpriority="high"
+    >
+
+    <div class="container about-hero__content">
+
+        <span class="lux-eyebrow">WELCOME TO VELARÉ MOTORS</span>
+
+        <h1>The Art of<br>Exceptional Driving</h1>
+
+        <p>
+            Where extraordinary automobiles meet
+            timeless elegance, craftsmanship,
+            and a passion for luxury.
+        </p>
+
+        <a href="{% url 'all_cars:index' %}"
+           class="lux-btn lux-btn--primary">
+            Explore Our Collection
+
+            <span class="material-symbols-outlined">
+                arrow_forward
+            </span>
+        </a>
+
+    </div>
+</section>
+
+
+<!-- Our Story -->
+<section class="about-story container reveal">
+
+    <div class="about-story__image">
+
+        <img
+            src="{% static 'images/cars/bentley-flying-spur/interior/dashboard.jpg' %}"
+            alt="Bentley Flying Spur dashboard and controls"
+            loading="lazy"
+        >
+
+    </div>
+
+    <div class="about-story__content">
+
+        <span class="lux-eyebrow">WHO WE ARE</span>
+
+        <h2>Our Story</h2>
+
+        <p>
+            At Velaré Motors, we believe a luxury
+            automobile represents far more than
+            a way to travel.
+        </p>
+
+        <p>
+            It is an expression of individuality,
+            refined taste, and an appreciation for
+            exceptional craftsmanship.
+        </p>
+
+        <p>
+            Our vision is to create a destination
+            where automotive excellence meets
+            a personalized and memorable experience.
+        </p>
+
+        <a href="{% url 'all_cars:index' %}"
+           class="lux-text-link">
+            Discover Our Vehicles
+
+            <span class="material-symbols-outlined">
+                arrow_forward
+            </span>
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- Our Values -->
+<section class="lux-section about-values container reveal">
+
+    <div class="lux-section-heading">
+        <div>
+            <span class="lux-eyebrow">WHAT DEFINES US</span>
+            <h2>Our Core Values</h2>
+        </div>
+    </div>
+
+    <div class="lux-benefits-grid">
+
+        <article class="lux-benefit">
+
+            <span class="material-symbols-outlined">
+                diamond
+            </span>
+
+            <h3>Excellence</h3>
+
+            <p>
+                A commitment to exceptional
+                quality and refined automotive
+                experiences.
+            </p>
+
+        </article>
+
+        <article class="lux-benefit">
+
+            <span class="material-symbols-outlined">
+                handshake
+            </span>
+
+            <h3>Trust</h3>
+
+            <p>
+                Building meaningful relationships
+                through transparency, respect,
+                and professionalism.
+            </p>
+
+        </article>
+
+        <article class="lux-benefit">
+
+            <span class="material-symbols-outlined">
+                workspace_premium
+            </span>
+
+            <h3>Craftsmanship</h3>
+
+            <p>
+                Celebrating extraordinary design,
+                attention to detail, and
+                timeless elegance.
+            </p>
+
+        </article>
+
+        <article class="lux-benefit">
+
+            <span class="material-symbols-outlined">
+                support_agent
+            </span>
+
+            <h3>Personalized Service</h3>
+
+            <p>
+                An experience designed around
+                individual preferences and
+                expectations.
+            </p>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- Our Experience -->
+<section id="experience" class="about-experience container reveal">
+
+    <div class="about-experience__content">
+
+        <span class="lux-eyebrow">THE VELARÉ EXPERIENCE</span>
+
+        <h2>A Different Kind of Luxury</h2>
+
+        <p>
+            Every remarkable journey begins with
+            an exceptional choice.
+        </p>
+
+        <p>
+            From the timeless sophistication of
+            Rolls-Royce to the craftsmanship of
+            Bentley and the comfort of
+            Mercedes-Maybach, our collection
+            celebrates the finest expressions
+            of modern luxury.
+        </p>
+
+        <a href="{% url 'all_cars:index' %}"
+           class="lux-btn lux-btn--primary">
+
+            View Our Collection
+
+            <span class="material-symbols-outlined">
+                arrow_forward
+            </span>
+
+        </a>
+
+    </div>
+
+    <div class="about-experience__image">
+
+        <img
+            src="{% static 'images/cars/mercedes-maybach-s680/exterior/front.jpg' %}"
+            alt="Mercedes-Maybach S680 front exterior view"
+            loading="lazy"
+        >
+
+    </div>
+
+</section>
+
+
+<!-- Contact / Final CTA -->
+<section id="contact" class="about-contact container reveal">
+
+    <span class="lux-eyebrow">DISCOVER EXCELLENCE</span>
+
+    <h2>Your Journey Starts Here</h2>
+
+    <p>
+        Discover extraordinary craftsmanship,
+        distinctive design, and a collection
+        of exceptional luxury vehicles.
+    </p>
+
+    <div class="about-contact__actions">
+
+        <a href="{% url 'all_cars:index' %}"
+           class="lux-btn lux-btn--primary">
+
+            Browse Luxury Cars
+
+            <span class="material-symbols-outlined">
+                arrow_forward
+            </span>
+        </a>
+
+        <a href="{% url 'home:index' %}"
+           class="lux-btn about-btn-outline">
+            Back to Home
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}
