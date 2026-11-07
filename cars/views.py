@@ -13,9 +13,13 @@ def find_car(slug):
 
 
 def home(request):
-    featured = [car for car in CARS if car['is_featured']]
-    return render(request, 'cars/home.html', {'featured': featured})
-
+    context = {
+        'featured': [car for car in CARS if car['is_featured']],
+        'models': CARS,
+        'total': len(CARS),
+        'max_power': max(car['power'] for car in CARS),
+    }
+    return render(request, 'cars/home.html', context)
 
 def car_list(request):
     category = request.GET.get('category', '')

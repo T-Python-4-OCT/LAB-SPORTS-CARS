@@ -3,11 +3,20 @@
 {% block title %}FordKSA | Home{% endblock %}
 
 {% block content %}
-<section class="hero" style="background-image:url('{% static 'images/hero.svg' %}')">
+
+<section class="hero" style="background-image: url('{% static 'images/hero.jpg' %}')">
   <div class="hero-text">
-    <h1>Drive Saudi Arabia's<br>Favorite Fords</h1>
-    <p>Explore the best-selling Ford models in the Kingdom.</p>
-    <a class="btn" href="{% url 'cars' %}">Browse Cars <span class="material-symbols-outlined">arrow_forward</span></a>
+    <span class="eyebrow">Ford Performance &middot; Saudi Arabia</span>
+    <h1>Performance<br><span class="outline-text">Without Limits</span></h1>
+    <p>Explore a curated collection of Ford sports cars.</p>
+    <a class="btn" href="{% url 'cars' %}">
+      Browse Cars <span class="material-symbols-outlined">arrow_forward</span>
+    </a>
+    <div class="hero-stats">
+      <div><b data-count="{{ total }}">0</b><span>Models</span></div>
+      <div><b data-count="{{ max_power }}" data-suffix=" hp">0</b><span>Max Power</span></div>
+      <div><b data-count="100" data-suffix="%">0</b><span>Inspected</span></div>
+    </div>
   </div>
 </section>
 
@@ -20,7 +29,7 @@
 
 <section class="section">
   <div class="section-head">
-    <h2>Best Sellers</h2>
+    <h2>Featured Cars</h2>
     <a class="link" href="{% url 'cars' %}">View All</a>
   </div>
   <div class="grid">
@@ -28,7 +37,7 @@
   </div>
 </section>
 
-<section class="banner" style="background-image:url('{% static 'images/hero.svg' %}')">
+<section class="banner" style="background-image:url('{% static 'images/hero.jpg' %}')">
   <div class="banner-text">
     <h2>More Than a Car</h2>
     <p>A seamless journey from discovery to ownership, with expert support every step of the way.</p>

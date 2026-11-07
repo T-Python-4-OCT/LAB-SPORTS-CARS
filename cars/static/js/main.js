@@ -70,3 +70,19 @@ window.addEventListener('scroll', () => {
   const ratio = maxScroll > 0 ? window.scrollY / maxScroll : 0;
   progressBar.style.width = `${ratio * 100}%`;
 });
+
+//count-up numbers in the hero
+document.querySelectorAll('[data-count]').forEach((el) => {
+  const target = Number(el.dataset.count);
+  const suffix = el.dataset.suffix || '';
+  const duration = 1500;
+  const startTime = performance.now();
+
+  function tick(now) {
+    const ratio = Math.min((now - startTime) / duration, 1);
+    el.textContent = Math.round(target * ratio) + suffix;
+    if (ratio < 1) requestAnimationFrame(tick);
+  }
+
+  requestAnimationFrame(tick);
+});
