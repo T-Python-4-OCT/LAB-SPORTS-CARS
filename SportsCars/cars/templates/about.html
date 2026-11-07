@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}About Us{% endblock %}
+
+{% block content %}
+<section class="page-hero" style="--hero: url('{% static 'images/about.jpg' %}')">
+  <div class="container">
+    <small>ABOUT US</small>
+    <h1>Driven by Passion</h1>
+    <p>A team of automotive enthusiasts dedicated to bringing the world's finest sports cars closer to you.</p>
+  </div>
+</section>
+
+<section class="container section split">
+  <div class="reveal">
+    <h2>Our Story</h2>
+    <p class="muted">Founded in Saudi Arabia, we bring together a deep passion for performance, design, and engineering, offering a curated selection of iconic BMW cars with a premium ownership experience.</p>
+  </div>
+  <img class="reveal rounded" src="{% static 'images/about.jpg' %}" alt="Our showroom">
+</section>
+
+<section class="container section">
+  <h2 class="center">Our Values</h2>
+  <div class="grid-3">
+    <div class="why reveal"><span class="material-symbols-rounded">workspace_premium</span><h4>Excellence</h4><p>A commitment to world-class standards.</p></div>
+    <div class="why reveal"><span class="material-symbols-rounded">handshake</span><h4>Trust</h4><p>Transparent, honest, and customer first.</p></div>
+    <div class="why reveal"><span class="material-symbols-rounded">favorite</span><h4>Passion</h4><p>A shared love for exceptional cars.</p></div>
+  </div>
+</section>
+
+<section class="container section">
+<div class="cta reveal" style="--cta: url('{% static 'images/my-banner.jpg' %}')">    <h2>More Than a Dealer</h2>
+    <p>We are your partner in the journey of owning and enjoying an exceptional car.</p>
+    <a href="{% url 'cars' %}" class="btn btn-light">Browse Cars</a>
+  </div>
+</section>
+{% endblock %}

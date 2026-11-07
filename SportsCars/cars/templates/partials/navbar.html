@@ -1,0 +1,27 @@
+<header class="navbar">
+  <div class="container nav-inner">
+    <input type="checkbox" id="menuToggle" class="menu-check">
+
+    {% include "partials/logo.html" %}
+
+    <nav class="nav-links">
+      <a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a>
+      <a href="{% url 'cars' %}" class="{% if request.resolver_match.url_name in 'cars,car_detail' %}active{% endif %}">Cars</a>
+      <a href="{% url 'about' %}" class="{% if request.resolver_match.url_name == 'about' %}active{% endif %}">About Us</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a href="{% url 'cars' %}" class="icon-btn" aria-label="Search">
+        <span class="material-symbols-rounded">search</span>
+      </a>
+      <a href="{% url 'toggle_theme' %}" class="icon-btn" aria-label="Toggle theme">
+        <span class="material-symbols-rounded">{% if request.COOKIES.theme == 'dark' %}light_mode{% else %}dark_mode{% endif %}</span>
+      </a>
+      <label for="menuToggle" class="icon-btn menu-btn" aria-label="Menu">
+        <span class="material-symbols-rounded">menu</span>
+      </label>
+    </div>
+  </div>
+  <div class="m-stripe"></div>
+</header>
