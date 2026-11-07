@@ -4,19 +4,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  {# block title: كل صفحة تكتب عنوانها هنا #}
   <title>{% block title %}FordKSA{% endblock %}</title>
 
-  <!-- Google Fonts: Phudu للعناوين + Inter للنص -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Phudu:wght@400;600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <!-- Google Icons (Material Symbols) -->
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
 
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
-  <!-- يطبق الثيم المحفوظ قبل رسم الصفحة عشان ما يصير وميض أبيض -->
   <script>
     document.documentElement.dataset.theme =
       localStorage.getItem('theme') ||
@@ -24,9 +20,9 @@
   </script>
 </head>
 <body>
+  <div class="progress" id="progress"></div>
   {% include 'partials/navbar.html' %}
   <main>
-    {# block content: هنا يندمج محتوى كل صفحة #}
     {% block content %}{% endblock %}
   </main>
   {% include 'partials/footer.html' %}
