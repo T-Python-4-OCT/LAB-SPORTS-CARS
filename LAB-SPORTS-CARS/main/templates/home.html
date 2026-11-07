@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+<section class="hero big">
+  <div class="hero-text">
+    <h1>Performance<br>Without Limits</h1>
+    <p>Explore a curated collection of iconic sports cars.</p>
+    <a class="btn" href="{% url 'cars' %}">Browse Cars <span class="material-symbols-outlined">arrow_forward</span></a>
+  </div>
+</section>
+
+<section class="strip">
+  <div><span class="material-symbols-outlined">bolt</span>High Performance</div>
+  <div><span class="material-symbols-outlined">diamond</span>Premium Selection</div>
+  <div><span class="material-symbols-outlined">verified_user</span>Verified &amp; Inspected</div>
+  <div><span class="material-symbols-outlined">support_agent</span>Dedicated Support</div>
+</section>
+
+<section class="wrap">
+  <div class="row"><h2>Featured Cars</h2><a href="{% url 'cars' %}">View All →</a></div>
+  {% include "_cards.html" %}
+</section>
+
+<section class="wrap">
+  <div class="banner">
+    <div class="banner-text">
+      <small>THE EXPERIENCE</small>
+      <h2>More Than a Car</h2>
+      <p>A seamless journey from discovery to ownership, with expert support every step of the way.</p>
+      <a class="btn" href="{% url 'about' %}">Learn More <span class="material-symbols-outlined">arrow_forward</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <h2>Why Choose Us</h2>
+  <div class="why-row">
+    <div><span class="material-symbols-outlined">emoji_events</span><h4>Iconic Models</h4><p>A handpicked range of world-class cars.</p></div>
+    <div><span class="material-symbols-outlined">verified_user</span><h4>Full Transparency</h4><p>Detailed history and inspection.</p></div>
+    <div><span class="material-symbols-outlined">star</span><h4>Expert Guidance</h4><p>Personalized advice from automotive experts.</p></div>
+    <div><span class="material-symbols-outlined">diamond</span><h4>After-Sales Care</h4><p>Ongoing support and exclusive benefits.</p></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="cta">
+    <h2>Ready to Drive<br>Your Dream Car?</h2>
+    <a class="btn" href="{% url 'cars' %}">Browse Collection <span class="material-symbols-outlined">arrow_forward</span></a>
+  </div>
+</section>
+
+{% endblock %}

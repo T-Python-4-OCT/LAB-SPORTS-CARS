@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}About Us{% endblock %}
+{% block content %}
+
+<section class="hero page about-hero">
+  <div class="hero-text">
+    <small>ABOUT US</small>
+    <h1>Driven by<br>Passion</h1>
+    <p>A team of automotive enthusiasts dedicated to bringing the world's finest sports cars closer to you.</p>
+  </div>
+</section>
+
+<section class="wrap two">
+  <div>
+    <h2>Our Story</h2>
+    <p>Founded in Saudi Arabia, we bring together a deep passion for performance, design, and engineering excellence, offering a curated selection of iconic sports cars and a premium ownership experience.</p>
+  </div>
+  <img class="showroom" src="{% static 'img/lamborghini/main.jpg' %}" alt="Showroom">
+</section>
+
+<section class="wrap">
+  <h2>Our Values</h2>
+  <div class="why-row three">
+    <div><span class="material-symbols-outlined">diamond</span><h4>Excellence</h4><p>A commitment to world-class standards.</p></div>
+    <div><span class="material-symbols-outlined">verified_user</span><h4>Trust</h4><p>Transparent, honest, and customer-first.</p></div>
+    <div><span class="material-symbols-outlined">star</span><h4>Passion</h4><p>A shared love for exceptional cars.</p></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="dealer">
+    <div>
+      <h2>More Than a Dealer</h2>
+      <p>We are your partner in the journey of owning and enjoying an exceptional car.</p>
+      <a class="btn outline" href="{% url 'cars' %}">Browse Cars <span class="material-symbols-outlined">arrow_forward</span></a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

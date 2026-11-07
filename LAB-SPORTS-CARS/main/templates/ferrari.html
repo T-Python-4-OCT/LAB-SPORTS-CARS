@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Ferrari F8 Tributo{% endblock %}
+{% block content %}
+
+<div class="wrap crumbs"><a href="{% url 'cars' %}">Cars</a> › <a href="{% url 'cars' %}">Ferrari</a> › <b>Ferrari F8 Tributo</b></div>
+
+<section class="wrap detail">
+  <div>
+    <div class="gallery"><img src="{% static 'img/ferrari/main.jpg' %}" alt="Ferrari F8 Tributo"></div>
+    <div class="thumbs">
+      <div><img src="{% static 'img/ferrari/main.jpg' %}" alt=""></div>
+      <div><img src="{% static 'img/ferrari/front.jpg' %}" alt="" style="object-position:50% 45%"></div>
+      <div><img src="{% static 'img/ferrari/side.jpg' %}" alt="" style="object-position:50% 92%"></div>
+      <div><img src="{% static 'img/ferrari/rear.jpg' %}" alt=""></div>
+      <div><img src="{% static 'img/ferrari/brakes.jpg' %}" alt=""></div>
+    </div>
+  </div>
+
+  <div class="info">
+    <h1>Ferrari F8 Tributo</h1>
+    <p class="price">SAR 1,490,000</p>
+    <ul class="specs">
+      <li><span class="material-symbols-outlined">settings</span>Engine<b>3.9 L V8 Twin-Turbo</b></li>
+      <li><span class="material-symbols-outlined">bolt</span>Power<b>710 hp</b></li>
+      <li><span class="material-symbols-outlined">timer</span>0 – 100 km/h<b>2.9 s</b></li>
+      <li><span class="material-symbols-outlined">speed</span>Top Speed<b>340 km/h</b></li>
+    </ul>
+    <a class="btn block" href="https://wa.me/966500000000">Inquire Now</a>
+    <button type="button" class="btn ghost block"><span class="material-symbols-outlined">favorite</span> Save to Wishlist</button>
+  </div>
+</section>
+
+<section class="wrap tabbed">
+  <input type="radio" name="tab" id="t1" class="hidden" checked>
+  <input type="radio" name="tab" id="t2" class="hidden">
+  <input type="radio" name="tab" id="t3" class="hidden">
+  <input type="radio" name="tab" id="t4" class="hidden">
+
+  <div class="tabs">
+    <label for="t1">Overview</label>
+    <label for="t2">Specifications</label>
+    <label for="t3">Features</label>
+    <label for="t4">Gallery</label>
+  </div>
+
+  <div class="panel p1">
+    <div>
+      <h2>A Tribute to the V8</h2>
+      <p>The most powerful V8 Ferrari ever built, tuned for razor-sharp response and an unforgettable sound.</p>
+    </div>
+    <img src="{% static 'img/ferrari/rear.jpg' %}" alt="">
+  </div>
+
+  <div class="panel p2">
+    <table class="spec-table">
+      <tr><td>Brand</td><td>Ferrari</td></tr>
+      <tr><td>Engine</td><td>3.9 L V8 Twin-Turbo</td></tr>
+      <tr><td>Max Power</td><td>710 hp</td></tr>
+      <tr><td>0 – 100 km/h</td><td>2.9 s</td></tr>
+      <tr><td>Top Speed</td><td>340 km/h</td></tr>
+    </table>
+  </div>
+
+  <div class="panel p3">
+    <ul class="feat-list">
+      <li><span class="material-symbols-outlined">check_circle</span>Side Slip Control 6.1</li>
+      <li><span class="material-symbols-outlined">check_circle</span>Carbon-ceramic brakes</li>
+      <li><span class="material-symbols-outlined">check_circle</span>Magnetorheological suspension</li>
+      <li><span class="material-symbols-outlined">check_circle</span>Premium audio system</li>
+    </ul>
+  </div>
+
+  <div class="panel p4">
+    <div class="grid">
+      <img class="g" src="{% static 'img/ferrari/front.jpg' %}" alt="" style="object-position:50% 45%">
+      <img class="g" src="{% static 'img/ferrari/side.jpg' %}" alt="" style="object-position:50% 92%">
+      <img class="g" src="{% static 'img/ferrari/rear.jpg' %}" alt="">
+    </div>
+  </div>
+
+  <div class="stats">
+    <div><span class="material-symbols-outlined">settings</span><b>3.9 L</b>V8 Twin-Turbo</div>
+    <div><span class="material-symbols-outlined">bolt</span><b>710 hp</b>Max Power</div>
+    <div><span class="material-symbols-outlined">timer</span><b>2.9 s</b>0 – 100 km/h</div>
+    <div><span class="material-symbols-outlined">speed</span><b>340 km/h</b>Top Speed</div>
+  </div>
+</section>
+
+<section class="wrap">
+  <h2>Key Features</h2>
+  <div class="grid">
+    <div class="feat"><img src="{% static 'img/ferrari/interior.jpg' %}" alt=""><h4>Premium Interior</h4><p>A driver-focused cabin with refined materials.</p></div>
+    <div class="feat"><img src="{% static 'img/ferrari/brakes.jpg' %}" alt=""><h4>Performance Brakes</h4><p>Exceptional stopping power and control.</p></div>
+    <div class="feat"><img src="{% static 'img/ferrari/engine.jpg' %}" alt=""><h4>Powerful Engine</h4><p>Engineered for maximum performance and sound.</p></div>
+  </div>
+</section>
+
+{% endblock %}
