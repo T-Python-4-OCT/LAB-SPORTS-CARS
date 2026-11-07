@@ -1,0 +1,79 @@
+{% extends "showroom/base.html" %}
+{% load static i18n %}
+{% block title %}{% translate "My account" %} | {% translate "Ford" %}{% endblock %}
+{% block content %}
+{% get_current_language_bidi as rtl %}
+<section class="container section account-page">
+  <div class="account-layout">
+  <aside class="account-visual" aria-label="{% if rtl %}فورد موستانج{% else %}Ford Mustang{% endif %}">
+    <img src="{% static 'showroom/images/mustang-interior.webp' %}" alt="" width="900" height="700">
+    <div><p class="eyebrow">FORD MUSTANG</p><p class="account-tagline">{% if rtl %}رحلتك تبدأ هنا{% else %}Your journey starts here{% endif %}</p><p>{% if rtl %}شغف القيادة يجمعنا.{% else %}Connected by a passion for driving.{% endif %}</p></div>
+  </aside>
+  <div class="tool-panel account-panel">
+    {% for message in messages %}
+      <div class="account-notice" role="status">
+        {% if "account-created" in message.tags %}
+          <strong>{% if rtl %}تم إنشاء الحساب بنجاح{% else %}Account created successfully{% endif %}</strong>
+          <p>{% if rtl %}سجّل دخولك الآن باسم المستخدم وكلمة المرور.{% else %}Sign in with your username and password to continue.{% endif %}</p>
+        {% else %}{{ message }}{% endif %}
+      </div>
+    {% endfor %}
+    {% if user.is_authenticated %}
+      <h1>{% if rtl %}حيّاك، {{ user.get_username }}{% else %}Welcome, {{ user.get_username }}{% endif %}</h1><a class="button account-browse" href="{% url 'showroom:car_list' %}">{% translate "Browse Cars" %}</a>
+      <p class="tool-note">{% blocktranslate with username=user.get_username %}Signed in as {{ username }}{% endblocktranslate %}</p>
+      <form action="{% url 'showroom:logout' %}" method="post">
+        {% csrf_token %}
+        <button class="button secondary" type="submit">{% translate "Sign out" %}</button>
+      </form>
+    {% else %}
+      <nav class="account-options" aria-label="{% translate 'Account options' %}">
+        <a href="{% url 'showroom:login' %}{% if next %}?next={{ next|urlencode }}{% endif %}"{% if not registering %} aria-current="page"{% endif %}>{% translate "Sign in" %}</a>
+        <a href="{% url 'showroom:register' %}{% if next %}?next={{ next|urlencode }}{% endif %}"{% if registering %} aria-current="page"{% endif %}>{% translate "Create an account" %}</a>
+      </nav>
+      <h1>{% if registering %}{% if rtl %}ابدأ رحلتك معنا{% else %}Start your journey{% endif %}{% else %}{% if rtl %}حيّاك من جديد{% else %}Welcome back{% endif %}{% endif %}</h1><p class="tool-note">{% if rtl %}حسابك في معرض فورد، وخطوتك القادمة نحو سيارتك.{% else %}Your showroom account. Your next step toward your Ford.{% endif %}</p>
+      <form class="account-form" method="post">
+        {% csrf_token %}
+        {% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}
+        {{ form.non_field_errors }}
+        {% for field in form %}
+          {% if field.name != "remember_me" %}
+          <div class="account-field">
+            {{ field.label_tag }}
+            <div class="account-input-wrap">{{ field }}{% if field.field.widget.input_type == "password" %}<button type="button" class="password-toggle" data-password-toggle aria-controls="{{ field.auto_id }}" aria-pressed="false" aria-label="{% if rtl %}إظهار كلمة المرور{% else %}Show password{% endif %}"><svg class="password-eye" viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/><path class="password-eye-slash" d="m3 3 18 18" hidden/></svg></button>{% endif %}</div>
+            {% if field.field.widget.input_type == "password" %}<p class="helptext" data-caps-lock hidden role="status">{% if rtl %}مفتاح الأحرف الكبيرة مفعّل{% else %}Caps Lock is on{% endif %}</p>{% endif %}
+            {% if field.name == "password1" %}<details class="password-guidance"><summary>{% if rtl %}إرشادات كلمة المرور{% else %}Password guidance{% endif %}</summary><ul class="password-checks" aria-label="{% if rtl %}إرشادات كلمة المرور{% else %}Password guidance{% endif %}"><li data-length-check>{% if rtl %}8 أحرف على الأقل{% else %}At least 8 characters{% endif %}</li><li data-number-check>{% if rtl %}تحتوي على أحرف أو رموز{% else %}Includes letters or symbols{% endif %}</li></ul><p class="helptext" id="{{ field.auto_id }}_helptext">{{ field.help_text }}</p></details>{% endif %}
+            {% if field.name == "password2" %}<p class="helptext" data-password-match role="status"></p>{% endif %}
+            {% if field.help_text and field.name != "password1" %}<p class="helptext" id="{{ field.auto_id }}_helptext">{{ field.help_text }}</p>{% endif %}
+            {{ field.errors }}
+          </div>
+          {% endif %}
+        {% endfor %}
+        {% if not registering %}
+          <div class="account-remember">
+            <label for="{{ form.remember_me.id_for_label }}">
+              {{ form.remember_me }}
+              <span>{% if rtl %}تذكرني{% else %}Remember me{% endif %}</span>
+            </label>
+          </div>
+        {% endif %}
+        <button class="button" type="submit">{% if registering %}{% translate "Create an account" %}{% else %}{% translate "Sign in" %}{% endif %}</button>
+      </form>
+    {% endif %}
+    <a class="text-link account-browse" href="{% url 'showroom:car_list' %}">{% if rtl %}تصفح المعرض{% else %}Explore the showroom{% endif %}</a>
+  </div>
+  </div>
+</section>
+{% if user.is_authenticated %}
+<section class="container section">
+  <h2>{% if rtl %}سياراتي المفضلة{% else %}My favorite cars{% endif %}</h2>
+  <div class="recent-grid">
+  {% for favorite in user.favorite_set.all %}
+    {% include "showroom/partials/car_card.html" with car=favorite.car comparison_enabled=False %}
+  {% empty %}
+    <p class="tool-note">{% if rtl %}احفظ السيارات التي تعجبك من المعرض لتجدها هنا.{% else %}Save cars from the showroom to find them here.{% endif %}</p>
+  {% endfor %}
+  </div>
+</section>
+{% endif %}
+<script src="{% static 'showroom/js/account.js' %}?v=account-flow" defer></script>
+{% endblock %}

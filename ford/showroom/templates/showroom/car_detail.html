@@ -1,0 +1,90 @@
+{% extends "showroom/base.html" %}
+{% load static i18n %}
+{% block title %}{{ car.year }} {% translate car.name %} | {% translate 'Ford' %}{% endblock %}
+{% block content %}
+{% translate car.name as vehicle %}
+<div class="container detail">
+  <nav class="breadcrumbs" aria-label="{% translate 'Breadcrumb' %}"><a href="{% url 'showroom:car_list' %}">{% translate 'Cars' %}</a><svg class="icon instrument-icon" data-directional aria-hidden="true"><use href="{% static 'showroom/images/instrument-icons.svg' %}#chevron_right"></use></svg><a href="{% url 'showroom:car_list' %}?brand=ford">{% translate 'Ford' %}</a><svg class="icon instrument-icon" data-directional aria-hidden="true"><use href="{% static 'showroom/images/instrument-icons.svg' %}#chevron_right"></use></svg><span aria-current="page">{% translate car.name %}</span></nav>
+  <div class="detail-grid">
+    <section id="gallery" class="gallery" data-gallery aria-label="{% blocktranslate %}{{ vehicle }} photo gallery{% endblocktranslate %}">
+      <div class="gallery-main">
+        <img src="{% static car.gallery.0.src %}" alt="{% translate car.gallery.0.alt %}" width="1200" height="800" data-gallery-image>
+        {% if car.gallery|length > 1 %}<button class="icon-button gallery-prev" type="button" data-gallery-step="-1" aria-label="{% translate 'Previous image' %}"><svg class="icon instrument-icon" aria-hidden="true"><use href="{% static 'showroom/images/instrument-icons.svg' %}#arrow_back"></use></svg></button>
+        <button class="icon-button gallery-next" type="button" data-gallery-step="1" aria-label="{% translate 'Next image' %}"><svg class="icon instrument-icon" data-directional aria-hidden="true"><use href="{% static 'showroom/images/instrument-icons.svg' %}#arrow_forward"></use></svg></button>{% endif %}
+      </div>
+      <dialog class="gallery-dialog{% if car.gallery|length == 1 %} single-photo{% endif %}" data-gallery-dialog aria-label="{% blocktranslate %}{{ vehicle }} full-screen gallery{% endblocktranslate %}">
+        <form method="dialog">
+          <button type="submit" class="button secondary gallery-close" autofocus>{% translate 'Close' %}</button>
+        </form>
+        {% if car.gallery|length > 1 %}<button class="icon-button gallery-prev" type="button" data-gallery-step="-1" aria-label="{% translate 'Previous full-screen image' %}"><svg class="icon instrument-icon" aria-hidden="true"><use href="{% static 'showroom/images/instrument-icons.svg' %}#arrow_back"></use></svg></button>{% endif %}
+        <img src="{% static car.gallery.0.src %}" alt="{% translate car.gallery.0.alt %}" data-full-image>
+        {% if car.gallery|length > 1 %}<button class="icon-button gallery-next" type="button" data-gallery-step="1" aria-label="{% translate 'Next full-screen image' %}"><svg class="icon instrument-icon" data-directional aria-hidden="true"><use href="{% static 'showroom/images/instrument-icons.svg' %}#arrow_forward"></use></svg></button>{% endif %}
+        <p class="gallery-caption" aria-live="polite" data-full-caption></p>
+      </dialog>
+      <div class="thumbnails">
+        {% for photo in car.gallery %}<button type="button" aria-label="{% translate photo.alt %}" aria-pressed="{{ forloop.first|yesno:'true,false' }}" data-gallery-photo="{% static photo.src %}"><img src="{% static photo.src %}" alt="" width="160" height="100" loading="lazy"></button>{% endfor %}
+      </div>
+      <button type="button" class="button secondary gallery-expand" data-gallery-open>{% translate 'View full screen' %}</button>
+      <p class="sr-only" role="status" data-gallery-status></p>
+    </section>
+    <section class="detail-summary">
+      <p class="eyebrow">{{ car.year }} · {% translate car.body_style %}</p>
+      <h1>{% translate car.name %}</h1>
+      <p class="detail-price">{{ car.price_display }} <small>{% translate 'Demo price' %}</small></p>
+      <dl class="spec-summary">
+        {% for icon, label, value in specs %}<div><dt><span class="icon" aria-hidden="true">{{ icon }}</span>{{ label }}</dt><dd>{{ value }}</dd></div>{% endfor %}
+      </dl>
+      <div class="vehicle-actions" id="vehicle-actions">
+        <a href="#test-drive" class="button" data-action-link aria-controls="test-drive">{% translate 'Book a Test Drive' %}</a>
+        <a href="#installments" class="button secondary" data-action-link aria-controls="installments">{% translate 'Estimate Payments' %}</a>
+        <a href="#purchase" class="button secondary" data-action-link aria-controls="purchase">{% translate 'Request cash purchase' %}</a>
+      </div>
+      <a href="{{ car.official_url }}" class="text-link official-link">{% translate 'Explore on Ford' %}</a>
+      <button type="button" class="button secondary heart" data-wishlist="{{ car.slug }}" aria-pressed="false"><svg class="icon instrument-icon" aria-hidden="true"><use href="{% static 'showroom/images/instrument-icons.svg' %}#favorite"></use></svg><span data-wishlist-label>{% translate 'Save to Wishlist' %}</span></button>
+    </section>
+  </div>
+  {% include "showroom/partials/detail_tools.html" %}
+  <nav class="detail-nav" id="vehicle-details" aria-label="{% translate 'Vehicle details' %}">
+    <a href="?tab=overview#vehicle-details"{% if detail_tab == 'overview' %} aria-current="page"{% endif %}>{% translate 'Overview' %}</a>
+    <a href="?tab=specifications#vehicle-details"{% if detail_tab == 'specifications' %} aria-current="page"{% endif %}><span class="desktop-label">{% translate 'Specifications' %}</span><span class="mobile-label">{% translate 'Specs' %}</span></a>
+    <a href="?tab=features#vehicle-details"{% if detail_tab == 'features' %} aria-current="page"{% endif %}>{% translate 'Features' %}</a>
+    <a href="#gallery">{% translate 'Gallery' %}</a>
+  </nav>
+  {% if detail_tab == "overview" %}
+  <section class="overview" id="overview">
+    <div><h2>{% translate car.headline %}</h2><p>{% translate car.description %}</p></div>
+    {% with photo=car.gallery.1|default:car.gallery.0 %}
+    <img src="{% static photo.src %}" alt="{% translate photo.alt %}" width="600" height="400" loading="lazy">
+    {% endwith %}
+  </section>
+  {% elif detail_tab == "specifications" %}
+  <section id="specifications" class="detail-specs" aria-labelledby="spec-title">
+    <h2 id="spec-title">{% translate 'Specifications' %}</h2>
+    <dl class="spec-table">
+      {% for icon, label, value in specs %}<div{% if forloop.counter <= 2 %} class="spec-lead"{% endif %}><dt>{{ label }}</dt><dd>{{ value }}</dd></div>{% endfor %}
+      <div><dt>{% translate 'Model year' %}</dt><dd>{{ car.year }}</dd></div>
+      <div><dt>{% translate 'Body style' %}</dt><dd>{% translate car.body_style %}</dd></div>
+    </dl>
+  </section>
+  {% else %}
+  <section id="features" class="section features">
+    <h2>{% translate 'Key Features' %}</h2>
+    <div class="feature-grid">
+      {% for feature in car.features %}
+      <article><img src="{% static feature.src %}" alt="" width="480" height="300" loading="lazy"><h3>{% translate feature.title %}</h3><p>{% translate feature.description %}</p></article>
+      {% endfor %}
+    </div>
+  </section>
+
+  {% endif %}
+</div>
+
+<section class="container section recent-cars" data-recent-cars data-current-car="{{ car.slug }}" hidden>
+  <h2>{% if rtl %}شاهدتها مؤخرًا{% else %}Recently viewed{% endif %}</h2>
+  <div class="recent-grid">
+    {% for recent in recent_candidates %}
+      <div data-recent-slug="{{ recent.slug }}" hidden>{% include "showroom/partials/car_card.html" with car=recent comparison_enabled=False %}</div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
