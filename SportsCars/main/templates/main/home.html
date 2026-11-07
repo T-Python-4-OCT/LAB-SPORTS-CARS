@@ -1,0 +1,106 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}Kia Showroom | Home{% endblock %}
+{% block nav_home %}active{% endblock %}
+
+{% block content %}
+
+<!-- ===== HERO ===== -->
+<section class="hero" style="background-image: url('{% static 'images/hero.jpg' %}');">
+    <div class="container hero-text fade-up">
+        <h1>Movement<br>That Inspires</h1>
+        <p>Explore the full Kia family, from smart city sedans to the 7-seat Sorento.</p>
+        <a href="{% url 'main:cars_view' %}" class="btn">
+            Browse Cars <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+    </div>
+</section>
+
+<!-- ===== FEATURES ROW ===== -->
+<section class="container features">
+    <div class="feature">
+        <span class="material-symbols-outlined">bolt</span>
+        <p>High Performance</p>
+    </div>
+    <div class="feature">
+        <span class="material-symbols-outlined">diamond</span>
+        <p>Premium Selection</p>
+    </div>
+    <div class="feature">
+        <span class="material-symbols-outlined">verified_user</span>
+        <p>Verified &amp; Inspected</p>
+    </div>
+    <div class="feature">
+        <span class="material-symbols-outlined">support_agent</span>
+        <p>Dedicated Support</p>
+    </div>
+</section>
+
+<!-- ===== FEATURED CARS ===== -->
+<section class="container section">
+    <div class="section-head">
+        <h2>Featured Cars</h2>
+        <a href="{% url 'main:cars_view' %}" class="link-arrow">
+            View All <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+    </div>
+
+    <div class="cars-grid three">
+        {% for car in featured_cars %}
+            {% include "main/car_card.html" %}
+        {% endfor %}
+    </div>
+</section>
+
+<!-- ===== THE EXPERIENCE ===== -->
+<section class="container experience">
+    <img src="{% static 'images/experience.jpg' %}" alt="Close look at a Kia car light">
+    <div class="experience-text">
+        <span class="small-title">The Experience</span>
+        <h2>More Than a Car</h2>
+        <p>A seamless journey from discovery to ownership, with expert support every step of the way.</p>
+        <a href="{% url 'main:about_view' %}" class="btn">
+            Learn More <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+    </div>
+</section>
+
+<!-- ===== WHY CHOOSE US ===== -->
+<section class="container section">
+    <h2>Why Choose Us</h2>
+    <div class="why-grid">
+        <div class="why">
+            <span class="material-symbols-outlined">trophy</span>
+            <h3>Iconic Models</h3>
+            <p>A handpicked range of the latest Kia cars.</p>
+        </div>
+        <div class="why">
+            <span class="material-symbols-outlined">shield</span>
+            <h3>Full Transparency</h3>
+            <p>Detailed history and inspection.</p>
+        </div>
+        <div class="why">
+            <span class="material-symbols-outlined">star</span>
+            <h3>Expert Guidance</h3>
+            <p>Personalized advice from automotive experts.</p>
+        </div>
+        <div class="why">
+            <span class="material-symbols-outlined">diamond</span>
+            <h3>After-Sales Care</h3>
+            <p>Ongoing support and exclusive benefits.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ===== CALL TO ACTION ===== -->
+<section class="container">
+    <div class="cta" style="background-image: url('{% static 'images/cta.jpg' %}');">
+        <h2>Ready to Drive<br>Your Dream Car?</h2>
+        <a href="{% url 'main:cars_view' %}" class="btn">
+            Browse Collection <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+    </div>
+</section>
+
+{% endblock %}

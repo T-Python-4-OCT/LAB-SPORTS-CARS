@@ -1,0 +1,138 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}{{ car.name }} | Kia Showroom{% endblock %}
+{% block nav_cars %}active{% endblock %}
+
+{% block content %}
+
+<section class="container section">
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="{% url 'main:cars_view' %}">Cars</a>
+        <span class="material-symbols-outlined">chevron_right</span>
+        <a href="{% url 'main:cars_view' %}">Kia</a>
+        <span class="material-symbols-outlined">chevron_right</span>
+        <strong>{{ car.name }}</strong>
+    </div>
+
+    <!-- Gallery + info -->
+    <div class="detail-top">
+
+        <!-- Gallery: radio buttons choose the photo (no JavaScript) -->
+        <div class="gallery fade-up">
+
+            {% for photo in car.gallery %}
+                <input type="radio" name="photo" id="photo{{ forloop.counter }}" class="photo-radio" {% if forloop.first %}checked{% endif %}>
+            {% endfor %}
+
+            <div class="main-img">
+                {% for photo in car.gallery %}
+                    <div class="slide">
+                        <img src="{% static photo %}" alt="{{ car.name }} photo {{ forloop.counter }}">
+
+                        <!-- previous photo (the first one goes to the last) -->
+                        <label class="arrow left material-symbols-outlined"
+                               for="photo{% if forloop.first %}{{ car.gallery|length }}{% else %}{{ forloop.counter|add:'-1' }}{% endif %}">arrow_back</label>
+
+                        <!-- next photo (the last one goes to the first) -->
+                        <label class="arrow right material-symbols-outlined"
+                               for="photo{% if forloop.last %}1{% else %}{{ forloop.counter|add:'1' }}{% endif %}">arrow_forward</label>
+
+                        <span class="photo-count">{{ forloop.counter }} / {{ car.gallery|length }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="thumbs">
+                {% for photo in car.gallery %}
+                    <label for="photo{{ forloop.counter }}">
+                        <img src="{% static photo %}" alt="{{ car.name }} thumbnail {{ forloop.counter }}">
+                    </label>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="detail-info">
+            <h1>{{ car.name }}</h1>
+            <p class="price">Starting from SAR {{ car.price }}</p>
+
+            <ul class="specs">
+                <li><span class="material-symbols-outlined">settings</span> Engine <strong>{{ car.engine }}</strong></li>
+                <li><span class="material-symbols-outlined">bolt</span> Power <strong>{{ car.power }}</strong></li>
+                <li><span class="material-symbols-outlined">directions_car</span> Body <strong>{{ car.body }}</strong></li>
+                <li><span class="material-symbols-outlined">airline_seat_recline_normal</span> Seats <strong>{{ car.seats }}</strong></li>
+            </ul>
+
+            <a href="#footer" class="btn full">Inquire Now</a>
+            <a href="#" class="btn-outline full">
+                <span class="material-symbols-outlined">favorite</span> Save to Wishlist
+            </a>
+        </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+        <a href="#overview" class="active">Overview</a>
+        <a href="#stats">Specifications</a>
+        <a href="#features">Features</a>
+        <a href="#features">Gallery</a>
+    </div>
+
+    <!-- Overview banner -->
+    <div class="overview" id="overview">
+        <div>
+            <h2>{{ car.title }}</h2>
+            <p>{{ car.description }}</p>
+        </div>
+        <img src="{% static car.gallery.1 %}" alt="{{ car.name }} from the back">
+    </div>
+
+    <!-- Stats -->
+    <div class="stats" id="stats">
+        <div class="stat">
+            <span class="material-symbols-outlined">settings</span>
+            <strong>{{ car.engine }}</strong>
+            <p>Engine</p>
+        </div>
+        <div class="stat">
+            <span class="material-symbols-outlined">bolt</span>
+            <strong>{{ car.power }}</strong>
+            <p>Max Power</p>
+        </div>
+        <div class="stat">
+            <span class="material-symbols-outlined">directions_car</span>
+            <strong>{{ car.body }}</strong>
+            <p>{{ car.type }}</p>
+        </div>
+        <div class="stat">
+            <span class="material-symbols-outlined">group</span>
+            <strong>{{ car.seats }}</strong>
+            <p>Capacity</p>
+        </div>
+    </div>
+
+    <!-- Key features -->
+    <h2 id="features">Key Features</h2>
+    <div class="key-features">
+        <div class="key-feature">
+            <img src="{% static car.gallery.2 %}" alt="{{ car.name }} interior">
+            <h3>Premium Interior</h3>
+            <p>A driver-focused cabin with modern screens and refined materials.</p>
+        </div>
+        <div class="key-feature">
+            <img src="{% static car.gallery.0 %}" alt="{{ car.name }} performance">
+            <h3>Smart Performance</h3>
+            <p>An efficient engine with a smooth and confident drive.</p>
+        </div>
+        <div class="key-feature">
+            <img src="{% static car.gallery.1 %}" alt="{{ car.name }} design">
+            <h3>Bold Design</h3>
+            <p>Kia's signature design language, made to stand out on the road.</p>
+        </div>
+    </div>
+
+</section>
+
+{% endblock %}
