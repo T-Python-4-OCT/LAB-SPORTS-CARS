@@ -345,3 +345,23 @@ select,
   .hero { min-height: 60vh; }
   .actions .btn { flex: 1; justify-content: center; }
 }
+
+.marquee { overflow: hidden; padding: 14px 0; background: var(--accent); color: #fff; }
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: scroll 30s linear infinite;
+}
+
+.marquee-track span {
+  padding: 0 24px;
+  font-family: 'Phudu', sans-serif;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.marquee-track span::after { content: "\2022"; margin-left: 48px; opacity: .6; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+
+@keyframes scroll { to { transform: translateX(-50%); } }

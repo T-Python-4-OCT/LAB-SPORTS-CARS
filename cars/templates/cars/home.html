@@ -20,6 +20,13 @@
   </div>
 </section>
 
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    {% for car in models %}<span>{{ car.name }}</span>{% endfor %}
+    {% for car in models %}<span>{{ car.name }}</span>{% endfor %}
+  </div>
+</div>
+
 <section class="strip">
   <div><span class="material-symbols-outlined">bolt</span>High Performance</div>
   <div><span class="material-symbols-outlined">diamond</span>Premium Selection</div>
