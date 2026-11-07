@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="{% if request.COOKIES.theme == 'dark' %}dark-theme{% endif %}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Lexus{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Phudu:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-row">
+            <a class="logo" href="{% url 'home' %}"><img src="{% static 'images/lexus_logo.png' %}" alt="Lexus" width="182" height="43"></a>
+
+            <input class="menu-check" type="checkbox" id="menu-check">
+            <label class="menu-button" for="menu-check" aria-label="Open menu"><span class="material-symbols-outlined">menu</span></label>
+
+            {% with page=request.resolver_match.url_name %}
+            <nav class="nav-links">
+                <a href="{% url 'home' %}" {% if page == 'home' %}class="active"{% endif %}>Home</a>
+                <a href="{% url 'cars' %}" {% if page == 'cars' or page == 'car_detail' %}class="active"{% endif %}>Cars</a>
+                <a href="{% url 'about' %}" {% if page == 'about' %}class="active"{% endif %}>About Us</a>
+                <a href="#footer">Contact</a>
+            </nav>
+            {% endwith %}
+
+            <div class="nav-actions">
+                <a href="{% url 'cars' %}" aria-label="Browse cars"><span class="material-symbols-outlined">search</span></a>
+                <a href="{% url 'toggle_theme' %}?next={{ request.path|urlencode }}" aria-label="Switch color mode">
+                    <span class="material-symbols-outlined">{% if request.COOKIES.theme == 'dark' %}light_mode{% else %}dark_mode{% endif %}</span>
+                </a>
+                <a href="#" aria-label="Account"><span class="material-symbols-outlined">person</span></a>
+            </div>
+        </div>
+    </header>
+
+    <main>{% block content %}{% endblock %}</main>
+
+    <footer id="footer" class="footer">
+        <div class="container footer-card">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="{% url 'home' %}"><img class="footer-lexus-logo" src="{% static 'images/lexus_logo.png' %}" alt="Lexus" width="182" height="43"></a>
+                    <p>Luxury sedans, SUVs, and coupes curated for drivers who appreciate refinement, design, and performance.</p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Explore</h3>
+                    <a href="{% url 'home' %}">Home</a>
+                    <a href="{% url 'cars' %}">Cars</a>
+                    <a href="{% url 'about' %}">About Us</a>
+                    <a href="#footer">Contact</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <a href="#footer">FAQs</a>
+                    <a href="#footer">Financing</a>
+                    <a href="#footer">Warranty</a>
+                    <a href="#footer">After-Sales</a>
+                </div>
+
+                <div class="footer-newsletter">
+                    <h3>Stay in the Loop</h3>
+                    <p>Get the latest arrivals, exclusive offers, and Lexus news.</p>
+                    <div class="email-preview">
+                        <input type="email" placeholder="Your email" aria-label="Email preview" readonly>
+                        <button type="button" class="email-button" aria-label="Email preview button"><span class="material-symbols-outlined">arrow_forward</span></button>
+                    </div>
+                </div>
+
+                <div class="footer-social social-links">
+                    <a href="https://www.instagram.com/lexusksa/" target="_blank" rel="noopener noreferrer" aria-label="Lexus Instagram"><i class="bi bi-instagram"></i></a>
+                    <a href="https://www.youtube.com/@DiscoverLexus" target="_blank" rel="noopener noreferrer" aria-label="Lexus YouTube"><i class="bi bi-youtube"></i></a>
+                    <a href="https://www.linkedin.com/company/lexus/" target="_blank" rel="noopener noreferrer" aria-label="Lexus LinkedIn"><i class="bi bi-linkedin"></i></a>
+                    <a href="https://x.com/LexusKSA" target="_blank" rel="noopener noreferrer" aria-label="Lexus X"><i class="bi bi-twitter-x"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 Lexus. All rights reserved.</p>
+                <div class="footer-policies">
+                    <a href="#footer">Privacy Policy</a>
+                    <span class="footer-separator"></span>
+                    <a href="#footer">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

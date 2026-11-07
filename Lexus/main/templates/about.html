@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About Us | Lexus{% endblock %}
+
+{% block content %}
+<section class="page-hero about-page-hero">
+    <img src="{% static 'images/about-hero.jpg' %}" alt="Green Lexus LC 500 coupe outside a modern building">
+    <div class="container page-hero-content">
+        <span class="tag">ABOUT US</span>
+        <h1>Driven by Refinement</h1>
+        <p>A premium showcase built around design, comfort, craftsmanship, and advanced Lexus engineering.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container story-grid">
+        <div>
+            <span class="tag">OUR STORY</span>
+            <h2>More Than a Dealership</h2>
+            <p>This demo website presents a refined Lexus collection with a clean browsing experience and high-quality visuals for each model.</p>
+            <p>Our goal is to make every visit feel elegant, simple, and inspiring.</p>
+        </div>
+        <img src="{% static 'images/es_detail.jpg' %}" alt="Lexus ES 300h luxury sedan">
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <h2>Our Values</h2>
+        <div class="values-grid three-values">
+            <div><span class="material-symbols-outlined">diamond</span><h3>Excellence</h3><p>Attention to quality, design, and presentation.</p></div>
+            <div><span class="material-symbols-outlined">verified_user</span><h3>Trust</h3><p>Clear information and carefully selected model data.</p></div>
+            <div><span class="material-symbols-outlined">star</span><h3>Passion</h3><p>A genuine appreciation for exceptional luxury cars.</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="feature-banner">
+            <img src="{% static 'images/lx_card.jpg' %}" alt="Lexus LX 600 luxury SUV">
+            <div class="feature-text">
+                <h2>Find Your Next Drive</h2>
+                <p>Explore the Lexus collection and discover the sedan, SUV, or coupe that fits your style.</p>
+                <a class="btn btn-red" href="{% url 'cars' %}">Browse Cars <span class="material-symbols-outlined">arrow_forward</span></a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
