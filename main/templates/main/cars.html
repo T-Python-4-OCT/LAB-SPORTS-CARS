@@ -14,6 +14,14 @@
     </section>
 
     <section class="container cars-section">
+        
+        <div class="filters">
+            <a href="{% url 'main:cars_view' %}" class="filter-btn {% if not selected_brand %}active{% endif %}">All</a>
+            {% for brand in brands %}
+                <a href="{% url 'main:cars_view' %}?brand={{ brand }}" class="filter-btn {% if selected_brand == brand %}active{% endif %}">{{ brand }}</a>
+            {% endfor %}
+        </div>
+
         <p class="cars-count">{{ cars|length }} Cars Found</p>
 
         <div class="row g-4">

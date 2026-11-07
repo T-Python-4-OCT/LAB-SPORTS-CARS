@@ -1,0 +1,77 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Contact Us | SportCars{% endblock %}
+
+{% block content %}
+    
+    <section class="page-hero" style="background-image: url('{% static 'images/hero.jpg' %}');">
+        <div class="container">
+            <p class="eyebrow">Contact Us</p>
+            <h1>Get in<br>Touch</h1>
+            <p class="hero-text">Have a question or want to book a visit? Our team is ready to help you.</p>
+        </div>
+    </section>
+
+    
+    <section class="container contact-section">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="feature-card text-center">
+                    <div class="feature-icon-wrap"><span class="material-symbols-outlined">location_on</span></div>
+                    <h6>Visit Us</h6>
+                    <p>King Fahd Road, Riyadh, Saudi Arabia</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card text-center">
+                    <div class="feature-icon-wrap"><span class="material-symbols-outlined">call</span></div>
+                    <h6>Call Us</h6>
+                    <p>+966 551566010</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card text-center">
+                    <div class="feature-icon-wrap"><span class="material-symbols-outlined">mail</span></div>
+                    <h6>Email Us</h6>
+                    <p>info@faisalfawaz101</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-5 mt-3">
+            
+            <div class="col-lg-7">
+                <h2>Send a Message</h2>
+                <form class="contact-form" onsubmit="return false;">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <input type="text" placeholder="Your name" aria-label="Your name">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="email" placeholder="Your email" aria-label="Your email">
+                        </div>
+                        <div class="col-12">
+                            <textarea rows="5" placeholder="Your message" aria-label="Your message"></textarea>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn-accent">
+                                Send Message <span class="material-symbols-outlined">send</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            
+            <div class="col-lg-5">
+                <h2>Working Hours</h2>
+                <ul class="hours-list">
+                    <li><span>Sunday - Thursday</span><strong>9:00 AM - 9:00 PM</strong></li>
+                    <li><span>Friday</span><strong>4:00 PM - 10:00 PM</strong></li>
+                    <li><span>Saturday</span><strong>10:00 AM - 10:00 PM</strong></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+{% endblock %}

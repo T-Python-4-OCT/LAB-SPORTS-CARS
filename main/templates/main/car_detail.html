@@ -7,7 +7,7 @@
 {% block content %}
     <section class="container detail-section">
 
-        <!-- Breadcrumb -->
+        <
         <nav class="crumbs">
             <a href="{% url 'main:cars_view' %}">Cars</a>
             <span class="material-symbols-outlined">chevron_right</span>
@@ -17,14 +17,14 @@
         </nav>
 
         <div class="row g-5">
-            <!-- الصورة -->
+            
             <div class="col-lg-7">
                 <div class="detail-image">
                     <img src="{% static car.image %}" alt="{{ car.brand }} {{ car.name }}">
                 </div>
             </div>
 
-            <!-- المعلومات -->
+           
             <div class="col-lg-5">
                 <p class="eyebrow">{{ car.brand }}</p>
                 <h1 class="detail-title">{{ car.name }}</h1>
@@ -47,7 +47,7 @@
             </div>
         </div>
 
-        <!-- Key Features -->
+        
         <h2 class="key-title">Key Features</h2>
         <div class="row g-4">
             <div class="col-md-4">

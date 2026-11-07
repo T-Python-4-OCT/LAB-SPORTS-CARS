@@ -1,5 +1,69 @@
 {% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}About Us | SportCars{% endblock %}
 
 {% block content %}
-    <h1>About</h1>
+    
+    <section class="page-hero" style="background-image: url('{% static 'images/hero.jpg' %}');">
+        <div class="container">
+            <p class="eyebrow">About Us</p>
+            <h1>Driven by<br>Passion</h1>
+            <p class="hero-text">A team of automotive enthusiasts dedicated to bringing the world's finest sports cars closer to you.</p>
+        </div>
+    </section>
+
+    
+    <section class="container about-story">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6">
+                <h2>Our Story</h2>
+                <p class="story-text">Founded in Saudi Arabia, we bring together a deep passion for performance, design, and engineering excellence, offering a curated selection of iconic sports cars and a premium ownership experience.</p>
+            </div>
+            <div class="col-lg-6">
+                <div class="detail-image">
+                    <img src="{% static 'images/lamborghini.jpg' %}" alt="Our showroom">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="values">
+        <div class="container">
+            <h2 class="text-center">Our Values</h2>
+            <div class="row g-4 mt-2">
+                <div class="col-md-4">
+                    <div class="feature-card text-center">
+                        <div class="feature-icon-wrap"><span class="material-symbols-outlined">diamond</span></div>
+                        <h6>Excellence</h6>
+                        <p>A commitment to world-class standards.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card text-center">
+                        <div class="feature-icon-wrap"><span class="material-symbols-outlined">verified_user</span></div>
+                        <h6>Trust</h6>
+                        <p>Transparent, honest, and customer-first.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card text-center">
+                        <div class="feature-icon-wrap"><span class="material-symbols-outlined">favorite</span></div>
+                        <h6>Passion</h6>
+                        <p>A shared love for exceptional cars.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="experience" style="background-image: url('{% static 'images/porsche.jpg' %}');">
+        <div class="container">
+            <h2>More Than a Dealer</h2>
+            <p class="hero-text">We are your partner in the journey of owning and enjoying an exceptional car.</p>
+            <a href="{% url 'main:cars_view' %}" class="btn-accent">Browse Cars <span class="material-symbols-outlined">arrow_forward</span></a>
+        </div>
+    </section>
 {% endblock %}

@@ -8,4 +8,6 @@ urlpatterns = [
     path("cars/", views.cars_view, name="cars_view"),
     path("cars/<int:car_id>/", views.car_detail_view, name="car_detail_view"),
     path("about/", views.about_view, name="about_view"),
+    path("toggle-theme/", views.toggle_theme, name="toggle_theme"),
+    path("contact/", views.contact_view, name="contact_view"),
 ]
