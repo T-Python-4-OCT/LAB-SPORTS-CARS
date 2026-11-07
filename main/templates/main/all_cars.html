@@ -1,6 +1,7 @@
+
 {% extends 'main/base.html' %}
 {% load static %}
-
+{% load humanize %}
 {% block title %}MASAR MOTORS | All Cars{% endblock %}
 
 {% block content %}
@@ -29,13 +30,24 @@
         {% endfor %}
     </datalist>
 </label>
+<label class="grid gap-2 text-sm">
+    Filter by brand
+    <select id="brand-filter" class="rounded border border-[#dce3e6] bg-white px-4! py-2! text-[#172126]">
+        <option value="all">All brands</option>
+        {% for car in cars %}
+            {% ifchanged car.brand %}
+                <option value="{{ car.brand|lower }}">{{ car.brand }}</option>
+            {% endifchanged %}
+        {% endfor %}
+    </select>
+</label>
         <label class="grid gap-2 text-sm">
             Filter by body style
             <select id="body-filter"
                     class="rounded border border-[#dce3e6] bg-white px-4! py-2! text-[#172126]">
                 <option value="all">All styles</option>
                 <option value="sedan">Sedan</option>
-                <option value="saloon">Saloon</option>
+                
                 <option value="pickup">Pickup</option>
                 <option value="coupe">Coupe</option>
             </select>
@@ -54,9 +66,12 @@
             <div class="car-info">
                 <span class="car-category">{{ car.category }}</span>
                 <h3>{{ car.name }}</h3>
+                <p class="car-brand">{{ car.brand }}</p>
+                <p class="car-price">{{ car.price|floatformat:0|intcomma }} SAR</p>
                 <p>{{ car.description }}</p>
                 <a href="{% url 'car_detail' car.id %}" class="car-link">
-                    VIEW DETAILS →
+                    VIEW DETAILS
+                    <span class="material-symbols-outlined">arrow_forward</span>
                 </a>
             </div>
         </article>
@@ -68,6 +83,7 @@
 
 <script>
     const bodyFilter = document.getElementById("body-filter");
+    const brandFilter = document.getElementById("brand-filter");
     const carCards = document.querySelectorAll("#car-grid .car-card");
     const carCount = document.getElementById("car-count");
     const carSearchInput = document.getElementById("car-search-input");
@@ -85,18 +101,33 @@ carSearchInput.addEventListener("change", function () {
     }
 });
 
-    bodyFilter.addEventListener("change", function () {
-        let visibleCars = 0;
+   function filterCars() {
+    let visibleCars = 0;
 
-        carCards.forEach(function (card) {
-            const matches = bodyFilter.value === "all"
-                || card.dataset.body === bodyFilter.value;
+    carCards.forEach(function (card) {
+        const selectedBody = bodyFilter.value.toLowerCase();
+        const selectedBrand = brandFilter.value.toLowerCase();
 
-            card.hidden = !matches;
-            if (matches) visibleCars++;
-        });
+        const carBody = card.dataset.body.toLowerCase();
+        const carBrand = card.querySelector(".car-brand").textContent.trim().toLowerCase();
 
-        carCount.textContent = visibleCars + " Cars Found";
+        const matchesBody = selectedBody === "all" || carBody.includes(selectedBody);
+        const matchesBrand = selectedBrand === "all" || carBrand === selectedBrand;
+
+        card.hidden = !(matchesBody && matchesBrand);
+
+        if (!card.hidden) {
+            visibleCars++;
+        }
     });
+
+    carCount.textContent = visibleCars + " Cars Found";
+}
+
+bodyFilter.addEventListener("change", filterCars);
+brandFilter.addEventListener("change", filterCars);
+
+
+    
 </script>
 {% endblock %}

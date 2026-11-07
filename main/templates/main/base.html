@@ -47,10 +47,11 @@
                     <span class="moon material-symbols-outlined">dark_mode</span>
                 </label>
             </div>
+            <a href="{% url 'about' %}" class="nav-icon" aria-label="About Us">
+                <span class="material-symbols-outlined">person</span>
+            </a>
 
-            <span class="nav-icon" aria-hidden="true">
-    <span class="material-symbols-outlined">person</span>
-</span>
+            
             <a href="#contact" class="contact-btn">Contact Us</a>
 
         </div>
@@ -81,10 +82,10 @@
 
         <div class="footer-links">
         <h3>SUPPORT</h3>
-        <span>FAQs</span>
-        <span>Financing</span>
-        <span>Customer Support</span>
-</div>
+       <a href="#">FAQs</a>
+       <a href="#">Financing</a>
+       <a href="#contact">Customer Support</a>
+    </div>
 
         <div class="footer-newsletter">
             <h3>STAY IN THE LOOP</h3>
@@ -92,7 +93,9 @@
 
             <div class="newsletter-form">
                 <input type="email" placeholder="Your email">
-                <button type="button" aria-label="Subscribe">→</button>
+                <button type="button" aria-label="Subscribe">
+    <span class="material-symbols-outlined">arrow_forward</span>
+</button>
             </div>
 
             <div class="footer-social" id="contact">
@@ -131,10 +134,9 @@
             <span>© 2026 MASAR MOTORS. All Rights Reserved.</span>
 
             <div>
-               <span>Privacy Policy</span>
-                <span>Terms of Service</span> 
-            </div>
-        </div>
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms of Service</a>
+</div>
 
     </footer>
 <script>

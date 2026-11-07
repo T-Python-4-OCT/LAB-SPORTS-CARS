@@ -1,6 +1,6 @@
 {% extends 'main/base.html' %}
 {% load static %}
-
+{% load humanize %}
 {% block title %}{{ car.name }} | MASAR MOTORS{% endblock %}
 
 {% block content %}
@@ -24,6 +24,10 @@
                 <dt class="font-bold">Model</dt>
                 <dd>{{ car.model }}</dd>
             </div>
+            <div>
+    <dt class="font-bold">Price</dt>
+    <dd> {{ car.price|intcomma }} SARSAR</dd>
+</div>
             <div>
                 <dt class="font-bold">Year</dt>
                 <dd>{{ car.year }}</dd>
@@ -63,12 +67,14 @@
                 rel="noopener noreferrer"
                 class="car-link mt-6"
             >
-                VISIT MANUFACTURER →
+                VISIT MANUFACTURER
+                <span class="material-symbols-outlined">arrow_forward</span>
             </a>
         {% endif %}
 
         <a href="{% url 'all_cars' %}" class="car-link mt-6">
-            ← BACK TO ALL CARS
+            <span class="material-symbols-outlined">arrow_back</span>
+            BACK TO ALL CARS
         </a>
     </div>
 

@@ -1,5 +1,5 @@
 {% extends 'main/base.html' %}
-
+{% load static %}
 {% block title %}About Us | MASAR MOTORS{% endblock %}
 
 {% block content %}
@@ -16,6 +16,23 @@
         We bring together a carefully selected collection for people who appreciate
         timeless design and automotive heritage.
     </p>
+        <section class="about-preview">
+        <div class="about-image">
+            <img src="{% static 'main/images/masar_car_4.jpg' %}"
+                 alt="Classic Rolls-Royce">
+        </div>
+
+        <div class="about-content">
+            <span class="section-label">OUR STORY</span>
+            <h2>More Than <span>Cars</span></h2>
+            <p>
+                MASAR MOTORS was created for people who appreciate
+                the beauty, history, and timeless character of classic cars.
+                Our goal is to connect automotive enthusiasts with
+                iconic automobiles from different eras.
+            </p>
+        </div>
+    </section>
 
     <h2>Our Values</h2>
 
@@ -32,6 +49,7 @@
                 <h3>Quality</h3>
                 <p>We present every car with care and clear information.</p>
             </div>
+
         </article>
 
         <article class="car-card">
@@ -41,7 +59,18 @@
             </div>
         </article>
     </div>
+    <section class="about-banner">
+    <span class="section-label">MASAR MOTORS</span>
+    <h2>MORE THAN A <span>DEALER</span></h2>
+    <p>
+        We are passionate about preserving automotive history
+        and connecting people with timeless classic cars.
+    </p>
+</section>
 
-    <a href="{% url 'all_cars' %}" class="car-link">EXPLORE OUR CARS →</a>
+    <a href="{% url 'all_cars' %}" class="car-link">
+    EXPLORE OUR CARS
+    <span class="material-symbols-outlined">arrow_forward</span>
+</a>
 </section>
 {% endblock %}
