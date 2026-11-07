@@ -1,0 +1,70 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}About Us | SportCars{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/style_about.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="about-hero">
+  <div class="container">
+    <div class="about-hero__content">
+      <span class="tag">About Us</span>
+      <h1>Driven by<br>Passion</h1>
+      <p>A team of automotive enthusiasts dedicated to bringing the world's finest sports cars closer to you.</p>
+    </div>
+  </div>
+</section>
+
+<section class="container story">
+  <div class="story__text">
+    <h2>Our Story</h2>
+    <p>Founded in Saudi Arabia, we bring together a deep passion for performance, design, and engineering excellence, offering a curated selection of iconic sports cars and a premium ownership experience.</p>
+  </div>
+  <div class="story__img">
+    <img src="{% static 'images/cars_hero.jpg' %}" alt="SportCars showroom">
+  </div>
+</section>
+
+<section class="container values">
+  <h2>Our Values</h2>
+  <div class="values__grid">
+
+    <div class="value">
+      <span class="material-symbols-outlined">diamond</span>
+      <h3>Excellence</h3>
+      <p>A commitment to world-class standards.</p>
+    </div>
+
+    <div class="value">
+      <span class="material-symbols-outlined">shield</span>
+      <h3>Trust</h3>
+      <p>Transparent, honest, and customer-first.</p>
+    </div>
+
+    <div class="value">
+      <span class="material-symbols-outlined">star</span>
+      <h3>Passion</h3>
+      <p>A shared love for exceptional cars.</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="container">
+  <div class="banner">
+    <div class="banner__content">
+      <h2>More Than a Dealer</h2>
+      <p>We are your partner in the journey of owning and enjoying an exceptional car.</p>
+      <a href="{% url 'main:cars' %}" class="btn-outline-light">
+        Browse Cars
+        <span class="material-symbols-outlined">arrow_forward</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

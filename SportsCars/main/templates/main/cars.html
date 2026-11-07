@@ -1,0 +1,67 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}All Cars | SportCars{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/style_cars.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="cars-hero">
+  <div class="container">
+    <div class="cars-hero__content">
+      <span class="tag">Our Collection</span>
+      <h1>All Cars</h1>
+      <p>Explore our complete collection of iconic sports cars.</p>
+    </div>
+  </div>
+</section>
+
+<section class="container">
+  <form method="get" class="filters">
+    <select name="brand" aria-label="Brand">
+      <option value="">All Brands</option>
+      {% for b in brands %}
+      <option value="{{ b }}" {% if b == selected_brand %}selected{% endif %}>{{ b }}</option>
+      {% endfor %}
+    </select>
+
+    <select name="price" aria-label="Price">
+      <option value="">Any Price</option>
+      {% for p in price_ranges %}
+      <option value="{{ p.key }}" {% if p.key == selected_price %}selected{% endif %}>{{ p.label }}</option>
+      {% endfor %}
+    </select>
+
+    <button type="submit" class="filters__btn">
+      <span class="material-symbols-outlined">tune</span>
+      Apply
+    </button>
+    <a href="{% url 'main:cars' %}" class="filters__reset">Reset</a>
+  </form>
+
+  <p class="results-count">{{ cars|length }} Cars Found</p>
+
+  <div class="cars-grid">
+    {% for car in cars %}
+    <a href="{% url 'main:car_detail' car.id %}" class="car-card">
+      <div class="car-card__img">
+        <img src="{% static car.image %}" alt="{{ car.name }}">
+      </div>
+      <div class="car-card__info">
+        <div>
+          <h3>{{ car.name }}</h3>
+          <p>SAR {{ car.price }}</p>
+        </div>
+        <span class="material-symbols-outlined heart">favorite</span>
+      </div>
+    </a>
+    {% empty %}
+    <p class="empty">No cars match your filters.</p>
+    {% endfor %}
+  </div>
+</section>
+
+{% endblock %}

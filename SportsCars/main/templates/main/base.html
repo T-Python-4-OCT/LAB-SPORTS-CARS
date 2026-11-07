@@ -1,0 +1,127 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}SportCars{% endblock %}</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Phudu:wght@400;600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+  <link rel="stylesheet" href="{% static 'css/style_base.css' %}">
+  {% block extra_css %}{% endblock %}
+</head>
+<body {% if "mode" in request.COOKIES and request.COOKIES.mode == "dark" %}class="dark"{% endif %}>
+
+  <header class="navbar" id="navbar">
+    <div class="container navbar__inner">
+
+      <a href="{% url 'main:home' %}" class="brand" aria-label="SportCars home">
+        <span class="brand__mark">//</span>
+        <span class="brand__name">SportCars</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="{% url 'main:home' %}" class="{% if request.path == '/' %}active{% endif %}">Home</a>
+        <a href="{% url 'main:cars' %}" class="{% if '/cars' in request.path %}active{% endif %}">Cars</a>
+        <a href="{% url 'main:about' %}" class="{% if request.path == '/about/' %}active{% endif %}">About Us</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="icon-btn" aria-label="Search">
+          <span class="material-symbols-outlined">search</span>
+        </button>
+        {% if request.COOKIES.mode == 'dark' %}
+        <a href="{% url 'main:mode_view' 'light' %}?next={{request.path}}" class="icon-btn" aria-label="Switch to light mode">
+          <span class="material-symbols-outlined">light_mode</span>
+        </a>
+        {% else %}
+        <a href="{% url 'main:mode_view' 'dark' %}?next={{request.path}}" class="icon-btn" aria-label="Switch to dark mode">
+          <span class="material-symbols-outlined">dark_mode</span>
+        </a>
+        {% endif %}
+        <a href="#" class="icon-btn" aria-label="Account">
+          <span class="material-symbols-outlined">person</span>
+        </a>
+        <input type="checkbox" id="menuToggle" class="toggle-input" aria-label="Toggle menu">
+        <label for="menuToggle" class="icon-btn menu-btn" title="Menu">
+          <span class="material-symbols-outlined icon-open">menu</span>
+          <span class="material-symbols-outlined icon-close">close</span>
+        </label>
+      </div>
+
+    </div>
+  </header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="footer__grid">
+
+        <div class="footer__brand">
+          <a href="{% url 'main:home' %}" class="brand" aria-label="SportCars home">
+          <span class="brand__mark">//</span>
+          <span class="brand__name">SportCars</span>
+          </a>
+          <p>Iconic sports cars for those who love to drive.</p>
+        </div>
+
+        <div class="footer__col">
+          <h4>Explore</h4>
+          <a href="{% url 'main:home' %}">Home</a>
+          <a href="{% url 'main:cars' %}">Cars</a>
+          <a href="{% url 'main:about' %}">About Us</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <div class="footer__col">
+          <h4>Support</h4>
+          <a href="#">FAQs</a>
+          <a href="#">Financing</a>
+          <a href="#">Warranty</a>
+          <a href="#">After-Sales</a>
+        </div>
+
+        <div class="footer__news">
+          <h4>Stay in the Loop</h4>
+          <p>Get the latest arrivals, exclusive offers, and automotive news.</p>
+          <div class="news-form">
+            <input type="email" placeholder="Your email" aria-label="Your email">
+            <button type="button" aria-label="Subscribe">
+              <span class="material-symbols-outlined">arrow_forward</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="footer__social">
+          <a href="https://www.instagram.com/Porsche" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="https://x.com/" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+
+      </div>
+
+      <div class="footer__bottom">
+        <span>© 2026 SportCars. All rights reserved.</span>
+        <span class="footer__legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
