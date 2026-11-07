@@ -1,0 +1,64 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}Kia Showroom | All Cars{% endblock %}
+{% block nav_cars %}active{% endblock %}
+
+{% block content %}
+
+<!-- ===== PAGE HERO ===== -->
+<section class="page-hero" style="background-image: url('{% static 'images/cars-hero.jpg' %}');">
+    <div class="container fade-up">
+        <span class="small-title">Our Collection</span>
+        <h1>All Cars</h1>
+        <p>Explore our complete collection of Kia cars.</p>
+    </div>
+</section>
+
+<section class="container section">
+
+    <!-- Filters (demo) -->
+    <div class="filters">
+        <select>
+            <option>Brand</option>
+            <option>Kia</option>
+        </select>
+        <select>
+            <option>Model</option>
+            {% for car in cars %}
+                <option>{{ car.name }}</option>
+            {% endfor %}
+        </select>
+        <select>
+            <option>Price</option>
+            <option>Under SAR 100,000</option>
+            <option>Over SAR 100,000</option>
+        </select>
+        <select>
+            <option>Body</option>
+            <option>Sedan</option>
+            <option>SUV</option>
+        </select>
+        <button class="filter-btn" aria-label="More filters">
+            <span class="material-symbols-outlined">tune</span>
+        </button>
+    </div>
+
+    <p class="found">{{ cars|length }} Cars Found</p>
+
+    <div class="cars-grid">
+        {% for car in cars %}
+            {% include "main/car_card.html" %}
+        {% endfor %}
+    </div>
+
+    <!-- Pagination (demo) -->
+    <div class="pagination">
+        <a href="#"><span class="material-symbols-outlined">chevron_left</span></a>
+        <a href="#" class="current">1</a>
+        <a href="#"><span class="material-symbols-outlined">chevron_right</span></a>
+    </div>
+
+</section>
+
+{% endblock %}

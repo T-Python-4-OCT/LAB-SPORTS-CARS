@@ -1,0 +1,64 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}Kia Showroom | About Us{% endblock %}
+{% block nav_about %}active{% endblock %}
+
+{% block content %}
+
+<!-- ===== PAGE HERO ===== -->
+<section class="page-hero" style="background-image: url('{% static 'images/about-hero.jpg' %}');">
+    <div class="container fade-up">
+        <span class="small-title">About Us</span>
+        <h1>Driven by Passion</h1>
+        <p>A team of car lovers dedicated to bringing the full Kia family closer to you.</p>
+    </div>
+</section>
+
+<!-- ===== OUR STORY ===== -->
+<section class="container section story">
+    <div>
+        <h2>Our Story</h2>
+        <p>
+            Founded in Saudi Arabia, our showroom brings together a passion for design, technology and
+            quality. We offer the latest Kia models, from the economical Pegas to the premium K8 and
+            the family Sorento, with a simple and friendly ownership experience.
+        </p>
+    </div>
+    <img src="{% static 'images/showroom.jpg' %}" alt="Kia showroom">
+</section>
+
+<!-- ===== OUR VALUES ===== -->
+<section class="container section">
+    <h2>Our Values</h2>
+    <div class="values">
+        <div class="value">
+            <span class="material-symbols-outlined">diamond</span>
+            <h3>Excellence</h3>
+            <p>A commitment to world-class standards.</p>
+        </div>
+        <div class="value">
+            <span class="material-symbols-outlined">shield</span>
+            <h3>Trust</h3>
+            <p>Transparent, honest, and customer-first.</p>
+        </div>
+        <div class="value">
+            <span class="material-symbols-outlined">star</span>
+            <h3>Passion</h3>
+            <p>A shared love for great cars.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ===== MORE THAN A DEALER ===== -->
+<section class="container">
+    <div class="cta big" style="background-image: url('{% static 'images/about-cta.jpg' %}');">
+        <h2>More Than a Dealer</h2>
+        <p>We are your partner in the journey of owning and enjoying an exceptional car.</p>
+        <a href="{% url 'main:cars_view' %}" class="btn-glass">
+            Browse Cars <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+    </div>
+</section>
+
+{% endblock %}

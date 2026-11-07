@@ -1,0 +1,29 @@
+{% load static %}
+<!-- One car card (used in the home page and the all cars page) -->
+{% if car.has_details %}
+<a href="{% url 'main:car_detail_view' car.slug %}" class="car-card">
+{% else %}
+<div class="car-card">
+{% endif %}
+
+    <div class="car-img">
+        <img src="{% static car.image %}" alt="{{ car.name }}">
+        {% if car.has_details %}
+            <span class="card-tag">View Details</span>
+        {% else %}
+            <span class="card-tag soon">Details Soon</span>
+        {% endif %}
+    </div>
+    <div class="car-info">
+        <div>
+            <h3>{{ car.name }}</h3>
+            <p>SAR {{ car.price }}</p>
+        </div>
+        <span class="material-symbols-outlined heart">favorite</span>
+    </div>
+
+{% if car.has_details %}
+</a>
+{% else %}
+</div>
+{% endif %}
