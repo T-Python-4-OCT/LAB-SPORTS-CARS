@@ -1,0 +1,111 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}All Cars{% endblock %}
+
+{% block content %}
+
+<section class="page-hero" style="--hero-image: url('{% static 'images/cta-road.jpg' %}')">
+    <div class="container">
+        <span class="eyebrow fade-up">Our Collection</span>
+        <h1 class="fade-up delay-1">All Cars</h1>
+        <p class="fade-up delay-2">Explore our complete collection of iconic sports cars.</p>
+    </div>
+</section>
+
+<section class="container section">
+
+    <!-- Filters are sent as query parameters: ?brand=...&year=...&price=...&sort=... -->
+    <form class="filters" method="get" action="{% url 'main:cars_view' %}">
+        {% if selected.q %}<input type="hidden" name="q" value="{{ selected.q }}">{% endif %}
+
+        <label class="select">
+            <select name="brand" onchange="this.form.submit()" aria-label="Brand">
+                <option value="">Brand</option>
+                {% for brand in brands %}
+                <option value="{{ brand }}" {% if brand == selected.brand %}selected{% endif %}>{{ brand }}</option>
+                {% endfor %}
+            </select>
+        </label>
+
+        <label class="select">
+            <select name="price" onchange="this.form.submit()" aria-label="Price">
+                <option value="">Price</option>
+                {% for value, label in price_ranges.items %}
+                <option value="{{ value }}" {% if value == selected.price %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+            </select>
+        </label>
+
+        <label class="select">
+            <select name="year" onchange="this.form.submit()" aria-label="Year">
+                <option value="">Year</option>
+                {% for year in years %}
+                <option value="{{ year }}" {% if year|stringformat:'d' == selected.year %}selected{% endif %}>{{ year }}</option>
+                {% endfor %}
+            </select>
+        </label>
+
+        <label class="select">
+            <select name="sort" onchange="this.form.submit()" aria-label="Sort">
+                <option value="">Sort by</option>
+                <option value="price-asc" {% if selected.sort == 'price-asc' %}selected{% endif %}>Price: Low to High</option>
+                <option value="price-desc" {% if selected.sort == 'price-desc' %}selected{% endif %}>Price: High to Low</option>
+                <option value="newest" {% if selected.sort == 'newest' %}selected{% endif %}>Newest</option>
+            </select>
+        </label>
+
+        <label class="check">
+            <input type="checkbox" name="saved" value="1" onchange="this.form.submit()" {% if selected.saved %}checked{% endif %}>
+            <span class="material-symbols-outlined">favorite</span> Saved
+        </label>
+
+        <noscript><button class="btn btn-small" type="submit">Apply</button></noscript>
+        <a href="{% url 'main:cars_view' %}" class="icon-btn filter-reset" aria-label="Reset filters" title="Reset filters">
+            <span class="material-symbols-outlined">tune</span>
+        </a>
+    </form>
+
+    <div class="year-chips">
+        <span>Browse by year:</span>
+        <a href="{% querystring year=None page=None %}" class="chip {% if not selected.year %}active{% endif %}">All</a>
+        {% for year in years %}
+        <a href="{% querystring year=year page=None %}" class="chip {% if year|stringformat:'d' == selected.year %}active{% endif %}">{{ year }}</a>
+        {% endfor %}
+    </div>
+
+    <p class="results-count">
+        {{ total }} Car{{ total|pluralize }} Found
+        {% if selected.q %}for “{{ selected.q }}”{% endif %}
+    </p>
+
+    {% if page_obj.object_list %}
+    <div class="cars-grid">
+        {% for car in page_obj %}
+            {% include 'main/car_card.html' %}
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-state">
+        <span class="material-symbols-outlined">directions_car</span>
+        <p>No cars match these filters.</p>
+        <a href="{% url 'main:cars_view' %}" class="btn btn-small">Show all cars</a>
+    </div>
+    {% endif %}
+
+    {% if page_obj.paginator.num_pages > 1 %}
+    <nav class="pagination" aria-label="Pages">
+        {% if page_obj.has_previous %}
+            <a href="{% querystring page=page_obj.previous_page_number %}" aria-label="Previous page"><span class="material-symbols-outlined">chevron_left</span></a>
+        {% endif %}
+        {% for number in page_obj.paginator.page_range %}
+            <a href="{% querystring page=number %}" class="{% if number == page_obj.number %}current{% endif %}">{{ number }}</a>
+        {% endfor %}
+        {% if page_obj.has_next %}
+            <a href="{% querystring page=page_obj.next_page_number %}" aria-label="Next page"><span class="material-symbols-outlined">chevron_right</span></a>
+        {% endif %}
+    </nav>
+    {% endif %}
+</section>
+
+{% endblock %}

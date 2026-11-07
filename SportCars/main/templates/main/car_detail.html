@@ -1,0 +1,230 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}{{ car.brand }} {{ car.name }}{% endblock %}
+
+{% block content %}
+
+<section class="container detail-top">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="{% url 'main:cars_view' %}">Cars</a>
+        <span class="material-symbols-outlined">chevron_right</span>
+        <a href="{% url 'main:cars_view' %}?brand={{ car.brand|urlencode }}">{{ car.brand }}</a>
+        <span class="material-symbols-outlined">chevron_right</span>
+        <strong>{{ car.brand }} {{ car.name }}</strong>
+    </nav>
+
+    <div class="detail-grid">
+        <!-- Gallery -->
+        <div class="gallery" data-gallery>
+            <div class="gallery-main">
+                <img src="{% static car.gallery.0 %}" alt="{{ car.brand }} {{ car.name }}" data-gallery-main>
+                {% if car.gallery|length > 1 %}
+                <button class="gallery-arrow prev" type="button" data-gallery-prev aria-label="Previous image"><span class="material-symbols-outlined">arrow_back</span></button>
+                <button class="gallery-arrow next" type="button" data-gallery-next aria-label="Next image"><span class="material-symbols-outlined">arrow_forward</span></button>
+                {% endif %}
+            </div>
+            {% if car.gallery|length > 1 %}
+            <div class="gallery-thumbs">
+                {% for image in car.gallery %}
+                <button type="button" class="{% if forloop.first %}active{% endif %}" data-gallery-thumb="{% static image %}" aria-label="Show image {{ forloop.counter }}">
+                    <img src="{% static image %}" alt="">
+                </button>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Info -->
+        <div class="detail-info fade-up">
+            <h1>{{ car.brand }} {{ car.name }}</h1>
+            <p class="detail-price">SAR {{ car.price|floatformat:"0g" }}</p>
+
+            <!-- Each star links to /rate/<slug>/<int:stars>/ and the rating is saved in a cookie -->
+            {% with my_rating=car.rating %}
+            <div class="rating">
+                <span class="rating-label">{% if my_rating %}Your rating{% else %}Rate this car{% endif %}</span>
+                <div class="stars">
+                    {% for star in stars %}
+                    <a href="{% url 'main:rate_view' car.slug star %}?next={{ request.get_full_path|urlencode }}"
+                       class="star {% if my_rating and star <= my_rating %}filled{% endif %}" aria-label="Rate {{ star }} out of 5">
+                        <span class="material-symbols-outlined">star</span>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endwith %}
+
+            <ul class="spec-list">
+                <li><span class="material-symbols-outlined">calendar_month</span> Model Year <strong><a href="{% url 'main:cars_view' %}?year={{ car.year }}" class="year-link">{{ car.year }}</a></strong></li>
+                <li><span class="material-symbols-outlined">settings</span> Engine <strong>{{ car.engine }}</strong></li>
+                <li><span class="material-symbols-outlined">bolt</span> Power <strong>{{ car.power }} hp</strong></li>
+                <li><span class="material-symbols-outlined">timer</span> 0 – 100 km/h <strong>{{ car.acceleration }} s</strong></li>
+                <li><span class="material-symbols-outlined">speed</span> Top Speed <strong>{{ car.top_speed }} km/h</strong></li>
+            </ul>
+
+            <a href="#inquiry" class="btn btn-block">Inquire Now</a>
+            <a href="{% url 'main:wishlist_view' car.slug %}?next={{ request.get_full_path|urlencode }}"
+               class="btn btn-outline btn-block {% if car.saved %}saved{% endif %}">
+                <span class="material-symbols-outlined">favorite</span>
+                {% if car.saved %}Saved to Wishlist{% else %}Save to Wishlist{% endif %}
+            </a>
+            <div class="compare-links">
+                <span>Compare with:</span>
+                {% for other in other_cars %}
+                <a href="?compare={{ other.slug }}#compare" class="chip {% if other == compare_car %}active{% endif %}"><span class="material-symbols-outlined">compare_arrows</span> {{ other.brand }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Tabs -->
+<nav class="tabs" aria-label="Car sections">
+    <div class="container">
+        <a href="#overview" class="active">Overview</a>
+        <a href="#specifications">Specifications</a>
+        <a href="#features">Features</a>
+        {% if car.gallery|length > 1 %}<a href="#gallery">Gallery</a>{% endif %}
+        {% if compare_car %}<a href="#compare">Compare</a>{% endif %}
+        <a href="#inquiry">Inquire</a>
+    </div>
+</nav>
+
+{% if compare_car %}
+<!-- Shown when the URL has ?compare=<slug> -->
+<section class="container section" id="compare">
+    <div class="section-head">
+        <h2>{{ car.name }} vs {{ compare_car.name }}</h2>
+        <a href="{{ request.path }}" class="link-arrow"><span class="material-symbols-outlined">close</span> Close</a>
+    </div>
+    <div class="compare-table">
+        <div class="compare-head"></div>
+        <div class="compare-car">
+            <img src="{% static car.image %}" alt="{{ car.brand }} {{ car.name }}">
+            <h3>{{ car.brand }} {{ car.name }}</h3>
+        </div>
+        <a href="{% url 'main:car_detail_view' compare_car.slug %}" class="compare-car">
+            <img src="{% static compare_car.image %}" alt="{{ compare_car.brand }} {{ compare_car.name }}">
+            <h3>{{ compare_car.brand }} {{ compare_car.name }}</h3>
+        </a>
+
+        <div class="compare-label">Engine</div>
+        <div class="compare-value">{{ car.engine }}</div>
+        <div class="compare-value">{{ compare_car.engine }}</div>
+
+        {% for row in comparison %}
+        <div class="compare-label">{{ row.label }}</div>
+        <div class="compare-value {% if row.winner == 'first' %}winner{% endif %}">{{ row.first }}</div>
+        <div class="compare-value {% if row.winner == 'second' %}winner{% endif %}">{{ row.second }}</div>
+        {% endfor %}
+    </div>
+    <p class="compare-note"><span class="material-symbols-outlined">emoji_events</span> Highlighted values are the better ones.</p>
+</section>
+{% endif %}
+
+<section class="container section" id="overview">
+    <div class="overview reveal" style="--overview-image: url('{% static car.gallery|last %}')">
+        <h2>{{ car.headline }}</h2>
+        <p>{{ car.overview }}</p>
+    </div>
+</section>
+
+<section class="container section" id="specifications">
+    <div class="spec-strip">
+        <div class="reveal"><span class="material-symbols-outlined">settings</span><strong>{{ car.engine }}</strong><small>Engine</small></div>
+        <div class="reveal"><span class="material-symbols-outlined">bolt</span><strong>{{ car.power }} hp</strong><small>Max Power</small></div>
+        <div class="reveal"><span class="material-symbols-outlined">timer</span><strong>{{ car.acceleration }} s</strong><small>0 – 100 km/h</small></div>
+        <div class="reveal"><span class="material-symbols-outlined">speed</span><strong>{{ car.top_speed }} km/h</strong><small>Top Speed</small></div>
+    </div>
+</section>
+
+<section class="container section" id="features">
+    <h2>Key Features</h2>
+    <div class="key-features">
+        {% for feature in key_features %}
+        <div class="key-feature reveal">
+            <span class="material-symbols-outlined">{{ feature.icon }}</span>
+            <h4>{{ feature.title }}</h4>
+            <p>{{ feature.text }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+{% if car.gallery|length > 1 %}
+<section class="container section" id="gallery">
+    <h2>Gallery</h2>
+    <div class="photo-grid">
+        {% for image in car.gallery %}
+        <a href="#photo-{{ forloop.counter }}" class="photo-link reveal" aria-label="Enlarge photo {{ forloop.counter }}">
+            <img src="{% static image %}" alt="{{ car.brand }} {{ car.name }} photo {{ forloop.counter }}" loading="lazy">
+            <span class="material-symbols-outlined">zoom_in</span>
+        </a>
+        {% endfor %}
+    </div>
+
+    <!-- CSS-only lightbox: clicking a photo opens #photo-N, which :target shows full screen -->
+    {% for image in car.gallery %}
+    <div class="lightbox" id="photo-{{ forloop.counter }}">
+        <a href="#gallery" class="lightbox-backdrop" aria-label="Close"></a>
+        <img src="{% static image %}" alt="{{ car.brand }} {{ car.name }} photo {{ forloop.counter }}">
+        <a href="#gallery" class="lightbox-close" aria-label="Close"><span class="material-symbols-outlined">close</span></a>
+    </div>
+    {% endfor %}
+</section>
+{% endif %}
+
+<section class="container section" id="inquiry">
+    <div class="inquiry">
+        <div>
+            <span class="eyebrow">Interested?</span>
+            <h2>{% if customer_name %}Welcome back, {{ customer_name }}{% else %}Inquire About This Car{% endif %}</h2>
+            <p>Leave your details and our team will call you about the {{ car.brand }} {{ car.name }} within 24 hours.</p>
+        </div>
+
+        {% if inquiry_sent %}
+        <div class="inquiry-card success">
+            <span class="material-symbols-outlined success-icon">check_circle</span>
+            <h3>Thank you, {{ inquiry.name }}!</h3>
+            <p>We received your request about the <strong>{{ car.brand }} {{ car.name }}</strong>.
+               We'll call you on <strong>{{ inquiry.phone }}</strong> soon.</p>
+            {% if inquiry.message %}<blockquote>“{{ inquiry.message }}”</blockquote>{% endif %}
+        </div>
+        {% else %}
+        <!-- method="get" sends the fields as query parameters: ?name=...&phone=...&message=... -->
+        <form class="inquiry-card" method="get" action="{{ request.path }}#inquiry">
+            {% if inquiry_errors %}
+            <ul class="form-errors">
+                {% for error in inquiry_errors %}<li>{{ error }}</li>{% endfor %}
+            </ul>
+            {% endif %}
+
+            <label>Name
+                <input type="text" name="name" value="{% if inquiry.name %}{{ inquiry.name }}{% else %}{{ customer_name }}{% endif %}" placeholder="Your name" required>
+            </label>
+            <label>Phone
+                <input type="tel" name="phone" value="{{ inquiry.phone }}" placeholder="05X XXX XXXX" required>
+            </label>
+            <label>Message <small>(optional)</small>
+                <textarea name="message" rows="3" placeholder="Anything you'd like us to know?">{{ inquiry.message }}</textarea>
+            </label>
+            <button class="btn btn-block" type="submit">Send Inquiry <span class="material-symbols-outlined">send</span></button>
+        </form>
+        {% endif %}
+    </div>
+</section>
+
+<section class="container section">
+    <div class="section-head">
+        <h2>You May Also Like</h2>
+        <a href="{% url 'main:cars_view' %}" class="link-arrow">View All <span class="material-symbols-outlined">arrow_forward</span></a>
+    </div>
+    <div class="cars-grid">
+        {% for car in other_cars %}
+            {% include 'main/car_card.html' %}
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock %}
