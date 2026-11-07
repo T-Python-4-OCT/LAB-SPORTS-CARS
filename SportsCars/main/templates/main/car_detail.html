@@ -1,0 +1,52 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block title %}{{ car.name }}{% endblock %}
+
+{% block content %}
+    <section class="container detail">
+    <p class="crumbs"><a href="{% url 'cars' %}">Cars</a> / {{ car.name }}</p>
+    <div class="detail__top">
+        <div class="detail__img"><img src="{% static car.image %}" alt="{{ car.name }}"></div>
+        <div class="detail__info">
+        <h1>{{ car.name }}</h1>
+        <div class="price price--lg">{{ car.price }}</div>
+        <ul class="specs">
+            <li><span class="material-symbols-outlined">bolt</span>{{ car.hp }}</li>
+            <li><span class="material-symbols-outlined">rotate_right</span>{{ car.torque }}</li>
+            <li><span class="material-symbols-outlined">timer</span>{{ car.zero }}</li>
+            <li><span class="material-symbols-outlined">speed</span>{{ car.top }}</li>
+        </ul>
+        <a href="#" class="btn btn--red">Inquire Now</a>
+        <a href="#" class="btn btn--ghost"><span class="material-symbols-outlined">favorite</span>Save to Wishlist</a>
+        </div>
+    </div>
+
+    <div class="block"><h2>{{ car.tagline }}</h2><p class="muted">{{ car.desc }}</p></div>
+
+    <div class="block">
+        <h2>Specifications</h2>
+        <table class="table">
+        <tr><th>Engine</th><td>{{ car.engine }}</td></tr><tr><th>Power</th><td>{{ car.hp }}</td></tr>
+        <tr><th>Torque</th><td>{{ car.torque }}</td></tr><tr><th>0–100 km/h</th><td>{{ car.zero }}</td></tr>
+        <tr><th>Top Speed</th><td>{{ car.top }}</td></tr><tr><th>Gearbox</th><td>{{ car.gearbox }}</td></tr>
+        <tr><th>Drivetrain</th><td>{{ car.drive }}</td></tr>
+        </table>
+    </div>
+
+    <div class="block">
+        <h2>Key Features</h2>
+        <div class="grid grid--4">
+        {% for icon, label in car.features %}
+        <div class="why"><span class="material-symbols-outlined">{{ icon }}</span><h3>{{ label }}</h3></div>
+        {% endfor %}
+        </div>
+    </div>
+
+    <h2 class="section__title">You May Also Like</h2>
+    <div class="grid grid--3">
+        {% for car in others %}
+          {% include "main/car_card.html" %}
+        {% endfor %}
+    </div>
+    </section>
+{% endblock %}

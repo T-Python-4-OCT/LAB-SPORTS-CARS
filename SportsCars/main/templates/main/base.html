@@ -1,0 +1,79 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Hyundai{% endblock %} | Hyundai</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Phudu:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="{% if request.COOKIES.theme == 'dark' %}dark{% endif %}">
+    <input type="checkbox" id="menu-toggle" class="sr-only">
+    <header class="nav">
+        <div class="container nav__inner">
+            <a href="{% url 'home' %}" class="logo" aria-label="Hyundai"></a>
+            <nav class="nav__links">
+                <a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a>
+                <a href="{% url 'cars' %}" class="{% if request.resolver_match.url_name == 'cars' or request.resolver_match.url_name == 'car_detail' %}active{% endif %}">Cars</a>
+                <a href="{% url 'about' %}" class="{% if request.resolver_match.url_name == 'about' %}active{% endif %}">About Us</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <div class="nav__actions">
+                <a href="{% url 'cars' %}" class="icon-btn" aria-label="Search cars"><span class="material-symbols-outlined">search</span></a>
+                <a href="{% url 'body_dark' %}" class="icon-btn" aria-label="dark mode">
+                    <span class="material-symbols-outlined icon-dark">dark_mode</span>
+                    <span class="material-symbols-outlined icon-light">light_mode</span>
+                </a>
+                <a href="#" class="icon-btn" aria-label="Account"><span class="material-symbols-outlined">person</span></a>
+                <label for="menu-toggle" class="icon-btn menu-btn" aria-label="Menu">
+                    <span class="material-symbols-outlined icon-open">menu</span>
+                    <span class="material-symbols-outlined icon-close">close</span>
+                </label>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer" id="contact">
+        <div class="container footer__grid">
+        <div>
+            <a href="{% url 'home' %}" class="logo" aria-label="Hyundai"></a>
+            <p class="muted">Iconic cars for those who love to drive.</p>
+        </div>
+        <div>
+            <h4>Explore</h4>
+            <a href="{% url 'home' %}">Home</a><a href="{% url 'cars' %}">Cars</a><a href="{% url 'about' %}">About Us</a><a href="#contact">Contact</a>
+        </div>
+        <div>
+            <h4>Support</h4>
+            <a href="#">FAQs</a><a href="#">Financing</a><a href="#">Warranty</a><a href="#">After-Sales</a>
+        </div>
+        <div>
+            <h4>Stay in the Loop</h4>
+            <p class="muted">Get the latest arrivals, exclusive offers, and automotive news.</p>
+            <form class="newsletter">
+            <input type="email" placeholder="Your email" aria-label="Your email">
+            <button type="button" class="btn btn--red btn--sm" aria-label="Subscribe"><span class="material-symbols-outlined">arrow_forward</span></button>
+            </form>
+        </div>
+        </div>
+        <div class="container footer__bottom">
+        <span>© 2026 Hyundai. All rights reserved.</span>
+        <span class="socials">
+            <a href="https://www.instagram.com/hyundai_ksa/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@HyundaiMotorCompany" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://www.linkedin.com/company/hyundai-motor-company/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://x.com/HyundaiKSA" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        </span>
+        <span><a href="#">Privacy Policy</a> &nbsp; <a href="#">Terms of Service</a></span>
+        </div>
+    </footer>
+</body>
+</html>
