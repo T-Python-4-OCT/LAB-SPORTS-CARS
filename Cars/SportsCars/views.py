@@ -26,7 +26,7 @@ def all_cars(request):
             "name": "Porsche 911",
             "brand": "porsche",
             "price": 450000,
-            "image": "imgas/porsche.jpg",
+            "image": "imgas/porsche1.jpg",
             "url": "porsche"
         },
         {
