@@ -5,223 +5,368 @@
 
 {% block content %}
 
-<!-- About Hero Section -->
+<style>
+    .about-page {
+        --about-text: #111111;
+        --about-secondary: #555555;
+        --about-card: #ffffff;
+        --about-border: #e5e5e5;
+    }
 
-<div class="container py-5">
+    .dark-mode .about-page {
+        --about-text: #f5f5f5;
+        --about-secondary: #c5c5c5;
+        --about-card: #1c1c1c;
+        --about-border: #383838;
+    }
 
-    <div class="position-relative overflow-hidden rounded-4 bg-dark text-white p-4 p-lg-5 d-flex align-items-center"
-         style="min-height: 430px;">
+    .about-page .story-text {
+        color: var(--about-text);
+    }
 
-        <img
-            src="{% static 'imgas/Car1.jpg' %}"
-            class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover"
-            alt="Sports Car"
-        >
+    .about-page .story-description {
+        color: var(--about-secondary);
+    }
 
-        <div class="position-absolute top-0 start-0 w-100 h-100"
-             style="background: linear-gradient(90deg, #11151e 0%, rgba(17,21,30,.95) 25%, rgba(17,21,30,.7) 50%, rgba(17,21,30,.15) 100%);">
-        </div>
+    .about-page .value-card {
+        background: var(--about-card);
+        border: 1px solid var(--about-border) !important;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-        <div class="position-relative z-1" style="max-width: 480px;">
+    .about-page .value-card:hover {
+        transform: translateY(-7px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12) !important;
+    }
 
-            <span class="text-danger fw-bold text-uppercase small">
-                ABOUT US
-            </span>
+    .about-page .about-hero {
+        min-height: 430px;
+    }
 
-            <h1 class="display-4 fw-bold mt-3 mb-4">
-                Driven by <br>
-                <span class="text-danger">Passion</span>
-            </h1>
+    .about-page .hero-carousel,
+    .about-page .hero-carousel .carousel-inner,
+    .about-page .hero-carousel .carousel-item {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+    }
 
-            <p class="lead text-white-50 mb-4">
-                A team of automotive enthusiasts dedicated to bringing
-                the world's finest sports cars closer to you.
-            </p>
+    .about-page .hero-carousel img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 
-            <a href="{% url 'SportsCars:all_cars' %}"
-               class="btn btn-danger btn-lg px-4 rounded-3">
-                Explore Our Cars →
-            </a>
+    .about-page .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            90deg,
+            #11151e 0%,
+            rgba(17, 21, 30, .95) 25%,
+            rgba(17, 21, 30, .7) 50%,
+            rgba(17, 21, 30, .15) 100%
+        );
+        z-index: 1;
+    }
+
+    .about-page .story-carousel {
+        overflow: hidden;
+        border-radius: 16px;
+    }
+
+    .about-page .story-carousel img {
+        width: 100%;
+        height: 380px;
+        object-fit: cover;
+    }
+
+    .about-page .carousel-fade .carousel-item {
+        transition: opacity 1s ease-in-out;
+    }
+
+    @media (max-width: 768px) {
+        .about-page .about-hero {
+            min-height: 400px;
+        }
+
+        .about-page .story-carousel img {
+            height: 280px;
+        }
+    }
+</style>
+
+
+<div class="about-page">
+
+    <!-- About Hero Section -->
+
+    <div class="container py-5">
+
+        <div class="about-hero position-relative overflow-hidden rounded-4 bg-dark text-white p-4 p-lg-5 d-flex align-items-center">
+
+            <div id="aboutHeroCarousel"
+                 class="carousel slide carousel-fade hero-carousel"
+                 data-bs-ride="carousel"
+                 data-bs-interval="2500">
+
+                <div class="carousel-inner">
+
+                    <div class="carousel-item active">
+                        <img src="{% static 'imgas/ferrari1.jpg' %}" alt="Sports Car">
+                    </div>
+
+                    <div class="carousel-item">
+                        <img src="{% static 'imgas/porsche1.jpg' %}" alt="Porsche">
+                    </div>
+
+                    <div class="carousel-item">
+                        <img src="{% static 'imgas/ferrari.jpg' %}" alt="Ferrari">
+                    </div>
+
+                    <div class="carousel-item">
+                        <img src="{% static 'imgas/lamborghini1.jpg' %}" alt="Lamborghini">
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="hero-overlay"></div>
+
+            <div class="position-relative z-2" style="max-width: 480px;">
+
+                <span class="text-danger fw-bold text-uppercase small">
+                    ABOUT US
+                </span>
+
+                <h1 class="display-4 fw-bold mt-3 mb-4">
+                    Driven by <br>
+                    <span class="text-danger">Passion</span>
+                </h1>
+
+                <p class="lead text-white-50 mb-4">
+                    A team of automotive enthusiasts dedicated to bringing
+                    the world's finest sports cars closer to you.
+                </p>
+
+                <a href="{% url 'SportsCars:all_cars' %}"
+                   class="btn btn-danger btn-lg px-4 rounded-3">
+                    Explore Our Cars →
+                </a>
+
+            </div>
 
         </div>
 
     </div>
 
-</div>
+
+    <!-- Our Story Section -->
+
+    <section class="container py-5">
+
+        <div class="row align-items-center g-5">
+
+            <div class="col-lg-6">
+
+                <span class="text-danger fw-bold text-uppercase small">
+                    OUR STORY
+                </span>
+
+                <h2 class="display-6 fw-bold mt-3 mb-4 story-text">
+                    More Than Just <span class="text-danger">Cars</span>
+                </h2>
+
+                <p class="story-description lh-lg">
+                    SportsCars was created for people who appreciate the
+                    beauty, engineering, and performance of exceptional
+                    sports cars.
+                </p>
+
+                <p class="story-description lh-lg">
+                    Our mission is to make discovering your dream sports car
+                    simple and enjoyable by bringing together information
+                    about some of the world's most remarkable vehicles.
+                </p>
+
+                <a href="{% url 'SportsCars:all_cars' %}"
+                   class="btn btn-danger px-4 py-2 rounded-3 mt-3">
+                    Browse Our Collection
+                </a>
+
+            </div>
+
+            <div class="col-lg-6">
+
+                <div id="aboutStoryCarousel"
+                     class="carousel slide carousel-fade story-carousel shadow"
+                     data-bs-ride="carousel"
+                     data-bs-interval="3000">
+
+                    <div class="carousel-inner">
+
+                        <div class="carousel-item active">
+                            <img src="{% static 'imgas/lamborghini1.jpg' %}"
+                                 alt="Sports Car">
+                        </div>
+
+                        <div class="carousel-item">
+                            <img src="{% static 'imgas/porsche.jpg' %}"
+                                 alt="Porsche">
+                        </div>
+
+                        <div class="carousel-item">
+                            <img src="{% static 'imgas/ferrari.jpg' %}"
+                                 alt="Ferrari">
+                        </div>
+
+                        <div class="carousel-item">
+                            <img src="{% static 'imgas/lamborghini.jpg' %}"
+                                 alt="Lamborghini">
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
 
 
-<!-- Our Story Section -->
+    <!-- Our Values Section -->
 
-<section class="container py-5">
+    <section class="container py-5">
 
-    <div class="row align-items-center g-5">
-
-        <div class="col-lg-6">
+        <div class="text-center mb-5">
 
             <span class="text-danger fw-bold text-uppercase small">
-                OUR STORY
+                WHAT DRIVES US
             </span>
 
-            <h2 class="display-6 fw-bold mt-3 mb-4">
-                More Than Just <span class="text-danger">Cars</span>
+            <h2 class="display-6 fw-bold mt-3 story-text">
+                Our <span class="text-danger">Values</span>
             </h2>
 
-            <p class="text-secondary lh-lg">
-                SportsCars was created for people who appreciate the
-                beauty, engineering, and performance of exceptional
-                sports cars.
+            <p class="story-description">
+                The principles behind everything we do.
             </p>
 
-            <p class="text-secondary lh-lg">
-                Our mission is to make discovering your dream sports car
-                simple and enjoyable by bringing together information
-                about some of the world's most remarkable vehicles.
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-md-4">
+
+                <div class="card value-card shadow-sm rounded-4 h-100 text-center p-4">
+
+                    <div class="mb-3">
+
+                        <span class="material-symbols-outlined text-danger"
+                              style="font-size: 48px;">
+                            speed
+                        </span>
+
+                    </div>
+
+                    <h4 class="fw-bold mb-3 story-text">
+                        Performance
+                    </h4>
+
+                    <p class="story-description mb-0">
+                        We appreciate outstanding performance,
+                        innovation, and automotive engineering.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <div class="card value-card shadow-sm rounded-4 h-100 text-center p-4">
+
+                    <div class="mb-3">
+
+                        <span class="material-symbols-outlined text-danger"
+                              style="font-size: 48px;">
+                            workspace_premium
+                        </span>
+
+                    </div>
+
+                    <h4 class="fw-bold mb-3 story-text">
+                        Excellence
+                    </h4>
+
+                    <p class="story-description mb-0">
+                        We focus on quality, attention to detail,
+                        and delivering an excellent experience.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <div class="card value-card shadow-sm rounded-4 h-100 text-center p-4">
+
+                    <div class="mb-3">
+
+                        <span class="material-symbols-outlined text-danger"
+                              style="font-size: 48px;">
+                            favorite
+                        </span>
+
+                    </div>
+
+                    <h4 class="fw-bold mb-3 story-text">
+                        Passion
+                    </h4>
+
+                    <p class="story-description mb-0">
+                        Our passion for sports cars inspires
+                        everything we create and share.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Call To Action Section -->
+
+    <section class="container py-5">
+
+        <div class="bg-dark text-white rounded-4 text-center p-5">
+
+            <h2 class="display-6 fw-bold mb-3">
+                Ready to Find Your <span class="text-danger">Dream Car?</span>
+            </h2>
+
+            <p class="text-white-50 mb-4">
+                Explore our collection and discover the world
+                of exceptional sports cars.
             </p>
 
             <a href="{% url 'SportsCars:all_cars' %}"
-               class="btn btn-danger px-4 py-2 rounded-3 mt-3">
-                Browse Our Collection
+               class="btn btn-danger btn-lg px-5 rounded-3">
+                Explore All Cars
             </a>
 
         </div>
 
-        <div class="col-lg-6">
+    </section>
 
-            <img
-                src="{% static 'imgas/Car1.jpg' %}"
-                alt="Sports Car"
-                class="img-fluid rounded-4 shadow w-100"
-                style="height: 380px; object-fit: cover;"
-            >
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- Our Values Section -->
-
-<section class="container py-5">
-
-    <div class="text-center mb-5">
-
-        <span class="text-danger fw-bold text-uppercase small">
-            WHAT DRIVES US
-        </span>
-
-        <h2 class="display-6 fw-bold mt-3">
-            Our <span class="text-danger">Values</span>
-        </h2>
-
-        <p class="text-secondary">
-            The principles behind everything we do.
-        </p>
-
-    </div>
-
-    <div class="row g-4">
-
-        <div class="col-md-4">
-
-            <div class="card border-0 shadow-sm rounded-4 h-100 text-center p-4">
-
-                <div class="mb-3">
-                    <span class="material-symbols-outlined text-danger"
-                          style="font-size: 48px;">
-                        speed
-                    </span>
-                </div>
-
-                <h4 class="fw-bold mb-3">
-                    Performance
-                </h4>
-
-                <p class="text-secondary mb-0">
-                    We appreciate outstanding performance,
-                    innovation, and automotive engineering.
-                </p>
-
-            </div>
-
-        </div>
-
-        <div class="col-md-4">
-
-            <div class="card border-0 shadow-sm rounded-4 h-100 text-center p-4">
-
-                <div class="mb-3">
-                    <span class="material-symbols-outlined text-danger"
-                          style="font-size: 48px;">
-                        workspace_premium
-                    </span>
-                </div>
-
-                <h4 class="fw-bold mb-3">
-                    Excellence
-                </h4>
-
-                <p class="text-secondary mb-0">
-                    We focus on quality, attention to detail,
-                    and delivering an excellent experience.
-                </p>
-
-            </div>
-
-        </div>
-
-        <div class="col-md-4">
-
-            <div class="card border-0 shadow-sm rounded-4 h-100 text-center p-4">
-
-                <div class="mb-3">
-                    <span class="material-symbols-outlined text-danger"
-                          style="font-size: 48px;">
-                        favorite
-                    </span>
-                </div>
-
-                <h4 class="fw-bold mb-3">
-                    Passion
-                </h4>
-
-                <p class="text-secondary mb-0">
-                    Our passion for sports cars inspires
-                    everything we create and share.
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- Call To Action Section -->
-
-<section class="container py-5">
-
-    <div class="bg-dark text-white rounded-4 text-center p-5">
-
-        <h2 class="display-6 fw-bold mb-3">
-            Ready to Find Your <span class="text-danger">Dream Car?</span>
-        </h2>
-
-        <p class="text-white-50 mb-4">
-            Explore our collection and discover the world
-            of exceptional sports cars.
-        </p>
-
-        <a href="{% url 'SportsCars:all_cars' %}"
-           class="btn btn-danger btn-lg px-5 rounded-3">
-            Explore All Cars
-        </a>
-
-    </div>
-
-</section>
+</div>
 
 {% endblock %}

@@ -427,5 +427,74 @@
     </div>
 
 </div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const searchInput = document.getElementById("carSearch");
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const carItems = document.querySelectorAll(".car-item");
+    const resultsCount = document.getElementById("resultsCount");
+
+    let selectedBrand = "all";
+
+    function filterCars() {
+
+        const searchValue = searchInput.value.toLowerCase().trim();
+
+        let visibleCars = 0;
+
+        carItems.forEach(function (car) {
+
+            const carName = car.dataset.name || "";
+            const carBrand = car.dataset.brand || "";
+
+            const matchesBrand =
+                selectedBrand === "all" || carBrand === selectedBrand;
+
+            const matchesSearch =
+                carName.includes(searchValue) ||
+                carBrand.includes(searchValue);
+
+            if (matchesBrand && matchesSearch) {
+
+                car.style.display = "";
+
+                visibleCars++;
+
+            } else {
+
+                car.style.display = "none";
+
+            }
+
+        });
+
+        resultsCount.textContent = visibleCars + " Cars Found";
+    }
+
+
+    filterButtons.forEach(function (button) {
+
+        button.addEventListener("click", function () {
+
+            filterButtons.forEach(function (btn) {
+                btn.classList.remove("active");
+            });
+
+            this.classList.add("active");
+
+            selectedBrand = this.dataset.filter;
+
+            filterCars();
+
+        });
+
+    });
+
+
+    searchInput.addEventListener("input", filterCars);
+
+});
+</script>
 
 {% endblock %}

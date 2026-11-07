@@ -4,59 +4,89 @@
 
 <head>
     <script
-    type="module"
-    src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.4.0/model-viewer.min.js">
-</script>
+        type="module"
+        src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.4.0/model-viewer.min.js">
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>{% block title %}SportsCars{% endblock %}</title>
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- رابط Bootstrap CSS (هذا السطر هو المفتاح ليظهر التصميم) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
-    <!-- ملف CSS الخاص بك -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
 <body class="{% if request.COOKIES.dark_mode == 'dark' %}dark-mode{% endif %}">
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Header Section -->
-   <header class="navbar navbar-expand-lg bg-white border-bottom py-3">
-    <div class="container" style="max-width: 1280px;">
-        
-        <!-- الشعار (Logo) -->
-        <a class="navbar-brand d-flex align-items-center gap-2 fw-bold text-dark fs-4 m-0" href="#">
-            <span class="logo-icon d-inline-flex gap-1"><i></i><i></i></span>
-            <span class="logo-text">SportCars</span>
-        </a>
+    <header class="navbar navbar-expand-lg bg-white border-bottom py-3">
 
-        <!-- روابط التنقل (وسط الهيدر) -->
-        <nav class="nav nav-pills gap-4 align-items-center">
-            <a href="{% url 'SportsCars:home_page' %}" class="nav-link text-dark fw-bold position-relative active-nav-link p-0 pb-1">Home</a>
-            <a href="{% url 'SportsCars:all_cars' %}" class="nav-link text-dark fw-bold p-0 pb-1">Cars</a>
-            <a href="{% url 'SportsCars:about' %}" class="nav-link text-dark fw-bold p-0 pb-1">About Us</a>
-            <a href="{% url 'SportsCars:contact' %}" class="nav-link text-dark fw-bold p-0 pb-1">Contact</a>
-        </nav>
+        <div class="container" style="max-width: 1280px;">
 
-        <!-- الأيقونات (يمين الهيدر) -->
-        <div class="d-flex align-items-center gap-3">
-            <button class="btn btn-link text-dark p-0 border-0" aria-label="Search">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                </svg>
-            </button>
+            <!-- Logo -->
+            <a class="navbar-brand d-flex align-items-center gap-2 fw-bold text-dark fs-4 m-0"
+               href="{% url 'SportsCars:home_page' %}">
 
-            <form method="POST" action="{% url 'SportsCars:dark_mode' %}">
-    {% csrf_token %}
+                <span class="logo-icon d-inline-flex gap-1">
+                    <i></i>
+                    <i></i>
+                </span>
+
+                <span class="logo-text">SportCars</span>
+
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="nav nav-pills gap-4 align-items-center">
+
+                <a href="{% url 'SportsCars:home_page' %}"
+                   class="nav-link text-dark fw-bold p-0 pb-1 {% if request.resolver_match.url_name == 'home_page' %}active-nav-link{% endif %}">
+                    Home
+                </a>
+
+                <a href="{% url 'SportsCars:all_cars' %}"
+                   class="nav-link text-dark fw-bold p-0 pb-1 {% if request.resolver_match.url_name == 'all_cars' or request.resolver_match.url_name == 'porsche' or request.resolver_match.url_name == 'ferrari' or request.resolver_match.url_name == 'lamborghini' %}active-nav-link{% endif %}">
+                    Cars
+                </a>
+
+                <a href="{% url 'SportsCars:about' %}"
+                   class="nav-link text-dark fw-bold p-0 pb-1 {% if request.resolver_match.url_name == 'about' %}active-nav-link{% endif %}">
+                    About Us
+                </a>
+
+                <a href="{% url 'SportsCars:contact' %}"
+                   class="nav-link text-dark fw-bold p-0 pb-1 {% if request.resolver_match.url_name == 'contact' %}active-nav-link{% endif %}">
+                    Contact
+                </a>
+
+            </nav>
+
+            <!-- Header Icons -->
+            <div class="d-flex align-items-center gap-3">
+
+                <button class="btn btn-link text-dark p-0 border-0" aria-label="Search">
+
+                    <svg width="20" height="20" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round">
+
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+
+                    </svg>
+
+                </button>
 
                 <a href="{% url 'SportsCars:dark_mode' %}" class="theme-toggle">
 
@@ -67,97 +97,204 @@
                     {% endif %}
 
                 </a>
-            </form>
 
-            <a href="#" class="text-dark p-0" aria-label="User Account">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-            </a>
+                <a href="#" class="text-dark p-0" aria-label="User Account">
+
+                    <svg width="20" height="20" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round">
+
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+
+                    </svg>
+
+                </a>
+
+            </div>
+
         </div>
 
-    </div>
-</header>
+    </header>
 
     <!-- Main Content Area -->
     <main>
+
         {% block content %}
-        <!-- قسم الواجهة (Hero Section) المأخوذ من Bootstrap -->
+
         <div class="container col-xxl-8 px-4 py-5">
-          <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-            <div class="col-10 col-sm-8 col-lg-6">
-              <img src="{% static 'images/car.jpg' %}" class="d-block mx-lg-auto img-fluid rounded-3" alt="Sports Car" width="700" height="500" loading="lazy">
+
+            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+
+                <div class="col-10 col-sm-8 col-lg-6">
+
+                    <img src="{% static 'images/car.jpg' %}"
+                         class="d-block mx-lg-auto img-fluid rounded-3"
+                         alt="Sports Car"
+                         width="700"
+                         height="500"
+                         loading="lazy">
+
+                </div>
+
+                <div class="col-lg-6">
+
+                    <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">
+                        Performance<br>Without Limits
+                    </h1>
+
+                    <p class="lead">
+                        Explore a curated collection of iconic sports cars.
+                    </p>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+
+                        <button type="button"
+                                class="btn btn-danger btn-lg px-4 me-md-2 fw-semibold">
+                            Browse Cars →
+                        </button>
+
+                    </div>
+
+                </div>
+
             </div>
-            <div class="col-lg-6">
-              <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Performance<br>Without Limits</h1>
-              <p class="lead">Explore a curated collection of iconic sports cars.</p>
-              <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                <button type="button" class="btn btn-danger btn-lg px-4 me-md-2 fw-semibold">Browse Cars →</button>
-              </div>
-            </div>
-          </div>
+
         </div>
+
         {% endblock %}
+
     </main>
 
     <!-- Footer Section -->
     <footer>
+
         <div class="footer-container">
+
             <div class="footer-top">
 
+                <!-- Footer Brand -->
                 <div class="footer-brand">
-                    <a class="logo" href="#">
-                        <span class="logo-icon"><i></i><i></i></span>
+
+                    <a class="logo" href="{% url 'SportsCars:home_page' %}">
+
+                        <span class="logo-icon">
+                            <i></i>
+                            <i></i>
+                        </span>
+
                         <span class="logo-text">SportCars</span>
+
                     </a>
-                    <p>Iconic sports cars for those<br>who love to drive.</p>
+
+                    <p>
+                        Iconic sports cars for those<br>
+                        who love to drive.
+                    </p>
+
                 </div>
 
+                <!-- Explore -->
                 <div class="footer-links">
+
                     <h4>Explore</h4>
+
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Cars</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="{% url 'SportsCars:home_page' %}">Home</a></li>
+                        <li><a href="{% url 'SportsCars:all_cars' %}">Cars</a></li>
+                        <li><a href="{% url 'SportsCars:about' %}">About Us</a></li>
+                        <li><a href="{% url 'SportsCars:contact' %}">Contact</a></li>
                     </ul>
+
                 </div>
 
+                <!-- Support -->
                 <div class="footer-links">
+
                     <h4>Support</h4>
+
                     <ul>
                         <li><a href="#">FAQs</a></li>
                         <li><a href="#">Financing</a></li>
                         <li><a href="#">Warranty</a></li>
                         <li><a href="#">After-Sales</a></li>
                     </ul>
+
                 </div>
 
+                <!-- Newsletter -->
                 <div class="footer-newsletter-section">
+
                     <div class="footer-newsletter">
+
                         <h4>Stay in the Loop</h4>
-                        <p>Get the latest arrivals, exclusive offers,<br>and automotive news.</p>
+
+                        <p>
+                            Get the latest arrivals, exclusive offers,<br>
+                            and automotive news.
+                        </p>
 
                         <form class="newsletter-form">
-                            <input type="email" placeholder="Your email" required>
+
+                            <input type="email"
+                                   placeholder="Your email"
+                                   required>
+
                             <button type="submit" aria-label="Subscribe">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+
+                                <svg width="16" height="16" viewBox="0 0 24 24"
+                                     fill="none" stroke="currentColor"
+                                     stroke-width="2.5"
+                                     stroke-linecap="round"
+                                     stroke-linejoin="round">
+
                                     <line x1="5" y1="12" x2="19" y2="12"></line>
                                     <polyline points="12 5 19 12 12 19"></polyline>
+
                                 </svg>
+
                             </button>
+
                         </form>
+
                     </div>
 
+                    <!-- Social Media -->
                     <div class="footer-social">
-                        <a href="#" aria-label="Instagram">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                        </a>
-                        <a href="#" aria-label="YouTube">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.377.55c-.58.155-1.107.522-1.42 1.136C.653 7.058.653 12 .653 12s0 4.942.55 6.814c.154.58.52 1.107 1.136 1.42 1.872.55 9.377.55 9.377.55s7.505 0 9.377-.55a3.015 3.015 0 0 0 2.122-2.136C24.347 16.942 24.347 12 24.347 12s0-4.942-.55-6.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                        </a>
-                        <a href="#" aria-label="LinkedIn">
-                            <svg
 
-                            
+                        <a href=" https://www.instagram.com/luxury_drive/?hl=ar" aria-label="Instagram">
+
+                            <svg width="20" height="20" viewBox="0 0 24 24"
+                                 fill="none" stroke="currentColor" stroke-width="2"
+                                 stroke-linecap="round" stroke-linejoin="round">
+
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+
+                            </svg>
+
+                        </a>
+
+                        <a href="https://www.youtube.com/watch?v=y6SHmoKNKS8" aria-label="YouTube">
+
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+
+                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.377.55c-.58.155-1.107.522-1.42 1.136C.653 7.058.653 12 .653 12s0 4.942.55 6.814c.154.58.52 1.107 1.136 1.42 1.872.55 9.377.55 9.377.55s7.505 0 9.377-.55a3.015 3.015 0 0 0 2.122-2.136C24.347 16.942 24.347 12 24.347 12s0-4.942-.55-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+
+                            </svg>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+</body>
+</html>
