@@ -1,0 +1,164 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}{{ car.name }}{% endblock %}
+{% block nav_cars %}active{% endblock %}
+
+{% block content %}
+<section class="container detail-top">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-bar" aria-label="Breadcrumb">
+        <a href="{% url 'main:all_cars' %}">Cars</a>
+        <span class="material-symbols-outlined">chevron_right</span>
+        <a href="{% url 'main:all_cars' %}">{{ car.brand }}</a>
+        <span class="material-symbols-outlined">chevron_right</span>
+        <span>{{ car.name }}</span>
+    </nav>
+
+    <div class="row g-4 g-lg-5">
+        <!-- Gallery: radio buttons + labels, switched with CSS only -->
+        <div class="col-12 col-lg-7">
+            <div class="gallery">
+                {% for item in gallery %}
+                    <input type="radio" name="gallery" id="g-{{ item.index }}" class="g-radio" {% if forloop.first %}checked{% endif %}>
+                {% endfor %}
+
+                <div class="gallery-main img-box">
+                    {% for item in gallery %}
+                        <img src="{% static item.image %}" alt="{{ car.name }} photo {{ forloop.counter }}" class="gallery-slide slide-{{ item.index }}">
+                        <div class="gallery-arrows arrows-{{ item.index }}">
+                            <label for="g-{{ item.prev }}" class="gallery-arrow prev" aria-label="Previous photo"><span class="material-symbols-outlined">arrow_back</span></label>
+                            <label for="g-{{ item.next }}" class="gallery-arrow next" aria-label="Next photo"><span class="material-symbols-outlined">arrow_forward</span></label>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="gallery-thumbs">
+                    {% for item in gallery %}
+                        <label for="g-{{ item.index }}" class="thumb thumb-{{ item.index }} img-box" aria-label="Show photo {{ forloop.counter }}">
+                            <img src="{% static item.image %}" alt="">
+                        </label>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="col-12 col-lg-5">
+            <div class="detail-summary">
+                <h1>{{ car.name }}</h1>
+                <p class="detail-price">{{ car.price }}</p>
+
+                <ul class="spec-list">
+                    <li><span class="material-symbols-outlined">settings</span> Engine <strong>{{ car.engine }}</strong></li>
+                    <li><span class="material-symbols-outlined">bolt</span> Power <strong>{{ car.power }}</strong></li>
+                    <li><span class="material-symbols-outlined">timer</span> 0–100 km/h <strong>{{ car.acceleration }}</strong></li>
+                    <li><span class="material-symbols-outlined">speed</span> Top Speed <strong>{{ car.top_speed }}</strong></li>
+                </ul>
+
+                <a href="mailto:sales@stuttgartmotors.demo?subject=Inquiry: {{ car.name }}" class="btn-main w-100 justify-content-center">
+                    Inquire Now <span class="material-symbols-outlined">arrow_forward</span>
+                </a>
+                <label class="btn-outline w-100 fav-toggle">
+                    <input type="checkbox">
+                    <span class="material-symbols-outlined">favorite</span>
+                    <span class="t-save">Save to Wishlist</span>
+                    <span class="t-saved">Saved to Wishlist</span>
+                </label>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== TABS: radio buttons + labels, CSS only ===== -->
+<section class="container">
+    <div class="tabs-wrap">
+        <input type="radio" name="tabs" id="t-overview" class="t-radio" checked>
+        <input type="radio" name="tabs" id="t-specs" class="t-radio">
+        <input type="radio" name="tabs" id="t-features" class="t-radio">
+
+        <div class="tabs" role="tablist">
+            <label for="t-overview" class="tab tab-overview">Overview</label>
+            <label for="t-specs" class="tab tab-specs">Specifications</label>
+            <label for="t-features" class="tab tab-features">Features</label>
+        </div>
+
+        <!-- Overview -->
+        <div class="tab-panel panel-overview">
+            <div class="overview">
+                <div class="overview-text">
+                    <h2>{{ car.tagline }}</h2>
+                    <p>{{ car.description }}</p>
+                </div>
+                <div class="overview-img img-box">
+                    <img src="{% static car.gallery.1 %}" alt="{{ car.name }}" loading="lazy">
+                </div>
+            </div>
+
+            <div class="stats">
+                <div class="stat"><span class="material-symbols-outlined">settings</span><strong>{{ car.engine }}</strong><small>Engine</small></div>
+                <div class="stat"><span class="material-symbols-outlined">bolt</span><strong>{{ car.power }}</strong><small>Max Power</small></div>
+                <div class="stat"><span class="material-symbols-outlined">timer</span><strong>{{ car.acceleration }}</strong><small>0 – 100 km/h</small></div>
+                <div class="stat"><span class="material-symbols-outlined">speed</span><strong>{{ car.top_speed }}</strong><small>Top Speed</small></div>
+            </div>
+        </div>
+
+        <!-- Specifications -->
+        <div class="tab-panel panel-specs">
+            <table class="spec-table">
+                <tr><th>Model</th><td>{{ car.name }}</td></tr>
+                <tr><th>Year</th><td>{{ car.year }}</td></tr>
+                <tr><th>Engine</th><td>{{ car.engine }}</td></tr>
+                <tr><th>Power</th><td>{{ car.power }}</td></tr>
+                <tr><th>0 – 100 km/h</th><td>{{ car.acceleration }}</td></tr>
+                <tr><th>Top Speed</th><td>{{ car.top_speed }}</td></tr>
+                <tr><th>Transmission</th><td>{{ car.transmission }}</td></tr>
+                <tr><th>Drivetrain</th><td>{{ car.drivetrain }}</td></tr>
+                <tr><th>Weight</th><td>{{ car.weight }}</td></tr>
+            </table>
+        </div>
+
+        <!-- Features -->
+        <div class="tab-panel panel-features">
+            <ul class="feature-checklist">
+                <li><span class="material-symbols-outlined">check_circle</span> Adaptive sport suspension</li>
+                <li><span class="material-symbols-outlined">check_circle</span> Sport Chrono package</li>
+                <li><span class="material-symbols-outlined">check_circle</span> Premium BOSE® surround sound</li>
+                <li><span class="material-symbols-outlined">check_circle</span> LED matrix headlights</li>
+                <li><span class="material-symbols-outlined">check_circle</span> Apple CarPlay &amp; Android Auto</li>
+                <li><span class="material-symbols-outlined">check_circle</span> 2-year comprehensive warranty</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Key features -->
+    <h2 class="section-title mt-5 mb-4 reveal">Key Features</h2>
+    <div class="row g-4">
+        {% for f in key_features %}
+            <div class="col-12 col-md-4 reveal">
+                <div class="key-feature">
+                    <div class="key-feature-img img-box">
+                        <img src="{% static f.image %}" alt="{{ f.title }}" loading="lazy">
+                    </div>
+                    <h3>{{ f.title }}</h3>
+                    <p>{{ f.text }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- Related -->
+    <div class="section-head mt-5 reveal">
+        <h2 class="section-title">You May Also Like</h2>
+        <a href="{% url 'main:all_cars' %}" class="link-arrow">View All <span class="material-symbols-outlined">arrow_forward</span></a>
+    </div>
+    <div class="row g-4">
+        {% for car in related %}
+            <div class="col-12 col-sm-6 reveal">
+                {% include "main/partials/car_card.html" with car=car %}
+            </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

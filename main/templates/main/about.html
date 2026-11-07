@@ -1,0 +1,86 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}About Us{% endblock %}
+{% block nav_about %}active{% endblock %}
+
+{% block content %}
+
+<!-- ===== PAGE HEADER ===== -->
+<section class="page-hero">
+    <div class="page-hero-bg img-box">
+        <img src="{% static 'main/images/porsche-race.jpg' %}" alt="Porsche race car">
+    </div>
+    <div class="container page-hero-content">
+        <span class="eyebrow">About Us</span>
+        <h1>Driven by Passion</h1>
+        <p>A team of automotive enthusiasts dedicated to bringing the world's finest sports cars closer to you.</p>
+    </div>
+</section>
+
+<!-- ===== OUR STORY ===== -->
+<section class="section container">
+    <div class="row g-4 g-lg-5 align-items-center">
+        <div class="col-12 col-lg-6 reveal">
+            <span class="eyebrow">Since 2014</span>
+            <h2 class="section-title mb-3">Our Story</h2>
+            <p class="text-muted-c">Founded in Saudi Arabia, we bring together a deep passion for performance, design and engineering excellence. We offer a curated selection of iconic sports cars and a premium ownership experience, from your first test drive to every service after it.</p>
+            <div class="counters">
+                <div><strong class="counter" style="--target: 12"></strong><span>+</span><small>Years</small></div>
+                <div><strong class="counter" style="--target: 850"></strong><span>+</span><small>Cars Delivered</small></div>
+                <div><strong class="counter" style="--target: 98"></strong><span>%</span><small>Happy Clients</small></div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6 reveal">
+            <div class="story-img img-box">
+                <img src="{% static 'main/images/showroom.jpg' %}" alt="Our showroom" loading="lazy">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== OUR VALUES ===== -->
+<section class="section container">
+    <h2 class="section-title reveal">Our Values</h2>
+    <div class="row g-4 mt-1">
+        <div class="col-12 col-md-4 reveal">
+            <div class="why-card text-start">
+                <span class="material-symbols-outlined">diamond</span>
+                <h3>Excellence</h3>
+                <p>A commitment to world-class standards in every car and every service.</p>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 reveal" style="transition-delay: 100ms">
+            <div class="why-card text-start">
+                <span class="material-symbols-outlined">verified_user</span>
+                <h3>Trust</h3>
+                <p>Transparent, honest and customer-first, with full history for every car.</p>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 reveal" style="transition-delay: 200ms">
+            <div class="why-card text-start">
+                <span class="material-symbols-outlined">star</span>
+                <h3>Passion</h3>
+                <p>A shared love for exceptional cars drives everything we do.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== MORE THAN A DEALER ===== -->
+<section class="container">
+    <div class="cta-banner cta-tall reveal">
+        <div class="cta-bg img-box">
+            <img class="pos-car-low" src="{% static 'main/images/hero.jpg' %}" alt="Sports car on a mountain road" loading="lazy">
+        </div>
+        <div class="cta-content">
+            <h2>More Than a Dealer</h2>
+            <p class="cta-text">We are your partner in the journey of owning and enjoying an exceptional car.</p>
+            <a href="{% url 'main:all_cars' %}" class="btn-ghost">
+                Browse Cars <span class="material-symbols-outlined">arrow_forward</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

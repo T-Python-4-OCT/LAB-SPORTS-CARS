@@ -1,0 +1,18 @@
+{% load static %}
+{# Reusable car card: include with car=... #}
+<article class="car-card">
+    <a href="{% if car.has_detail %}{% url 'main:car_detail' car.slug %}{% else %}{% url 'main:all_cars' %}{% endif %}" class="car-card-img img-box">
+        <img src="{% static car.image %}" alt="{{ car.name }}" loading="lazy">
+    </a>
+    <div class="car-card-body">
+        <div>
+            <h3 class="car-card-title">{{ car.name }}</h3>
+            <p class="car-card-price">{{ car.price }}</p>
+        </div>
+        {# Heart toggle: a checkbox styled with CSS #}
+        <label class="fav-btn" aria-label="Add to wishlist">
+            <input type="checkbox">
+            <span class="material-symbols-outlined">favorite</span>
+        </label>
+    </div>
+</article>

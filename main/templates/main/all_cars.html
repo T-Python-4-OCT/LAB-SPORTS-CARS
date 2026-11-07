@@ -1,0 +1,82 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}All Cars{% endblock %}
+{% block nav_cars %}active{% endblock %}
+
+{% block content %}
+
+<!-- ===== PAGE HEADER ===== -->
+<section class="page-hero">
+    <div class="page-hero-bg img-box">
+        <img src="{% static 'main/images/porsche-gt3-rs.jpg' %}" alt="Porsche collection">
+    </div>
+    <div class="container page-hero-content">
+        <span class="eyebrow">Our Collection</span>
+        <h1>All Cars</h1>
+        <p>Explore our complete collection of iconic sports cars.</p>
+    </div>
+</section>
+
+<!-- ===== FILTERS (Django GET form, no JavaScript) ===== -->
+<section class="container">
+    <form class="filters" method="get" action="{% url 'main:all_cars' %}">
+        <div class="filter-select">
+            <select name="model" aria-label="Model">
+                <option value="">All Models</option>
+                {% for c in all_cars %}
+                    <option value="{{ c.slug }}" {% if selected.model == c.slug %}selected{% endif %}>{{ c.name }}</option>
+                {% endfor %}
+            </select>
+            <span class="material-symbols-outlined">expand_more</span>
+        </div>
+        <div class="filter-select">
+            <select name="price" aria-label="Price">
+                <option value="">Any Price</option>
+                {% for key, label in price_ranges %}
+                    <option value="{{ key }}" {% if selected.price == key %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+            </select>
+            <span class="material-symbols-outlined">expand_more</span>
+        </div>
+        <div class="filter-select">
+            <select name="year" aria-label="Year">
+                <option value="">Any Year</option>
+                {% for y in years %}
+                    <option value="{{ y }}" {% if selected.year == y|stringformat:"d" %}selected{% endif %}>{{ y }}</option>
+                {% endfor %}
+            </select>
+            <span class="material-symbols-outlined">expand_more</span>
+        </div>
+        <button type="submit" class="btn-main filter-apply">
+            <span class="material-symbols-outlined">tune</span> Filter
+        </button>
+        <a href="{% url 'main:all_cars' %}" class="filter-reset" aria-label="Reset filters">
+            <span class="material-symbols-outlined">restart_alt</span>
+        </a>
+    </form>
+
+    <p class="cars-count">{{ cars|length }} Car{{ cars|length|pluralize }} Found</p>
+
+    <!-- ===== CARS GRID ===== -->
+    <div class="row g-4">
+        {% for car in cars %}
+            <div class="col-12 col-sm-6 col-lg-4 reveal">
+                {% include "main/partials/car_card.html" with car=car %}
+            </div>
+        {% empty %}
+            <p class="no-results">No cars match these filters. <a href="{% url 'main:all_cars' %}">Show all cars</a></p>
+        {% endfor %}
+    </div>
+
+    <!-- ===== PAGINATION (demo) ===== -->
+    <nav class="pagination-bar" aria-label="Pages">
+        <a href="#" class="page-btn" aria-label="Previous"><span class="material-symbols-outlined">chevron_left</span></a>
+        <a href="#" class="page-btn active">1</a>
+        <a href="#" class="page-btn">2</a>
+        <a href="#" class="page-btn">3</a>
+        <a href="#" class="page-btn" aria-label="Next"><span class="material-symbols-outlined">chevron_right</span></a>
+    </nav>
+</section>
+
+{% endblock %}
