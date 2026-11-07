@@ -4,7 +4,6 @@
 
 {% block content %}
 
-
 <section class="about-hero">
     <div class="about-hero-content">
         <p>ABOUT SPORTCARS</p>
@@ -12,7 +11,6 @@
         <p>Where performance meets luxury.</p>
     </div>
 </section>
-
 
 <section class="about-story">
     <div class="story-text">
@@ -30,10 +28,12 @@
     </div>
 
     <div class="story-image">
-        <img src="{% static 'images/home page.avif' %}" alt="Luxury Sports Car">
+        <img src="{% static 'images/home_page.jpg' %}"
+             alt="Luxury Sports Car"
+             loading="lazy"
+             decoding="async">
     </div>
 </section>
-
 
 <section class="about-values">
     <div class="section-title">
@@ -61,7 +61,6 @@
         </div>
     </div>
 </section>
-
 
 <section class="about-banner">
     <div class="about-banner-content">

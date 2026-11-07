@@ -14,12 +14,38 @@
         <div class="detail-grid">
 
             <div class="detail-image">
-                <img src="{{ car.image }}" alt="{{ car.name }}">
+                <img
+                    src="{{ car.image }}"
+                    alt="{{ car.name }}"
+                    class="detail-main-image"
+                    fetchpriority="high"
+                    decoding="async"
+                >
+
+                <div class="detail-gallery">
+                    {% for image in car.gallery %}
+                        <img
+                            src="{{ image }}"
+                            alt="{{ car.name }} - Gallery photo {{ forloop.counter }}"
+                            loading="lazy"
+                            decoding="async"
+                        >
+                    {% empty %}
+                        <img
+                            src="{{ car.image }}"
+                            alt="{{ car.name }}"
+                            loading="lazy"
+                            decoding="async"
+                        >
+                    {% endfor %}
+                </div>
             </div>
 
             <div class="detail-info">
                 <p class="detail-brand">{{ car.brand }} / {{ car.year }}</p>
+
                 <h1>{{ car.name }}</h1>
+
                 <h2 class="detail-price">{{ car.price }}</h2>
 
                 <p class="detail-description">
@@ -27,6 +53,7 @@
                 </p>
 
                 <div class="detail-specs">
+
                     <div class="spec-box">
                         <span class="material-symbols-outlined">speed</span>
                         <h3>{{ car.top_speed }}</h3>
@@ -44,6 +71,7 @@
                         <h3>{{ car.power }}</h3>
                         <p>Horsepower</p>
                     </div>
+
                 </div>
 
                 <div class="detail-engine">

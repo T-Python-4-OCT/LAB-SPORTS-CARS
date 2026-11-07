@@ -1,5 +1,4 @@
 
-
 * {
     margin: 0;
     padding: 0;
@@ -7,7 +6,7 @@
 }
 
 body {
-    font-family: 'Phudu', sans-serif;
+    font-family: "Phudu", sans-serif;
     background-color: #ffffff;
     color: #222;
 }
@@ -15,7 +14,6 @@ body {
 a {
     text-decoration: none;
 }
-
 
 .navbar {
     display: flex;
@@ -62,8 +60,6 @@ a {
 .nav-icons span:hover {
     color: #e63946;
 }
-
-
 
 .hero {
     position: relative;
@@ -115,8 +111,6 @@ a {
     margin-bottom: 30px;
 }
 
-
-
 .btn-primary {
     display: inline-block;
     background: #e63946;
@@ -131,8 +125,6 @@ a {
     background: #c62835;
     transform: translateY(-3px);
 }
-
-
 
 .features {
     display: grid;
@@ -170,7 +162,6 @@ a {
     color: #777;
 }
 
-
 .featured {
     padding: 80px 8%;
     background-color: #f8f9fa;
@@ -205,15 +196,11 @@ a {
     color: #b71c1c;
 }
 
-
-
 .cars-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 25px;
 }
-
-
 
 .car-card {
     background: white;
@@ -240,8 +227,6 @@ a {
 .car-card:hover img {
     transform: scale(1.04);
 }
-
-
 
 .car-info {
     padding: 22px;
@@ -271,10 +256,7 @@ a {
     color: #e63946;
 }
 
-
-
 @media (max-width: 992px) {
-
     .navbar {
         padding: 18px 5%;
     }
@@ -292,9 +274,7 @@ a {
     }
 }
 
-
 @media (max-width: 576px) {
-
     .navbar {
         flex-wrap: wrap;
         gap: 15px;
@@ -362,21 +342,17 @@ a {
     }
 }
 
-
 .experience {
     position: relative;
     min-height: 450px;
     display: flex;
     align-items: center;
     padding: 70px 8%;
-    background:
-        linear-gradient(
-            90deg,
-            rgba(0, 0, 0, 0.85),
-            rgba(0, 0, 0, 0.25)
-        ),
-        url("../images/home%20page.avif");
-
+    background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.85),
+        rgba(0, 0, 0, 0.25)
+    ), url("../images/home%20page.avif");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -403,7 +379,6 @@ a {
     margin-bottom: 30px;
 }
 
-
 @media (max-width: 768px) {
     .experience {
         min-height: 350px;
@@ -415,7 +390,6 @@ a {
         font-size: 30px;
     }
 }
-
 
 .why-us {
     padding: 80px 8%;
@@ -474,13 +448,11 @@ a {
     color: #777;
 }
 
-
 @media (max-width: 992px) {
     .why-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
-
 
 @media (max-width: 576px) {
     .why-us {
@@ -496,7 +468,6 @@ a {
     }
 }
 
-
 .cta {
     position: relative;
     min-height: 400px;
@@ -505,14 +476,10 @@ a {
     align-items: center;
     text-align: center;
     padding: 70px 8%;
-
-    background:
-        linear-gradient(
-            rgba(0, 0, 0, 0.65),
-            rgba(0, 0, 0, 0.65)
-        ),
-        url("../images/home%20page.avif");
-
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.65),
+        rgba(0, 0, 0, 0.65)
+    ), url("../images/home%20page.avif");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -552,7 +519,6 @@ a {
     }
 }
 
-
 .footer {
     background-color: #111318;
     color: #ffffff;
@@ -566,7 +532,6 @@ a {
     margin-bottom: 50px;
 }
 
-
 .footer-brand h2 {
     font-size: 25px;
     margin-bottom: 15px;
@@ -577,7 +542,6 @@ a {
     font-size: 13px;
     line-height: 1.8;
 }
-
 
 .footer-column h3 {
     font-size: 17px;
@@ -604,7 +568,6 @@ a {
     margin-bottom: 18px;
 }
 
-
 .social-links {
     display: flex;
     flex-wrap: wrap;
@@ -621,7 +584,6 @@ a {
 .social-links a:hover {
     color: #e63946;
 }
-
 
 .newsletter-form {
     display: flex;
@@ -657,7 +619,6 @@ a {
     background: #c62835;
 }
 
-
 .footer-bottom {
     display: flex;
     justify-content: space-between;
@@ -676,7 +637,6 @@ a {
         grid-template-columns: repeat(2, 1fr);
     }
 }
-
 
 @media (max-width: 576px) {
     .footer {
@@ -712,7 +672,6 @@ a {
     align-items: center;
 }
 
-
 #dark-toggle:checked ~ .site-wrapper {
     background-color: #121212;
     color: white;
@@ -734,7 +693,6 @@ a {
     border-color: #444;
 }
 
-
 #dark-toggle:checked ~ .site-wrapper h2,
 #dark-toggle:checked ~ .site-wrapper h3,
 #dark-toggle:checked ~ .site-wrapper .logo,
@@ -753,13 +711,11 @@ a {
     display: flex;
     align-items: center;
     padding: 70px 8%;
-    background:
-        linear-gradient(
-            90deg,
-            rgba(0, 0, 0, 0.8),
-            rgba(0, 0, 0, 0.15)
-        ),
-        url("../images/home%20page.avif");
+    background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.8),
+        rgba(0, 0, 0, 0.15)
+    ), url("../images/home%20page.avif");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -865,12 +821,10 @@ a {
     align-items: center;
     text-align: center;
     padding: 70px 8%;
-    background:
-        linear-gradient(
-            rgba(0, 0, 0, 0.7),
-            rgba(0, 0, 0, 0.7)
-        ),
-        url("../images/home%20page.avif");
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.7),
+        rgba(0, 0, 0, 0.7)
+    ), url("../images/home%20page.avif");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -963,13 +917,11 @@ a {
     display: flex;
     align-items: center;
     padding: 70px 8%;
-    background:
-        linear-gradient(
-            90deg,
-            rgba(0, 0, 0, 0.8),
-            rgba(0, 0, 0, 0.2)
-        ),
-        url("../images/home%20page.avif");
+    background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.8),
+        rgba(0, 0, 0, 0.2)
+    ), url("../images/home%20page.avif");
     background-size: cover;
     background-position: center;
 }
@@ -1040,24 +992,9 @@ a {
     gap: 30px;
 }
 
-.all-cars-grid .car-card {
-    background: white;
-    border: 1px solid #eee;
-    border-radius: 12px;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
 .all-cars-grid .car-card:hover {
     transform: translateY(-6px);
     box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
-}
-
-.all-cars-grid .car-card img {
-    width: 100%;
-    height: 230px;
-    object-fit: cover;
-    display: block;
 }
 
 .all-cars-grid .car-info {
@@ -1065,7 +1002,6 @@ a {
 }
 
 .all-cars-grid .car-info h3 {
-    font-size: 20px;
     margin-bottom: 10px;
 }
 
@@ -1082,10 +1018,8 @@ a {
 }
 
 .all-cars-grid .car-link {
-    display: inline-block;
     color: #222;
     font-weight: 600;
-    text-decoration: none;
     transition: color 0.3s ease;
 }
 
@@ -1402,6 +1336,48 @@ a {
     color: #bbb;
 }
 
+.detail-image .detail-main-image {
+    display: block;
+    width: 100%;
+    height: 580px;
+    object-fit: cover;
+    border-radius: 16px;
+}
 
+.detail-image .detail-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 15px;
+    width: 100%;
+}
 
+.detail-image .detail-gallery img {
+    display: block;
+    width: 100%;
+    height: 115px;
+    max-height: 115px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
 
+.detail-image .detail-gallery img:hover {
+    transform: scale(1.03);
+    opacity: 0.85;
+}
+
+@media (max-width: 768px) {
+    .detail-image .detail-main-image {
+        height: 320px;
+    }
+
+    .detail-image .detail-gallery {
+        gap: 8px;
+    }
+
+    .detail-image .detail-gallery img {
+        height: 80px;
+        max-height: 80px;
+    }
+}

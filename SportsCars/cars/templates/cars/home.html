@@ -1,4 +1,4 @@
-
+\
 {% extends 'Cars/base.html' %}
 {% load static %}
 
@@ -11,11 +11,10 @@
         <a href="{% url 'all_cars' %}" class="btn-primary">Browse Cars</a>
     </div>
 
-    <img src="{% static 'images/home_page.jpg' %}" alt="Porsche Sports Car" class="hero-image">
+    <img src="{% static 'images/home_page.jpg' %}" alt="Porsche Sports Car" class="hero-image" fetchpriority="high">
 </section>
 
 <section class="features">
-
     <div class="feature">
         <span class="material-symbols-outlined">speed</span>
         <h3>High Performance</h3>
@@ -39,11 +38,9 @@
         <h3>Dedicated Support</h3>
         <p>We're here to help you find your dream car.</p>
     </div>
-
 </section>
 
 <section class="featured" id="featured">
-
     <div class="section-heading">
         <div>
             <p class="section-subtitle">EXPLORE OUR COLLECTION</p>
@@ -55,7 +52,7 @@
     <div class="cars-grid">
 
         <div class="car-card">
-            <img src="https://images.unsplash.com/photo-1592198084033-aade902d1aae?w=900" alt="Ferrari F8 Tributo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/70/Vue_trois_quarts_avant_F8_tributo.jpg" alt="Ferrari F8 Tributo" loading="lazy">
             <div class="car-info">
                 <h3>Ferrari F8 Tributo</h3>
                 <p>SAR 1,250,000</p>
@@ -64,7 +61,7 @@
         </div>
 
         <div class="car-card">
-            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=900" alt="Porsche 911 Turbo S">
+            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/2023_Porsche_992_Turbo_S_in_Peridot_Metallic%2C_front_left.jpg?width=1200" alt="Porsche 911 Turbo S" loading="lazy">
             <div class="car-info">
                 <h3>Porsche 911 Turbo S</h3>
                 <p>SAR 1,295,000</p>
@@ -73,7 +70,7 @@
         </div>
 
         <div class="car-card">
-            <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=900" alt="Lamborghini Huracán">
+            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/2016_Lamborghini_Hurac%C3%A1n_LP_610-4_Coupe_(1).jpg?width=1200" alt="Lamborghini Huracán" loading="lazy">
             <div class="car-info">
                 <h3>Lamborghini Huracán</h3>
                 <p>SAR 1,150,000</p>
@@ -82,7 +79,6 @@
         </div>
 
     </div>
-
 </section>
 
 <section class="experience">
@@ -94,7 +90,6 @@
 </section>
 
 <section class="why-us" id="why-us">
-
     <div class="section-title">
         <p class="section-subtitle">THE SPORTCARS DIFFERENCE</p>
         <h2>Why Choose Us?</h2>
@@ -128,16 +123,13 @@
         </div>
 
     </div>
-
 </section>
 
 <section class="cta">
     <div class="cta-content">
         <h2>Ready to Drive Your Dream Car?</h2>
         <p>Your next extraordinary driving experience starts here.</p>
-        <a href="{% url 'all_cars' %}" class="btn-primary">
-            Explore Our Cars →
-        </a>
+        <a href="{% url 'all_cars' %}" class="btn-primary">Explore Our Cars →</a>
     </div>
 </section>
 

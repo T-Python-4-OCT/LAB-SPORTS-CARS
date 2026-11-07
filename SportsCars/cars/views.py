@@ -11,72 +11,133 @@ def about(request):
     return render(request, 'Cars/about.html')
 
 
-def all_cars(request):
-    cars = [
-        {
-            'name': 'Ferrari F8 Tributo',
-            'brand': 'Ferrari',
-            'model': 'F8 Tributo',
-            'year': 2023,
-            'price': 1250000,
-            'engine': 'V8 Twin Turbo',
-            'image': 'https://images.unsplash.com/photo-1592198084033-aade902d1aae?w=800',
-            'slug': 'ferrari'
-        },
-        {
-            'name': 'Porsche 911 Turbo S',
-            'brand': 'Porsche',
-            'model': '911 Turbo S',
-            'year': 2024,
-            'price': 1295000,
-            'engine': '3.8L Twin Turbo',
-            'image': 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800',
-            'slug': 'porsche'
-        },
-        {
-            'name': 'Lamborghini Huracán',
-            'brand': 'Lamborghini',
-            'model': 'Huracán',
-            'year': 2023,
-            'price': 1150000,
-            'engine': '5.2L V10',
-            'image': 'https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?w=800',
-            'slug': 'lamborghini'
-        },
-        {
-            'name': 'McLaren 720S',
-            'brand': 'McLaren',
-            'model': '720S',
-            'year': 2022,
-            'price': 1106250,
-            'engine': '4.0L V8',
-            'image': 'https://images.unsplash.com/photo-1621135802920-133df287f89c?w=800',
-            'slug': ''
-        },
-        {
-            'name': 'Aston Martin Vantage',
-            'brand': 'Aston Martin',
-            'model': 'Vantage',
-            'year': 2023,
-            'price': 693750,
-            'engine': '4.0L V8',
-            'image': 'https://images.unsplash.com/photo-1614200187524-dc4b892acf16?w=800',
-            'slug': ''
-        },
-        {
-            'name': 'Mercedes-AMG GT R',
-            'brand': 'Mercedes-Benz',
-            'model': 'AMG GT R',
-            'year': 2022,
-            'price': 787500,
-            'engine': '4.0L V8',
-            'image': 'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800',
-            'slug': ''
-        }
-    ]
+CARS = {
+    'ferrari': {
+        'name': 'Ferrari F8 Tributo',
+        'brand': 'Ferrari',
+        'model': 'F8 Tributo',
+        'year': 2023,
+        'price': 1250000,
+        'engine': '3.9L Twin-Turbo V8',
+        'power': '710 HP',
+        'acceleration': '2.9 Seconds',
+        'top_speed': '340 km/h',
+        'image': 'https://upload.wikimedia.org/wikipedia/commons/7/70/Vue_trois_quarts_avant_F8_tributo.jpg',
+        'gallery': [
+            'https://upload.wikimedia.org/wikipedia/commons/7/70/Vue_trois_quarts_avant_F8_tributo.jpg',
+            'https://upload.wikimedia.org/wikipedia/commons/2/25/Vue_trois_quarts_arri%C3%A8re_F8.jpg',
+            'https://upload.wikimedia.org/wikipedia/commons/9/95/Vue_arri%C3%A8re_Ferrari_F8_tributo.jpg'
+        ],
+        'description': 'The Ferrari F8 Tributo combines exceptional performance, Italian design, and advanced engineering for an unforgettable driving experience.'
+    },
+    'porsche': {
+        'name': 'Porsche 911 Turbo S',
+        'brand': 'Porsche',
+        'model': '911 Turbo S',
+        'year': 2024,
+        'price': 1295000,
+        'engine': '3.8L Twin-Turbo Flat-Six',
+        'power': '640 HP',
+        'acceleration': '2.7 Seconds',
+        'top_speed': '330 km/h',
+        'image': 'https://commons.wikimedia.org/wiki/Special:FilePath/2023_Porsche_992_Turbo_S_in_Peridot_Metallic%2C_front_left.jpg?width=1200',
+        'gallery': [
+            'https://commons.wikimedia.org/wiki/Special:FilePath/2023_Porsche_992_Turbo_S_in_Peridot_Metallic%2C_front_left.jpg?width=1200',
+            'https://commons.wikimedia.org/wiki/Special:FilePath/2023_Porsche_992_Turbo_S_in_Peridot_Metallic%2C_rear_left.jpg?width=1200',
+            'https://commons.wikimedia.org/wiki/Special:FilePath/2023_Porsche_992_Turbo_S_in_Peridot_Metallic%2C_front_left.jpg?width=800'
+        ],
+        'description': 'The Porsche 911 Turbo S delivers extraordinary acceleration, precise handling, and everyday comfort.'
+    },
+    'lamborghini': {
+        'name': 'Lamborghini Huracán',
+        'brand': 'Lamborghini',
+        'model': 'Huracán',
+        'year': 2023,
+        'price': 1150000,
+        'engine': '5.2L Naturally Aspirated V10',
+        'power': '631 HP',
+        'acceleration': '2.9 Seconds',
+        'top_speed': '325 km/h',
+        'image': 'https://commons.wikimedia.org/wiki/Special:FilePath/2016_Lamborghini_Hurac%C3%A1n_LP_610-4_Coupe_(1).jpg?width=1200',
+        'gallery': [
+            'https://commons.wikimedia.org/wiki/Special:FilePath/2016_Lamborghini_Hurac%C3%A1n_LP_610-4_Coupe_(1).jpg?width=1200',
+            'https://commons.wikimedia.org/wiki/Special:FilePath/2016_Lamborghini_Hurac%C3%A1n_LP_610-4_Coupe_(2).jpg?width=1200',
+            'https://commons.wikimedia.org/wiki/Special:FilePath/2016_Lamborghini_Hurac%C3%A1n_LP_610-4_Coupe_(interior).jpg?width=1200'
+        ],
+        'description': 'The Lamborghini Huracán combines striking Italian design with a naturally aspirated V10 engine and thrilling performance.'
+    },
+    'mclaren': {
+        'name': 'McLaren 720S',
+        'brand': 'McLaren',
+        'model': '720S',
+        'year': 2022,
+        'price': 1106250,
+        'engine': '4.0L Twin-Turbo V8',
+        'power': '710 HP',
+        'acceleration': '2.9 Seconds',
+        'top_speed': '341 km/h',
+        'image': 'https://commons.wikimedia.org/wiki/Special:FilePath/McLaren_720S_September_2024_001.jpg?width=1200',
+        'gallery': [
+            'https://commons.wikimedia.org/wiki/Special:FilePath/McLaren_720S_September_2024_001.jpg?width=1200',
+            'https://commons.wikimedia.org/wiki/Special:FilePath/McLaren_720S_September_2024_002.jpg?width=1200',
+            'https://commons.wikimedia.org/wiki/Special:FilePath/McLaren_720S_September_2024_003.jpg?width=1200'
+        ],
+        'description': 'The McLaren 720S combines lightweight engineering, active aerodynamics, and exceptional twin-turbo V8 performance.'
+    },
+    'aston-martin': {
+        'name': 'Aston Martin Vantage',
+        'brand': 'Aston Martin',
+        'model': 'Vantage',
+        'year': 2023,
+        'price': 693750,
+        'engine': '4.0L Twin-Turbo V8',
+        'power': '503 HP',
+        'acceleration': '3.6 Seconds',
+        'top_speed': '314 km/h',
+        'image': 'https://commons.wikimedia.org/wiki/Special:FilePath/2019_Aston_Martin_Vantage%2C_front_left_view_(Greenwich_2018).jpg?width=1200',
+        'gallery': [
+            'https://commons.wikimedia.org/wiki/Special:FilePath/2019_Aston_Martin_Vantage%2C_front_left_view_(Greenwich_2018).jpg?width=1200',
+            'https://commons.wikimedia.org/wiki/Special:FilePath/2019_Aston_Martin_Vantage%2C_front_right_view_(Greenwich_2018).jpg?width=1200',
+            'https://commons.wikimedia.org/wiki/Special:FilePath/2019_Aston_Martin_Vantage%2C_side_view_(Greenwich_2018).jpg?width=1200'
+        ],
+        'description': 'The Aston Martin Vantage combines British luxury, elegant styling, and thrilling V8 performance.'
+    },
+    'mercedes': {
+        'name': 'Mercedes-AMG GT R',
+        'brand': 'Mercedes-Benz',
+        'model': 'AMG GT R',
+        'year': 2022,
+        'price': 787500,
+        'engine': '4.0L Twin-Turbo V8',
+        'power': '577 HP',
+        'acceleration': '3.6 Seconds',
+        'top_speed': '318 km/h',
+        'image': 'https://commons.wikimedia.org/wiki/Special:FilePath/Mercedes-AMG_GT_R_(C190)_front.jpg?width=1200',
+        'gallery': [
+            'https://commons.wikimedia.org/wiki/Special:FilePath/Mercedes-AMG_GT_R_(C190)_front.jpg?width=1200',
+            'https://commons.wikimedia.org/wiki/Special:FilePath/Mercedes-AMG_GT_R_(C190)_rear.jpg?width=1200',
+            'https://commons.wikimedia.org/wiki/Special:FilePath/Mercedes-AMG_GT_R_(C190)_interior.jpg?width=1200'
+        ],
+        'description': 'The Mercedes-AMG GT R blends motorsport-inspired aerodynamics, bold design, and powerful V8 engineering.'
+    }
+}
 
-    for car in cars:
-        car['price_display'] = f"{car['price']:,}"
+
+def all_cars(request):
+    cars = []
+
+    for slug, car in CARS.items():
+        cars.append({
+            'name': car['name'],
+            'brand': car['brand'],
+            'model': car['model'],
+            'year': car['year'],
+            'price': car['price'],
+            'price_display': f"{car['price']:,}",
+            'engine': car['engine'],
+            'image': car['image'],
+            'slug': slug
+        })
 
     brand = request.GET.get('brand', '')
     model = request.GET.get('model', '')
@@ -102,13 +163,11 @@ def all_cars(request):
             car for car in filtered_cars
             if car['price'] < 800000
         ]
-
     elif price == '800to1200':
         filtered_cars = [
             car for car in filtered_cars
             if 800000 <= car['price'] <= 1200000
         ]
-
     elif price == 'above1200':
         filtered_cars = [
             car for car in filtered_cars
@@ -134,50 +193,17 @@ def all_cars(request):
     return render(request, 'Cars/all_cars.html', context)
 
 
-CARS = {
-    'ferrari': {
-        'name': 'Ferrari F8 Tributo',
-        'brand': 'Ferrari',
-        'year': 2023,
-        'price': 'SAR 1,250,000',
-        'engine': '3.9L Twin-Turbo V8',
-        'power': '710 HP',
-        'acceleration': '2.9 Seconds',
-        'top_speed': '340 km/h',
-        'image': 'https://images.unsplash.com/photo-1592198084033-aade902d1aae?w=1200',
-        'description': 'The Ferrari F8 Tributo combines exceptional performance, Italian design, and advanced engineering for an unforgettable driving experience.'
-    },
-    'porsche': {
-        'name': 'Porsche 911 Turbo S',
-        'brand': 'Porsche',
-        'year': 2024,
-        'price': 'SAR 1,295,000',
-        'engine': '3.8L Twin-Turbo Flat-Six',
-        'power': '640 HP',
-        'acceleration': '2.7 Seconds',
-        'top_speed': '330 km/h',
-        'image': 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200',
-        'description': 'The Porsche 911 Turbo S delivers extraordinary acceleration, precise handling, and everyday comfort.'
-    },
-    'lamborghini': {
-        'name': 'Lamborghini Huracán',
-        'brand': 'Lamborghini',
-        'year': 2023,
-        'price': 'SAR 1,150,000',
-        'engine': '5.2L Naturally Aspirated V10',
-        'power': '631 HP',
-        'acceleration': '2.9 Seconds',
-        'top_speed': '325 km/h',
-        'image': 'https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?w=1200',
-        'description': 'The Lamborghini Huracán offers breathtaking design, thrilling V10 performance, and a truly distinctive driving experience.'
-    }
-}
-
-
 def car_detail(request, car_slug):
     car = CARS.get(car_slug)
 
     if car is None:
-        raise Http404("Car not found")
+        raise Http404('Car not found')
 
-    return render(request, 'Cars/car_detail.html', {'car': car})
+    car_data = car.copy()
+    car_data['price'] = f"SAR {car['price']:,}"
+
+    return render(
+        request,
+        'Cars/car_detail.html',
+        {'car': car_data}
+    )
