@@ -1,0 +1,51 @@
+{% extends "main/base.html" %}{% load static %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<section class="hero" style="--hero: url('{% static 'images/hero.jpg' %}'); --hero-mobile: url('{% static 'images/hero-mobile.jpg' %}')">
+  <div class="container hero__inner">
+    <h1 class="hero__title">Performance<br>Without Limits</h1>
+    <p>Explore a curated collection of iconic sports cars.</p>
+    <a href="{% url 'cars' %}" class="btn btn--red"><span class="material-symbols-outlined">directions_car</span>Browse Cars</a>
+  </div>
+</section>
+
+<section class="strip container">
+  <div><span class="material-symbols-outlined">speed</span>High Performance</div>
+  <div><span class="material-symbols-outlined">workspace_premium</span>Premium Selection</div>
+  <div><span class="material-symbols-outlined">verified_user</span>Verified &amp; Inspected</div>
+  <div><span class="material-symbols-outlined">support_agent</span>Dedicated Support</div>
+</section>
+
+<section class="container section">
+  <div class="section__head"><h2>Featured Cars</h2><a href="{% url 'cars' %}" class="link">View All</a></div>
+  <div class="grid grid--3">{% for car in cars %}{% include "main/car_card.html" %}{% endfor %}</div>
+</section>
+
+<section class="container section">
+  <div class="banner reveal" style="--bg: url('{% static 'images/azera.jpg' %}')">
+    <div class="banner__text">
+      <small>THE EXPERIENCE</small>
+      <h2>More Than a Car</h2>
+      <p>Every drive is a story. Find the one that is yours.</p>
+      <a href="{% url 'about' %}" class="btn btn--red btn--sm">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<section class="container section">
+  <h2 class="center">Why Choose Us</h2>
+  <div class="grid grid--3">
+    <div class="why reveal"><span class="material-symbols-outlined">tune</span><h3>Hand-Picked Models</h3><p class="muted">A focused lineup of performance cars, chosen for how they drive.</p></div>
+    <div class="why reveal"><span class="material-symbols-outlined">visibility</span><h3>Full Transparency</h3><p class="muted">Clear specs and clear prices before you ever visit.</p></div>
+    <div class="why reveal"><span class="material-symbols-outlined">handshake</span><h3>Expert Guidance</h3><p class="muted">Our team helps you pick the right car for how you drive.</p></div>
+  </div>
+</section>
+
+<section class="container section">
+  <div class="cta reveal" style="--bg: url('{% static 'images/elantra.jpg' %}')">
+    <h2>Ready to Drive Your Dream Car?</h2>
+    <a href="{% url 'cars' %}" class="btn btn--red">Browse Collection</a>
+  </div>
+</section>
+{% endblock %}

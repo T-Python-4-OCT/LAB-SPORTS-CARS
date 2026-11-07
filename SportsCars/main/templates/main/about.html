@@ -1,0 +1,36 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block title %}About Us{% endblock %}
+
+{% block content %}
+<section class="page-head container">
+  <small>ABOUT US</small>
+  <h1>Driven by Passion</h1>
+  <p class="muted">A team of automotive enthusiasts dedicated to bringing the world's finest sports cars closer to you.</p>
+</section>
+
+<section class="container section split">
+  <div class="reveal">
+    <h2>Our Story</h2>
+    <p class="muted">Founded in Saudi Arabia, we bring together a deep passion for performance, design, and engineering excellence, offering a curated selection of iconic sports cars and a premium ownership experience.</p>
+  </div>
+  <div class="split__img reveal"><img src="{% static 'images/azera.jpg' %}" alt="Showroom car"></div>
+</section>
+
+<section class="container section">
+  <h2>Our Values</h2>
+  <div class="grid grid--3">
+    <div class="why reveal"><span class="material-symbols-outlined">diamond</span><h3>Excellence</h3><p class="muted">A commitment to world-class standards.</p></div>
+    <div class="why reveal"><span class="material-symbols-outlined">shield</span><h3>Trust</h3><p class="muted">Transparent, honest, and customer-first.</p></div>
+    <div class="why reveal"><span class="material-symbols-outlined">favorite</span><h3>Passion</h3><p class="muted">A shared love for exceptional cars.</p></div>
+  </div>
+</section>
+
+<section class="container section">
+  <div class="cta reveal" style="--bg: url('{% static 'images/sonata.jpg' %}')">
+    <h2>More Than a Dealer</h2>
+    <p>We are your partner on the journey of owning, and enjoying, an exceptional car.</p>
+    <a href="{% url 'cars' %}" class="btn btn--red">Browse Cars</a>
+  </div>
+</section>
+{% endblock %}

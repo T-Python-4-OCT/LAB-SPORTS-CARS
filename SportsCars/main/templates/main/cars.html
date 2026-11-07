@@ -1,0 +1,18 @@
+{% extends "main/base.html" %}
+{% block title %}All Cars{% endblock %}
+
+{% block content %}
+    <section class="page-head container">
+    <small>OUR COLLECTION</small>
+    <h1>All Cars</h1>
+    <p class="muted">Explore our complete collection of iconic sports cars.</p>
+    </section>
+    <section class="container">
+    <p class="muted">{{ cars|length }} Cars Found</p>
+    <div class="grid grid--3" id="carGrid">
+        {% for car in cars %}
+        {% include "main/car_card.html" %}
+        {% endfor %}
+    </div>
+    </section>
+{% endblock %}

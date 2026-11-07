@@ -1,0 +1,9 @@
+{% load static %}
+<a href="{% url 'car_detail' car.slug %}" class="card reveal" data-category="{{ car.category }}">
+  <div class="card__img"><img src="{% static car.image %}" alt="{{ car.name }}" loading="lazy"></div>
+  <div class="card__body">
+    <h3>{{ car.short }}</h3>
+    <p class="muted">{{ car.hp }} · {{ car.zero }} · {{ car.engine }}</p>
+    <strong class="price">{{ car.price }}</strong>
+  </div>
+</a>
