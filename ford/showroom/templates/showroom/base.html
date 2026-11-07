@@ -9,11 +9,13 @@
   <meta name="description" content="{% translate 'Explore Ford models, compare specifications, and plan a demo test drive.' %}">
   <title>{% block title %}{% translate 'Ford' %}{% endblock %}</title>
   <link rel="icon" href="{% static 'showroom/images/ford.svg' %}">
-  <link rel="stylesheet" href="{% static 'showroom/css/site.css' %}?v=pearl-light">
-  <script defer src="{% static 'showroom/js/site.js' %}?v=mustang-generations"></script>
+  <link rel="stylesheet" href="{% static 'showroom/css/site.css' %}?v=motion-rhythm">
+  <script defer src="{% static 'showroom/js/site.js' %}?v=motion-rhythm"></script>
 </head>
 <body data-wishlist-save="{% translate 'Save to Wishlist' %}"
       data-wishlist-saved="{% translate 'Saved to Wishlist' %}">
+  {{ account_favorites|json_script:"account-favorites" }}
+  <form hidden data-favorite-endpoint="{% url 'showroom:favorite' %}">{% csrf_token %}</form>
   <a class="skip-link" href="#main">{% translate 'Skip to content' %}</a>
   <header class="header">
     <div class="container header-inner">
@@ -38,7 +40,7 @@
           {% endif %}
         </form>
         <button class="icon-button" type="button" data-toggle="site-search" aria-expanded="false" aria-label="{% translate 'Search cars' %}"><svg class="icon instrument-icon" aria-hidden="true"><use href="{% static 'showroom/images/instrument-icons.svg' %}#search"></use></svg></button>
-        <form method="post" action="{% url 'showroom:set_theme' %}" data-preserve-hash>
+        <form method="post" action="{% url 'showroom:set_theme' %}" data-preserve-hash data-theme-form data-light="{% translate 'Switch to light mode' %}" data-dark="{% translate 'Switch to dark mode' %}">
           {% csrf_token %}
           <input type="hidden" name="next" value="{{ request.get_full_path }}">
           <button class="theme-switch" type="submit" name="theme"
@@ -49,8 +51,14 @@
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15A8.5 8.5 0 0 1 9 4a8.5 8.5 0 1 0 11 11Z"/></svg>
           </button>
         </form>
+        {% if user.is_authenticated %}
+        <a class="profile signed-in-account" href="{% url 'showroom:login' %}" aria-label="{% translate 'My account' %} · {{ user.get_username }}">
+          <bdi class="account-username">{{ user.get_username }}</bdi>
+        </a>
+        {% else %}
         <a class="icon-button profile account-link" href="{% url 'showroom:login' %}"
            aria-label="{% if user.is_authenticated %}{% translate 'My account' %}{% else %}{% translate 'Sign in or create an account' %}{% endif %}"><svg class="icon instrument-icon" aria-hidden="true"><use href="{% static 'showroom/images/instrument-icons.svg' %}#person"></use></svg></a>
+        {% endif %}
         <button class="icon-button mobile-menu" type="button" data-toggle="primary-nav" aria-expanded="false" aria-label="{% translate 'Toggle navigation' %}"><svg class="icon instrument-icon" aria-hidden="true"><use href="{% static 'showroom/images/instrument-icons.svg' %}#menu"></use></svg></button>
       </div>
     </div>
@@ -59,7 +67,7 @@
       {% for key, value in selected.items %}{% if key != 'q' and value %}<input type="hidden" name="{{ key }}" value="{{ value }}">{% endif %}{% endfor %}
       {% endif %}
       <label for="search-field">{% translate 'Search the Ford showroom' %}</label>
-      <div class="inline-form"><input id="search-field" name="q" type="search" value="{{ selected.q|default:'' }}" placeholder="{% translate 'Try Taurus' %}" maxlength="100" required><button class="button" type="submit">{% translate 'Search' %}</button></div>
+      <div class="inline-form"><input id="search-field" name="q" type="search" value="{{ selected.q|default:'' }}" maxlength="100" required><button class="button" type="submit">{% translate 'Search' %}</button></div>
     </form>
   </header>
   <main id="main">{% block content %}{% endblock %}</main>

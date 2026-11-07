@@ -9,19 +9,19 @@
 <section class="container section inventory" id="inventory" aria-label="{% translate 'Ford inventory' %}">
   <form class="filters" method="get" action="{% url 'showroom:car_list' %}#inventory" data-inventory-filters>
     <label class="inventory-search">
-      <span class="sr-only">{% translate 'Search cars' %}</span>
-      <input type="search" name="q" value="{{ selected.q }}" maxlength="100" placeholder="{% translate 'Try Taurus' %}">
+      <span class="filter-label">{% translate 'Search cars' %}</span>
+      <input type="search" name="q" value="{{ selected.q }}" maxlength="100">
     </label>
-    <label><span class="sr-only">{% translate 'Brand' %}</span><select name="brand" aria-label="{% translate 'Brand' %}"><option value="">{% translate 'Brand' %}</option><option value="ford" {% if selected.brand == 'ford' %}selected{% endif %}>{% translate 'Ford' %}</option></select></label>
-    <label><span class="sr-only">{% translate 'Model' %}</span><select name="model" aria-label="{% translate 'Model' %}"><option value="">{% translate 'Model' %}</option>{% for name in filter_models %}<option value="{{ name }}"{% if selected_model == name %} selected{% endif %}>{% translate name %}</option>{% endfor %}</select></label>
-    <label><span class="sr-only">{% translate 'Price' %}</span><select name="price" aria-label="{% translate 'Price' %}"><option value="">{% translate 'Price' %}</option>{% for key, label in prices %}<option value="{{ key }}" {% if selected.price == key %}selected{% endif %}>{{ label }}</option>{% endfor %}</select></label>
-    <label><span class="sr-only">{% translate 'Year' %}</span><select name="year" aria-label="{% translate 'Year' %}"><option value="">{% translate 'Year' %}</option>{% for year in years %}<option value="{{ year }}" {% if selected.year == year|stringformat:"s" %}selected{% endif %}>{{ year }}</option>{% endfor %}</select></label>
+    <label><span class="filter-label">{% translate 'Brand' %}</span><select name="brand" aria-label="{% translate 'Brand' %}"><option value="">{% translate 'Brand' %}</option><option value="ford" {% if selected.brand == 'ford' %}selected{% endif %}>{% translate 'Ford' %}</option></select></label>
+    <label><span class="filter-label">{% translate 'Model' %}</span><select name="model" aria-label="{% translate 'Model' %}"><option value="">{% translate 'Model' %}</option>{% for name in filter_models %}<option value="{{ name }}"{% if selected_model == name %} selected{% endif %}>{% translate name %}</option>{% endfor %}</select></label>
+    <label><span class="filter-label">{% translate 'Price' %}</span><select name="price" aria-label="{% translate 'Price' %}"><option value="">{% translate 'Price' %}</option>{% for key, label in prices %}<option value="{{ key }}" {% if selected.price == key %}selected{% endif %}>{{ label }}</option>{% endfor %}</select></label>
+    <label><span class="filter-label">{% translate 'Year' %}</span><select name="year" aria-label="{% translate 'Year' %}"><option value="">{% translate 'Year' %}</option>{% for year in years %}<option value="{{ year }}" {% if selected.year == year|stringformat:"s" %}selected{% endif %}>{{ year }}</option>{% endfor %}</select></label>
     <button class="button secondary filter-button" type="submit" aria-label="{% translate 'Apply filters' %}"><svg class="icon instrument-icon" aria-hidden="true"><use href="{% static 'showroom/images/instrument-icons.svg' %}#tune"></use></svg>{% translate 'Search' %}</button>
   </form>
   {% if filter_chips %}
   <ul class="filter-chips" aria-label="{% translate 'Active filters' %}">
     {% for label, params in filter_chips %}
-    <li><a href="{% url 'showroom:car_list' %}{% if params %}?{{ params }}{% endif %}#inventory"
+    <li><a href="{% url 'showroom:car_list' %}{% if params %}?{{ params }}{% else %}?reset=1{% endif %}#inventory"
            aria-label="{% blocktranslate %}Remove filter {{ label }}{% endblocktranslate %}">
       <bdi>{{ label }}</bdi><span aria-hidden="true">×</span>
     </a></li>
@@ -40,7 +40,7 @@
       <h2>{% blocktranslate count count=page.paginator.count %}{{ count }} Car Found{% plural %}{{ count }} Cars Found{% endblocktranslate %}</h2>
       {% if selected.q %}<p>{% blocktranslate with query=selected.q %}Results for “{{ query }}”{% endblocktranslate %}</p>{% endif %}
     </div>
-    {% if selected.brand or selected.model or selected.price or selected.year or selected.q %}<a class="text-link" href="{% url 'showroom:car_list' %}#inventory">{% translate 'Clear filters' %}</a>{% endif %}
+    {% if selected.brand or selected.model or selected.price or selected.year or selected.q %}<a class="text-link" href="{% url 'showroom:car_list' %}?reset=1#inventory">{% translate 'Clear filters' %}</a>{% endif %}
   </div>
   <div class="car-grid inventory-grid">{% for car in page %}{% include "showroom/partials/car_card.html" with comparison_enabled=True %}{% empty %}<p class="empty-state">{% translate 'No Ford vehicles match your filters.' %}</p>{% endfor %}</div>
   {% if page.paginator.count %}

@@ -63,6 +63,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'showroom.context_processors.preferences',
             ],
         },
     },
@@ -106,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en'
 LANGUAGES = [('en', 'English'), ('ar', 'العربية')]
-LANGUAGE_COOKIE_AGE = 60 * 60 * 24 * 365
+LANGUAGE_COOKIE_AGE = 60 * 60 * 24 * 180
 LANGUAGE_COOKIE_SAMESITE = 'Lax'
 
 TIME_ZONE = 'UTC'

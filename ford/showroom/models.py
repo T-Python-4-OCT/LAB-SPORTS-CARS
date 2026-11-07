@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext, gettext_lazy as _
@@ -72,3 +73,13 @@ class PurchaseRequest(models.Model):
 
     def __str__(self):
         return f"{self.car} · #{self.pk}"
+
+
+class Favorite(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    car = models.ForeignKey(Car, on_delete=models.CASCADE)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=["user", "car"], name="unique_user_favorite"),
+        ]

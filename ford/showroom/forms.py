@@ -2,7 +2,7 @@ from datetime import date, time, timedelta
 from zoneinfo import ZoneInfo
 
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.utils import timezone
 from django.utils.formats import date_format
 from django.utils.translation import gettext_lazy as _
@@ -53,3 +53,7 @@ class RegistrationForm(UserCreationForm):
             "Use at least 8 characters. Avoid common passwords, numbers alone, and passwords similar to your username."
         )
         self.fields["password2"].help_text = ""
+
+
+class AccountAuthenticationForm(AuthenticationForm):
+    remember_me = forms.BooleanField(required=False, label=_("Remember me"))

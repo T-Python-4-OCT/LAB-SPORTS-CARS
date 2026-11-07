@@ -13,12 +13,38 @@ Open PowerShell in this folder. If `.venv` is already present, run:
 
 Open [the local site](http://127.0.0.1:8000/).
 
-If you are setting up a fresh copy, create the environment and install its dependencies first. Use Python 3.12 or 3.13.
+For a fresh download, install Python 3.12 or 3.13 and open PowerShell in the repository's `ford` folder. Run the complete setup below.
 
 ```powershell
-py -3.12 -m venv .venv
+py -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe manage.py migrate
+.\.venv\Scripts\python.exe manage.py runserver
 ```
+
+Open http://127.0.0.1:8000/home/. The migration step creates a new SQLite database and loads all 20 vehicles automatically. Existing accounts or a copied database are not needed. Create an account through the website to try sign-in and favorites.
+
+## Run on macOS or Linux
+
+Install Python 3.12 or 3.13, open a terminal in `ford`, and run:
+
+```sh
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
+.venv/bin/python manage.py migrate
+.venv/bin/python manage.py runserver
+```
+
+## Included assets and verification
+
+All vehicle images, the desktop and mobile hero videos, fonts, icons, and the compiled Arabic translation are included locally. After installing dependencies, the showroom's own pages and assets work without an external asset service. External Ford and social links need an internet connection.
+
+Keep `showroom/static/`, `showroom/locale/`, and every file in `showroom/migrations/` when downloading or submitting the project. The `.venv` folder and `db.sqlite3` are created on the receiving computer.
+
+```powershell
+.\.venv\Scripts\python.exe manage.py test
+```
+
 
 ## Project layout
 
@@ -29,11 +55,11 @@ py -3.12 -m venv .venv
 
 ## Lab features
 
-- The home, inventory, details and about views render inherited templates. The three car pages share a detail template.
+- The home, inventory, details and about views render inherited templates. The 20 vehicle detail pages share a detail template.
 - Template links use named URLs. `Car.get_absolute_url()` resolves a detail URL from the model.
 - `/cars/taurus/` passes the model slug as a path parameter. `/cars/?year=2026` filters the inventory via a query parameter.
 - The header theme button posts to Django and persists the preference in the `ford_theme` cookie.
-- The gallery, search, and mobile menu work locally. The wishlist is stored in the browser.
+- The gallery, search, and mobile menu work locally. Guest favorites are stored in the browser, and signed-in favorites are stored against the account in SQLite. Recently viewed vehicles persist for seven days, comparison selections for two days, and filters for the tab session.
 
 - All Cars compares two models via repeated query parameters, for example /cars/?compare=mustang-gt&compare=mustang-dark-horse#compare.
 - Each detail page includes a full-screen photo viewer and a monthly estimate using the demo price, down payment, term, and annual rate.

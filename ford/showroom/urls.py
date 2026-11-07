@@ -11,14 +11,12 @@ urlpatterns = [
     path("home/", views.home, name="home"),
     path(
         "account/",
-        auth_views.LoginView.as_view(
-            template_name="showroom/account.html",
-            next_page=reverse_lazy("showroom:login"),
-        ),
+        views.AccountLoginView.as_view(),
         name="login",
     ),
     path("account/register/", views.register, name="register"),
     path("account/logout/", auth_views.LogoutView.as_view(next_page=reverse_lazy("showroom:home")), name="logout"),
+    path("account/favorite/", views.favorite, name="favorite"),
     path("cars/", views.car_list, name="car_list"),
     path("cars/<slug:slug>/", views.car_detail, name="car_detail"),
     path("about/", views.about, name="about"),

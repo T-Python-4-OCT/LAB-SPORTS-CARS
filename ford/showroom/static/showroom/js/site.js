@@ -20,6 +20,7 @@ if (hero) {
   const toggle = hero.querySelector("[data-hero-playback]");
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   let pausedByUser = navigator.connection?.saveData === true;
+  let heroVisible = true;
 
   function updateControl() {
     toggle.dataset.playing = String(!video.paused);
@@ -28,7 +29,7 @@ if (hero) {
 
   function syncVideo() {
     if (!video) return;
-    const enabled = video.classList.contains("is-active") && !reducedMotion.matches;
+    const enabled = video.classList.contains("is-active") && !reducedMotion.matches && heroVisible && !document.hidden;
     toggle.hidden = !enabled;
     if (!enabled || pausedByUser) {
       video.pause();
@@ -57,6 +58,14 @@ if (hero) {
     video.addEventListener("play", updateControl);
     video.addEventListener("pause", updateControl);
     reducedMotion.addEventListener("change", syncVideo);
+    document.addEventListener("visibilitychange", syncVideo);
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(entries => {
+        heroVisible = entries[0].isIntersecting;
+        syncVideo();
+      });
+      observer.observe(hero);
+    }
     syncVideo();
   }
 }
@@ -118,34 +127,51 @@ if (gallery) {
 }
 
 const wishlistKey = "ford-wishlist";
-let savedCars = new Set();
-try {
-  const saved = JSON.parse(window.localStorage.getItem(wishlistKey) || "[]");
-  if (Array.isArray(saved)) savedCars = new Set(saved);
-} catch {
-  // Keep the wishlist usable for this visit if browser storage is unavailable.
+const accountFavorites = JSON.parse(document.getElementById("account-favorites").textContent);
+let savedCars = new Set(accountFavorites || []);
+if (accountFavorites === null) {
+  try {
+    const saved = JSON.parse(localStorage.getItem(wishlistKey) || "[]");
+    if (Array.isArray(saved)) savedCars = new Set(saved.filter(slug => typeof slug === "string"));
+  } catch { /* Browser storage is optional. */ }
 }
-
-document.querySelectorAll("[data-wishlist]").forEach((button) => {
-  const slug = button.dataset.wishlist;
-  const label = button.querySelector("[data-wishlist-label]");
-
-  function updateButton() {
-    const saved = savedCars.has(slug);
+function renderWishlist() {
+  document.querySelectorAll("[data-wishlist]").forEach(button => {
+    const saved = savedCars.has(button.dataset.wishlist);
     button.setAttribute("aria-pressed", String(saved));
+    const label = button.querySelector("[data-wishlist-label]");
     if (label) label.textContent = saved ? document.body.dataset.wishlistSaved : document.body.dataset.wishlistSave;
-  }
-
-  updateButton();
-  button.addEventListener("click", () => {
-    if (savedCars.has(slug)) savedCars.delete(slug);
-    else savedCars.add(slug);
-    updateButton();
-    try {
-      window.localStorage.setItem(wishlistKey, JSON.stringify([...savedCars]));
-    } catch {
-      // The selection remains available on this page.
+  });
+}
+renderWishlist();
+document.querySelectorAll("[data-wishlist]").forEach(button => {
+  button.addEventListener("click", async () => {
+    const slug = button.dataset.wishlist;
+    const saved = !savedCars.has(slug);
+    if (accountFavorites !== null) {
+      document.querySelectorAll("[data-wishlist]").forEach(item => { item.disabled = true; });
+      try {
+        const endpoint = document.querySelector("[data-favorite-endpoint]");
+        const response = await fetch(endpoint.dataset.favoriteEndpoint, {
+          method: "POST",
+          headers: {"X-CSRFToken": endpoint.querySelector("[name=csrfmiddlewaretoken]").value},
+          body: new URLSearchParams({car: slug, saved: String(saved)}),
+        });
+        if (!response.ok) throw new Error("Favorite save failed");
+        if (saved) savedCars.add(slug);
+        else savedCars.delete(slug);
+      } catch {
+        window.alert(document.documentElement.lang === "ar"
+          ? "تعذر حفظ المفضلة. حاول مجددًا." : "Unable to save your favorite. Please try again.");
+      } finally {
+        document.querySelectorAll("[data-wishlist]").forEach(item => { item.disabled = false; });
+      }
+    } else {
+      if (saved) savedCars.add(slug);
+      else savedCars.delete(slug);
+      try { localStorage.setItem(wishlistKey, JSON.stringify([...savedCars])); } catch { /* Optional storage. */ }
     }
+    renderWishlist();
   });
 });
 
@@ -198,7 +224,13 @@ if (actionLinks.length) {
     const selected = actionLinks.find((link) => link.hash === window.location.hash);
     if (selected) {
       const panel = document.getElementById(selected.getAttribute("aria-controls"));
-      requestAnimationFrame(() => panel.scrollIntoView({block: "start"}));
+      requestAnimationFrame(() => {
+        panel.scrollIntoView({
+          block: "start",
+          behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
+        });
+        panel.focus({preventScroll: true});
+      });
     }
     actionLinks.forEach((link) => {
       const panel = document.getElementById(link.getAttribute("aria-controls"));
@@ -221,6 +253,19 @@ document.querySelectorAll("[data-preserve-hash]").forEach((form) => {
 
 const inventoryFilters = document.querySelector("[data-inventory-filters]");
 if (inventoryFilters) {
+  try {
+    const params = new URLSearchParams(location.search);
+    const names = ["q", "brand", "model", "price", "year"];
+    const explicit = names.some(name => params.has(name)) || params.has("reset");
+    if (!explicit && !params.size) {
+      const saved = sessionStorage.getItem("ford-filters");
+      if (saved) location.replace(location.pathname + "?" + saved + location.hash);
+    } else {
+      const remembered = new URLSearchParams();
+      names.forEach(name => { if (params.get(name)) remembered.set(name, params.get(name)); });
+      sessionStorage.setItem("ford-filters", remembered.toString());
+    }
+  } catch { /* Filters continue to work without storage. */ }
   inventoryFilters.addEventListener("change", (event) => {
     if (event.target.matches("select")) inventoryFilters.requestSubmit();
   });
@@ -239,7 +284,10 @@ if (compareTray) {
   const storageKey = "ford-compare";
   let selectedCars = [];
   try {
-    const saved = JSON.parse(sessionStorage.getItem(storageKey) || "[]");
+    const stored = JSON.parse(localStorage.getItem(storageKey) || "null");
+    const saved = stored && stored.expires > Date.now() && Array.isArray(stored.cars) ? stored.cars : [];
+    if (!saved.length) localStorage.removeItem(storageKey);
+    sessionStorage.removeItem(storageKey);
     if (Array.isArray(saved)) selectedCars = [...new Set(saved.filter(slug => choices.has(slug)))].slice(0, 2);
   } catch {
     // The selection still works on this page.
@@ -279,7 +327,9 @@ if (compareTray) {
       button.querySelector("span").textContent = label;
     });
     try {
-      sessionStorage.setItem(storageKey, JSON.stringify(selectedCars));
+      const stored = JSON.parse(localStorage.getItem(storageKey) || "null");
+      const expires = stored && stored.expires > Date.now() ? stored.expires : Date.now() + 172800000;
+      localStorage.setItem(storageKey, JSON.stringify({cars: selectedCars, expires}));
     } catch {
       // Storage is optional.
     }
@@ -339,4 +389,71 @@ if (differences) {
   }
   differences.addEventListener("change", showDifferences);
   showDifferences();
+}
+
+const recentSection = document.querySelector("[data-recent-cars]");
+if (recentSection) {
+  try {
+    const now = Date.now();
+    const stored = JSON.parse(localStorage.getItem("ford-recent") || "[]");
+    const current = recentSection.dataset.currentCar;
+    const candidates = new Map([...recentSection.querySelectorAll("[data-recent-slug]")]
+      .map(card => [card.dataset.recentSlug, card]));
+    const recent = Array.isArray(stored) ? stored.filter(item =>
+      item && typeof item.slug === "string" && item.expires > now && item.slug !== current) : [];
+    const visible = recent.filter(item => candidates.has(item.slug)).slice(0, 3);
+    visible.forEach(item => {
+      const card = candidates.get(item.slug);
+      card.hidden = false;
+      recentSection.querySelector(".recent-grid").append(card);
+    });
+    recentSection.hidden = visible.length === 0;
+    localStorage.setItem("ford-recent", JSON.stringify([
+      {slug: current, expires: now + 604800000}, ...recent,
+    ].slice(0, 10)));
+  } catch { /* Recent history is optional. */ }
+}
+
+const themeForm = document.querySelector("[data-theme-form]");
+if (themeForm && window.fetch) {
+  const button = themeForm.querySelector('[name="theme"]');
+  let themeTimer;
+  themeForm.addEventListener("submit", async event => {
+    event.preventDefault();
+    if (button.disabled) return;
+    const theme = button.value;
+    const data = new FormData(themeForm);
+    data.set("theme", theme);
+    button.disabled = true;
+    button.setAttribute("aria-busy", "true");
+    try {
+      const response = await fetch(themeForm.action, {
+        method: "POST",
+        headers: {"Accept": "application/json"},
+        body: data,
+      });
+      if (!response.ok) throw new Error("Unable to save theme");
+      const result = await response.json();
+      if (result.theme !== theme) throw new Error("Unexpected theme");
+      clearTimeout(themeTimer);
+      document.documentElement.classList.add("theme-changing");
+      // Commit the initial colors before applying the next theme.
+      getComputedStyle(document.body).backgroundColor;
+      document.documentElement.dataset.theme = theme;
+      button.value = theme === "dark" ? "light" : "dark";
+      button.setAttribute("aria-label", theme === "dark" ? themeForm.dataset.light : themeForm.dataset.dark);
+      themeTimer = setTimeout(() => document.documentElement.classList.remove("theme-changing"), 240);
+    } catch {
+      // Preserve the original form flow if the enhanced request fails.
+      const fallback = document.createElement("input");
+      fallback.type = "hidden";
+      fallback.name = "theme";
+      fallback.value = theme;
+      themeForm.append(fallback);
+      HTMLFormElement.prototype.submit.call(themeForm);
+    } finally {
+      button.disabled = false;
+      button.removeAttribute("aria-busy");
+    }
+  });
 }

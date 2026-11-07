@@ -78,4 +78,13 @@
 
   {% endif %}
 </div>
+
+<section class="container section recent-cars" data-recent-cars data-current-car="{{ car.slug }}" hidden>
+  <h2>{% if rtl %}شاهدتها مؤخرًا{% else %}Recently viewed{% endif %}</h2>
+  <div class="recent-grid">
+    {% for recent in recent_candidates %}
+      <div data-recent-slug="{{ recent.slug }}" hidden>{% include "showroom/partials/car_card.html" with car=recent comparison_enabled=False %}</div>
+    {% endfor %}
+  </div>
+</section>
 {% endblock %}

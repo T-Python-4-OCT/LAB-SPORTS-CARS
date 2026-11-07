@@ -3,7 +3,7 @@
   <summary>
     <svg class="icon instrument-icon" aria-hidden="true"><use href="{% static 'showroom/images/instrument-icons.svg' %}#compare_arrows"></use></svg>
     <span>{% translate 'Compare cars' %}</span>
-    <span class="icon compare-caret" aria-hidden="true">expand_more</span>
+    <svg class="icon instrument-icon compare-caret" aria-hidden="true"><use href="{% static 'showroom/images/instrument-icons.svg' %}#chevron_right"></use></svg>
   </summary>
   <div class="compare-body">
   <form class="tool-fields" method="get" action="{% url 'showroom:car_list' %}#compare">

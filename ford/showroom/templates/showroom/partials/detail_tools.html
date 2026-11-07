@@ -7,7 +7,7 @@
     </div>
     <p class="tool-note">{% blocktranslate with price=car.price_display %}Cash price for this demo is {{ price }}. Submit a request to try the purchase flow. No payment is collected.{% endblocktranslate %}</p>
     {% if confirmation and active_action == 'purchase' %}
-    <p class="tool-result" role="status">{% blocktranslate with number=confirmation.pk %}Demo purchase request #{{ number }} received.{% endblocktranslate %}</p>
+    <p class="tool-result" role="status">{% get_current_language_bidi as purchase_rtl %}{% if purchase_rtl %}تم استلام طلب الشراء وسيتم التواصل معك.{% else %}Your purchase request has been received. We will contact you.{% endif %}</p>
     {% else %}
     <form class="tool-fields" action="{{ car.get_absolute_url }}#purchase" method="post">
       {% csrf_token %}
@@ -44,7 +44,7 @@
       {% for field in drive_form %}
       <div class="tool-field">{{ field.label_tag }}{{ field }}{{ field.errors }}</div>
       {% endfor %}
-      <button class="button" type="submit">{% translate "Confirm demo booking" %}</button>
+      <button class="button" type="submit">{% get_current_language_bidi as booking_rtl %}{% if booking_rtl %}أكّد الحجز{% else %}Confirm booking{% endif %}</button>
     </form>
     {% endif %}
   </section>

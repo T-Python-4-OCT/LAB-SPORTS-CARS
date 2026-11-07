@@ -1,15 +1,16 @@
-from django.contrib.auth import login
+from django.contrib import messages
+from django.contrib.auth.views import LoginView
 from django.core.paginator import Paginator
 from django.db.models import Q
-from django.http import HttpResponseBadRequest, QueryDict
+from django.http import HttpResponseBadRequest, JsonResponse, QueryDict
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.utils.translation import gettext as _, gettext_lazy
 from django.views.decorators.http import require_http_methods, require_POST
 
-from .forms import PurchaseForm, RegistrationForm, TestDriveForm
-from .models import Car, PurchaseRequest, TestDriveBooking
+from .forms import AccountAuthenticationForm, PurchaseForm, RegistrationForm, TestDriveForm
+from .models import Car, Favorite, PurchaseRequest, TestDriveBooking
 
 PRICE_RANGES = {
     "under-130000": (gettext_lazy("Under SAR 130,000"), {"demo_price__lt": 130000}),
@@ -155,7 +156,7 @@ def car_detail(request, slug):
             request.session.pop("detail_confirmation")
 
     return render(request, "showroom/car_detail.html", {
-        "car": car, "specs": specs, "detail_tab": detail_tab, "drive_form": drive_form, "purchase_form": purchase_form,
+        "recent_candidates": Car.objects.exclude(pk=car.pk), "car": car, "specs": specs, "detail_tab": detail_tab, "drive_form": drive_form, "purchase_form": purchase_form,
         "active_action": action, "confirmation": confirmation, "terms": (12, 24, 36, 48, 60),
     })
 
@@ -166,9 +167,24 @@ def register(request):
         return redirect("showroom:login")
     form = RegistrationForm(request.POST if request.method == "POST" else None)
     if request.method == "POST" and form.is_valid():
-        login(request, form.save())
+        form.save()
+        messages.success(request, "Account created successfully.", extra_tags="account-created")
         return redirect("showroom:login")
     return render(request, "showroom/account.html", {"form": form, "registering": True})
+
+
+class AccountLoginView(LoginView):
+    template_name = "showroom/account.html"
+    authentication_form = AccountAuthenticationForm
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        self.request.session.set_expiry(172800 if form.cleaned_data["remember_me"] else 0)
+        return response
+
+    def get_success_url(self):
+        return reverse("showroom:home")
+
 
 
 def about(request):
@@ -182,11 +198,31 @@ def set_theme(request):
         target, allowed_hosts={request.get_host()}, require_https=request.is_secure()
     ):
         target = reverse("showroom:home")
-    response = redirect(target)
     theme = request.POST.get("theme")
+    if request.headers.get("Accept") == "application/json":
+        if theme not in {"light", "dark"}:
+            return HttpResponseBadRequest("Invalid theme")
+        response = JsonResponse({"theme": theme})
+    else:
+        response = redirect(target)
     if theme in {"light", "dark"}:
         response.set_cookie(
-            "ford_theme", theme, max_age=60 * 60 * 24 * 365,
+            "ford_theme", theme, max_age=60 * 60 * 24 * 180,
             httponly=True, samesite="Lax", secure=request.is_secure(),
         )
     return response
+
+
+@require_POST
+def favorite(request):
+    if not request.user.is_authenticated:
+        return JsonResponse({"error": "authentication_required"}, status=401)
+    car = get_object_or_404(Car, slug=request.POST.get("car", ""))
+    state = request.POST.get("saved")
+    if state not in {"true", "false"}:
+        return HttpResponseBadRequest("Invalid favorite state")
+    if state == "true":
+        Favorite.objects.get_or_create(user=request.user, car=car)
+    else:
+        Favorite.objects.filter(user=request.user, car=car).delete()
+    return JsonResponse({"saved": state == "true"})

@@ -77,7 +77,7 @@ class ShowroomFeaturesTests(TestCase):
         form = {"action": "purchase", "name": "Demo Buyer", "email": "Buyer@example.com"}
         response = self.client.post(url, form, follow=True)
         self.assertRedirects(response, f"{url}#purchase")
-        self.assertContains(response, "Demo purchase request #")
+        self.assertContains(response, "Your purchase request has been received. We will contact you.")
         self.assertEqual(PurchaseRequest.objects.get(car=car).quoted_price, car.demo_price)
         duplicate = self.client.post(url, {**form, "email": form["email"].lower()})
         self.assertContains(duplicate, "already uses this email")
@@ -133,19 +133,83 @@ class ShowroomFeaturesTests(TestCase):
         response = self.client.post(register_url, {
             "username": "showroom-visitor", "password1": password, "password2": password,
         })
-        self.assertRedirects(response, login_url)
+        self.assertRedirects(response, login_url, fetch_redirect_response=False)
+        self.assertContains(self.client.get(login_url), "account-notice")
         user = get_user_model().objects.get(username="showroom-visitor")
         self.assertNotEqual(user.password, password)
-        self.assertEqual(self.client.session["_auth_user_id"], str(user.pk))
-        self.assertEqual(self.client.get(logout_url).status_code, 405)
-        self.assertRedirects(self.client.post(logout_url), reverse("showroom:home"))
         self.assertNotIn("_auth_user_id", self.client.session)
+        self.assertEqual(self.client.get(logout_url).status_code, 405)
 
         response = self.client.post(login_url, {
             "username": user.username, "password": password, "next": "https://example.com/",
         })
-        self.assertRedirects(response, login_url)
-        self.assertContains(self.client.get(login_url), user.username)
+        self.assertRedirects(response, reverse("showroom:home"))
+        self.assertEqual(self.client.session["_auth_user_id"], str(user.pk))
+        self.assertContains(self.client.get(reverse("showroom:home")), user.username)
+        self.assertRedirects(self.client.post(logout_url), reverse("showroom:home"))
+        self.assertNotIn("_auth_user_id", self.client.session)
+
+    def test_remember_me_cookie_lifetime(self):
+        from django.conf import settings
+        from django.contrib.auth import get_user_model
+
+        user = get_user_model().objects.create_user(
+            username="remember-visitor", password="Test-password-4781",
+        )
+        for remember in (False, True):
+            self.client.logout()
+            data = {"username": user.username, "password": "Test-password-4781"}
+            if remember:
+                data["remember_me"] = "on"
+            response = self.client.post(reverse("showroom:login"), data)
+            self.assertRedirects(response, reverse("showroom:home"))
+            session = self.client.session
+            self.assertEqual(session.get_expire_at_browser_close(), not remember)
+            cookie = response.cookies[settings.SESSION_COOKIE_NAME]
+            if remember:
+                self.assertEqual(int(cookie["max-age"]), 172800)
+                self.assertEqual(session.get_expiry_age(), 172800)
+            else:
+                self.assertEqual(cookie["max-age"], "")
+                self.assertEqual(cookie["expires"], "")
+
+    def test_favorites_are_private_and_idempotent(self):
+        from django.contrib.auth import get_user_model
+        from .models import Favorite
+
+        car = Car.objects.first()
+        url = reverse("showroom:favorite")
+        data = {"car": car.slug, "saved": "true"}
+        self.assertEqual(self.client.post(url, data).status_code, 401)
+        owner = get_user_model().objects.create_user(username="favorite-owner")
+        other = get_user_model().objects.create_user(username="favorite-other")
+        self.client.force_login(owner)
+        for _ in range(2):
+            self.assertEqual(self.client.post(url, data).status_code, 200)
+        self.assertEqual(Favorite.objects.filter(user=owner, car=car).count(), 1)
+        self.client.force_login(other)
+        response = self.client.get(reverse("showroom:home"))
+        self.assertEqual(response.context["account_favorites"], [])
+        self.client.post(url, {"car": car.slug, "saved": "false"})
+        self.assertTrue(Favorite.objects.filter(user=owner, car=car).exists())
+        self.client.force_login(owner)
+        self.assertIn(car.slug, self.client.get(reverse("showroom:home")).context["account_favorites"])
+        self.client.post(url, {"car": car.slug, "saved": "false"})
+        self.assertFalse(Favorite.objects.filter(user=owner).exists())
+
+    def test_theme_switch_supports_animation_and_native_forms(self):
+        url = reverse("showroom:set_theme")
+        response = self.client.post(url, {"theme": "dark", "next": "/home/"},
+                                    HTTP_ACCEPT="application/json")
+        self.assertEqual(response.json(), {"theme": "dark"})
+        self.assertEqual(response.cookies["ford_theme"].value, "dark")
+        self.assertContains(self.client.get(reverse("showroom:home")), 'data-theme="dark"')
+        response = self.client.post(url, {"theme": "light", "next": "/cars/"})
+        self.assertRedirects(response, reverse("showroom:car_list"))
+        self.assertEqual(response.cookies["ford_theme"].value, "light")
+        response = self.client.post(url, {"theme": "invalid"}, HTTP_ACCEPT="application/json")
+        self.assertEqual(response.status_code, 400)
+        self.assertNotIn("ford_theme", response.cookies)
 
     def test_home_has_a_named_url_and_root_redirect(self):
         self.assertEqual(reverse("showroom:home"), "/home/")
