@@ -1,0 +1,95 @@
+{% extends 'main/base.html' %}
+{% load static humanize %}
+{% block title %}{{ car.name }} | SportsCars{% endblock %}
+
+{% block content %}
+<div class="container detail-page">
+  <nav class="breadcrumb">
+    <a href="{% url 'all_cars' %}">Cars</a>
+    <span class="material-symbols-outlined">chevron_right</span>
+    <span>{{ car.brand }}</span>
+    <span class="material-symbols-outlined">chevron_right</span>
+    <strong>{{ car.name }}</strong>
+  </nav>
+
+  <section class="detail-top">
+    <div class="gallery" id="gallery">
+      <div class="gallery-main">
+        <img id="galleryImage" src="{% static 'main/images/'|add:car.image %}" alt="{{ car.name }}">
+        <button class="gallery-arrow prev" id="galleryPrev" type="button" aria-label="Previous image"><span class="material-symbols-outlined">arrow_back</span></button>
+        <button class="gallery-arrow next" id="galleryNext" type="button" aria-label="Next image"><span class="material-symbols-outlined">arrow_forward</span></button>
+      </div>
+      <div class="thumbs">
+        <button class="thumb active" type="button" aria-label="View exterior image 1"><img src="{% static 'main/images/'|add:car.image %}" alt=""></button>
+        <button class="thumb" type="button" aria-label="View exterior image 2"><img src="{% static 'main/images/'|add:car.detail_image %}" alt=""></button>
+        <button class="thumb" type="button" aria-label="View cabin interior"><img src="{% static 'main/images/'|add:car.interior_image %}" alt=""></button>
+      </div>
+    </div>
+
+    <div class="detail-info">
+      <h1>{{ car.name }}</h1>
+      <p class="detail-price">SAR {{ car.price|intcomma }}</p>
+      <ul class="quick-specs">
+        <li><span class="material-symbols-outlined">settings</span>Engine <b>{{ car.engine }} {{ car.engine_type }}</b></li>
+        <li><span class="material-symbols-outlined">bolt</span>Power <b>{{ car.power }}</b></li>
+        <li><span class="material-symbols-outlined">timer</span>0 – 100 km/h <b>{{ car.acceleration }}</b></li>
+        <li><span class="material-symbols-outlined">speed</span>Top Speed <b>{{ car.top_speed }}</b></li>
+      </ul>
+      <a href="mailto:sales@sportscars.example?subject=Inquiry: {{ car.name }}" class="btn btn-block">Inquire Now</a>
+      <button class="btn btn-outline btn-block wishlist-btn" type="button" data-wishlist="{{ car.slug }}" aria-pressed="false"><span class="material-symbols-outlined">favorite</span> Save to Wishlist</button>
+    </div>
+  </section>
+
+  <div class="tabs" role="tablist">
+    <button class="tab active" type="button" role="tab" data-tab="overview">Overview</button>
+    <button class="tab" type="button" role="tab" data-tab="specs">Specifications</button>
+    <button class="tab" type="button" role="tab" data-tab="features">Features</button>
+    <button class="tab" type="button" role="tab" data-tab="photos">Gallery</button>
+  </div>
+
+  <section class="tab-panel active" id="overview">
+    <div class="overview-card">
+      <div>
+        <span class="eyebrow">Cabin Interior</span>
+        <h2>{{ car.headline }}</h2>
+        <p>{{ car.description }}</p>
+      </div>
+      <img src="{% static 'main/images/'|add:car.interior_image %}" alt="{{ car.name }} cabin interior">
+    </div>
+    <div class="stats">
+      <div><span class="material-symbols-outlined">settings</span><b>{{ car.engine }}</b>{{ car.engine_type }}</div>
+      <div><span class="material-symbols-outlined">bolt</span><b>{{ car.power }}</b>Max Power</div>
+      <div><span class="material-symbols-outlined">timer</span><b>{{ car.acceleration }}</b>0 – 100 km/h</div>
+      <div><span class="material-symbols-outlined">speed</span><b>{{ car.top_speed }}</b>Top Speed</div>
+    </div>
+  </section>
+
+  <section class="tab-panel" id="specs">
+    <table class="spec-table">
+      <tr><th>Brand</th><td>{{ car.brand }}</td></tr>
+      <tr><th>Model Year</th><td>{{ car.year }}</td></tr>
+      <tr><th>Engine</th><td>{{ car.engine }} {{ car.engine_type }}</td></tr>
+      <tr><th>Max Power</th><td>{{ car.power }}</td></tr>
+      <tr><th>0 – 100 km/h</th><td>{{ car.acceleration }}</td></tr>
+      <tr><th>Top Speed</th><td>{{ car.top_speed }}</td></tr>
+    </table>
+  </section>
+
+  <section class="tab-panel" id="features">
+    <h2>Key Features</h2>
+    <div class="feature-grid">
+      <div><img src="{% static 'main/images/'|add:car.interior_image %}" alt="{{ car.name }} cabin interior" loading="lazy"><h3>Cabin Interior</h3><p>Explore the driver-focused cabin and cockpit.</p></div>
+      <div><img src="{% static 'main/images/'|add:car.image %}" alt="{{ car.name }}" loading="lazy"><h3>Exterior Design</h3><p>See the distinctive design of the {{ car.name }}.</p></div>
+      <div><img src="{% static 'main/images/'|add:car.detail_image %}" alt="{{ car.name }}" loading="lazy"><h3>Exterior Detail</h3><p>A closer look at the {{ car.name }}.</p></div>
+    </div>
+  </section>
+
+  <section class="tab-panel" id="photos">
+    <div class="photo-grid">
+      <img src="{% static 'main/images/'|add:car.image %}" alt="{{ car.name }}" loading="lazy">
+      <img src="{% static 'main/images/'|add:car.detail_image %}" alt="{{ car.name }}" loading="lazy">
+      <img src="{% static 'main/images/'|add:car.interior_image %}" alt="{{ car.name }} cabin interior" loading="lazy">
+    </div>
+  </section>
+</div>
+{% endblock %}

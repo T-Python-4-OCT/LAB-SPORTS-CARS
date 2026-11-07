@@ -1,0 +1,58 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}SportsCars | Performance Without Limits{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <img class="hero-bg" src="{% static 'main/images/hero.jpg' %}" alt="">
+  <div class="container hero-text">
+    <h1>Performance<br>Without Limits</h1>
+    <p>Explore a curated collection of iconic sports cars.</p>
+    <a href="{% url 'all_cars' %}" class="btn">Browse Cars <span class="material-symbols-outlined">arrow_forward</span></a>
+  </div>
+</section>
+
+<section class="container perks reveal">
+  <div><span class="material-symbols-outlined">bolt</span>High Performance</div>
+  <div><span class="material-symbols-outlined">diamond</span>Premium Selection</div>
+  <div><span class="material-symbols-outlined">verified_user</span>Verified &amp; Inspected</div>
+  <div><span class="material-symbols-outlined">support_agent</span>Dedicated Support</div>
+</section>
+
+<section class="container section">
+  <div class="section-head">
+    <h2>Featured Cars</h2>
+    <a href="{% url 'all_cars' %}" class="link-arrow">View All <span class="material-symbols-outlined">arrow_forward</span></a>
+  </div>
+  <div class="car-grid">
+    {% for car in cars %}{% include 'main/_car_card.html' %}{% endfor %}
+  </div>
+</section>
+
+<section class="experience reveal">
+  <img src="{% static 'main/images/taillight.jpg' %}" alt="Close-up of a sports car tail light">
+  <div>
+    <span class="eyebrow">The Experience</span>
+    <h2>More Than a Car</h2>
+    <p>A seamless journey from discovery to ownership, with expert support every step of the way.</p>
+    <a href="{% url 'about' %}" class="btn">Learn More <span class="material-symbols-outlined">arrow_forward</span></a>
+  </div>
+</section>
+
+<section class="container section">
+  <h2>Why Choose Us</h2>
+  <div class="why-grid">
+    <div class="reveal"><span class="material-symbols-outlined">trophy</span><h3>Iconic Models</h3><p>A handpicked range of world-class cars.</p></div>
+    <div class="reveal"><span class="material-symbols-outlined">verified_user</span><h3>Full Transparency</h3><p>Detailed history and inspection.</p></div>
+    <div class="reveal"><span class="material-symbols-outlined">star</span><h3>Expert Guidance</h3><p>Personalized advice from automotive experts.</p></div>
+    <div class="reveal"><span class="material-symbols-outlined">diamond</span><h3>After-Sales Care</h3><p>Ongoing support and exclusive benefits.</p></div>
+  </div>
+</section>
+
+<section class="container">
+  <div class="cta reveal" style="background-image: url('{% static 'main/images/cta.jpg' %}')">
+    <h2>Ready to Drive<br>Your Dream Car?</h2>
+    <a href="{% url 'all_cars' %}" class="btn">Browse Collection <span class="material-symbols-outlined">arrow_forward</span></a>
+  </div>
+</section>
+{% endblock %}

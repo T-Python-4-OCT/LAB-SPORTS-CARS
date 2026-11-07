@@ -1,0 +1,13 @@
+{% load static humanize %}
+<article class="car-card reveal" data-brand="{{ car.brand }}" data-price="{{ car.price }}" data-year="{{ car.year }}">
+  <a href="{% url 'car_detail' car.slug %}" class="car-img">
+    <img src="{% static 'main/images/'|add:car.image %}" alt="{{ car.name }}" loading="lazy">
+  </a>
+  <div class="car-info">
+    <div>
+      <a href="{% url 'car_detail' car.slug %}"><h3>{{ car.name }}</h3></a>
+      <p>SAR {{ car.price|intcomma }}</p>
+    </div>
+    <button class="heart" type="button" data-wishlist="{{ car.slug }}" aria-label="Save {{ car.name }} to wishlist" aria-pressed="false"><span class="material-symbols-outlined">favorite</span></button>
+  </div>
+</article>

@@ -1,0 +1,136 @@
+Image credits
+=============
+
+The following images were downloaded from Wikimedia Commons. See each
+Commons file page for the original work and license details.
+
+gtr.jpg
+  Nissan GT-R R35 (2024); photo by Ethan Llamas.
+  https://commons.wikimedia.org/wiki/File:MIAS_2024_-_2024_Nissan_GT-R_R35_(2).jpg
+  CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/
+
+corvette.jpg
+  Chevrolet Corvette C8 Stingray (2023); photo by Calreyn88.
+  https://commons.wikimedia.org/wiki/File:2023_Chevrolet_Corvette_C8_Stingray_Auto.jpg
+  CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/
+
+r8.jpg
+  Audi R8 V10 RWS; photo by Alexander Migl.
+  https://commons.wikimedia.org/wiki/File:Audi_R8_V10_RWS_MYLE_Festival_2025_DSC_9492.jpg
+  CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/
+
+m4.jpg
+  BMW M4 Competition G82; photo by Ethan Llamas.
+  https://commons.wikimedia.org/wiki/File:BMW_M4_Competition_G82_Brooklyn_Grey_Metallic_02.jpg
+  CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/
+
+mustang.jpg
+  Ford Mustang GT (2018); photo by Vauxford.
+  https://commons.wikimedia.org/wiki/File:2018_Ford_Mustang_GT_5.0_Rear.jpg
+  CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/
+
+supra.jpg
+  Toyota GR Supra (2021); photo by Dietmar Rabich.
+  https://commons.wikimedia.org/wiki/File:D%C3%BClmen,_Auto_Bertels,_Toyota_GR_Supra_--_2021_--_9547.jpg
+  CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/
+
+hero.jpg
+  Ford Mustang GT (2018); photo by Vauxford.
+  https://commons.wikimedia.org/wiki/File:2018_Ford_Mustang_GT_5.0_Front.jpg
+  CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/
+
+taillight.jpg
+  BMW i8 concept taillight; photo by Marco Almbauer.
+  https://commons.wikimedia.org/wiki/File:BMW_i8-concept_Detail_Ruecklicht.jpg
+  Public domain (as marked on the Commons file page).
+
+cta.jpg
+  Chevrolet Corvette C8 Stingray (2022); photo by MrWalkr.
+  https://commons.wikimedia.org/wiki/File:2022_Chevrolet_Corvette_C8_Stingray_LC24.jpg
+  CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/
+
+showroom.jpg
+  Sports and Performance Car showroom; photo by N Chadwick.
+  https://commons.wikimedia.org/wiki/File:Sports_and_Performance_car_showroom,_Grayshott_-_geograph.org.uk_-_2059692.jpg
+  CC BY-SA 2.0: https://creativecommons.org/licenses/by-sa/2.0/
+
+interior.jpg
+  Audi R8 V10 interior; photo by TTTNIS.
+  https://commons.wikimedia.org/wiki/File:Audi_R8_V10_interior.jpg
+  Public domain (as marked on the Commons file page).
+
+wheel.jpg
+  Mercedes-Benz C200 Sports (S205) wheel; photo by Tokumeigakarinoaoshima.
+  https://commons.wikimedia.org/wiki/File:The_tire_wheel_of_Mercedes-Benz_C200_STATIONWAGON_Sports_(S205).JPG
+  CC0: https://creativecommons.org/publicdomain/zero/1.0/
+
+wing.jpg
+  BMW M8 GTE race car rear spoiler; photo by Strubbl.
+  https://commons.wikimedia.org/wiki/File:BMW_M8_GTE_race_car_rear_spoiler_carbon.jpg
+  CC0: https://creativecommons.org/publicdomain/zero/1.0/
+
+Additional model-specific detail photos
+---------------------------------------
+
+gtr-detail.jpg
+  Nissan GT-R (R35); photo by Dinkun Chen.
+  https://commons.wikimedia.org/wiki/File:NISSAN_GT-R_(R35)_China.jpg
+  CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/
+
+corvette-detail.jpg
+  Chevrolet Corvette C8 Stingray (2022); photo by Calreyn88.
+  https://commons.wikimedia.org/wiki/File:2022_Chevrolet_Corvette_C8_Stingray_Auto.jpg
+  CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/
+
+r8-detail.jpg
+  Audi R8 Coupe V10 plus (2018); photo by Vauxford.
+  https://commons.wikimedia.org/wiki/File:2018_Audi_R8_Coupe_V10_plus_Front.jpg
+  CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/
+
+m4-detail.jpg
+  BMW M4 (G82) Competition (2024); photo by Alexander Migl.
+  https://commons.wikimedia.org/wiki/File:2024_BMW_M4_(G82)_Competition_DSC_7856.jpg
+  CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/
+
+mustang-detail.jpg
+  Ford Mustang GT (2018); photo by Vauxford.
+  https://commons.wikimedia.org/wiki/File:2018_Ford_Mustang_GT_5.0_Front.jpg
+  CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/
+
+supra-detail.jpg
+  Toyota GR Supra (2021); photo by Dietmar Rabich.
+  https://commons.wikimedia.org/wiki/File:D%C3%BClmen,_Auto_Bertels,_Toyota_GR_Supra_--_2021_--_9552-4.jpg
+  CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/
+
+Model-specific cabin photos
+---------------------------
+
+gtr-interior.jpg
+  2024 Nissan GT-R R35 dashboard/interior; photo by Ethan Llamas.
+  https://commons.wikimedia.org/wiki/File:MIAS_2024_-_2024_Nissan_GT-R_R35_interior.jpg
+  CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/
+
+corvette-interior.jpg
+  2024 Chevrolet Corvette C8 dashboard/interior; photo by Ethan Llamas.
+  https://commons.wikimedia.org/wiki/File:MIAS_2024_-_2024_Chevrolet_Corvette_C8_6.2_LT2_V8_interior.jpg
+  CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/
+
+r8-interior.jpg
+  Audi R8 V10 cockpit; photo by Sven (charlo.be).
+  https://commons.wikimedia.org/wiki/File:Audi_R8_(V10)_cockpit.jpeg
+  CC BY 2.0: https://creativecommons.org/licenses/by/2.0/
+
+m4-interior.jpg
+  BMW G82 M4 Competition interior; photo by Damian B Oh.
+  https://commons.wikimedia.org/wiki/File:BMW_G82_M4_Competition_Extended_Merino_Leather_Kyalami_Orange_Black_(17).jpg
+  CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/
+
+mustang-interior.jpg
+  Ford Mustang S650 5.0 GT interior; photo by Ethan Llamas.
+  https://commons.wikimedia.org/wiki/File:Ford_Mustang_S650_5.0_GT_interior.jpg
+  CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/
+
+supra-interior.jpg
+  Toyota GR Supra 3.0 Turbo (2023) interior; photo by Ethan Llamas.
+  https://commons.wikimedia.org/wiki/File:Toyota_GR_Supra_3.0_Turbo_2023_(interior).jpg
+  CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/
