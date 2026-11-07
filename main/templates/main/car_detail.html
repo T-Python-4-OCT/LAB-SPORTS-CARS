@@ -1,0 +1,84 @@
+
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}{{ car_name }} | SportsCars{% endblock %}
+
+{% block content %}
+
+<section class="detail-section">
+
+    <div class="detail-breadcrumb">
+        <a href="{% url 'main:home' %}">Home</a>
+        <span> / </span>
+        <a href="{% url 'main:all_cars' %}">Cars</a>
+        <span> / {{ car_name }}</span>
+    </div>
+
+    <div class="detail-grid">
+
+        <div class="detail-image">
+            <img src="{% static car_image %}" alt="{{ car_name }}">
+        </div>
+
+        <div class="detail-info">
+
+            <p class="section-label">BMW M SERIES</p>
+
+            <h1>{{ car_name }}</h1>
+
+            <h2 class="detail-price">SAR {{ car_price }}</h2>
+
+            <p class="detail-description">
+                {{ car_description }}
+            </p>
+
+            <div class="detail-specs">
+
+                <div class="spec-item">
+                    <span class="material-symbols-outlined">speed</span>
+                    <h3>{{ car_power }}</h3>
+                    <p>Power</p>
+                </div>
+
+                <div class="spec-item">
+                    <span class="material-symbols-outlined">timer</span>
+                    <h3>{{ car_acceleration }}</h3>
+                    <p>0–100 km/h</p>
+                </div>
+
+                <div class="spec-item">
+                    <span class="material-symbols-outlined">settings</span>
+                    <h3>{{ car_engine }}</h3>
+                    <p>Twin-Turbo</p>
+                </div>
+
+                <div class="spec-item">
+                    <span class="material-symbols-outlined">directions_car</span>
+                    <h3>{{ car_speed }}</h3>
+                    <p>Top Speed</p>
+                </div>
+
+                <div class="spec-item">
+                    <span class="material-symbols-outlined">directions_car</span>
+                    <h3>{{ car_body }}</h3>
+                    <p>Body Type</p>
+                </div>
+
+            </div>
+
+            <a href="mailto:info@example.com?subject={{ car_name|urlencode }}%20Inquiry"
+               class="detail-btn">
+                Inquire Now
+                <span class="material-symbols-outlined">
+                    arrow_forward
+                </span>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
