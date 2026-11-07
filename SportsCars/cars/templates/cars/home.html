@@ -1,0 +1,136 @@
+\
+{% extends 'Cars/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Performance Without Limits</h1>
+        <p>Discover your dream sports car.</p>
+        <a href="{% url 'all_cars' %}" class="btn-primary">Browse Cars</a>
+    </div>
+
+    <img src="{% static 'images/home_page.jpg' %}" alt="Porsche Sports Car" class="hero-image" fetchpriority="high">
+</section>
+
+<section class="features">
+    <div class="feature">
+        <span class="material-symbols-outlined">speed</span>
+        <h3>High Performance</h3>
+        <p>Experience exceptional power and speed.</p>
+    </div>
+
+    <div class="feature">
+        <span class="material-symbols-outlined">verified</span>
+        <h3>Premium Selection</h3>
+        <p>Explore our exclusive luxury collection.</p>
+    </div>
+
+    <div class="feature">
+        <span class="material-symbols-outlined">workspace_premium</span>
+        <h3>Verified & Inspected</h3>
+        <p>Every car meets our quality standards.</p>
+    </div>
+
+    <div class="feature">
+        <span class="material-symbols-outlined">support_agent</span>
+        <h3>Dedicated Support</h3>
+        <p>We're here to help you find your dream car.</p>
+    </div>
+</section>
+
+<section class="featured" id="featured">
+    <div class="section-heading">
+        <div>
+            <p class="section-subtitle">EXPLORE OUR COLLECTION</p>
+            <h2>Featured Cars</h2>
+        </div>
+        <a href="{% url 'all_cars' %}" class="view-all">View All Cars →</a>
+    </div>
+
+    <div class="cars-grid">
+
+        <div class="car-card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/70/Vue_trois_quarts_avant_F8_tributo.jpg" alt="Ferrari F8 Tributo" loading="lazy">
+            <div class="car-info">
+                <h3>Ferrari F8 Tributo</h3>
+                <p>SAR 1,250,000</p>
+                <a href="{% url 'car_detail' 'ferrari' %}" class="car-link">View Details →</a>
+            </div>
+        </div>
+
+        <div class="car-card">
+            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/2023_Porsche_992_Turbo_S_in_Peridot_Metallic%2C_front_left.jpg?width=1200" alt="Porsche 911 Turbo S" loading="lazy">
+            <div class="car-info">
+                <h3>Porsche 911 Turbo S</h3>
+                <p>SAR 1,295,000</p>
+                <a href="{% url 'car_detail' 'porsche' %}" class="car-link">View Details →</a>
+            </div>
+        </div>
+
+        <div class="car-card">
+            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/2016_Lamborghini_Hurac%C3%A1n_LP_610-4_Coupe_(1).jpg?width=1200" alt="Lamborghini Huracán" loading="lazy">
+            <div class="car-info">
+                <h3>Lamborghini Huracán</h3>
+                <p>SAR 1,150,000</p>
+                <a href="{% url 'car_detail' 'lamborghini' %}" class="car-link">View Details →</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="experience">
+    <div class="experience-content">
+        <p>BUILT FOR THE EXTRAORDINARY</p>
+        <h2>More Than a Car.<br>It's an Experience.</h2>
+        <a href="{% url 'all_cars' %}" class="btn-primary">Explore Our Cars →</a>
+    </div>
+</section>
+
+<section class="why-us" id="why-us">
+    <div class="section-title">
+        <p class="section-subtitle">THE SPORTCARS DIFFERENCE</p>
+        <h2>Why Choose Us?</h2>
+        <p>We believe buying a sports car should be as exciting as driving one.</p>
+    </div>
+
+    <div class="why-grid">
+
+        <div class="why-card">
+            <span class="material-symbols-outlined">diamond</span>
+            <h3>Exclusive Collection</h3>
+            <p>Carefully selected world-class sports cars.</p>
+        </div>
+
+        <div class="why-card">
+            <span class="material-symbols-outlined">verified_user</span>
+            <h3>Trusted Quality</h3>
+            <p>Inspected vehicles with exceptional standards.</p>
+        </div>
+
+        <div class="why-card">
+            <span class="material-symbols-outlined">handshake</span>
+            <h3>Personalized Service</h3>
+            <p>Dedicated assistance throughout your journey.</p>
+        </div>
+
+        <div class="why-card">
+            <span class="material-symbols-outlined">stars</span>
+            <h3>Premium Experience</h3>
+            <p>Luxury service from start to finish.</p>
+        </div>
+
+    </div>
+</section>
+
+<section class="cta">
+    <div class="cta-content">
+        <h2>Ready to Drive Your Dream Car?</h2>
+        <p>Your next extraordinary driving experience starts here.</p>
+        <a href="{% url 'all_cars' %}" class="btn-primary">Explore Our Cars →</a>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,91 @@
+
+{% extends 'Cars/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="detail-page">
+    <div class="detail-container">
+
+        <a href="{% url 'all_cars' %}" class="detail-back">
+            ← Back to All Cars
+        </a>
+
+        <div class="detail-grid">
+
+            <div class="detail-image">
+                <img
+                    src="{{ car.image }}"
+                    alt="{{ car.name }}"
+                    class="detail-main-image"
+                    fetchpriority="high"
+                    decoding="async"
+                >
+
+                <div class="detail-gallery">
+                    {% for image in car.gallery %}
+                        <img
+                            src="{{ image }}"
+                            alt="{{ car.name }} - Gallery photo {{ forloop.counter }}"
+                            loading="lazy"
+                            decoding="async"
+                        >
+                    {% empty %}
+                        <img
+                            src="{{ car.image }}"
+                            alt="{{ car.name }}"
+                            loading="lazy"
+                            decoding="async"
+                        >
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="detail-info">
+                <p class="detail-brand">{{ car.brand }} / {{ car.year }}</p>
+
+                <h1>{{ car.name }}</h1>
+
+                <h2 class="detail-price">{{ car.price }}</h2>
+
+                <p class="detail-description">
+                    {{ car.description }}
+                </p>
+
+                <div class="detail-specs">
+
+                    <div class="spec-box">
+                        <span class="material-symbols-outlined">speed</span>
+                        <h3>{{ car.top_speed }}</h3>
+                        <p>Top Speed</p>
+                    </div>
+
+                    <div class="spec-box">
+                        <span class="material-symbols-outlined">bolt</span>
+                        <h3>{{ car.acceleration }}</h3>
+                        <p>0–100 km/h</p>
+                    </div>
+
+                    <div class="spec-box">
+                        <span class="material-symbols-outlined">settings</span>
+                        <h3>{{ car.power }}</h3>
+                        <p>Horsepower</p>
+                    </div>
+
+                </div>
+
+                <div class="detail-engine">
+                    <h3>Engine</h3>
+                    <p>{{ car.engine }}</p>
+                </div>
+
+                <a href="{% url 'all_cars' %}" class="btn-primary">
+                    Explore More Cars →
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}
