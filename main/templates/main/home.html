@@ -1,0 +1,130 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+{% block nav_home %}active{% endblock %}
+
+{% block content %}
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+    <div class="hero-bg img-box">
+        <img src="{% static 'main/images/porsche-911-gt3.jpg' %}" alt="Porsche 911 on a city street">
+    </div>
+    <div class="container hero-content">
+        <h1 class="hero-title">Performance<br>Without Limits</h1>
+        <p class="hero-text">Explore a curated collection of iconic Porsche sports cars.</p>
+        <a href="{% url 'main:all_cars' %}" class="btn-main">
+            Browse Cars <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+        <div class="hero-dots"><span class="active"></span><span></span><span></span></div>
+    </div>
+</section>
+
+<!-- ===== FEATURES STRIP ===== -->
+<section class="container">
+    <div class="features-strip reveal">
+        <div class="feature-item">
+            <span class="material-symbols-outlined">bolt</span>
+            <span>High Performance</span>
+        </div>
+        <div class="feature-item">
+            <span class="material-symbols-outlined">diamond</span>
+            <span>Premium Selection</span>
+        </div>
+        <div class="feature-item">
+            <span class="material-symbols-outlined">verified_user</span>
+            <span>Verified &amp; Inspected</span>
+        </div>
+        <div class="feature-item">
+            <span class="material-symbols-outlined">support_agent</span>
+            <span>Dedicated Support</span>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FEATURED CARS ===== -->
+<section class="section container">
+    <div class="section-head reveal">
+        <h2 class="section-title">Featured Cars</h2>
+        <a href="{% url 'main:all_cars' %}" class="link-arrow">
+            View All <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+    </div>
+    <div class="row g-4">
+        {% for car in featured_cars %}
+            <div class="col-12 col-sm-6 col-lg-4 reveal" style="transition-delay: {{ forloop.counter0 }}00ms">
+                {% include "main/partials/car_card.html" with car=car %}
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- ===== THE EXPERIENCE ===== -->
+<section class="section container">
+    <div class="experience reveal">
+        <div class="experience-img img-box">
+            <img src="{% static 'main/images/porsche-911-gt3-rain.jpg' %}" alt="Porsche rear lights" loading="lazy">
+        </div>
+        <div class="experience-text">
+            <span class="eyebrow">The Experience</span>
+            <h2 class="section-title">More Than a Car</h2>
+            <p>A seamless journey from discovery to ownership, with expert support every step of the way.</p>
+            <a href="{% url 'main:about' %}" class="btn-main">
+                Learn More <span class="material-symbols-outlined">arrow_forward</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ===== WHY CHOOSE US ===== -->
+<section class="section container">
+    <h2 class="section-title reveal">Why Choose Us</h2>
+    <div class="row g-4 mt-1">
+        <div class="col-6 col-lg-3 reveal">
+            <div class="why-card">
+                <span class="material-symbols-outlined">emoji_events</span>
+                <h3>Iconic Models</h3>
+                <p>A handpicked range of world-class cars.</p>
+            </div>
+        </div>
+        <div class="col-6 col-lg-3 reveal" style="transition-delay: 100ms">
+            <div class="why-card">
+                <span class="material-symbols-outlined">fact_check</span>
+                <h3>Full Transparency</h3>
+                <p>Detailed history and inspection.</p>
+            </div>
+        </div>
+        <div class="col-6 col-lg-3 reveal" style="transition-delay: 200ms">
+            <div class="why-card">
+                <span class="material-symbols-outlined">star</span>
+                <h3>Expert Guidance</h3>
+                <p>Personalized advice from automotive experts.</p>
+            </div>
+        </div>
+        <div class="col-6 col-lg-3 reveal" style="transition-delay: 300ms">
+            <div class="why-card">
+                <span class="material-symbols-outlined">handshake</span>
+                <h3>After-Sales Care</h3>
+                <p>Ongoing support and exclusive benefits.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== CTA BANNER ===== -->
+<section class="container">
+    <div class="cta-banner reveal">
+        <div class="cta-bg img-box">
+            <img src="{% static 'main/images/road-night.jpg' %}" alt="Porsche on a mountain road" loading="lazy">
+        </div>
+        <div class="cta-content">
+            <h2>Ready to Drive<br>Your Dream Car?</h2>
+            <a href="{% url 'main:all_cars' %}" class="btn-main">
+                Browse Collection <span class="material-symbols-outlined">arrow_forward</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
