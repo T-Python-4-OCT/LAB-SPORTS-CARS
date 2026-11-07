@@ -1,0 +1,92 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}{{ t.all_cars }}{% endblock %}
+
+{% block content %}
+
+  <!-- ---------- واجهة الصفحة ---------- -->
+  <section class="container">
+    <div class="page-hero">
+      <img src="{% static 'images/cars-hero.jpg' %}" alt="{{ t.all_cars }}" class="page-hero-img">
+      <div class="page-hero-content">
+        <span class="eyebrow fade-up">{{ t.cars_eyebrow }}</span>
+        <h1 class="fade-up delay-1">{{ t.all_cars }}</h1>
+        <p class="fade-up delay-2">{{ t.cars_text }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- الفلاتر ---------- -->
+  <section class="container">
+    <form class="filters" method="get" action="{% url 'main:cars' %}">
+      <select name="model" class="select">
+        <option value="">{{ t.all_models }}</option>
+        {% for item in all_cars %}
+          <option value="{{ item.slug }}" {% if model == item.slug %}selected{% endif %}>{{ item.name }}</option>
+        {% endfor %}
+      </select>
+
+      <select name="price" class="select">
+        <option value="">{{ t.any_price }}</option>
+        <option value="under500" {% if price == 'under500' %}selected{% endif %}>{{ t.under500 }}</option>
+        <option value="500to1m" {% if price == '500to1m' %}selected{% endif %}>{{ t.p500to1m }}</option>
+        <option value="over1m" {% if price == 'over1m' %}selected{% endif %}>{{ t.over1m }}</option>
+      </select>
+
+      <select name="sort" class="select">
+        <option value="">{{ t.sort_featured }}</option>
+        <option value="low" {% if sort == 'low' %}selected{% endif %}>{{ t.sort_low }}</option>
+        <option value="high" {% if sort == 'high' %}selected{% endif %}>{{ t.sort_high }}</option>
+      </select>
+
+      <button type="submit" class="filter-btn" aria-label="{{ t.apply }}">
+        <span class="material-symbols-outlined">tune</span>
+      </button>
+
+      {% if model or price or sort %}
+        <a href="{% url 'main:cars' %}" class="clear-link">{{ t.clear }}</a>
+      {% endif %}
+    </form>
+
+    <p class="results-count">{{ t.results }}: <strong>{{ cars|length }}</strong></p>
+  </section>
+
+  <!-- ---------- شبكة السيارات ---------- -->
+  <section class="container">
+    <div class="cards">
+      {% for car in cars %}
+        <a href="{% url 'main:car_detail' car.slug %}" class="card fade-up">
+          <div class="card-img">
+            <img src="{% static car.image %}" alt="{{ car.name }}">
+            <span class="badge">{{ car.year }}</span>
+          </div>
+          <div class="card-body">
+            <div>
+              <h3>{{ car.name }}</h3>
+              <p class="price">{{ car.price_label }}</p>
+            </div>
+            <span class="material-symbols-outlined heart">favorite</span>
+          </div>
+          <div class="card-specs">
+            {% for spec in car.specs|slice:":3" %}
+              <span>
+                <span class="material-symbols-outlined">{{ spec.icon }}</span>
+                {{ spec.value }}
+              </span>
+            {% endfor %}
+          </div>
+        </a>
+      {% empty %}
+        <div class="empty">
+          <span class="material-symbols-outlined">search_off</span>
+          <p>{{ t.no_results }}</p>
+          <a href="{% url 'main:cars' %}" class="btn btn-outline">{{ t.show_all }}</a>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+
+{% endblock %}
+
+<!-- Mohammed Alnsafi -->

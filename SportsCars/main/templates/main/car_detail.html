@@ -1,0 +1,146 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}{{ car.name }}{% endblock %}
+
+{% block content %}
+
+  <!-- ---------- الأعلى: معرض الصور + معلومات السيارة ---------- -->
+  <section class="container">
+    <nav class="breadcrumb">
+      <a href="{% url 'main:cars' %}">{{ t.nav_cars }}</a>
+      <span class="material-symbols-outlined">chevron_right</span>
+      <span>{{ car.name }}</span>
+    </nav>
+
+    <div class="detail">
+      <div class="gallery">
+        {% for img in car.gallery %}
+          <input type="radio" name="gallery" id="img{{ forloop.counter }}" class="gallery-radio" {% if forloop.first %}checked{% endif %}>
+        {% endfor %}
+
+        <div class="gallery-main">
+          {% for img in car.gallery %}
+            <img src="{% static img %}" alt="{{ car.name }} {{ forloop.counter }}">
+          {% endfor %}
+        </div>
+
+        <div class="gallery-thumbs">
+          {% for img in car.gallery %}
+            <label for="img{{ forloop.counter }}">
+              <img src="{% static img %}" alt="">
+            </label>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="detail-info fade-up">
+        <span class="eyebrow">{{ t.model }} {{ car.year }}</span>
+        <h1>{{ car.name }}</h1>
+        <p class="detail-price">{{ car.price_label }}</p>
+        <p class="detail-desc">{{ car.description }}</p>
+
+        <ul class="spec-list">
+          {% for spec in car.specs %}
+            <li>
+              <span class="material-symbols-outlined">{{ spec.icon }}</span>
+              <span>{{ spec.label }}</span>
+              <strong>{{ spec.value }}</strong>
+            </li>
+          {% endfor %}
+        </ul>
+
+        <div class="detail-actions">
+          <button type="button" class="btn btn-primary">
+            {{ t.inquire }}
+            <span class="material-symbols-outlined">arrow_forward</span>
+          </button>
+          <button type="button" class="btn btn-outline">
+            <span class="material-symbols-outlined">favorite</span>
+            {{ t.wishlist }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- التابات ---------- -->
+  <section class="container section">
+    <nav class="tabs">
+      <a href="#overview">{{ t.tab_overview }}</a>
+      <a href="#features">{{ t.tab_features }}</a>
+      <a href="#more">{{ t.tab_more }}</a>
+    </nav>
+
+    <div class="overview" id="overview">
+      <div>
+        <span class="eyebrow">{{ t.tab_overview }}</span>
+        <h2>{{ car.name }}, {{ t.elevated }}</h2>
+        <p>{{ car.tagline }}. {{ car.description }}</p>
+      </div>
+
+      <div class="spec-grid">
+        {% for spec in car.specs %}
+          <div class="spec-box">
+            <span class="material-symbols-outlined">{{ spec.icon }}</span>
+            <strong>{{ spec.value }}</strong>
+            <span>{{ spec.label }}</span>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- المميزات الرئيسية ---------- -->
+  <section class="container section" id="features">
+    <h2 class="section-title">{{ t.key_features }}</h2>
+    <div class="key-features">
+      <div class="kf">
+        <div class="kf-img"><img src="{% static car.gallery.1 %}" alt="{{ t.kf1_title }}"></div>
+        <h3>{{ t.kf1_title }}</h3>
+        <p>{{ t.kf1_text }}</p>
+      </div>
+      <div class="kf">
+        <div class="kf-img"><img src="{% static car.gallery.2 %}" alt="{{ t.kf2_title }}"></div>
+        <h3>{{ t.kf2_title }}</h3>
+        <p>{{ t.kf2_text }}</p>
+      </div>
+      <div class="kf">
+        <div class="kf-img"><img src="{% static car.gallery.3 %}" alt="{{ t.kf3_title }}"></div>
+        <h3>{{ t.kf3_title }}</h3>
+        <p>{{ t.kf3_text }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- سيارات ثانية قد تعجبك ---------- -->
+  <section class="container section" id="more">
+    <div class="section-head">
+      <h2>{{ t.also_like }}</h2>
+      <a href="{% url 'main:cars' %}" class="link-arrow">
+        {{ t.view_all }}
+        <span class="material-symbols-outlined">arrow_forward</span>
+      </a>
+    </div>
+
+    <div class="cards cards-2">
+      {% for other in others %}
+        <a href="{% url 'main:car_detail' other.slug %}" class="card">
+          <div class="card-img">
+            <img src="{% static other.image %}" alt="{{ other.name }}">
+          </div>
+          <div class="card-body">
+            <div>
+              <h3>{{ other.name }}</h3>
+              <p class="price">{{ other.price_label }}</p>
+            </div>
+            <span class="material-symbols-outlined heart">favorite</span>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+
+{% endblock %}
+
+<!-- Mohammed Alnsafi -->

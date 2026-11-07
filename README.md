@@ -1,29 +1,39 @@
-# LAB-SPORTS-CARS
+# LAB-SPORTS-CARS — Land Rover Saudi (Student Project)
 
+A Django website for a Land Rover dealership in Riyadh, built for the Tuwaiq Academy bootcamp.
+Student demo project, not for publication.
 
+## Pages
+- Home `/`
+- All Cars `/cars/` (filter by model and price, sort by price)
+- 3 Car Detail pages `/cars/<slug>/`
+- About Us `/about/`
 
-## Create a website for a sports cars dealership (SportsCars) , the website should have a home page that looks like the image below , you should :
-- use templates & templates inheritance.
-- use google fonts (choose the same font `Phudu` , or a similar one) [https://fonts.google.com](https://fonts.google.com)
-- use google fonts icons (choose similar icons) [https://fonts.google.com/icons](https://fonts.google.com/icons)
-- use images and icons of your chosing (not necessarily like the below image, You can find image in the resources folder).
-- use static for your static files (css, images, videos, etc.)
-- use icons of your choosing (not necessarily like the below image)
-- Implement dark mode.
-- Use CSS Transitions and Animations to add vitality to your page.
-- Use fake urls for links, or demo links (real links for example to instagram online car dealer)
-- It should be responsive (looks good on desktop & mobile)
-- you can use css libraries like (bootstrap, tailwinds, etc.) along with your own css. 
+## Features
+- Templates & template inheritance (`base.html`)
+- Google Font **Phudu** + Google Material Symbols icons
+- Static files (CSS & images)
+- Dark mode saved in a cookie
+- Arabic / English switch saved in a cookie
+- CSS transitions & animations
+- Responsive design (desktop & mobile)
+- Path parameters & query parameters
 
+## Run
+python manage.py runserver
 
-## Required Pages:
-- 1 Home page
-- 3 Cars Detail Page.
-- 1 All Cars Page.
-- 1 About us page
+Car images © JLR Media.
 
+## UX/UI Screens
 
+### Light Mode – English
+<img width="100%" src="landrover_all_pages_light_english_2500x1667.png">
 
+### Light Mode – Arabic
+<img width="100%" src="landrover_all_pages_light_arabic_2500x1667.png">
 
-### UX/UI Screens
-<img width="100%" src="sportcars_all_pages_2500x1667.png?raw=True">
+### Dark Mode – English
+<img width="100%" src="landrover_all_pages_dark_english_2500x1667.png">
+
+### Dark Mode – Arabic
+<img width="100%" src="landrover_all_pages_dark_arabic_2500x1667.png">
