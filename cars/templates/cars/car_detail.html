@@ -1,0 +1,493 @@
+
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}{{ car.name }} | The Crown Collection{% endblock %}
+
+{% block content %}
+
+<section class="relative overflow-hidden bg-[#F4F0E8] px-5 py-6 text-[#111418] dark:bg-[#111418] dark:text-[#F4F0E8] sm:px-8 lg:px-12">
+
+    <div class="mx-auto max-w-7xl">
+
+        <nav aria-label="Breadcrumb" class="flex flex-wrap items-center gap-2 text-xs sm:text-sm">
+
+            <a href="{% url 'main:home' %}"
+               class="text-gray-600 transition hover:text-[#B99A62] dark:text-gray-300">
+                Home
+            </a>
+
+            <span class="material-symbols-outlined text-sm text-[#B99A62]">
+                chevron_right
+            </span>
+
+            <a href="{% url 'cars:all_cars' %}"
+               class="text-gray-600 transition hover:text-[#B99A62] dark:text-gray-300">
+                Our Cars
+            </a>
+
+            <span class="material-symbols-outlined text-sm text-[#B99A62]">
+                chevron_right
+            </span>
+
+            <span class="font-semibold text-[#B99A62]">
+                {{ car.name }}
+            </span>
+
+        </nav>
+
+    </div>
+
+</section>
+
+<section class="relative isolate overflow-hidden bg-[#F4F0E8] text-[#111418] dark:bg-[#111418] dark:text-[#F4F0E8]">
+
+    <div class="royal-atmosphere" aria-hidden="true">
+        <span class="royal-ring royal-ring-one"></span>
+        <span class="royal-ring royal-ring-two"></span>
+        <span class="royal-particle particle-one"></span>
+        <span class="royal-particle particle-three"></span>
+        <span class="royal-particle particle-six"></span>
+    </div>
+
+    <div class="relative z-10 mx-auto grid max-w-7xl items-center gap-12 px-5 pt-8 pb-20 sm:px-8 lg:grid-cols-2 lg:px-12">
+
+        <div class="hero-car relative">
+
+            <div class="relative flex min-h-80 items-center justify-center overflow-hidden rounded-2xl border border-[#B99A62]/30 bg-white p-6 shadow-xl sm:min-h-112 dark:bg-[#202A30]">
+
+                <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(185,154,98,0.18),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(185,154,98,0.32),transparent_70%)]"></div>
+
+                <img src="{% static car.image %}"
+                     alt="{{ car.name }}"
+                     class="relative z-10 h-72 w-full object-contain transition duration-700 hover:scale-105 sm:h-96">
+
+            </div>
+
+            <div class="absolute -bottom-5 left-5 rounded-lg border border-[#B99A62] bg-[#263D46] px-6 py-4 text-[#F4F0E8] shadow-xl sm:left-8">
+
+                <p class="text-[10px] tracking-[0.2em] text-[#B99A62] uppercase">
+                    Model
+                </p>
+
+                <p class="mt-1 font-['Phudu'] text-xl font-semibold">
+                    {{ car.year }}
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="hero-content pt-8 lg:pt-0">
+
+            <div class="mb-5 flex flex-wrap items-center gap-3">
+
+                <span class="inline-flex items-center gap-2 rounded-full border border-[#B99A62]/40 px-4 py-2 text-xs font-semibold tracking-wider text-[#B99A62] uppercase">
+                    <span class="material-symbols-outlined text-base">
+                        workspace_premium
+                    </span>
+                    {{ car.category }}
+                </span>
+
+                <span class="text-xs tracking-widest text-gray-600 uppercase dark:text-gray-300">
+                    Made in {{ car.origin }}
+                </span>
+
+            </div>
+
+            <h1 class="font-['Phudu'] text-4xl leading-tight font-semibold sm:text-5xl xl:text-6xl">
+                {{ car.name }}
+            </h1>
+
+            <p class="mt-5 font-['Phudu'] text-sm tracking-[0.12em] text-[#B99A62] uppercase sm:text-base">
+                {{ car.tagline }}
+            </p>
+
+            <div class="my-7 h-0.5 w-24 bg-[#B99A62]"></div>
+
+            <p class="max-w-xl text-base leading-8 text-gray-600 dark:text-gray-300">
+                {{ car.description }}
+            </p>
+
+            <div class="mt-9 rounded-xl border border-[#B99A62]/30 bg-white p-6 shadow-sm dark:bg-[#263D46] sm:p-8">
+
+                <p class="text-xs font-semibold tracking-[0.2em] text-[#B99A62] uppercase">
+                    Reference Price
+                </p>
+
+                <p class="mt-3 font-['Phudu'] text-3xl font-semibold text-[#111418] dark:text-[#F4F0E8] sm:text-4xl">
+                    {{ car.price }}
+                </p>
+
+                <p class="mt-4 text-xs leading-6 text-gray-600 dark:text-gray-300">
+                    {{ car.price_note }}
+                </p>
+
+            </div>
+
+            <div class="mt-7 flex flex-wrap gap-3">
+
+                <a href="#specifications"
+                   class="inline-flex items-center justify-center gap-2 rounded-md bg-[#B99A62] px-6 py-4 text-sm font-semibold text-[#111418] transition duration-300 hover:-translate-y-1 hover:bg-[#d2b580]">
+                    Explore Specifications
+                    <span class="material-symbols-outlined">
+                        arrow_forward
+                    </span>
+                </a>
+
+                <button id="wishlistToggle"
+                        type="button"
+                        aria-label="Add to favorites"
+                        aria-pressed="false"
+                        data-car-id="{{ car.id }}"
+                        class="inline-flex items-center justify-center gap-2 rounded-md border border-[#B99A62] px-6 py-4 text-sm font-semibold transition duration-300 hover:-translate-y-1 hover:bg-[#B99A62] hover:text-[#111418]">
+
+                    <span class="material-symbols-outlined text-[#B99A62]">
+                        favorite
+                    </span>
+
+                    Add to Favorites
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="border-y border-[#B99A62]/20 bg-[#263D46] px-6 py-9 text-[#F4F0E8]">
+
+    <div class="mx-auto grid max-w-7xl grid-cols-2 gap-8 text-center lg:grid-cols-4">
+
+        <div class="reveal">
+            <span class="material-symbols-outlined mb-3 text-3xl text-[#B99A62]">
+                speed
+            </span>
+            <p class="text-xs tracking-wider text-gray-300 uppercase">
+                Performance
+            </p>
+            <p class="mt-2 font-['Phudu'] text-lg font-semibold">
+                {{ car.power }}
+            </p>
+        </div>
+
+        <div class="reveal" style="--reveal-delay: 100ms">
+            <span class="material-symbols-outlined mb-3 text-3xl text-[#B99A62]">
+                settings
+            </span>
+            <p class="text-xs tracking-wider text-gray-300 uppercase">
+                Engine
+            </p>
+            <p class="mt-2 font-['Phudu'] text-lg font-semibold">
+                {{ car.engine }}
+            </p>
+        </div>
+
+        <div class="reveal" style="--reveal-delay: 200ms">
+            <span class="material-symbols-outlined mb-3 text-3xl text-[#B99A62]">
+                directions_car
+            </span>
+            <p class="text-xs tracking-wider text-gray-300 uppercase">
+                Drivetrain
+            </p>
+            <p class="mt-2 font-['Phudu'] text-lg font-semibold">
+                {{ car.drivetrain }}
+            </p>
+        </div>
+
+        <div class="reveal" style="--reveal-delay: 300ms">
+            <span class="material-symbols-outlined mb-3 text-3xl text-[#B99A62]">
+                airline_seat_recline_extra
+            </span>
+            <p class="text-xs tracking-wider text-gray-300 uppercase">
+                Seating
+            </p>
+            <p class="mt-2 font-['Phudu'] text-lg font-semibold">
+                {{ car.seats }}
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<section id="overview" class="bg-[#F4F0E8] px-6 py-24 text-[#111418] dark:bg-[#111418] dark:text-[#F4F0E8] lg:px-12">
+
+    <div class="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-2">
+
+        <div class="reveal">
+
+            <p class="mb-5 text-xs font-semibold tracking-[0.3em] text-[#B99A62] uppercase">
+                The Story
+            </p>
+
+            <h2 class="font-['Phudu'] text-4xl font-semibold sm:text-5xl">
+                MORE THAN
+                <span class="block text-[#B99A62]">
+                    AN AUTOMOBILE.
+                </span>
+            </h2>
+
+            <div class="my-8 h-0.5 w-24 bg-[#B99A62]"></div>
+
+            <p class="text-base leading-9 text-gray-600 dark:text-gray-300">
+                {{ car.story }}
+            </p>
+
+            <div class="mt-9 flex items-center gap-4 border-l-2 border-[#B99A62] pl-5">
+
+                <span class="material-symbols-outlined text-4xl text-[#B99A62]">
+                    auto_awesome
+                </span>
+
+                <div>
+                    <p class="font-['Phudu'] text-lg font-semibold">
+                        Japanese Craftsmanship
+                    </p>
+                    <p class="mt-1 text-sm text-gray-600 dark:text-gray-300">
+                        Timeless Heritage. Modern Prestige.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="reveal relative">
+
+            <div class="absolute -top-4 -right-4 h-24 w-24 border-t-2 border-r-2 border-[#B99A62]"></div>
+
+            <div class="group relative flex min-h-80 items-center justify-center overflow-hidden rounded-xl border border-[#B99A62]/30 bg-white p-8 shadow-xl dark:bg-[#202A30]">
+
+                <img src="{% static car.image %}"
+                     alt="{{ car.name }} - Heritage and design"
+                     class="h-80 w-full object-contain transition duration-700 group-hover:scale-105"
+                     loading="lazy">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section id="specifications" class="bg-[#263D46] px-6 py-24 text-[#F4F0E8] lg:px-12">
+
+    <div class="mx-auto max-w-7xl">
+
+        <div class="reveal mb-14 text-center">
+
+            <p class="mb-4 text-xs font-semibold tracking-[0.3em] text-[#B99A62] uppercase">
+                Engineering Excellence
+            </p>
+
+            <h2 class="font-['Phudu'] text-4xl font-semibold sm:text-5xl">
+                TECHNICAL
+                <span class="text-[#B99A62]">
+                    SPECIFICATIONS
+                </span>
+            </h2>
+
+            <p class="mx-auto mt-6 max-w-2xl text-sm leading-7 text-gray-300">
+                Discover the engineering characteristics that define the {{ car.name }}.
+            </p>
+
+        </div>
+
+        <div class="reveal grid overflow-hidden rounded-xl border border-[#B99A62]/30 bg-[#111418]/40 sm:grid-cols-2">
+
+            {% for spec in car.specifications %}
+
+            <div class="flex min-w-0 flex-col gap-3 border-b border-[#B99A62]/15 px-6 py-6 sm:px-9">
+
+                <span class="text-xs font-medium tracking-wider text-[#B99A62] uppercase">
+                    {{ spec.label }}
+                </span>
+
+                <span class="wrap-break-word font-['Phudu'] text-base font-semibold text-[#F4F0E8] sm:text-lg">
+                    {{ spec.value }}
+                </span>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        <div class="reveal mt-9 text-center">
+
+            <p class="text-xs leading-6 text-gray-300">
+                Specifications refer to the model or grade shown and may vary by market and production year.
+            </p>
+
+            {% if car.source %}
+
+            <a href="{{ car.source }}"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#B99A62] transition hover:text-[#F4F0E8]">
+                View Reference Source
+                <span class="material-symbols-outlined text-lg">
+                    open_in_new
+                </span>
+            </a>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</section>
+
+<section id="features" class="bg-[#F4F0E8] px-6 py-24 text-[#111418] dark:bg-[#111418] dark:text-[#F4F0E8] lg:px-12">
+
+    <div class="mx-auto max-w-7xl">
+
+        <div class="reveal mb-14">
+
+            <p class="mb-4 text-xs font-semibold tracking-[0.3em] text-[#B99A62] uppercase">
+                Distinctive Character
+            </p>
+
+            <h2 class="font-['Phudu'] text-4xl font-semibold sm:text-5xl">
+                SIGNATURE
+                <span class="text-[#B99A62]">
+                    HIGHLIGHTS
+                </span>
+            </h2>
+
+            <p class="mt-5 max-w-2xl text-sm leading-7 text-gray-600 dark:text-gray-300">
+                Every model has its own identity. Explore the features that make the {{ car.name }} exceptional.
+            </p>
+
+        </div>
+
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+
+            {% for highlight in car.highlights %}
+
+            <div class="reveal group relative overflow-hidden rounded-xl border border-[#B99A62]/25 bg-white p-7 shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-xl dark:bg-[#263D46]"
+                 style="--reveal-delay: {{ forloop.counter0 }}00ms">
+
+                <div class="absolute top-0 left-0 h-1 w-full bg-[#B99A62]"></div>
+
+                <span class="material-symbols-outlined mb-7 text-4xl text-[#B99A62] transition duration-300 group-hover:scale-110">
+                    verified
+                </span>
+
+                <p class="mb-3 font-['Phudu'] text-xs tracking-wider text-[#B99A62]">
+                    FEATURE 0{{ forloop.counter }}
+                </p>
+
+                <h3 class="text-lg leading-7 font-semibold text-[#111418] dark:text-[#F4F0E8]">
+                    {{ highlight }}
+                </h3>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+<section id="gallery" class="overflow-hidden bg-[#263D46] px-6 py-24 text-[#F4F0E8] lg:px-12">
+
+    <div class="mx-auto max-w-7xl">
+
+        <div class="reveal mb-12 text-center">
+
+            <p class="mb-4 text-xs font-semibold tracking-[0.3em] text-[#B99A62] uppercase">
+                The Art of Design
+            </p>
+
+            <h2 class="font-['Phudu'] text-4xl font-semibold sm:text-5xl">
+                THE CROWN
+                <span class="text-[#B99A62]">
+                    GALLERY
+                </span>
+            </h2>
+
+        </div>
+
+        <div class="reveal group relative flex min-h-80 items-center justify-center overflow-hidden rounded-2xl border border-[#B99A62]/30 bg-[#202A30] p-7 sm:min-h-112">
+
+            <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(185,154,98,0.24),transparent_70%)]"></div>
+
+            <img src="{% static car.image %}"
+                 alt="{{ car.name }} - Full vehicle view"
+                 class="relative z-10 h-80 w-full object-contain transition duration-700 group-hover:scale-105 sm:h-112"
+                 loading="lazy">
+
+            <div class="absolute right-5 bottom-5 left-5 z-20 flex flex-wrap items-center justify-between gap-3 rounded-lg border border-[#B99A62]/30 bg-[#111418]/90 px-5 py-4">
+
+                <span class="font-['Phudu'] text-sm font-semibold sm:text-lg">
+                    {{ car.name }}
+                </span>
+
+                <span class="text-xs tracking-wider text-[#B99A62] uppercase">
+                    {{ car.category }}
+                </span>
+
+            </div>
+
+        </div>
+
+        <p class="mt-5 text-center text-xs text-gray-300">
+            Featured vehicle image
+        </p>
+
+    </div>
+
+</section>
+
+<section class="relative isolate overflow-hidden bg-[#111418] px-6 py-24 text-center text-[#F4F0E8] sm:py-28">
+
+    <div class="royal-atmosphere royal-atmosphere-small" aria-hidden="true">
+        <span class="royal-ring royal-ring-two"></span>
+        <span class="royal-particle particle-two"></span>
+        <span class="royal-particle particle-four"></span>
+        <span class="royal-particle particle-seven"></span>
+    </div>
+
+    <div class="reveal relative z-10 mx-auto max-w-3xl">
+
+        <span class="material-symbols-outlined text-5xl text-[#B99A62]">
+            workspace_premium
+        </span>
+
+        <p class="mt-6 text-xs font-semibold tracking-[0.3em] text-[#B99A62] uppercase">
+            Explore More
+        </p>
+
+        <h2 class="mt-5 font-['Phudu'] text-4xl leading-tight font-semibold sm:text-5xl">
+            YOUR JOURNEY
+            <span class="block text-[#B99A62]">
+                CONTINUES.
+            </span>
+        </h2>
+
+        <p class="mx-auto mt-6 max-w-xl text-base leading-8 text-gray-300">
+            From timeless classics to modern icons, discover more
+            remarkable expressions of Japanese automotive luxury.
+        </p>
+
+        <a href="{% url 'cars:all_cars' %}"
+           class="mt-10 inline-flex items-center gap-3 rounded-md bg-[#B99A62] px-8 py-4 text-sm font-semibold text-[#111418] transition duration-300 hover:-translate-y-1 hover:bg-[#d2b580]">
+            Explore All Cars
+            <span class="material-symbols-outlined">
+                arrow_forward
+            </span>
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

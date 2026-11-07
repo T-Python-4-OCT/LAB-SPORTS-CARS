@@ -1,0 +1,309 @@
+
+[
+  {
+    "id": 1,
+    "name": "Toyota Crown Sedan",
+    "category": "Modern Luxury",
+    "year": "2023",
+    "tagline": "THE NEW STANDARD OF PRESTIGE",
+    "description": "A modern Japanese flagship that combines refined hybrid performance with the elegance of a traditional executive sedan.",
+    "story": "The Crown Sedan represents a new chapter in Japanese luxury. Its elegant proportions, quiet hybrid powertrain, and sophisticated cabin create an experience focused on confidence, comfort, and understated prestige.",
+    "image": "main/images/crown-sedan-hero.png",
+    "price": "¥7,300,000",
+    "price_note": "Japan launch MSRP, 2023 — Z Hybrid. Not a current selling price.",
+    "engine": "2.5L Hybrid",
+    "power": "Hybrid System",
+    "transmission": "Multi-Stage Hybrid",
+    "drivetrain": "Rear-Wheel Drive",
+    "seats": "5 Seats",
+    "origin": "Japan",
+    "specifications": [
+      {
+        "label": "Model Year",
+        "value": "2023"
+      },
+      {
+        "label": "Grade",
+        "value": "Z Hybrid"
+      },
+      {
+        "label": "Powertrain",
+        "value": "2.5L Hybrid"
+      },
+      {
+        "label": "Transmission",
+        "value": "Multi-Stage Hybrid"
+      },
+      {
+        "label": "Drivetrain",
+        "value": "Rear-Wheel Drive"
+      },
+      {
+        "label": "Seating Capacity",
+        "value": "5"
+      }
+    ],
+    "highlights": [
+      "Elegant flagship sedan proportions",
+      "Refined hybrid driving experience",
+      "Rear-wheel-drive architecture",
+      "Japanese executive-class comfort"
+    ],
+    "source": "https://global.toyota/en/newsroom/toyota/39935774.html"
+  },
+  {
+    "id": 2,
+    "name": "Toyota Century G50",
+    "category": "Royal Heritage",
+    "year": "1997–2017",
+    "tagline": "THE LEGEND OF JAPANESE ROYALTY",
+    "description": "A legendary chauffeur-driven sedan featuring Japan's iconic 5.0-liter V12 engine and a philosophy of absolute refinement.",
+    "story": "The second-generation Century is a monument to traditional Japanese luxury. Designed for dignified travel, it places extraordinary importance on passenger comfort, smoothness, and silence. Its legendary V12 engine makes it one of Toyota's most remarkable creations.",
+    "image": "main/images/century-g50-heritage.png",
+    "price": "Collector Market",
+    "price_note": "Current value depends on condition, model year, mileage, and import market.",
+    "engine": "5.0L V12",
+    "power": "280 PS",
+    "transmission": "Automatic",
+    "drivetrain": "Rear-Wheel Drive",
+    "seats": "5 Seats",
+    "origin": "Japan",
+    "specifications": [
+      {
+        "label": "Production",
+        "value": "1997–2017"
+      },
+      {
+        "label": "Chassis Code",
+        "value": "GZG50"
+      },
+      {
+        "label": "Engine",
+        "value": "1GZ-FE V12"
+      },
+      {
+        "label": "Displacement",
+        "value": "4,996 cc"
+      },
+      {
+        "label": "Maximum Power",
+        "value": "280 PS"
+      },
+      {
+        "label": "Wheelbase",
+        "value": "3,025 mm"
+      }
+    ],
+    "highlights": [
+      "Legendary Japanese V12 engine",
+      "Chauffeur-focused luxury cabin",
+      "Electronically controlled air suspension",
+      "Traditional and understated exterior design"
+    ],
+    "source": "https://www.toyota-global.com/company/history_of_toyota/75years/vehicle_lineage/car/id60010476/index.html"
+  },
+  {
+    "id": 3,
+    "name": "Toyota Crown Premium",
+    "category": "Premium Luxury",
+    "year": "2023",
+    "tagline": "EVERYDAY ELEGANCE, REDEFINED",
+    "description": "A premium hybrid sedan combining advanced technology, everyday comfort, and distinctive Japanese design.",
+    "story": "The Crown Premium offers a different interpretation of luxury: one made for everyday driving without compromising elegance. Its efficient hybrid powertrain, premium interior, and modern technologies balance practicality with a distinguished presence.",
+    "image": "main/images/crown-premium.png",
+    "price": "SAR 178,480",
+    "price_note": "Published Saudi price for the 2023 Premium grade. Historical reference only.",
+    "engine": "2.5L Hybrid",
+    "power": "218 HP",
+    "transmission": "E-CVT",
+    "drivetrain": "Front-Wheel Drive",
+    "seats": "5 Seats",
+    "origin": "Japan",
+    "specifications": [
+      {
+        "label": "Model Year",
+        "value": "2023"
+      },
+      {
+        "label": "Saudi Grade",
+        "value": "Premium"
+      },
+      {
+        "label": "Engine",
+        "value": "2.5L Hybrid"
+      },
+      {
+        "label": "System Output",
+        "value": "218 HP"
+      },
+      {
+        "label": "Transmission",
+        "value": "E-CVT"
+      },
+      {
+        "label": "Wheels",
+        "value": "19-inch Alloy"
+      }
+    ],
+    "highlights": [
+      "Efficient hybrid powertrain",
+      "Leather seating with front ventilation",
+      "12.3-inch multimedia display",
+      "Distinctive premium exterior styling"
+    ],
+    "source": "https://www.toyota.com.sa/en/vehicles/passenger/4444/crowntest"
+  },
+  {
+    "id": 4,
+    "name": "Toyota Celsior UCF30",
+    "category": "Classic Elegance",
+    "year": "2000–2006",
+    "tagline": "THE SILENCE OF PERFECTION",
+    "description": "An iconic Japanese luxury sedan powered by a smooth 4.3-liter V8 and celebrated for extraordinary ride comfort.",
+    "story": "The third-generation Celsior embodies Toyota's pursuit of quiet excellence. Its naturally aspirated V8, balanced rear-wheel-drive platform, and luxurious interior helped define a generation of Japanese executive sedans.",
+    "image": "main/images/toyota-celsior.png",
+    "price": "From ¥5,400,000",
+    "price_note": "Original Japan new-car starting price in 2000. Not a present-day used-car valuation.",
+    "engine": "4.3L V8",
+    "power": "280 PS",
+    "transmission": "5-Speed Automatic",
+    "drivetrain": "Rear-Wheel Drive",
+    "seats": "5 Seats",
+    "origin": "Japan",
+    "specifications": [
+      {
+        "label": "Production",
+        "value": "2000–2006"
+      },
+      {
+        "label": "Chassis Code",
+        "value": "UCF30"
+      },
+      {
+        "label": "Engine",
+        "value": "3UZ-FE V8"
+      },
+      {
+        "label": "Displacement",
+        "value": "4,292 cc"
+      },
+      {
+        "label": "Maximum Power",
+        "value": "280 PS"
+      },
+      {
+        "label": "Launch Transmission",
+        "value": "5-Speed Automatic"
+      }
+    ],
+    "highlights": [
+      "Silky naturally aspirated V8",
+      "Refined rear-wheel-drive sedan",
+      "Excellent cabin quietness",
+      "Timeless early-2000s Japanese luxury"
+    ],
+    "source": "https://www.toyota-global.com/company/history_of_toyota/75years/vehicle_lineage/car/id60010362/index.html"
+  },
+  {
+    "id": 5,
+    "name": "Toyota Century SUV",
+    "category": "Royal SUV",
+    "year": "2023",
+    "tagline": "A NEW DIMENSION OF ROYAL LUXURY",
+    "description": "An extraordinary chauffeur-focused luxury SUV combining traditional Century values with a plug-in hybrid powertrain.",
+    "story": "The Century SUV reimagines the Japanese flagship for a new era. Developed around an exceptional rear-passenger experience, it combines the commanding presence of an SUV with the serenity, privacy, and craftsmanship associated with the Century name.",
+    "image": "main/images/century-suv.png",
+    "price": "¥25,000,000",
+    "price_note": "Japan launch MSRP, 2023. Not a current selling price.",
+    "engine": "3.5L V6 PHEV",
+    "power": "Plug-in Hybrid",
+    "transmission": "E-CVT",
+    "drivetrain": "E-Four Advanced",
+    "seats": "4 Seats",
+    "origin": "Japan",
+    "specifications": [
+      {
+        "label": "Launch Year",
+        "value": "2023"
+      },
+      {
+        "label": "Powertrain",
+        "value": "3.5L V6 Plug-in Hybrid"
+      },
+      {
+        "label": "Transmission",
+        "value": "E-CVT"
+      },
+      {
+        "label": "Drivetrain",
+        "value": "E-Four Advanced"
+      },
+      {
+        "label": "Seating Capacity",
+        "value": "4"
+      },
+      {
+        "label": "Length",
+        "value": "5,205 mm"
+      }
+    ],
+    "highlights": [
+      "Exclusive four-passenger configuration",
+      "Plug-in hybrid performance",
+      "Rear-passenger-focused luxury",
+      "Distinctive Century craftsmanship"
+    ],
+    "source": "https://global.toyota/en/newsroom/toyota/39708909.html"
+  },
+  {
+    "id": 6,
+    "name": "Toyota Crown RS Advance S220",
+    "category": "Sport Luxury",
+    "year": "2018",
+    "tagline": "WHERE PERFORMANCE MEETS PRESTIGE",
+    "description": "A dynamic Japanese sport sedan that blends responsive hybrid performance with the refinement of the Crown legacy.",
+    "story": "The S220 Crown RS Advance introduces an athletic character to Toyota's celebrated executive sedan. Its sport-oriented styling, responsive chassis, and sophisticated hybrid technology create a distinctive balance between driving enjoyment and traditional comfort.",
+    "image": "main/images/crown-rs-advance.png",
+    "price": "¥5,799,600",
+    "price_note": "Japan launch MSRP, 2018 — RS Advance 2.5L Hybrid RWD. Not a current selling price.",
+    "engine": "2.5L Hybrid",
+    "power": "Hybrid System",
+    "transmission": "Toyota Hybrid System II",
+    "drivetrain": "Rear-Wheel Drive",
+    "seats": "5 Seats",
+    "origin": "Japan",
+    "specifications": [
+      {
+        "label": "Model Year",
+        "value": "2018"
+      },
+      {
+        "label": "Generation",
+        "value": "S220"
+      },
+      {
+        "label": "Grade",
+        "value": "RS Advance"
+      },
+      {
+        "label": "Engine",
+        "value": "2.5L Dynamic Force Hybrid"
+      },
+      {
+        "label": "Hybrid System",
+        "value": "Toyota Hybrid System II"
+      },
+      {
+        "label": "Drivetrain",
+        "value": "Rear-Wheel Drive"
+      }
+    ],
+    "highlights": [
+      "Distinctive RS sport styling",
+      "Rear-wheel-drive driving dynamics",
+      "Efficient hybrid powertrain",
+      "Sportiness combined with executive comfort"
+    ],
+    "source": "https://global.toyota/en/newsroom/toyota/23102775.html"
+  }
+]

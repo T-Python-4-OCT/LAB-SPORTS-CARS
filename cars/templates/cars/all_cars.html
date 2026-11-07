@@ -1,0 +1,247 @@
+
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}Our Collection | The Crown Collection{% endblock %}
+
+{% block content %}
+
+<section class="collection-hero relative isolate overflow-hidden bg-[#111418] px-6 py-24 text-center text-[#F4F0E8] sm:py-32">
+
+    <div class="royal-atmosphere" aria-hidden="true">
+        <span class="royal-ring royal-ring-one"></span>
+        <span class="royal-ring royal-ring-two"></span>
+        <span class="royal-ring royal-ring-three"></span>
+        <span class="royal-particle particle-one"></span>
+        <span class="royal-particle particle-two"></span>
+        <span class="royal-particle particle-three"></span>
+        <span class="royal-particle particle-four"></span>
+        <span class="royal-particle particle-five"></span>
+        <span class="royal-particle particle-six"></span>
+    </div>
+
+    <div class="hero-content relative z-10 mx-auto max-w-4xl">
+
+        <div class="mb-7 flex items-center justify-center gap-4">
+            <span class="h-px w-10 bg-[#B99A62]"></span>
+            <span class="text-xs font-semibold tracking-[0.3em] text-[#B99A62] uppercase">
+                The Crown Collection
+            </span>
+            <span class="h-px w-10 bg-[#B99A62]"></span>
+        </div>
+
+        <h1 class="font-['Phudu'] text-5xl leading-tight font-semibold sm:text-7xl lg:text-8xl">
+            OUR
+            <span class="text-[#B99A62]">COLLECTION</span>
+        </h1>
+
+        <div class="mx-auto mt-8 h-px w-28 bg-[#B99A62]"></div>
+
+        <p class="mx-auto mt-8 max-w-2xl text-base leading-8 text-gray-300">
+            Discover six exclusive expressions of Japanese luxury,
+            timeless craftsmanship, and modern prestige.
+        </p>
+
+        <div class="mt-11 flex flex-wrap items-center justify-center gap-4">
+
+            <div class="inline-flex items-center gap-3 rounded-full border border-[#B99A62]/40 bg-[#263D46]/60 px-6 py-3">
+                <span class="material-symbols-outlined text-[#B99A62]">
+                    directions_car
+                </span>
+                <span class="text-xs font-semibold tracking-wider uppercase">
+                    06 Iconic Cars
+                </span>
+            </div>
+
+            <div class="inline-flex items-center gap-3 rounded-full border border-[#B99A62]/40 bg-[#263D46]/60 px-6 py-3">
+                <span class="material-symbols-outlined text-[#B99A62]">
+                    workspace_premium
+                </span>
+                <span class="text-xs font-semibold tracking-wider uppercase">
+                    Japanese Heritage
+                </span>
+            </div>
+
+        </div>
+
+        <a href="#collection-cars"
+           class="mt-12 inline-flex flex-col items-center gap-2 text-xs tracking-widest text-[#B99A62] uppercase transition hover:text-white">
+            Discover the Cars
+            <span class="material-symbols-outlined animate-bounce">
+                keyboard_arrow_down
+            </span>
+        </a>
+
+    </div>
+
+</section>
+
+<section id="collection-cars"
+         class="bg-[#F4F0E8] px-6 py-20 text-[#111418] dark:bg-[#111418] dark:text-[#F4F0E8] lg:px-12">
+
+    <div class="mx-auto max-w-7xl">
+
+        <div class="reveal mb-12 flex flex-col justify-between gap-8 sm:flex-row sm:items-end">
+
+            <div>
+
+                <p class="mb-3 text-xs font-semibold tracking-[0.3em] text-[#B99A62] uppercase">
+                    Explore Our Selection
+                </p>
+
+                <h2 class="font-['Phudu'] text-3xl font-semibold sm:text-4xl">
+                    DISCOVER
+                    <span class="text-[#B99A62]">THE FLEET</span>
+                </h2>
+
+                <p id="carsCount"
+                   class="mt-4 text-sm text-gray-600 dark:text-gray-300"
+                   aria-live="polite">
+                    {{ cars|length }} Cars Found
+                </p>
+
+            </div>
+
+            <div class="flex flex-col gap-2">
+
+                <label for="categoryFilter"
+                       class="text-xs font-semibold tracking-wider text-[#B99A62] uppercase">
+                    Filter by Category
+                </label>
+
+                <select id="categoryFilter"
+                        class="min-w-55 rounded-md border border-[#B99A62]/50 bg-white px-5 py-3 text-sm font-medium text-[#111418] outline-none focus:border-[#B99A62] dark:bg-[#263D46] dark:text-[#F4F0E8]">
+
+                    <option value="all">All Categories</option>
+                    <option value="Modern Luxury">Modern Luxury</option>
+                    <option value="Royal Heritage">Royal Heritage</option>
+                    <option value="Premium Luxury">Premium Luxury</option>
+                    <option value="Classic Elegance">Classic Elegance</option>
+                    <option value="Royal SUV">Royal SUV</option>
+                    <option value="Sport Luxury">Sport Luxury</option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+
+            {% for car in cars %}
+
+            <article class="car-card reveal luxury-car-card group overflow-hidden rounded-xl border border-[#B99A62]/25 bg-white shadow-sm dark:bg-[#263D46]"
+                     data-category="{{ car.category }}">
+
+                <a href="{% url 'cars:car_detail' car.id %}"
+                   class="luxury-card-image flex h-64 items-center justify-center overflow-hidden bg-white">
+
+                    <img src="{% static car.image %}"
+                         alt="{{ car.name }}"
+                         class="luxury-car-image h-56 w-full object-contain p-4"
+                         loading="lazy">
+
+                </a>
+
+                <div class="p-6">
+
+                    <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+
+                        <span class="text-xs font-semibold tracking-widest text-[#B99A62] uppercase">
+                            {{ car.category }}
+                        </span>
+
+                        <span class="rounded-full border border-[#B99A62]/30 px-3 py-1 text-xs text-gray-600 dark:text-gray-300">
+                            {{ car.year }}
+                        </span>
+
+                    </div>
+
+                    <h3 class="font-['Phudu'] text-2xl font-semibold">
+                        {{ car.name }}
+                    </h3>
+
+                    <p class="mt-3 min-h-18 text-sm leading-6 text-gray-600 dark:text-gray-300">
+                        {{ car.description }}
+                    </p>
+
+                    <div class="mt-5 flex items-center justify-between gap-3 border-t border-[#B99A62]/20 pt-5">
+
+                        <span class="text-xs font-medium text-[#263D46] dark:text-gray-300">
+                            {{ car.engine }}
+                        </span>
+
+                        <a href="{% url 'cars:car_detail' car.id %}"
+                           class="inline-flex items-center gap-2 text-sm font-semibold text-[#263D46] transition hover:text-[#B99A62] dark:text-[#F4F0E8] dark:hover:text-[#B99A62]">
+                            View Details
+                            <span class="material-symbols-outlined text-lg">
+                                arrow_forward
+                            </span>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+        <div id="noResults"
+             class="mt-16 hidden rounded-xl border border-[#B99A62]/30 bg-white px-6 py-14 text-center dark:bg-[#263D46]">
+
+            <span class="material-symbols-outlined text-5xl text-[#B99A62]">
+                search_off
+            </span>
+
+            <h3 class="mt-5 font-['Phudu'] text-2xl font-semibold">
+                No Cars Found
+            </h3>
+
+            <p class="mt-3 text-sm text-gray-600 dark:text-gray-300">
+                No vehicles match the selected category.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="relative isolate overflow-hidden bg-[#263D46] px-6 py-20 text-center text-[#F4F0E8]">
+
+    <div class="royal-atmosphere royal-atmosphere-small" aria-hidden="true">
+        <span class="royal-ring royal-ring-two"></span>
+        <span class="royal-particle particle-three"></span>
+        <span class="royal-particle particle-six"></span>
+    </div>
+
+    <div class="reveal relative z-10 mx-auto max-w-3xl">
+
+        <p class="mb-4 text-xs font-semibold tracking-[0.3em] text-[#B99A62] uppercase">
+            Beyond the Collection
+        </p>
+
+        <h2 class="font-['Phudu'] text-4xl font-semibold sm:text-5xl">
+            DISCOVER OUR
+            <span class="text-[#B99A62]">HERITAGE</span>
+        </h2>
+
+        <p class="mx-auto mt-6 max-w-xl text-sm leading-8 text-gray-300">
+            Explore the stories, traditions, and craftsmanship
+            behind these remarkable Japanese automobiles.
+        </p>
+
+        <a href="{% url 'main:about' %}"
+           class="mt-9 inline-flex items-center gap-3 rounded-md border border-[#B99A62] px-7 py-4 text-sm font-semibold transition duration-300 hover:bg-[#B99A62] hover:text-[#111418]">
+            Discover Our Story
+            <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}
