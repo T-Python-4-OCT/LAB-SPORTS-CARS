@@ -1,0 +1,66 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}About Us{% endblock %}
+
+{% block content %}
+
+<section class="page-hero" style="--hero-image: url('{% static 'images/experience.jpg' %}')">
+    <div class="container">
+        <span class="eyebrow fade-up">About Us</span>
+        <h1 class="fade-up delay-1">Driven by Passion</h1>
+        <p class="fade-up delay-2">A team of automotive enthusiasts dedicated to bringing the world's finest sports cars closer to you.</p>
+    </div>
+</section>
+
+<section class="container section">
+    <div class="story">
+        <div class="story-text reveal">
+            <h2>Our Story</h2>
+            <p>Founded in Saudi Arabia, we bring together a deep passion for performance, design, and engineering
+               excellence, offering a curated selection of iconic sports cars and a premium ownership experience.</p>
+        </div>
+        <img class="reveal" src="{% static 'images/showroom.jpg' %}" alt="SportCars showroom">
+    </div>
+</section>
+
+<section class="container section">
+    <div class="stats">
+        <div class="reveal"><strong data-count="10">10</strong><span>Years of experience</span></div>
+        <div class="reveal"><strong data-count="24">24</strong><span>Cars in stock</span></div>
+        <div class="reveal"><strong data-count="1200">1,200</strong><span>Happy owners</span></div>
+    </div>
+</section>
+
+<section class="container section">
+    <h2>Our Values</h2>
+    <div class="values-grid">
+        <div class="feature reveal">
+            <span class="material-symbols-outlined">diamond</span>
+            <h4>Excellence</h4>
+            <p>A commitment to world-class standards.</p>
+        </div>
+        <div class="feature reveal">
+            <span class="material-symbols-outlined">verified_user</span>
+            <h4>Trust</h4>
+            <p>Transparent, honest, and customer-first.</p>
+        </div>
+        <div class="feature reveal">
+            <span class="material-symbols-outlined">star</span>
+            <h4>Passion</h4>
+            <p>A shared love for exceptional cars.</p>
+        </div>
+    </div>
+</section>
+
+<section class="container section">
+    <div class="dealer reveal" style="--dealer-image: url('{% static 'images/dealer.jpg' %}')">
+        <h2>More Than a Dealer</h2>
+        <p>We are your partner in the journey of owning and enjoying an exceptional car.</p>
+        <a href="{% url 'main:cars_view' %}" class="btn btn-glass btn-small">
+            Browse Cars <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+    </div>
+</section>
+
+{% endblock %}

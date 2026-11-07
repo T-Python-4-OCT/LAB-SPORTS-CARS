@@ -1,0 +1,25 @@
+{% load static %}
+<article class="car-card reveal">
+    <a href="{% url 'main:car_detail_view' car.slug %}" class="car-card-img">
+        <img src="{% static car.image %}" alt="{{ car.brand }} {{ car.name }}" loading="lazy">
+        <span class="car-year">{{ car.year }}</span>
+        <span class="car-view">View details <span class="material-symbols-outlined">arrow_forward</span></span>
+    </a>
+    <div class="car-card-body">
+        <div>
+            <h3><a href="{% url 'main:car_detail_view' car.slug %}">{{ car.brand }} {{ car.name }}</a></h3>
+            <p class="price">SAR {{ car.price|floatformat:"0g" }}</p>
+            {% if car.rating %}<span class="card-rating" title="Your rating"><span class="material-symbols-outlined">star</span> {{ car.rating }}/5</span>{% endif %}
+        </div>
+        <a href="{% url 'main:wishlist_view' car.slug %}?next={{ request.get_full_path|urlencode }}"
+           class="heart {% if car.saved %}saved{% endif %}"
+           aria-label="{% if car.saved %}Remove from wishlist{% else %}Save to wishlist{% endif %}">
+            <span class="material-symbols-outlined">favorite</span>
+        </a>
+    </div>
+    <ul class="car-specs">
+        <li><span class="material-symbols-outlined">bolt</span>{{ car.power }} hp</li>
+        <li><span class="material-symbols-outlined">timer</span>{{ car.acceleration }} s</li>
+        <li><span class="material-symbols-outlined">speed</span>{{ car.top_speed }} km/h</li>
+    </ul>
+</article>
