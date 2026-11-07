@@ -1,0 +1,79 @@
+
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}AMG C63 | Mercedes Motors{% endblock %}
+
+{% block content %}
+
+<section class="detail-hero"
+style="background-image: linear-gradient(90deg, rgba(0,0,0,.88), rgba(0,0,0,.15)), url('{% static 'main/images/c63.jpg' %}');">
+
+    <div class="container detail-content">
+        <span class="eyebrow">POWER MEETS PRECISION</span>
+        <h1>MERCEDES-AMG<br>C63.</h1>
+        <p>Performance that commands attention.</p>
+        <span class="detail-price">550,000 SAR</span>
+    </div>
+
+</section>
+
+<section class="specifications section-padding">
+    <div class="container">
+
+        <span class="eyebrow">AMG ENGINEERING</span>
+        <h2>TECHNICAL SPECIFICATIONS</h2>
+
+        <p class="spec-description">
+            An extraordinary performance sedan combining
+            innovative hybrid technology and AMG engineering.
+        </p>
+
+        <div class="specs-grid">
+
+            <div class="spec-card">
+                <i class="bi bi-calendar"></i>
+                <h3>MODEL YEAR</h3>
+                <p>2025</p>
+            </div>
+
+            <div class="spec-card">
+                <i class="bi bi-lightning-charge"></i>
+                <h3>POWER</h3>
+                <p>671 HP</p>
+            </div>
+
+            <div class="spec-card">
+                <i class="bi bi-speedometer2"></i>
+                <h3>TOP SPEED</h3>
+                <p>280 KM/H</p>
+            </div>
+
+            <div class="spec-card">
+                <i class="bi bi-gear"></i>
+                <h3>ENGINE</h3>
+                <p>2.0L Hybrid Turbo</p>
+            </div>
+
+            <div class="spec-card">
+                <i class="bi bi-stopwatch"></i>
+                <h3>0–100 KM/H</h3>
+                <p>3.4 Seconds</p>
+            </div>
+
+            <div class="spec-card">
+                <i class="bi bi-currency-dollar"></i>
+                <h3>PRICE</h3>
+                <p>550,000 SAR</p>
+            </div>
+
+        </div>
+
+        <a href="{% url 'all_cars' %}" class="main-button back-button">
+            <i class="bi bi-arrow-left"></i> BACK TO COLLECTION
+        </a>
+
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,178 @@
+
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Home | Mercedes Motors{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+    <div class="hero-overlay"></div>
+
+    <div class="container hero-content">
+
+        <span class="eyebrow">THE ART OF PERFORMANCE</span>
+
+        <h1>
+            ENGINEERED<br>
+            TO <span>INSPIRE.</span>
+        </h1>
+
+        <p>
+            Discover a world where exceptional performance
+            meets timeless luxury.
+        </p>
+
+        <a href="{% url 'all_cars' %}" class="main-button">
+            EXPLORE OUR COLLECTION
+            <i class="bi bi-arrow-right"></i>
+        </a>
+
+    </div>
+
+    <div class="hero-bottom">
+        <span>01 / 09</span>
+        <span>DISCOVER THE EXTRAORDINARY</span>
+    </div>
+</section>
+<!-- Features Bar -->
+<section class="features-bar">
+
+    <div class="feature-item">
+        <i class="bi bi-lightning-charge"></i>
+        <span>High Performance</span>
+    </div>
+
+    <div class="feature-item">
+        <i class="bi bi-gem"></i>
+        <span>Premium Selection</span>
+    </div>
+
+    <div class="feature-item">
+        <i class="bi bi-shield-check"></i>
+        <span>Verified & Inspected</span>
+    </div>
+
+    <div class="feature-item">
+        <i class="bi bi-headset"></i>
+        <span>Dedicated Support</span>
+    </div>
+
+</section>
+
+
+<!-- Featured Cars -->
+<section class="collection">
+
+    <div class="featured-heading">
+        <h2>Featured Cars</h2>
+    </div>
+
+    <div class="car-grid">
+
+        {% for car in featured_cars %}
+        <div class="car-card">
+
+            <img src="{% static car.image %}" alt="{{ car.name }}">
+
+            <div class="car-card-content">
+
+                <span class="car-label">{{ car.year }}</span>
+
+                <h3>{{ car.name }}</h3>
+
+                <div class="car-info">
+                    <span>SAR {{ car.price|floatformat:0 }}</span>
+                </div>
+
+                {% if car.url %}
+                    <a href="{% url car.url %}" class="text-link">
+                        Explore <i class="bi bi-arrow-right"></i>
+                    </a>
+                {% else %}
+                    <span class="text-link">Coming Soon</span>
+                {% endif %}
+
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+
+</section>
+
+<section class="collection section-padding">
+
+    <div class="container">
+
+        <div class="section-heading">
+            <div>
+                <span class="eyebrow">OUR COLLECTION</span>
+                <h2>MEET THE MACHINES.</h2>
+            </div>
+
+            <a href="{% url 'all_cars' %}" class="text-link">
+                VIEW ALL CARS <i class="bi bi-arrow-up-right"></i>
+            </a>
+        </div>
+
+
+        <div class="car-grid">
+
+            <article class="car-card">
+                <a href="{% url 'amg_gt' %}">
+                    <img src="{% static 'main/images/amg_gt.jpg' %}" alt="Mercedes AMG GT">
+                </a>
+                <div class="car-card-content">
+                    <span class="eyebrow">SPORTS COUPE</span>
+                    <h3>AMG GT</h3>
+                    <a href="{% url 'amg_gt' %}" class="text-link">DISCOVER MORE →</a>
+                </div>
+            </article>
+
+
+            <article class="car-card">
+                <a href="{% url 'c63' %}">
+                    <img src="{% static 'main/images/c63.jpg' %}" alt="Mercedes AMG C63">
+                </a>
+                <div class="car-card-content">
+                    <span class="eyebrow">PERFORMANCE SEDAN</span>
+                    <h3>AMG C63</h3>
+                    <a href="{% url 'c63' %}" class="text-link">DISCOVER MORE →</a>
+                </div>
+            </article>
+
+
+            <article class="car-card">
+                <a href="{% url 'sl63' %}">
+                    <img src="{% static 'main/images/sl63.jpg' %}" alt="Mercedes AMG SL63">
+                </a>
+                <div class="car-card-content">
+                    <span class="eyebrow">LUXURY ROADSTER</span>
+                    <h3>AMG SL63</h3>
+                    <a href="{% url 'sl63' %}" class="text-link">DISCOVER MORE →</a>
+                </div>
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="statement-section">
+    <div class="container">
+        <span class="eyebrow">MERCEDES-BENZ</span>
+        <h2>THE BEST OR NOTHING.</h2>
+        <p>
+            More than a vehicle. A statement of engineering,
+            innovation and unmistakable design.
+        </p>
+        <a href="{% url 'about' %}" class="main-button">
+            OUR STORY <i class="bi bi-arrow-right"></i>
+        </a>
+    </div>
+</section>
+
+{% endblock %}

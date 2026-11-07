@@ -1,0 +1,144 @@
+
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Our Cars | Mercedes Motors{% endblock %}
+
+{% block content %}
+
+<section class="page-banner">
+    <div class="container">
+        <span class="eyebrow">THE MERCEDES COLLECTION</span>
+        <h1>OUR <span>VEHICLES.</span></h1>
+        <p>Find the Mercedes that matches your style.</p>
+    </div>
+</section>
+
+
+<section class="all-cars-section">
+    <div class="container">
+
+        <form method="GET" class="filter-panel">
+
+            <div class="filter-heading">
+                <div>
+                    <span class="eyebrow">FIND YOUR CAR</span>
+                    <h2>FILTER COLLECTION</h2>
+                </div>
+
+                <a href="{% url 'all_cars' %}" class="reset-link">
+                    RESET FILTERS
+                </a>
+            </div>
+
+
+            <div class="filter-grid">
+
+                <div class="filter-group">
+                    <label for="min_price">MINIMUM PRICE</label>
+                    <select name="min_price" id="min_price">
+                        <option value="">Any Price</option>
+                        <option value="200000" {% if min_price == '200000' %}selected{% endif %}>200,000 SAR</option>
+                        <option value="300000" {% if min_price == '300000' %}selected{% endif %}>300,000 SAR</option>
+                        <option value="500000" {% if min_price == '500000' %}selected{% endif %}>500,000 SAR</option>
+                        <option value="700000" {% if min_price == '700000' %}selected{% endif %}>700,000 SAR</option>
+                    </select>
+                </div>
+
+
+                <div class="filter-group">
+                    <label for="max_price">MAXIMUM PRICE</label>
+                    <select name="max_price" id="max_price">
+                        <option value="">Any Price</option>
+                        <option value="400000" {% if max_price == '400000' %}selected{% endif %}>400,000 SAR</option>
+                        <option value="600000" {% if max_price == '600000' %}selected{% endif %}>600,000 SAR</option>
+                        <option value="800000" {% if max_price == '800000' %}selected{% endif %}>800,000 SAR</option>
+                        <option value="1000000" {% if max_price == '1000000' %}selected{% endif %}>1,000,000 SAR</option>
+                    </select>
+                </div>
+
+
+                <div class="filter-group">
+                    <label for="year">MODEL YEAR</label>
+                    <select name="year" id="year">
+                        <option value="">All Years</option>
+                        <option value="2025" {% if selected_year == '2025' %}selected{% endif %}>2025</option>
+                        <option value="2026" {% if selected_year == '2026' %}selected{% endif %}>2026</option>
+                    </select>
+                </div>
+
+
+                <div class="filter-group">
+                    <label for="sort">SORT BY PRICE</label>
+                    <select name="sort" id="sort">
+                        <option value="">Default</option>
+                        <option value="low" {% if selected_sort == 'low' %}selected{% endif %}>Low to High</option>
+                        <option value="high" {% if selected_sort == 'high' %}selected{% endif %}>High to Low</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <button type="submit" class="main-button filter-button">
+                APPLY FILTERS <i class="bi bi-sliders"></i>
+            </button>
+
+        </form>
+
+
+        <div class="results-heading">
+            <h2>AVAILABLE VEHICLES</h2>
+            <span>{{ cars|length }} VEHICLES FOUND</span>
+        </div>
+
+
+        <div class="car-grid">
+
+            {% for car in cars %}
+
+            <article class="car-card">
+
+                <img src="{% static car.image %}" alt="{{ car.name }}">
+
+                <div class="car-card-content">
+
+                    <span class="eyebrow">{{ car.category }}</span>
+
+                    <h3>{{ car.name }}</h3>
+
+                    <div class="car-info">
+                        <span>{{ car.year }}</span>
+                        <span>{{ car.price|floatformat:0 }} SAR</span>
+                    </div>
+
+                    {% if car.url %}
+                        <a href="{% url car.url %}" class="text-link">
+                            VIEW DETAILS →
+                        </a>
+                    {% else %}
+                        <span class="car-label">COMING SOON</span>
+                    {% endif %}
+
+                </div>
+
+            </article>
+
+            {% empty %}
+
+            <div class="empty-results">
+                <i class="bi bi-car-front"></i>
+                <h3>NO VEHICLES FOUND</h3>
+                <p>Try changing your filters.</p>
+                <a href="{% url 'all_cars' %}" class="main-button">
+                    CLEAR FILTERS
+                </a>
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
