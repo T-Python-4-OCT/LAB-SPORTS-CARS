@@ -3,6 +3,10 @@
   {% if car.is_featured %}<span class="badge">Featured</span>{% endif %}
   <div class="card-img">
     <img src="{% static car.image %}" alt="{{ car.name }}">
+    <div class="chips">
+      <span>{{ car.power }} hp</span>
+      <span>{{ car.drive }}</span>
+    </div>
   </div>
   <div class="card-body">
     <div>

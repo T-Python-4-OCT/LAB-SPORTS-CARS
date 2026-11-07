@@ -210,7 +210,34 @@ img { max-width: 100%; display: block; }
 
 /* Cards */
 .card { position: relative; display: block; overflow: hidden; border-radius: 14px; background: var(--card); box-shadow: var(--shadow); }
-.card-img { overflow: hidden; }
+.card-img { position: relative; overflow: hidden; }
+
+.chips {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  display: flex;
+  gap: 6px;
+  transform: translateY(150%);
+  transition: transform .35s;
+}
+
+.chips span {
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, .65);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  font-size: .75rem;
+  font-weight: 600;
+}
+
+.card:hover .chips { transform: none; }
+
+@media (hover: none) {
+  .chips { transform: none; }
+}
+
 .card img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; transition: transform .5s; }
 .card:hover img { transform: scale(1.08); }
 
