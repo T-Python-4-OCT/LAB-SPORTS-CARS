@@ -1,0 +1,74 @@
+
+{% extends 'Cars/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<section class="about-hero">
+    <div class="about-hero-content">
+        <p>ABOUT SPORTCARS</p>
+        <h1>Driven by Passion</h1>
+        <p>Where performance meets luxury.</p>
+    </div>
+</section>
+
+
+<section class="about-story">
+    <div class="story-text">
+        <p class="section-subtitle">WHO WE ARE</p>
+        <h2>Our Story</h2>
+        <p>
+            At SportCars, we believe that driving is more than
+            just transportation. It's about passion, performance,
+            and unforgettable experiences.
+        </p>
+        <p>
+            Our mission is to connect car enthusiasts with
+            the world's most extraordinary sports cars.
+        </p>
+    </div>
+
+    <div class="story-image">
+        <img src="{% static 'images/home page.avif' %}" alt="Luxury Sports Car">
+    </div>
+</section>
+
+
+<section class="about-values">
+    <div class="section-title">
+        <p class="section-subtitle">WHAT DRIVES US</p>
+        <h2>Our Values</h2>
+    </div>
+
+    <div class="values-grid">
+        <div class="value-card">
+            <span class="material-symbols-outlined">workspace_premium</span>
+            <h3>Excellence</h3>
+            <p>We strive for excellence in everything we do.</p>
+        </div>
+
+        <div class="value-card">
+            <span class="material-symbols-outlined">verified_user</span>
+            <h3>Trust</h3>
+            <p>Building lasting relationships through honesty.</p>
+        </div>
+
+        <div class="value-card">
+            <span class="material-symbols-outlined">favorite</span>
+            <h3>Passion</h3>
+            <p>Our love for extraordinary cars drives us forward.</p>
+        </div>
+    </div>
+</section>
+
+
+<section class="about-banner">
+    <div class="about-banner-content">
+        <h2>More Than a Dealer</h2>
+        <p>Discover a world of performance, luxury, and passion.</p>
+        <a href="{% url 'all_cars' %}" class="btn-primary">Browse Cars →</a>
+    </div>
+</section>
+
+{% endblock %}

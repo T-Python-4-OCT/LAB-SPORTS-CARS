@@ -1,3 +1,4 @@
+
 {% extends 'Cars/base.html' %}
 {% load static %}
 
@@ -7,7 +8,7 @@
     <div class="hero-content">
         <h1>Performance Without Limits</h1>
         <p>Discover your dream sports car.</p>
-        <a href="#" class="btn-primary">Browse Cars</a>
+        <a href="{% url 'all_cars' %}" class="btn-primary">Browse Cars</a>
     </div>
 
     <img src="{% static 'images/home_page.jpg' %}" alt="Porsche Sports Car" class="hero-image">
@@ -48,38 +49,35 @@
             <p class="section-subtitle">EXPLORE OUR COLLECTION</p>
             <h2>Featured Cars</h2>
         </div>
-        <a href="#" class="view-all">View All Cars →</a>
+        <a href="{% url 'all_cars' %}" class="view-all">View All Cars →</a>
     </div>
 
     <div class="cars-grid">
 
-  
         <div class="car-card">
             <img src="https://images.unsplash.com/photo-1592198084033-aade902d1aae?w=900" alt="Ferrari F8 Tributo">
             <div class="car-info">
                 <h3>Ferrari F8 Tributo</h3>
                 <p>SAR 1,250,000</p>
-                <a href="#" class="car-link">View Details →</a>
+                <a href="{% url 'car_detail' 'ferrari' %}" class="car-link">View Details →</a>
             </div>
         </div>
 
-        
         <div class="car-card">
             <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=900" alt="Porsche 911 Turbo S">
             <div class="car-info">
                 <h3>Porsche 911 Turbo S</h3>
                 <p>SAR 1,295,000</p>
-                <a href="#" class="car-link">View Details →</a>
+                <a href="{% url 'car_detail' 'porsche' %}" class="car-link">View Details →</a>
             </div>
         </div>
 
-      
         <div class="car-card">
             <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=900" alt="Lamborghini Huracán">
             <div class="car-info">
                 <h3>Lamborghini Huracán</h3>
                 <p>SAR 1,150,000</p>
-                <a href="#" class="car-link">View Details →</a>
+                <a href="{% url 'car_detail' 'lamborghini' %}" class="car-link">View Details →</a>
             </div>
         </div>
 
@@ -87,15 +85,13 @@
 
 </section>
 
-
 <section class="experience">
     <div class="experience-content">
         <p>BUILT FOR THE EXTRAORDINARY</p>
         <h2>More Than a Car.<br>It's an Experience.</h2>
-        <a href="#featured" class="btn-primary">Explore Our Cars →</a>
+        <a href="{% url 'all_cars' %}" class="btn-primary">Explore Our Cars →</a>
     </div>
 </section>
-
 
 <section class="why-us" id="why-us">
 
@@ -135,17 +131,14 @@
 
 </section>
 
-
 <section class="cta">
     <div class="cta-content">
         <h2>Ready to Drive Your Dream Car?</h2>
         <p>Your next extraordinary driving experience starts here.</p>
-        <a href="#featured" class="btn-primary">
+        <a href="{% url 'all_cars' %}" class="btn-primary">
             Explore Our Cars →
         </a>
     </div>
 </section>
-
-
 
 {% endblock %}
