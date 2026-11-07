@@ -369,6 +369,31 @@ img {
     font-size: 13px;
     font-weight: bold;
 }
+.view-all,
+.car-link {
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.view-all:hover,
+.car-link:hover {
+    color: #00D4FF;
+}
+
+.view-all span,
+.car-link span {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.view-all:hover span,
+.car-link:hover span {
+    transform: translateX(6px);
+}
+
+.view-all:active,
+.car-link:active {
+    transform: scale(0.97);
+}
 
 /* =====================================
    7. FEATURED CARS
