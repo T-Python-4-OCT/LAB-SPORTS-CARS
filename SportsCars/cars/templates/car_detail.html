@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load static humanize %}
+{% block title %}{{ car.name }}{% endblock %}
+
+{% block content %}
+<section class="container section">
+  <nav class="crumbs">
+    <a href="{% url 'home' %}">Home</a> / <a href="{% url 'cars' %}">Cars</a> / {{ car.name }}
+  </nav>
+
+  <div class="detail">
+    <div class="gallery" id="gallery">
+      <a href="#photo-1" class="zoomable" aria-label="View {{ car.name }} photo 1">
+        <img class="main-img" src="{% static car.gallery.0 %}" alt="{{ car.name }}">
+      </a>
+      <div class="thumbs">
+        <a href="#photo-2" class="zoomable" aria-label="View {{ car.name }} photo 2">
+          <img class="thumb" src="{% static car.gallery.1 %}" alt="{{ car.name }} view 2">
+        </a>
+        <a href="#photo-3" class="zoomable" aria-label="View {{ car.name }} photo 3">
+          <img class="thumb" src="{% static car.gallery.2 %}" alt="{{ car.name }} view 3">
+        </a>
+      </div>
+    </div>
+
+    <aside class="info">
+      <h1>{{ car.name }}</h1>
+      <p class="price big">SAR {{ car.price|intcomma }}</p>
+      <ul class="spec-list">
+        <li><span class="material-symbols-rounded">settings</span>Engine <b>{{ car.engine }}</b></li>
+        <li><span class="material-symbols-rounded">bolt</span>Power <b>{{ car.power }} hp</b></li>
+        <li><span class="material-symbols-rounded">timer</span>0-100 km/h <b>{{ car.accel }}s</b></li>
+        <li><span class="material-symbols-rounded">speed</span>Top Speed <b>{{ car.top_speed }} km/h</b></li>
+        <li><span class="material-symbols-rounded">alt_route</span>Drivetrain <b>{{ car.drivetrain }}</b></li>
+      </ul>
+      <a href="mailto:sales@example.com?subject=Inquiry: {{ car.name }}" class="btn btn-primary full">Inquire Now</a>
+      <a href="#" class="btn btn-outline full">
+        <span class="material-symbols-rounded">favorite</span> Save to Wishlist
+      </a>
+    </aside>
+  </div>
+
+  <div class="overview reveal">
+    <h2>The Iconic {{ car.name }}, Elevated</h2>
+    <p class="muted">{{ car.desc }}</p>
+  </div>
+
+  <h2>Key Features</h2>
+  <div class="grid-3">
+    {% for icon, title, text in car.features %}
+      <div class="why reveal">
+        <span class="material-symbols-rounded">{{ icon }}</span>
+        <h4>{{ title }}</h4>
+        <p>{{ text }}</p>
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="section-head" style="margin-top:3rem"><h2>You May Also Like</h2></div>
+  <div class="grid">
+    {% for car in related %}
+      {% include "partials/car_card.html" %}
+    {% endfor %}
+  </div>
+</section>
+
+<!-- Lightbox: full-size photos (CSS only) -->
+<div class="lightbox" id="photo-1">
+  <a href="#gallery" class="lb-bg" aria-label="Close"></a>
+  <img src="{% static car.gallery.0 %}" alt="{{ car.name }}">
+  <a href="#gallery" class="lb-btn lb-close" aria-label="Close"><span class="material-symbols-rounded">close</span></a>
+  <a href="#photo-3" class="lb-btn lb-prev" aria-label="Previous"><span class="material-symbols-rounded">chevron_left</span></a>
+  <a href="#photo-2" class="lb-btn lb-next" aria-label="Next"><span class="material-symbols-rounded">chevron_right</span></a>
+</div>
+
+<div class="lightbox" id="photo-2">
+  <a href="#gallery" class="lb-bg" aria-label="Close"></a>
+  <img src="{% static car.gallery.1 %}" alt="{{ car.name }} view 2">
+  <a href="#gallery" class="lb-btn lb-close" aria-label="Close"><span class="material-symbols-rounded">close</span></a>
+  <a href="#photo-1" class="lb-btn lb-prev" aria-label="Previous"><span class="material-symbols-rounded">chevron_left</span></a>
+  <a href="#photo-3" class="lb-btn lb-next" aria-label="Next"><span class="material-symbols-rounded">chevron_right</span></a>
+</div>
+
+<div class="lightbox" id="photo-3">
+  <a href="#gallery" class="lb-bg" aria-label="Close"></a>
+  <img src="{% static car.gallery.2 %}" alt="{{ car.name }} view 3">
+  <a href="#gallery" class="lb-btn lb-close" aria-label="Close"><span class="material-symbols-rounded">close</span></a>
+  <a href="#photo-2" class="lb-btn lb-prev" aria-label="Previous"><span class="material-symbols-rounded">chevron_left</span></a>
+  <a href="#photo-1" class="lb-btn lb-next" aria-label="Next"><span class="material-symbols-rounded">chevron_right</span></a>
+</div>
+{% endblock %}

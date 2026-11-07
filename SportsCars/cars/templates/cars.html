@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}All Cars{% endblock %}
+
+{% block content %}
+<section class="page-hero" style="--hero: url('{% static 'images/hero.jpg' %}')">
+  <div class="container">
+    <small>OUR COLLECTION</small>
+    <h1>All Cars</h1>
+    <p>Explore our complete collection of BMW performance cars.</p>
+  </div>
+</section>
+
+<section class="container section">
+  <form class="filters" method="get">
+    <input type="text" name="q" value="{{ q }}" placeholder="Search model...">
+    <select name="category">
+      <option value="">All Types</option>
+      {% for c in categories %}
+        <option value="{{ c }}" {% if c == active_cat %}selected{% endif %}>{{ c }}</option>
+      {% endfor %}
+    </select>
+    <button class="btn btn-primary" type="submit">
+      <span class="material-symbols-rounded">search</span> Search
+    </button>
+  </form>
+
+  <p class="muted">{{ cars|length }} Cars Found</p>
+
+  <div class="grid">
+    {% for car in cars %}
+      {% include "partials/car_card.html" %}
+    {% empty %}
+      <p>No cars match your search.</p>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

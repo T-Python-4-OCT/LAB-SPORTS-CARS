@@ -1,0 +1,19 @@
+{% load static humanize %}
+<article class="card reveal">
+  <a href="{% url 'car_detail' car.slug %}" class="card-img">
+    <img src="{% static car.img %}" alt="{{ car.name }}" loading="lazy">
+    <span class="tag">{{ car.category }}</span>
+  </a>
+  <div class="card-body">
+    <h3>{{ car.name }}</h3>
+    <p class="price">SAR {{ car.price|intcomma }}</p>
+    <div class="mini-specs">
+      <span><span class="material-symbols-rounded">bolt</span>{{ car.power }} hp</span>
+      <span><span class="material-symbols-rounded">timer</span>{{ car.accel }}s</span>
+      <span><span class="material-symbols-rounded">calendar_month</span>{{ car.year }}</span>
+    </div>
+    <a href="{% url 'car_detail' car.slug %}" class="link-arrow">View Details
+      <span class="material-symbols-rounded">arrow_forward</span>
+    </a>
+  </div>
+</article>

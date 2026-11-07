@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<section class="hero" style="--hero: url('{% static 'images/hero.jpg' %}')">
+  <div class="container hero-content">
+    <h1 class="fade-in">Performance<br>Without Limits</h1>
+    <p class="fade-in d1">Explore a curated collection of iconic BMW performance cars.</p>
+    <a href="{% url 'cars' %}" class="btn btn-primary fade-in d2">Browse Cars
+      <span class="material-symbols-rounded">arrow_forward</span></a>
+  </div>
+</section>
+
+<section class="container strip">
+  <div class="strip-item reveal"><span class="material-symbols-rounded">bolt</span><b>High Performance</b></div>
+  <div class="strip-item reveal"><span class="material-symbols-rounded">workspace_premium</span><b>Premium Selection</b></div>
+  <div class="strip-item reveal"><span class="material-symbols-rounded">verified_user</span><b>Verified &amp; Inspected</b></div>
+  <div class="strip-item reveal"><span class="material-symbols-rounded">support_agent</span><b>Dedicated Support</b></div>
+</section>
+
+<section class="container section">
+  <div class="section-head">
+    <h2>Featured Cars</h2>
+    <a href="{% url 'cars' %}" class="link-arrow">View All <span class="material-symbols-rounded">arrow_forward</span></a>
+  </div>
+  <div class="grid">
+    {% for car in featured %}
+      {% include "partials/car_card.html" %}
+    {% endfor %}
+  </div>
+</section>
+
+<section class="container">
+  <div class="promo reveal" style="--promo: url('{% static 'images/promo.jpg' %}')">
+    <div>
+      <small>THE EXPERIENCE</small>
+      <h2>More Than a Car</h2>
+      <p>A journey, a feeling, a statement. Every BMW is built to be driven, not just owned.</p>
+      <a href="{% url 'about' %}" class="btn btn-primary">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<section class="container section">
+  <h2 class="center">Why Choose Us</h2>
+  <div class="grid-4">
+    <div class="why reveal"><span class="material-symbols-rounded">directions_car</span><h4>Iconic Models</h4><p>Hand-picked BMW M and performance models.</p></div>
+    <div class="why reveal"><span class="material-symbols-rounded">payments</span><h4>Full Transparency</h4><p>Clear pricing with no hidden fees.</p></div>
+    <div class="why reveal"><span class="material-symbols-rounded">engineering</span><h4>Expert Guidance</h4><p>Specialists who live and breathe BMW.</p></div>
+    <div class="why reveal"><span class="material-symbols-rounded">build</span><h4>After-Sales Care</h4><p>Service and warranty you can count on.</p></div>
+  </div>
+</section>
+
+<section class="container section">
+<div class="cta reveal" style="--cta: url('{% static 'images/my-banner.jpg' %}')">    <h2>Ready to Drive Your Dream Car?</h2>
+    <a href="{% url 'cars' %}" class="btn btn-light">Browse Collection</a>
+  </div>
+</section>
+{% endblock %}
