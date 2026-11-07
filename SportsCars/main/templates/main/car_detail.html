@@ -1,0 +1,152 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}{{ car.name }} | SportCars{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/style_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container detail">
+
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="{% url 'main:cars' %}">Cars</a>
+    <span class="material-symbols-outlined">chevron_right</span>
+    <span>{{ car.brand }}</span>
+    <span class="material-symbols-outlined">chevron_right</span>
+    <strong>{{ car.name }}</strong>
+  </nav>
+
+  <div class="detail__top">
+
+    <div class="gallery">
+      {% for img in car.gallery %}
+      <input type="radio" name="gallery" id="g{{ forloop.counter }}" class="hidden-input" {% if forloop.first %}checked{% endif %}>
+      {% endfor %}
+
+      <div class="gallery__main">
+        {% for img in car.gallery %}
+        <div class="slide slide-{{ forloop.counter }}">
+          <img src="{% static img %}" alt="{{ car.name }} - photo {{ forloop.counter }}">
+          <label for="g{% if forloop.first %}{{ car.gallery|length }}{% else %}{{ forloop.counter|add:'-1' }}{% endif %}" class="arrow arrow--prev" aria-label="Previous photo">
+            <span class="material-symbols-outlined">arrow_back</span>
+          </label>
+          <label for="g{% if forloop.last %}1{% else %}{{ forloop.counter|add:'1' }}{% endif %}" class="arrow arrow--next" aria-label="Next photo">
+            <span class="material-symbols-outlined">arrow_forward</span>
+          </label>
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="gallery__thumbs">
+        {% for img in car.gallery %}
+        <label for="g{{ forloop.counter }}" class="thumb thumb-{{ forloop.counter }}">
+          <img src="{% static img %}" alt="Show photo {{ forloop.counter }}">
+        </label>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="info">
+      <h1>{{ car.name }}</h1>
+      <p class="info__price">SAR {{ car.price }}</p>
+
+      <ul class="spec-list">
+        <li><span class="material-symbols-outlined">settings</span><span>Engine</span><strong>{{ car.engine }}</strong></li>
+        <li><span class="material-symbols-outlined">bolt</span><span>Power</span><strong>{{ car.power }}</strong></li>
+        <li><span class="material-symbols-outlined">timer</span><span>0 - 100 km/h</span><strong>{{ car.acceleration }}</strong></li>
+        <li><span class="material-symbols-outlined">speed</span><span>Top Speed</span><strong>{{ car.top_speed }}</strong></li>
+      </ul>
+
+      <a href="#" class="btn-main btn-full">Inquire Now</a>
+      <button type="button" class="btn-outline btn-full">
+        <span class="material-symbols-outlined">favorite</span>
+        Save to Wishlist
+      </button>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <input type="radio" name="tab" id="t1" class="hidden-input" checked>
+    <input type="radio" name="tab" id="t2" class="hidden-input">
+    <input type="radio" name="tab" id="t3" class="hidden-input">
+    <input type="radio" name="tab" id="t4" class="hidden-input">
+
+    <div class="tabs__labels">
+      <label for="t1">Overview</label>
+      <label for="t2">Specifications</label>
+      <label for="t3">Features</label>
+      <label for="t4">Gallery</label>
+    </div>
+
+    <div class="tabs__panels">
+
+      <div class="panel panel-1">
+        <h2>{{ car.headline }}</h2>
+        <p class="panel__text">{{ car.description }}</p>
+        <div class="stats">
+          <div class="stat"><span class="material-symbols-outlined">settings</span><strong>{{ car.engine }}</strong><small>Engine</small></div>
+          <div class="stat"><span class="material-symbols-outlined">bolt</span><strong>{{ car.power }}</strong><small>Max Power</small></div>
+          <div class="stat"><span class="material-symbols-outlined">timer</span><strong>{{ car.acceleration }}</strong><small>0 - 100 km/h</small></div>
+          <div class="stat"><span class="material-symbols-outlined">speed</span><strong>{{ car.top_speed }}</strong><small>Top Speed</small></div>
+        </div>
+      </div>
+
+      <div class="panel panel-2">
+        <h2>Specifications</h2>
+        <table class="spec-table">
+          <tr><th>Brand</th><td>{{ car.brand }}</td></tr>
+          <tr><th>Model</th><td>{{ car.name }}</td></tr>
+          <tr><th>Engine</th><td>{{ car.engine }}</td></tr>
+          <tr><th>Max Power</th><td>{{ car.power }}</td></tr>
+          <tr><th>0 - 100 km/h</th><td>{{ car.acceleration }}</td></tr>
+          <tr><th>Top Speed</th><td>{{ car.top_speed }}</td></tr>
+          <tr><th>Price</th><td>SAR {{ car.price }}</td></tr>
+        </table>
+      </div>
+
+      <div class="panel panel-3">
+        <h2>Features</h2>
+        <ul class="feature-list">
+          <li><span class="material-symbols-outlined">check_circle</span>Premium leather interior</li>
+          <li><span class="material-symbols-outlined">check_circle</span>Adaptive sport suspension</li>
+          <li><span class="material-symbols-outlined">check_circle</span>Performance exhaust system</li>
+          <li><span class="material-symbols-outlined">check_circle</span>Carbon-fiber trim</li>
+          <li><span class="material-symbols-outlined">check_circle</span>Launch control</li>
+          <li><span class="material-symbols-outlined">check_circle</span>Advanced driver assistance</li>
+        </ul>
+      </div>
+
+      <div class="panel panel-4">
+        <h2>Gallery</h2>
+        <div class="gallery-grid">
+          {% for img in car.gallery %}
+          <img src="{% static img %}" alt="{{ car.name }} - photo {{ forloop.counter }}">
+          {% endfor %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+<section class="key">
+  <h2>Key Features</h2>
+  <div class="key__grid">
+    <figure>
+      <div class="key__img"><img src="{% static car.gallery.1 %}" alt="Premium interior"></div>
+      <figcaption><h3>Premium Interior</h3><p>A driver-focused cabin with refined materials.</p></figcaption>
+    </figure>
+    <figure>
+      <div class="key__img"><img src="{% static car.gallery.2 %}" alt="Performance brakes"></div>
+      <figcaption><h3>Performance Brakes</h3><p>Exceptional stopping power and control.</p></figcaption>
+    </figure>
+    <figure>
+      <div class="key__img"><img src="{% static car.gallery.3 %}" alt="Aerodynamic design"></div>
+      <figcaption><h3>Aerodynamic Design</h3><p>Engineered for maximum stability and performance.</p></figcaption>
+    </figure>
+  </div>
+</section>
+
+</div>
+{% endblock %}
