@@ -1,0 +1,121 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}SportCars | Home{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="ph">
+        <img src="{% static 'images/banners/home_hero.jpg' %}">
+    </div>
+  </div>
+  <div class="container hero-content">
+    <h1>Timeless Icons.<br>Pure Driving.</h1>
+    <p>Explore a curated collection of legendary classic sports cars.</p>
+    <a href="{% url 'main:all_cars' %}" class="btn btn-primary">Explore the Collection <span class="material-symbols-outlined">arrow_forward</span></a>
+  </div>
+</section>
+
+<!-- Features -->
+<div class="container features">
+  <div class="feature"><span class="material-symbols-outlined">history</span>Legendary Heritage</div>
+  <div class="feature"><span class="material-symbols-outlined">diamond</span>Premium Selection</div>
+  <div class="feature"><span class="material-symbols-outlined">verified_user</span>Verified &amp; Inspected</div>
+  <div class="feature"><span class="material-symbols-outlined">support_agent</span>Dedicated Support</div>
+</div>
+
+<!-- Featured Cars -->
+<section class="section container">
+  <div class="section-head reveal">
+    <h2>Featured Cars</h2>
+    <a href="{% url 'main:all_cars' %}" class="link-arrow">View All <span class="material-symbols-outlined">arrow_forward</span></a>
+  </div>
+
+  <div class="cards">
+    {% for car in featured %}
+    <article class="car-card reveal">
+      <a href="{% url 'main:car_detail' car.slug %}" class="car-img">
+        <div class="ph">
+            <img src="{% static car.image %}" alt="{{ car.name }}">
+
+        </div>
+      </a>
+      <div class="car-info">
+        <div>
+          <h3>{{ car.name }}</h3>
+          <p class="price">SAR {{ car.price }}</p>
+        </div>
+        <button class="wish" aria-label="Save to wishlist"><span class="material-symbols-outlined">favorite</span></button>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- The Experience -->
+<section class="experience">
+  <div class="exp-bg">
+    <div class="ph">
+        <img src="{% static 'images/banners/about_hero.jpg' %}">
+    </div>
+  </div>
+  <div class="container">
+    <div class="exp-text reveal">
+      <span class="eyebrow">The Experience</span>
+      <h2>Driven by History</h2>
+      <p>From discovery to ownership, every car comes with its story, its papers, and expert guidance.</p>
+      <a href="{% url 'main:about' %}" class="btn btn-primary">Learn More <span class="material-symbols-outlined">arrow_forward</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- Why Choose Us -->
+<section class="section container">
+  <h2 class="reveal">Why Choose Us</h2>
+  <div class="why-grid reveal">
+    <div class="why-item">
+      <span class="material-symbols-outlined">emoji_events</span>
+      <h3>Iconic Models</h3>
+      <p>A handpicked range of world-class cars.</p>
+    </div>
+    <div class="why-item">
+      <span class="material-symbols-outlined">verified_user</span>
+      <h3>Full Transparency</h3>
+      <p>Full history and inspection reports.</p>
+    </div>
+    <div class="why-item">
+      <span class="material-symbols-outlined">star</span>
+      <h3>Expert Guidance</h3>
+      <p>Personalized advice from automotive experts.</p>
+    </div>
+    <div class="why-item">
+      <span class="material-symbols-outlined">diamond</span>
+      <h3>After-Sales Care</h3>
+      <p>Ongoing support and exclusive benefits.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="container section">
+  <div class="cta reveal">
+    <div class="exp-bg">
+      <div class="ph">
+        <img src="{% static 'images/banners/all_cars_hero.jpg' %}">
+      </div>
+    </div>
+    <div class="cta-text">
+      <h2>Ready to Own<br>a Piece of History?</h2>
+      <a href="{% url 'main:all_cars' %}" class="btn btn-primary">Browse Collection <span class="material-symbols-outlined">arrow_forward</span></a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

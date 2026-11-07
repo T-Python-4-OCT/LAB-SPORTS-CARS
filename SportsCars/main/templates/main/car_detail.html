@@ -1,0 +1,103 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}SportCars | {{ car.name }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/car_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container detail">
+
+  <!-- Breadcrumb -->
+  <nav class="crumbs">
+    <a href="{% url 'main:home' %}">Home</a> <span>›</span>
+    <a href="{% url 'main:all_cars' %}">Cars</a> <span>›</span>
+    <strong>{{ car.name }}</strong>
+  </nav>
+
+  <!-- Gallery + Info -->
+  <div class="detail-grid">
+    <div class="gallery">
+  <div class="main-img">
+    <img id="mainImg" src="{% static car.gallery.0 %}" alt="{{ car.name }}">
+  </div>
+  <div class="thumbs">
+    {% for img in car.gallery %}
+    <button type="button" class="thumb {% if forloop.first %}active{% endif %}"
+            data-src="{% static img %}" aria-label="Photo {{ forloop.counter }}">
+      <img src="{% static img %}" alt="{{ car.name }} - {{ forloop.counter }}">
+    </button>
+    {% endfor %}
+  </div>
+</div>
+
+
+    <div class="info">
+      <p class="info-year">{{ car.year }}</p>
+      <h1>{{ car.name }}</h1>
+      <p class="info-price">SAR {{ car.price }}</p>
+
+      <ul class="quick-specs">
+        <li><span class="material-symbols-outlined">settings</span><em>Engine</em><b>{{ car.engine }}</b></li>
+        <li><span class="material-symbols-outlined">bolt</span><em>Power</em><b>{{ car.power }}</b></li>
+        <li><span class="material-symbols-outlined">timer</span><em>0 - 100 km/h</em><b>{{ car.accel }}</b></li>
+        <li><span class="material-symbols-outlined">speed</span><em>Top Speed</em><b>{{ car.top_speed }}</b></li>
+      </ul>
+
+      <a href="#" class="btn btn-primary btn-block">Inquire Now</a>
+      <button class="btn btn-outline btn-block wish-btn" type="button">
+        <span class="material-symbols-outlined">favorite</span> Save to Wishlist
+      </button>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <nav class="tabs">
+    <a href="#overview">Overview</a>
+    <a href="#specs">Specifications</a>
+    <a href="#features">Features</a>
+  </nav>
+
+  <!-- Overview -->
+  <section id="overview" class="block reveal">
+    <h2>The Iconic {{ car.name }}</h2>
+    <p class="lead">A perfect balance of everyday usability and extraordinary performance. The {{ car.name }} delivers a driving experience like no other.</p>
+    <div class="stats">
+      <div><span class="material-symbols-outlined">settings</span><b>{{ car.engine }}</b><em>Engine</em></div>
+      <div><span class="material-symbols-outlined">bolt</span><b>{{ car.power }}</b><em>Max Power</em></div>
+      <div><span class="material-symbols-outlined">timer</span><b>{{ car.accel }}</b><em>0 - 100 km/h</em></div>
+      <div><span class="material-symbols-outlined">speed</span><b>{{ car.top_speed }}</b><em>Top Speed</em></div>
+    </div>
+  </section>
+
+  <!-- Specifications -->
+  <section id="specs" class="block reveal">
+    <h2>Specifications</h2>
+    <table class="spec-table">
+      <tr><th>Model</th><td>{{ car.name }}</td></tr>
+      <tr><th>Engine</th><td>{{ car.engine }}</td></tr>
+      <tr><th>Power</th><td>{{ car.power }}</td></tr>
+      <tr><th>0 - 100 km/h</th><td>{{ car.accel }}</td></tr>
+      <tr><th>Top Speed</th><td>{{ car.top_speed }}</td></tr>
+      <tr><th>Price</th><td>SAR {{ car.price }}</td></tr>
+    </table>
+  </section>
+
+  <!-- Key Features -->
+    <section id="features" class="block reveal">
+    <h2>Key Features</h2>
+    <div class="features-grid">
+      {% for f in car.features %}
+      <article class="feat">
+        <span class="material-symbols-outlined">{{ f.icon }}</span>
+        <h3>{{ f.title }}</h3>
+        <p>{{ f.text }}</p>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+
+</div>
+{% endblock %}

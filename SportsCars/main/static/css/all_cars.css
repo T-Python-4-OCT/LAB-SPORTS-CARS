@@ -1,0 +1,48 @@
+/* Page hero */
+.page-hero { position: relative; min-height: 70vh; display: flex; align-items: center; overflow: hidden; }
+.page-hero-bg { position: absolute; inset: 0; }
+.page-hero-bg::after { content: ""; position: absolute; inset: 0; background: var(--overlay); }
+.page-hero-bg .ph { align-items: flex-end; }
+.page-hero-content { position: relative; z-index: 1; padding: 2.5rem 0; }
+.page-hero h1 { font-size: clamp(2.2rem, 6vw, 3.6rem); margin: .4rem 0 .6rem; }
+.page-hero p { color: var(--muted); max-width: 380px; }
+.page-hero .eyebrow { color: var(--muted); }
+.eyebrow { text-transform: uppercase; letter-spacing: .15em; font-size: .75rem; font-weight: 600; }
+.page-hero-content > * { animation: fadeUp .7s ease both; }
+.page-hero-content p { animation-delay: .15s; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+
+.section { padding: 2rem 0 1rem; }
+
+/* Filters */
+.filters { display: flex; flex-wrap: wrap; align-items: flex-end; gap: .8rem; }
+.select-wrap { display: flex; flex-direction: column; gap: .3rem; flex: 1 1 150px; max-width: 260px; }
+.select-wrap span { font-size: .75rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+.select-wrap select {
+  width: 100%; padding: .75rem 1rem; border-radius: 8px; border: 1px solid var(--border);
+  background: var(--surface); color: var(--text); font: inherit; cursor: pointer;
+  transition: border-color .25s, box-shadow .25s;
+}
+.select-wrap select:hover, .select-wrap select:focus { border-color: var(--accent); outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent); }
+.reset-link { display: inline-flex; align-items: center; gap: .3rem; padding: .75rem .4rem; color: var(--accent); font-weight: 600; }
+.reset-link:hover .material-symbols-outlined { transform: rotate(-180deg); }
+.results-count { margin: 1.5rem 0 1rem; font-weight: 600; }
+
+/* Cards */
+.cards { display: grid; gap: 1.2rem; grid-template-columns: 1fr; }
+.car-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
+  transition: opacity .7s ease, translate .7s ease, transform .35s ease, box-shadow .35s ease;
+}
+.car-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+.car-img { display: block; position: relative; aspect-ratio: 16 / 10; overflow: hidden; }
+.car-info { display: flex; justify-content: space-between; align-items: center; padding: 1rem; }
+.car-info h3 { font-size: 1.05rem; }
+.price { color: var(--muted); font-size: .9rem; font-weight: 500; }
+.wish { background: none; border: 0; color: var(--text); cursor: pointer; padding: .3rem; border-radius: 50%; }
+.wish:hover .material-symbols-outlined { transform: scale(1.2); }
+.wish.on .material-symbols-outlined { color: var(--like); font-variation-settings: 'FILL' 1; }
+.empty { color: var(--muted); padding: 2rem 0; }
+
+@media (min-width: 600px) { .cards { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 960px) { .cards { grid-template-columns: repeat(3, 1fr); } }

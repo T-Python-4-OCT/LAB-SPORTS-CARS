@@ -1,0 +1,75 @@
+/* Hero */
+.hero { position: relative; min-height: 88vh; display: flex; align-items: center; overflow: hidden; }
+.hero-bg { position: absolute; inset: 0; }
+.hero-bg::after { content: ""; position: absolute; inset: 0; background: var(--overlay); }
+.hero-bg .ph { align-items: flex-end;  }
+.hero-content { position: relative; z-index: 1; padding: 3rem 0; }
+.hero h1 { font-size: clamp(2.6rem, 8vw, 5rem); margin-bottom: 1rem; }
+.hero p { color: var(--muted); max-width: 420px; margin-bottom: 1.6rem; }
+.hero h1, .hero p, .hero .btn { animation: fadeUp .8s ease both; }
+.hero p { animation-delay: .15s; }
+.hero .btn { animation-delay: .3s; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+
+/* Features */
+.features { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; padding: 1.5rem 0; }
+.feature {
+  display: flex; flex-direction: column; align-items: center; text-align: center; gap: .4rem;
+  font-size: .85rem; font-weight: 500; padding: 1rem; border-radius: var(--radius);
+  transition: background .3s, transform .3s;
+}
+.feature:hover { background: var(--surface); transform: translateY(-4px); }
+.feature .material-symbols-outlined { font-size: 1.9rem; color: var(--accent); }
+
+/* Sections */
+.section { padding: 3rem 0; }
+.section-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+.section h2 { font-size: 1.8rem; }
+.link-arrow { color: var(--accent); font-weight: 600; display: inline-flex; align-items: center; gap: .3rem; }
+.link-arrow:hover .material-symbols-outlined { transform: translateX(4px); }
+
+/* Cards */
+.cards { display: grid; gap: 1.2rem; grid-template-columns: 1fr; }
+.car-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
+  transition: opacity .7s ease, translate .7s ease, transform .35s ease, box-shadow .35s ease;
+}
+.car-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+.car-img { display: block; position: relative; aspect-ratio: 16 / 10; overflow: hidden; }
+.car-info { display: flex; justify-content: space-between; align-items: center; padding: 1rem; }
+.car-info h3 { font-size: 1.05rem; }
+.price { color: var(--muted); font-size: .9rem; font-weight: 500; }
+.wish { background: none; border: 0; color: var(--text); cursor: pointer; padding: .3rem; border-radius: 50%; }
+.wish:hover .material-symbols-outlined { transform: scale(1.2); }
+.wish.on .material-symbols-outlined { color: var(--like); font-variation-settings: 'FILL' 1; }
+
+@media (min-width: 600px) { .cards { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 960px) { .cards { grid-template-columns: repeat(3, 1fr); } }
+
+/* Experience */
+.experience { position: relative; min-height: 380px; display: flex; align-items: center; color: #fff; overflow: hidden; margin-block: 2rem; }
+.exp-bg { position: absolute; inset: 0; }
+.exp-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.88), rgba(0,0,0,.25)); }
+.exp-bg .ph { background: #1b1b20; color: #bbb; border-color: #333; align-items: flex-end; }
+.exp-text { position: relative; z-index: 1; max-width: 460px; padding: 2rem 0; }
+.exp-text h2 { font-size: clamp(2rem, 5vw, 2.8rem); margin: .4rem 0 .8rem; }
+.exp-text p { color: #ddd; margin-bottom: 1.4rem; }
+.eyebrow { text-transform: uppercase; letter-spacing: .15em; font-size: .75rem; font-weight: 600; color: #ccc; }
+
+/* Why choose us */
+.why-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 1.5rem; }
+.why-item .material-symbols-outlined { font-size: 2rem; color: var(--accent); margin-bottom: .5rem; }
+.why-item h3 { font-size: 1rem; margin-bottom: .3rem; }
+.why-item p { color: var(--muted); font-size: .88rem; }
+@media (min-width: 760px) {
+  .features { grid-template-columns: repeat(4, 1fr); }
+  .why-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* CTA */
+.cta {
+  position: relative; border-radius: var(--radius); overflow: hidden; min-height: 240px;
+  display: flex; align-items: center; color: #fff;
+}
+.cta-text { position: relative; z-index: 1; padding: 2rem; }
+.cta-text h2 { font-size: clamp(1.6rem, 4vw, 2.2rem); margin-bottom: 1.2rem; }

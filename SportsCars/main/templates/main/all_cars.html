@@ -1,0 +1,85 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}SportCars | All Cars{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/all_cars.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<!-- Page Hero -->
+<section class="page-hero">
+  <div class="page-hero-bg">
+    <div class="ph">
+        <img src="{% static 'images/banners/all_cars_hero.jpg' %}">
+    </div>
+  </div>
+  <div class="container page-hero-content">
+    <span class="eyebrow">Our Collection</span>
+    <h1>All Cars</h1>
+    <p>Explore our complete collection of legendary classic sports cars.</p>
+  </div>
+</section>
+
+<section class="container section">
+
+  <!-- Filters -->
+  <form class="filters" method="get" action="{% url 'main:all_cars' %}">
+    <label class="select-wrap">
+      <span>Model</span>
+      <select name="model" onchange="this.form.submit()">
+        <option value="">All Models</option>
+        {% for m in models %}
+        <option value="{{ m.slug }}" {% if m.slug == selected_model %}selected{% endif %}>{{ m.name }}</option>
+        {% endfor %}
+      </select>
+    </label>
+
+    <label class="select-wrap">
+      <span>Price</span>
+      <select name="sort" onchange="this.form.submit()">
+        <option value="">Default</option>
+        <option value="price_asc" {% if selected_sort == 'price_asc' %}selected{% endif %}>Low to High</option>
+        <option value="price_desc" {% if selected_sort == 'price_desc' %}selected{% endif %}>High to Low</option>
+      </select>
+    </label>
+
+    {% if selected_model or selected_sort %}
+    <a href="{% url 'main:all_cars' %}" class="reset-link">
+      <span class="material-symbols-outlined">restart_alt</span> Reset
+    </a>
+    {% endif %}
+
+    <noscript><button type="submit" class="btn btn-primary">Apply</button></noscript>
+  </form>
+
+  <p class="results-count">{{ cars|length }} Car{{ cars|length|pluralize }} Found</p>
+
+  <!-- Cars Grid -->
+  <div class="cards">
+    {% for car in cars %}
+    <article class="car-card reveal">
+      <a href="{% url 'main:car_detail' car.slug %}" class="car-img">
+        <div class="ph">
+          <img src="{% static car.image %}" alt="{{ car.name }}">
+
+        </div>
+      </a>
+      <div class="car-info">
+        <div>
+          <h3>{{ car.name }}</h3>
+          <p class="price">SAR {{ car.price }}</p>
+        </div>
+        <button class="wish" aria-label="Save to wishlist"><span class="material-symbols-outlined">favorite</span></button>
+      </div>
+    </article>
+    {% empty %}
+    <p class="empty">No cars match your filter.</p>
+    {% endfor %}
+  </div>
+
+</section>
+
+{% endblock %}

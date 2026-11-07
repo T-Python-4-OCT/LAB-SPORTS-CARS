@@ -1,0 +1,79 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}SportCars | About Us{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<!-- Hero -->
+<section class="about-hero">
+  <div class="about-hero-bg">
+    <div class="ph">
+        <img src="{% static 'images/banners/about_hero.jpg' %}" >
+    </div>
+  </div>
+  <div class="container about-hero-content">
+    <span class="eyebrow">About Us</span>
+    <h1>Driven by<br>Passion</h1>
+    <p>A team of classic car enthusiasts dedicated to preserving and sharing the world's most legendary sports cars.</p>
+  </div>
+</section>
+
+<!-- Our Story -->
+<section class="container section">
+  <div class="story">
+    <div class="story-text reveal">
+      <h2>Our Story</h2>
+      <p>Founded in Saudi Arabia, Vintage Garage was born from a love of golden-age motoring. We hunt down, restore, and preserve iconic classic sports cars, offering collectors a curated selection and a trusted ownership experience.</p>
+    </div>
+    <div class="story-img reveal">
+      <div class="ph">
+        <img src="{% static 'images/banners/about_img.jpg' %}">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Our Values -->
+<section class="container section">
+  <h2 class="reveal">Our Values</h2>
+  <div class="values">
+    <div class="value reveal">
+      <span class="material-symbols-outlined">diamond</span>
+      <h3>Excellence</h3>
+      <p>A commitment to world-class standards.</p>
+    </div>
+    <div class="value reveal">
+      <span class="material-symbols-outlined">verified_user</span>
+      <h3>Trust</h3>
+      <p>Transparent, honest, and customer-first.</p>
+    </div>
+    <div class="value reveal">
+      <span class="material-symbols-outlined">star</span>
+      <h3>Passion</h3>
+      <p>A shared love for exceptional cars.</p>
+    </div>
+  </div>
+</section>
+
+<!-- More Than a Dealer -->
+<section class="container section">
+  <div class="dealer reveal">
+    <div class="dealer-bg">
+      <div class="ph">
+        <img src="{% static 'images/banners/all_cars_hero.jpg' %}">
+      </div>
+    </div>
+    <div class="dealer-text">
+      <h2>More Than a Dealer</h2>
+      <p> we are your partner in owning, preserving, and enjoying a piece of automotive history.</p>
+      <a href="{% url 'main:all_cars' %}" class="btn btn-outline-light">Browse the Collection <span class="material-symbols-outlined">arrow_forward</span></a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
