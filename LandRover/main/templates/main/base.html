@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Land Rover{% endblock %}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Phudu:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+</head>
+<body class="{{ request.COOKIES.theme }}">
+    <header class="navbar">
+    <div class="container nav-inner">
+
+        <a href="{% url 'main:home_view' %}" class="logo">LAND ROVER</a>
+
+        <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+        <label for="menu-toggle" class="menu-btn material-symbols-outlined">menu</label>
+
+        <nav class="nav-links">
+            <a href="{% url 'main:home_view' %}"
+               class="{% if request.resolver_match.url_name == 'home_view' %}active{% endif %}">Home</a>
+            <a href="{% url 'main:all_cars_view' %}"
+               class="{% if 'cars' in request.path %}active{% endif %}">Cars</a>
+            <a href="{% url 'main:about_view' %}"
+               class="{% if request.resolver_match.url_name == 'about_view' %}active{% endif %}">About Us</a>
+            <a href="#footer">Contact</a>
+        </nav>
+
+        <div class="nav-icons">
+    <span class="material-symbols-outlined">search</span>
+    <a href="{% url 'main:toggle_theme_view' %}" class="theme-toggle">
+        <span class="material-symbols-outlined">
+            {% if request.COOKIES.theme == 'dark' %}light_mode{% else %}dark_mode{% endif %}
+        </span>
+    </a>
+    <span class="material-symbols-outlined">person</span>
+</div>
+    </header>
+    {% block content %}
+    {% endblock %}
+    <footer class="footer" id="footer">
+    <div class="container footer-grid">
+
+        <div class="footer-brand">
+            <a href="{% url 'main:home_view' %}" class="logo">LAND ROVER</a>
+            <p>Above and beyond, since 1948.</p>
+        </div>
+
+        <div class="footer-col">
+            <h4>Explore</h4>
+            <a href="{% url 'main:home_view' %}">Home</a>
+            <a href="{% url 'main:all_cars_view' %}">Cars</a>
+            <a href="{% url 'main:about_view' %}">About Us</a>
+            <a href="#footer">Contact</a>
+        </div>
+
+        <div class="footer-col">
+            <h4>Support</h4>
+            <a href="#">FAQs</a>
+            <a href="#">Financing</a>
+            <a href="#">Warranty</a>
+            <a href="#">After-Sales</a>
+        </div>
+
+        <div class="footer-col">
+            <h4>Stay in the Loop</h4>
+            <p>Get the latest arrivals and exclusive offers.</p>
+            <form class="newsletter">
+                <input type="email" placeholder="Your email">
+                <button type="submit">
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+            </form>
+        </div>
+
+    </div>
+
+    <div class="container footer-bottom">
+        <p>&copy; 2026 Land Rover. Built by FSK-AlOtaibi.</p>
+        <div class="footer-social">
+            <a href="https://www.instagram.com/landrover" target="_blank">Instagram</a>
+            <a href="https://www.youtube.com/@landrover" target="_blank">YouTube</a>
+            <a href="https://x.com/LandRover" target="_blank">X</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

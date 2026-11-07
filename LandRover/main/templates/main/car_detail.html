@@ -1,0 +1,119 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Land Rover | {{ car.name }}{% endblock %}
+
+{% block content %}
+
+<section class="container detail">
+
+    <p class="breadcrumb">
+        <a href="{% url 'main:all_cars_view' %}">Cars</a>
+        <span>/</span>
+        <strong>{{ car.name }}</strong>
+    </p>
+
+    <div class="detail-top">
+
+        <div class="gallery">
+            <input type="radio" name="gallery" id="g1" checked>
+            <input type="radio" name="gallery" id="g2">
+            <input type="radio" name="gallery" id="g3">
+            <input type="radio" name="gallery" id="g4">
+            <input type="radio" name="gallery" id="g5">
+
+            <div class="gallery-main">
+                <img class="s1" src="{% get_static_prefix %}main/images/{{ car.slug }}/{{ car.slug }}-out-1.png" alt="{{ car.name }}">
+                <img class="s2" src="{% get_static_prefix %}main/images/{{ car.slug }}/{{ car.slug }}-out-3.png" alt="{{ car.name }} rear">
+                <img class="s3" src="{% get_static_prefix %}main/images/{{ car.slug }}/{{ car.slug }}-out-4.png" alt="{{ car.name }} top">
+                <img class="s4" src="{% get_static_prefix %}main/images/{{ car.slug }}/{{ car.slug }}-in-1.png" alt="{{ car.name }} interior">
+                <img class="s5" src="{% get_static_prefix %}main/images/{{ car.slug }}/{{ car.slug }}-in-2.png" alt="{{ car.name }} seats">
+            </div>
+
+            <div class="gallery-thumbs">
+                <label for="g1"><img src="{% get_static_prefix %}main/images/{{ car.slug }}/{{ car.slug }}-out-1.png" alt=""></label>
+                <label for="g2"><img src="{% get_static_prefix %}main/images/{{ car.slug }}/{{ car.slug }}-out-3.png" alt=""></label>
+                <label for="g3"><img src="{% get_static_prefix %}main/images/{{ car.slug }}/{{ car.slug }}-out-4.png" alt=""></label>
+                <label for="g4"><img src="{% get_static_prefix %}main/images/{{ car.slug }}/{{ car.slug }}-in-1.png" alt=""></label>
+                <label for="g5"><img src="{% get_static_prefix %}main/images/{{ car.slug }}/{{ car.slug }}-in-2.png" alt=""></label>
+            </div>
+        </div>
+
+        <div class="detail-info">
+            <h1>{{ car.name }}</h1>
+            <p class="detail-price">{{ car.price }}</p>
+
+            <ul class="specs">
+                <li><span class="material-symbols-outlined">settings</span> Engine <strong>{{ car.engine }}</strong></li>
+                <li><span class="material-symbols-outlined">bolt</span> Power <strong>{{ car.power }}</strong></li>
+                <li><span class="material-symbols-outlined">timer</span> 0 - 100 km/h <strong>{{ car.acceleration }}</strong></li>
+                <li><span class="material-symbols-outlined">speed</span> Top Speed <strong>{{ car.top_speed }}</strong></li>
+            </ul>
+
+            <a href="#footer" class="btn btn-full">Inquire Now</a>
+            <a href="#" class="btn-outline btn-full">
+                <span class="material-symbols-outlined">favorite</span>
+                Save to Wishlist
+            </a>
+        </div>
+
+    </div>
+
+    <nav class="tabs">
+        <a href="#overview" class="active">Overview</a>
+        <a href="#stats">Specifications</a>
+        <a href="#features">Features</a>
+    </nav>
+
+    <div class="overview" id="overview">
+        <h2>{{ car.overview_title }}</h2>
+        <p>{{ car.overview_text }}</p>
+    </div>
+
+    <div class="stats" id="stats">
+        <div class="stat">
+            <span class="material-symbols-outlined">settings</span>
+            <strong>{{ car.engine }}</strong>
+            <p>Engine</p>
+        </div>
+        <div class="stat">
+            <span class="material-symbols-outlined">bolt</span>
+            <strong>{{ car.power }}</strong>
+            <p>Max Power</p>
+        </div>
+        <div class="stat">
+            <span class="material-symbols-outlined">timer</span>
+            <strong>{{ car.acceleration }}</strong>
+            <p>0 - 100 km/h</p>
+        </div>
+        <div class="stat">
+            <span class="material-symbols-outlined">speed</span>
+            <strong>{{ car.top_speed }}</strong>
+            <p>Top Speed</p>
+        </div>
+    </div>
+
+    <div class="key-features" id="features">
+        <h2>Key Features</h2>
+        <div class="kf-grid">
+            <div class="kf">
+                <img src="{% get_static_prefix %}main/images/{{ car.slug }}/{{ car.slug }}-in-1.png" alt="Interior">
+                <h3>Premium Interior</h3>
+                <p>A driver-focused cabin with refined materials.</p>
+            </div>
+            <div class="kf">
+                <img src="{% get_static_prefix %}main/images/{{ car.slug }}/{{ car.slug }}-in-3.png" alt="Seats">
+                <h3>Comfort Seating</h3>
+                <p>Spacious seats designed for long journeys.</p>
+            </div>
+            <div class="kf">
+                <img src="{% get_static_prefix %}main/images/{{ car.slug }}/{{ car.slug }}-out-4.png" alt="Design">
+                <h3>Signature Design</h3>
+                <p>The unmistakable {{ car.name }} silhouette.</p>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+{% endblock %}

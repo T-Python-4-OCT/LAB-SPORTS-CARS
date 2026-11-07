@@ -1,0 +1,60 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Land Rover | About Us{% endblock %}
+
+{% block content %}
+
+<section class="hero hero-small bg-about-hero">
+    <div class="container hero-content">
+        <p class="eyebrow">Who We Are</p>
+        <h1>About Us</h1>
+        <p class="hero-text">More than a dealership. A destination for Land Rover enthusiasts.</p>
+    </div>
+</section>
+
+<section class="experience container">
+    <div class="experience-img">
+        <img src="{% static 'main/images/pages/about-story.jpg' %}" alt="Our showroom">
+    </div>
+    <div class="experience-text">
+        <p class="eyebrow">Our Story</p>
+        <h2>Driven by Passion</h2>
+        <p>Founded by enthusiasts who believe every journey deserves a capable companion. We bring you the finest Land Rover vehicles with transparency and care.</p>
+        <a href="{% url 'main:all_cars_view' %}" class="btn">
+            Explore Cars
+            <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+    </div>
+</section>
+
+<section class="numbers container">
+    <div class="number">
+        <strong>10+</strong>
+        <p>Years of Experience</p>
+    </div>
+    <div class="number">
+        <strong>500+</strong>
+        <p>Cars Delivered</p>
+    </div>
+    <div class="number">
+        <strong>98%</strong>
+        <p>Happy Clients</p>
+    </div>
+    <div class="number">
+        <strong>24/7</strong>
+        <p>Customer Support</p>
+    </div>
+</section>
+
+<section class="cta container bg-about-dealer">
+    <div class="cta-content">
+        <h2>More Than<br>a Dealer</h2>
+        <a href="#footer" class="btn">
+            Contact Us
+            <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+    </div>
+</section>
+
+{% endblock %}

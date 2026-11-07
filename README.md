@@ -1,29 +1,77 @@
-# LAB-SPORTS-CARS
+# Land Rover Dealership Website
 
+A multi-page dealership website for Land Rover vehicles, built with **Django** templates,
+**CSS**.
 
+![Home page](screenshots/home.png)
 
-## Create a website for a sports cars dealership (SportsCars) , the website should have a home page that looks like the image below , you should :
-- use templates & templates inheritance.
-- use google fonts (choose the same font `Phudu` , or a similar one) [https://fonts.google.com](https://fonts.google.com)
-- use google fonts icons (choose similar icons) [https://fonts.google.com/icons](https://fonts.google.com/icons)
-- use images and icons of your chosing (not necessarily like the below image, You can find image in the resources folder).
-- use static for your static files (css, images, videos, etc.)
-- use icons of your choosing (not necessarily like the below image)
-- Implement dark mode.
-- Use CSS Transitions and Animations to add vitality to your page.
-- Use fake urls for links, or demo links (real links for example to instagram online car dealer)
-- It should be responsive (looks good on desktop & mobile)
-- you can use css libraries like (bootstrap, tailwinds, etc.) along with your own css. 
+## Features
 
+- **Template inheritance:** one `base.html` with the navbar and footer, extended by every page.
+- **One template for all car pages:** `car_detail.html` renders Range Rover, Defender and Discovery from data passed by each view.
+- **Dark mode without JavaScript:** a Django view saves the theme in a cookie, and CSS variables switch the colors.
+- **CSS-only image gallery:** click a thumbnail to show it in the main viewer (radio buttons + `:checked`).
+- **Animations and transitions:** fade-up hero, 3D tilt on the main car image, hover effects on cards and buttons.
+- **Responsive design:** tablet and mobile layouts, with a CSS-only hamburger menu.
+- **Optimized images:** a Pillow script compressed the page images from ~123 MB to ~1.4 MB.
 
-## Required Pages:
-- 1 Home page
-- 3 Cars Detail Page.
-- 1 All Cars Page.
-- 1 About us page
+## Pages
 
+| Page | URL |
+|---|---|
+| Home | `/` |
+| All Cars | `/cars/` |
+| Range Rover | `/cars/range-rover/` |
+| Defender | `/cars/defender/` |
+| Discovery | `/cars/discovery/` |
+| About Us | `/about/` |
 
+## Screenshots
 
+| All Cars | Car Detail |
+|---|---|
+| ![All Cars](screenshots/all-cars.png) | ![Detail](screenshots/detail.png) |
 
-### UX/UI Screens
-<img width="100%" src="sportcars_all_pages_2500x1667.png?raw=True">
+| About Us |
+|---|
+| ![About](screenshots/about.png) |
+
+### Mobile
+
+![Mobile](screenshots/mobile.png)
+
+## Tech Stack
+
+- Python 3.10, Django 5.2
+- HTML, CSS
+- Google Fonts (`Phudu`) and Material Symbols icons
+- Pillow (image compression script)
+
+## Run Locally
+
+```bash
+git clone https://github.com/JZL9/LAB-SPORTS-CARS.git
+cd LAB-SPORTS-CARS
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+cd LandRover
+python manage.py runserver
+```
+
+Then open `http://127.0.0.1:8000/`.
+
+## Lab Requirements
+
+Built for the **LAB-SPORTS-CARS** assignment (Tuwaiq Academy Python bootcamp):
+templates and inheritance, Google Fonts and icons, static files, dark mode,
+CSS transitions and animations, responsive layout, and the required pages.
+
+## Credits
+
+Vehicle images are from the official [Land Rover Media](https://media.landrover.com) press site,
+used for educational purposes only. This project is not affiliated with Land Rover.
+
+---
+
+Built by **Fahad Al-Otaibi**

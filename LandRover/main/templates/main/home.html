@@ -1,0 +1,140 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Land Rover | Home{% endblock %}
+
+{% block content %}
+
+<section class="hero bg-home-hero">
+    <div class="container hero-content">
+        <p class="eyebrow">Land Rover Collection</p>
+        <h1>Above and<br>Beyond</h1>
+        <p class="hero-text">Explore a curated collection of iconic Land Rover vehicles, built for every terrain.</p>
+        <a href="{% url 'main:all_cars_view' %}" class="btn">
+            Browse Cars
+            <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+    </div>
+</section>
+<section class="features container">
+    <div class="feature">
+        <span class="material-symbols-outlined">terrain</span>
+        <p>All-Terrain Capability</p>
+    </div>
+    <div class="feature">
+        <span class="material-symbols-outlined">diamond</span>
+        <p>Premium Selection</p>
+    </div>
+    <div class="feature">
+        <span class="material-symbols-outlined">verified_user</span>
+        <p>Verified &amp; Inspected</p>
+    </div>
+    <div class="feature">
+        <span class="material-symbols-outlined">support_agent</span>
+        <p>Dedicated Support</p>
+    </div>
+</section>
+
+<section class="featured container">
+    <div class="section-header">
+        <h2>Featured Cars</h2>
+        <a href="{% url 'main:all_cars_view' %}" class="view-all">
+            View All <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+    </div>
+
+    <div class="cars-grid">
+
+        <a href="{% url 'main:range_rover_view' %}" class="car-card">
+            <div class="car-img">
+                <img src="{% static 'main/images/range-rover/range-rover-out-2.png' %}" alt="Range Rover">
+            </div>
+            <div class="car-info">
+                <div>
+                    <h3>Range Rover</h3>
+                    <p>SAR 795,000</p>
+                </div>
+                <span class="material-symbols-outlined">favorite</span>
+            </div>
+        </a>
+
+        <a href="{% url 'main:defender_view' %}" class="car-card">
+            <div class="car-img">
+                <img src="{% static 'main/images/defender/defender-out-2.png' %}" alt="Defender">
+            </div>
+            <div class="car-info">
+                <div>
+                    <h3>Defender</h3>
+                    <p>SAR 465,000</p>
+                </div>
+                <span class="material-symbols-outlined">favorite</span>
+            </div>
+        </a>
+
+        <a href="{% url 'main:discovery_view' %}" class="car-card">
+            <div class="car-img">
+                <img src="{% static 'main/images/discovery/discovery-out-2.png' %}" alt="Discovery">
+            </div>
+            <div class="car-info">
+                <div>
+                    <h3>Discovery</h3>
+                    <p>SAR 325,000</p>
+                </div>
+                <span class="material-symbols-outlined">favorite</span>
+            </div>
+        </a>
+
+    </div>
+</section>
+
+<section class="experience container">
+    <div class="experience-img">
+        <img src="{% static 'main/images/pages/home-experience.jpg' %}" alt="Land Rover experience">
+    </div>
+    <div class="experience-text">
+        <p class="eyebrow">The Experience</p>
+        <h2>More Than a Car</h2>
+        <p>A seamless journey from discovery to ownership, with expert support every step of the way.</p>
+        <a href="{% url 'main:about_view' %}" class="btn">
+            Learn More
+            <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+    </div>
+</section>
+
+<section class="why container">
+    <h2>Why Choose Us</h2>
+    <div class="why-grid">
+        <div class="why-item">
+            <span class="material-symbols-outlined">workspace_premium</span>
+            <h3>Iconic Models</h3>
+            <p>A handpicked range of world-class vehicles.</p>
+        </div>
+        <div class="why-item">
+            <span class="material-symbols-outlined">fact_check</span>
+            <h3>Full Transparency</h3>
+            <p>Detailed history and inspection for every car.</p>
+        </div>
+        <div class="why-item">
+            <span class="material-symbols-outlined">star</span>
+            <h3>Expert Guidance</h3>
+            <p>Personalized advice from automotive experts.</p>
+        </div>
+        <div class="why-item">
+            <span class="material-symbols-outlined">build</span>
+            <h3>After-Sales Care</h3>
+            <p>Ongoing support and exclusive benefits.</p>
+        </div>
+    </div>
+</section>
+
+<section class="cta container bg-home-cta">
+    <div class="cta-content">
+        <h2>Ready to Drive<br>Your Dream Car?</h2>
+        <a href="{% url 'main:all_cars_view' %}" class="btn">
+            Browse Collection
+            <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+    </div>
+</section>
+{% endblock %}

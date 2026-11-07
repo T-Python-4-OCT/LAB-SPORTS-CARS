@@ -1,0 +1,85 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Land Rover | All Cars{% endblock %}
+
+{% block content %}
+
+<section class="hero hero-small bg-all-cars">
+    <div class="container hero-content">
+        <p class="eyebrow">Our Collection</p>
+        <h1>All Cars</h1>
+        <p class="hero-text">Explore our complete collection of iconic Land Rover vehicles.</p>
+    </div>
+</section>
+
+<section class="container all-cars">
+
+    <div class="filters">
+        <select>
+            <option>Model</option>
+            <option>Range Rover</option>
+            <option>Defender</option>
+            <option>Discovery</option>
+        </select>
+        <select>
+            <option>Price</option>
+            <option>Under SAR 400,000</option>
+            <option>Over SAR 400,000</option>
+        </select>
+        <select>
+            <option>Year</option>
+            <option>2026</option>
+            <option>2025</option>
+        </select>
+    </div>
+
+    <p class="results">3 Cars Found</p>
+
+    <div class="cars-grid">
+        
+        <a href="{% url 'main:range_rover_view' %}" class="car-card">
+            <div class="car-img">
+                <img src="{% static 'main/images/range-rover/range-rover-out-2.png' %}" alt="Range Rover">
+            </div>
+            <div class="car-info">
+                <div>
+                    <h3>Range Rover</h3>
+                    <p>SAR 795,000</p>
+                </div>
+                <span class="material-symbols-outlined">favorite</span>
+            </div>
+        </a>
+
+        <a href="{% url 'main:defender_view' %}" class="car-card">
+            <div class="car-img">
+                <img src="{% static 'main/images/defender/defender-out-2.png' %}" alt="Defender">
+            </div>
+            <div class="car-info">
+                <div>
+                    <h3>Defender</h3>
+                    <p>SAR 465,000</p>
+                </div>
+                <span class="material-symbols-outlined">favorite</span>
+            </div>
+        </a>
+
+        <a href="{% url 'main:discovery_view' %}" class="car-card">
+            <div class="car-img">
+                <img src="{% static 'main/images/discovery/discovery-out-2.png' %}" alt="Discovery">
+            </div>
+            <div class="car-info">
+                <div>
+                    <h3>Discovery</h3>
+                    <p>SAR 325,000</p>
+                </div>
+                <span class="material-symbols-outlined">favorite</span>
+            </div>
+        </a>
+
+
+    </div>
+
+</section>
+
+{% endblock %}
