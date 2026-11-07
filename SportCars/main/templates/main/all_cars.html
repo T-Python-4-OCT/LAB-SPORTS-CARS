@@ -1,0 +1,40 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}All Cars | SportsCars{% endblock %}
+
+{% block content %}
+<section class="hero hero-small">
+  <img class="hero-bg" src="{% static 'main/images/hero.jpg' %}" alt="">
+  <div class="container hero-text">
+    <span class="eyebrow">Our Collection</span>
+    <h1>All Cars</h1>
+    <p>Explore our complete collection of iconic sports cars.</p>
+  </div>
+</section>
+
+<section class="container section">
+  <div class="filters">
+    <select id="brandFilter" aria-label="Filter by brand">
+      <option value="">All Brands</option>
+      {% for brand in brands %}<option value="{{ brand }}">{{ brand }}</option>{% endfor %}
+    </select>
+    <select id="priceFilter" aria-label="Filter by price">
+      <option value="">Any Price</option>
+      <option value="400000">Under SAR 400,000</option>
+      <option value="700000">Under SAR 700,000</option>
+    </select>
+    <select id="yearFilter" aria-label="Filter by year">
+      <option value="">Any Year</option>
+      {% for year in years %}<option value="{{ year }}">{{ year }}</option>{% endfor %}
+    </select>
+    <button class="icon-btn filter-reset" id="resetFilters" type="button" aria-label="Reset filters"><span class="material-symbols-outlined">tune</span></button>
+  </div>
+
+  <h2 class="count"><span id="carCount">{{ cars|length }}</span> Cars Found</h2>
+
+  <div class="car-grid" id="carGrid">
+    {% for car in cars %}{% include 'main/_car_card.html' %}{% endfor %}
+  </div>
+  <p class="no-results" id="noResults" hidden>No cars match these filters.</p>
+</section>
+{% endblock %}

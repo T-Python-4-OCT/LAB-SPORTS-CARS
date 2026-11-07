@@ -1,0 +1,39 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}About Us | SportsCars{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <img class="hero-bg" src="{% static 'main/images/taillight.jpg' %}" alt="">
+  <div class="container hero-text">
+    <span class="eyebrow">About Us</span>
+    <h1>Driven by<br>Passion</h1>
+    <p>A team of automotive enthusiasts dedicated to bringing the world's finest sports cars closer to you.</p>
+  </div>
+</section>
+
+<section class="container section story reveal">
+  <div>
+    <h2>Our Story</h2>
+    <p>Founded in Saudi Arabia, we bring together a deep passion for performance, design, and engineering excellence, offering a curated selection of iconic sports cars and a premium ownership experience.</p>
+  </div>
+  <img src="{% static 'main/images/showroom.jpg' %}" alt="SportsCars showroom">
+</section>
+
+<section class="container section">
+  <h2>Our Values</h2>
+  <div class="why-grid values">
+    <div class="reveal"><span class="material-symbols-outlined">diamond</span><h3>Excellence</h3><p>A commitment to world-class standards.</p></div>
+    <div class="reveal"><span class="material-symbols-outlined">verified_user</span><h3>Trust</h3><p>Transparent, honest, and customer-first.</p></div>
+    <div class="reveal"><span class="material-symbols-outlined">star</span><h3>Passion</h3><p>A shared love for exceptional cars.</p></div>
+  </div>
+</section>
+
+<section class="container">
+  <div class="dealer-card reveal" style="background-image: url('{% static 'main/images/hero.jpg' %}')">
+    <h2>More Than a Dealer</h2>
+    <p>We are your partner in the journey of owning and enjoying an exceptional car.</p>
+    <a href="{% url 'all_cars' %}" class="btn btn-ghost">Browse Cars <span class="material-symbols-outlined">arrow_forward</span></a>
+  </div>
+</section>
+{% endblock %}
