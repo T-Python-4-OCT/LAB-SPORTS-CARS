@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block title %}SportsCars | Curated Performance{% endblock %}
+{% block content %}
+<section class="hero" aria-labelledby="home-title">
+  <div class="hero-image" data-hero-image role="img" aria-label="{{ cars.0.name }} driving on the road" style="background-image:url('{{ cars.0.image }}')"></div>
+  <div class="hero-shade"></div>
+  <div class="container hero-content">
+    <p class="eyebrow light-eyebrow"><span></span> A CURATED SPORTS CAR COLLECTION</p>
+    <h1 id="home-title">Performance,<br>with a <em>point of view.</em></h1>
+    <p class="hero-copy">Discover three unmistakable icons, selected for the way they look, feel, and drive.</p>
+    <div class="hero-actions">
+      <a class="button button-red" href="{% url 'cars' %}">Explore the collection <span class="material-symbols-rounded" aria-hidden="true">arrow_right_alt</span></a>
+      <a class="text-link light-link" href="#featured">Meet the cars <span class="material-symbols-rounded" aria-hidden="true">south</span></a>
+    </div>
+    <div class="hero-index" aria-label="Featured car"><b data-hero-count>01</b><span class="index-line"></span><span>{{ cars|length|stringformat:"02d" }}</span><span class="index-caption" data-hero-name aria-live="polite">{{ cars.0.name }}</span></div>
+    <div class="hero-carousel" role="group" aria-label="Choose a featured car">
+      <button class="hero-carousel-arrow" type="button" data-hero-prev aria-label="Previous car"><span class="material-symbols-rounded" aria-hidden="true">arrow_back</span></button>
+      <div class="hero-carousel-dots">
+        {% for car in cars %}<button class="hero-carousel-dot{% if forloop.first %} is-active{% endif %}" type="button" data-hero-slide data-index="{{ forloop.counter0 }}" data-image="{{ car.image }}" data-name="{{ car.name }}" data-category="{{ car.category }}" data-url="{% url 'car_detail' car.slug %}" aria-label="Show {{ car.name }}" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}"></button>{% endfor %}
+      </div>
+      <button class="hero-carousel-arrow" type="button" data-hero-next aria-label="Next car"><span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span></button>
+      <a class="hero-current-link" data-hero-link href="{% url 'car_detail' cars.0.slug %}">View this car <span class="material-symbols-rounded" aria-hidden="true">north_east</span></a>
+    </div>
+  </div>
+  <div class="hero-tag"><span class="material-symbols-rounded" aria-hidden="true">location_on</span> Riyadh, Saudi Arabia</div>
+</section>
+
+<section class="benefits container" aria-label="Our commitment">
+  <div class="benefit"><span class="material-symbols-rounded" aria-hidden="true">verified</span><div><strong>Carefully selected</strong><small>A focused collection of icons</small></div></div>
+  <div class="benefit"><span class="material-symbols-rounded" aria-hidden="true">fact_check</span><div><strong>Clear car details</strong><small>Specs and pricing up front</small></div></div>
+  <div class="benefit"><span class="material-symbols-rounded" aria-hidden="true">support_agent</span><div><strong>Personal guidance</strong><small>Help at every step</small></div></div>
+  <div class="benefit"><span class="material-symbols-rounded" aria-hidden="true">directions_car</span><div><strong>Book a test drive</strong><small>Get to know your next car</small></div></div>
+</section>
+
+<section class="section container" id="featured" aria-labelledby="featured-title">
+  <div class="section-heading"><div><p class="eyebrow">THE COLLECTION</p><h2 id="featured-title">Three icons. <em>One good decision.</em></h2></div><a class="text-link" href="{% url 'cars' %}">View all cars <span class="material-symbols-rounded" aria-hidden="true">arrow_right_alt</span></a></div>
+  <p class="home-section-intro">Explore the details, compare the character, and find the drive that feels right for you.</p>
+  <div class="car-grid">
+    {% for car in cars %}
+    <article class="car-card">
+      <a class="car-photo" href="{% url 'car_detail' car.slug %}" aria-label="View {{ car.name }}">
+        <img src="{{ car.image }}" alt="{{ car.year }} {{ car.name }}" loading="lazy">
+        <span class="photo-year">{{ car.year }}</span><span class="photo-arrow material-symbols-rounded" aria-hidden="true">north_east</span>
+      </a>
+      <div class="car-card-body">
+        <div><p class="card-category">{{ car.category }}</p><h3><a href="{% url 'car_detail' car.slug %}">{{ car.name }}</a></h3></div>
+        <button class="favorite icon-button" type="button" aria-label="Add {{ car.name }} to favorites" aria-pressed="false" data-favorite="{{ car.slug }}"><svg class="favorite-heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/></svg></button>
+        <p class="home-car-spec"><span class="material-symbols-rounded" aria-hidden="true">settings</span>{{ car.engine }} <span class="spec-divider">·</span> <span class="material-symbols-rounded" aria-hidden="true">bolt</span>{{ car.power }}</p>
+        <p class="car-price">{{ car.price }} <small>SAR</small></p>
+        <a class="card-link" href="{% url 'car_detail' car.slug %}">Explore this car <span class="material-symbols-rounded" aria-hidden="true">arrow_right_alt</span></a>
+      </div>
+    </article>
+    {% empty %}
+    <p class="no-cars">Our collection is being updated. Please check back soon.</p>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="story-band" aria-labelledby="story-title"><div class="story-image" role="img" aria-label="Porsche 911 on a scenic road"></div><div class="story-content"><p class="eyebrow light-eyebrow">A BETTER WAY TO CHOOSE</p><h2 id="story-title">The right drive<br>feels <em>like yours.</em></h2><p>Choosing a sports car should be exciting and clear. We bring together distinctive cars, useful details, and personal guidance to help you make the choice with confidence.</p><a href="{% url 'about' %}" class="button button-outline">Get to know us <span class="material-symbols-rounded" aria-hidden="true">arrow_right_alt</span></a></div></section>
+
+<section class="section container" aria-labelledby="difference-title"><div class="section-heading"><div><p class="eyebrow">THE SPORTSCARS DIFFERENCE</p><h2 id="difference-title">Good choices start <em>with the details.</em></h2></div></div><div class="promise-grid"><article><span class="material-symbols-rounded" aria-hidden="true">tune</span><h3>A focused collection</h3><p>Three distinctive cars, each with a character of its own.</p></article><article><span class="material-symbols-rounded" aria-hidden="true">fact_check</span><h3>Details you can compare</h3><p>Explore specifications, galleries, and pricing for every car.</p></article><article><span class="material-symbols-rounded" aria-hidden="true">handshake</span><h3>Personal support</h3><p>Our team is here to help you through your decision.</p></article><article><span class="material-symbols-rounded" aria-hidden="true">speed</span><h3>Made for the drive</h3><p>Find a car that makes every journey feel special.</p></article></div></section>
+
+<section class="closing-cta" aria-labelledby="closing-title"><div><p class="eyebrow light-eyebrow">YOUR NEXT DRIVE STARTS HERE</p><h2 id="closing-title">Find the car<br>that moves <em>you.</em></h2><a href="{% url 'cars' %}" class="button button-red">Explore the collection <span class="material-symbols-rounded" aria-hidden="true">arrow_right_alt</span></a></div></section>
+{% endblock %}
