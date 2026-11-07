@@ -1,0 +1,433 @@
+
+{% extends 'MotorqueApp/base.html' %}
+{% load static %}
+
+{% block title %}Genesis G80 2026 | MOTORQUE{% endblock %}
+
+{% block content %}
+
+<!-- Genesis Video Hero -->
+<section class="g80-hero">
+
+    <video class="g80-hero-video" autoplay muted loop playsinline>
+        <source src="{% static 'MotorqueApp/videos/GenesisG80.mp4' %}" type="video/mp4">
+    </video>
+
+    <div class="g80-hero-overlay"></div>
+
+    <div class="g80-hero-content">
+        <p>GENESIS COLLECTION</p>
+        <h1>GENESIS G80</h1>
+        <span>Refined elegance. Exceptional comfort.</span>
+    </div>
+
+</section>
+
+
+<!-- Genesis Vehicle Overview -->
+<section class="g80-overview" id="overview">
+
+    <!-- Vehicle Image Gallery -->
+    <div class="g80-gallery">
+
+        <div class="g80-main-image">
+
+            <button class="g80-gallery-arrow g80-prev"
+                    type="button"
+                    aria-label="Previous image">
+                &#10094;
+            </button>
+
+            <img
+                id="g80-car-image"
+                src="{% static 'MotorqueApp/images/G80/G80-1.avif' %}"
+                alt="Genesis G80 2026"
+            >
+
+            <button class="g80-gallery-arrow g80-next"
+                    type="button"
+                    aria-label="Next image">
+                &#10095;
+            </button>
+
+            <span class="g80-image-counter" id="g80-image-counter">
+                01 / 10
+            </span>
+
+        </div>
+
+        <div class="g80-thumbnails">
+
+            {% for number in "123456789" %}
+                <button
+                    class="g80-thumb {% if forloop.first %}active{% endif %}"
+                    type="button"
+                    data-index="{{ forloop.counter0 }}"
+                    data-image="{% static 'MotorqueApp/images/G80/G80-' %}{{ number }}.avif"
+                >
+                    <img
+                        src="{% static 'MotorqueApp/images/G80/G80-' %}{{ number }}.avif"
+                        alt="Genesis G80 view {{ number }}"
+                    >
+                </button>
+            {% endfor %}
+
+            <button
+                class="g80-thumb"
+                type="button"
+                data-index="9"
+                data-image="{% static 'MotorqueApp/images/G80/G80-10.avif' %}"
+            >
+                <img
+                    src="{% static 'MotorqueApp/images/G80/G80-10.avif' %}"
+                    alt="Genesis G80 view 10"
+                >
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- Vehicle Information -->
+    <div class="g80-info">
+
+        <p class="g80-info-label">2026 MODEL</p>
+
+        <h2>GENESIS G80</h2>
+
+        <p class="g80-price-label">Starting from</p>
+
+        <div class="g80-price">
+            230,000 <span>SAR</span>
+        </div>
+
+
+        <!-- Performance Specifications -->
+        <div class="g80-specs">
+
+            <div class="g80-spec-item">
+                <div class="g80-spec-icon">
+                    <i class="fa-solid fa-gears"></i>
+                </div>
+                <div>
+                    <span>ENGINE</span>
+                    <h3>2.5L Turbo</h3>
+                </div>
+            </div>
+
+            <div class="g80-spec-item">
+                <div class="g80-spec-icon">
+                    <i class="fa-solid fa-horse-head"></i>
+                </div>
+                <div>
+                    <span>POWER</span>
+                    <h3>300 HP</h3>
+                </div>
+            </div>
+
+            <div class="g80-spec-item">
+                <div class="g80-spec-icon">
+                    <i class="fa-solid fa-stopwatch"></i>
+                </div>
+                <div>
+                    <span>ACCELERATION</span>
+                    <h3>6.0 Sec</h3>
+                </div>
+            </div>
+
+            <div class="g80-spec-item">
+                <div class="g80-spec-icon">
+                    <i class="fa-solid fa-gauge-high"></i>
+                </div>
+                <div>
+                    <span>TOP SPEED</span>
+                    <h3>240 KM/H</h3>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- Action Buttons -->
+        <div class="g80-actions">
+
+            <a href="#inquire" class="g80-inquire-btn">
+                INQUIRE NOW <span>→</span>
+            </a>
+
+            <button type="button" class="g80-watchlist-btn" id="g80-watchlist">
+                ♡ ADD TO WATCHLIST
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- G80 Navigation Bar -->
+<nav class="g80-section-nav">
+
+    <a href="#overview" class="active">Overview</a>
+    <a href="#specifications">Specifications</a>
+    <a href="#features">Features</a>
+    <a href="#gallery">Gallery</a>
+
+</nav>
+
+
+<!-- G80 Rear Hero -->
+<section class="g80-rear-hero">
+
+    <img
+        src="{% static 'MotorqueApp/images/G80/G80-Rear.webp' %}"
+        alt="Genesis G80 Rear View"
+    >
+
+    <div class="g80-rear-overlay"></div>
+
+    <div class="g80-rear-content">
+
+        <p class="g80-rear-label">GENESIS G80</p>
+
+        <h2>A THING OF BEAUTY</h2>
+
+        <p>
+            Stately, confident, and commanding – this is the Genesis G80.
+            From the commanding Double Mesh G-Matrix Grille to its sleek
+            and sporting side profile, the G80 epitomises elegance
+            from every angle.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- G80 Key Features -->
+<section class="g80-key-features" id="features">
+
+    <div class="g80-features-heading">
+        <p>DISCOVER GENESIS G80</p>
+        <h2>KEY FEATURES</h2>
+    </div>
+
+    <div class="g80-features-grid">
+
+        <!-- Premium Interior -->
+        <article class="g80-feature-card">
+            <div class="g80-feature-image">
+                <img
+                    src="{% static 'MotorqueApp/images/G80/G80-PremiumInterior.avif' %}"
+                    alt="Genesis G80 Premium Interior"
+                >
+            </div>
+
+            <h3>Premium Interior</h3>
+
+            <p>
+                Experience exceptional comfort with refined materials,
+                elegant details, and a thoughtfully crafted cabin.
+            </p>
+        </article>
+
+
+        <!-- Performance -->
+        <article class="g80-feature-card">
+            <div class="g80-feature-image">
+                <img
+                    src="{% static 'MotorqueApp/images/G80/G80-Performance.webp' %}"
+                    alt="Genesis G80 Performance"
+                >
+            </div>
+
+            <h3>Performance</h3>
+
+            <p>
+                Enjoy a powerful yet smooth driving experience,
+                combining responsive acceleration with refined handling.
+            </p>
+        </article>
+
+
+        <!-- Advanced Safety -->
+        <article class="g80-feature-card">
+            <div class="g80-feature-image">
+                <img
+                    src="{% static 'MotorqueApp/images/G80/G80-AdvancedSafety.avif' %}"
+                    alt="Genesis G80 Advanced Safety"
+                >
+            </div>
+
+            <h3>Advanced Safety</h3>
+
+            <p>
+                Drive with confidence through intelligent driver
+                assistance systems designed to enhance every journey.
+            </p>
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- G80 Scroll Controlled Interior -->
+<section class="g80-interior-experience" id="gallery">
+
+    <div class="g80-interior-sticky">
+
+        <!-- Interior Heading -->
+        <div class="g80-interior-heading">
+            <p>GENESIS G80 INTERIOR</p>
+            <h2>WHERE EXCITEMENT AND SERENITY INTERSECT</h2>
+        </div>
+
+
+        <!-- Interior 1 -->
+        <div class="g80-interior-frame active">
+
+            <img
+                src="{% static 'MotorqueApp/images/G80/G80-Interior1.webp' %}"
+                alt="Ecru Camel Mono-tone Interior"
+            >
+
+            <div class="g80-interior-shade"></div>
+
+            <div class="g80-interior-caption">
+                <p>Signature Design Selection II</p>
+                <h2>Ecru Camel Mono-tone</h2>
+            </div>
+
+        </div>
+
+
+        <!-- Interior 2 -->
+        <div class="g80-interior-frame">
+
+            <img
+                src="{% static 'MotorqueApp/images/G80/G80-Interior2.webp' %}"
+                alt="Ash Gray Vanilla Beige Interior"
+            >
+
+            <div class="g80-interior-shade"></div>
+
+            <div class="g80-interior-caption">
+                <p>Signature Design Selection I</p>
+                <h2>Ash Gray / Vanilla Beige Two-tone</h2>
+            </div>
+
+        </div>
+
+
+        <!-- Interior 3 -->
+        <div class="g80-interior-frame">
+
+            <img
+                src="{% static 'MotorqueApp/images/G80/G80-Interior3.webp' %}"
+                alt="Obsidian Black Interior"
+            >
+
+            <div class="g80-interior-shade"></div>
+
+            <div class="g80-interior-caption">
+                <p>Sport Design Selection</p>
+                <h2>Obsidian Black Mono-tone</h2>
+            </div>
+
+        </div>
+
+
+        <!-- Interior Progress -->
+        <div class="g80-interior-progress">
+            <span class="g80-interior-progress-fill"></span>
+        </div>
+
+        <div class="g80-interior-counter">
+            <span id="g80-interior-current">01</span>
+            <span>/ 03</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Gallery JavaScript -->
+<script src="{% static 'MotorqueApp/js/g80-gallery.js' %}"></script>
+
+
+<!-- Navigation Interaction -->
+<script>
+document.querySelectorAll(".g80-section-nav a").forEach(link => {
+
+    link.addEventListener("click", function () {
+
+        document.querySelectorAll(".g80-section-nav a").forEach(item => {
+            item.classList.remove("active");
+        });
+
+        this.classList.add("active");
+
+    });
+
+});
+</script>
+
+
+<!-- Interior Scroll Interaction -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const section = document.querySelector(".g80-interior-experience");
+    const frames = document.querySelectorAll(".g80-interior-frame");
+    const currentCounter = document.getElementById("g80-interior-current");
+    const progressFill = document.querySelector(".g80-interior-progress-fill");
+
+    if (!section || frames.length === 0) return;
+
+    let currentFrame = -1;
+
+    function updateInterior() {
+
+        const rect = section.getBoundingClientRect();
+        const scrollableDistance = section.offsetHeight - window.innerHeight;
+
+        if (scrollableDistance <= 0) return;
+
+        const progress = Math.max(
+            0,
+            Math.min(1, -rect.top / scrollableDistance)
+        );
+
+        const frameIndex = Math.min(
+            frames.length - 1,
+            Math.floor(progress * frames.length)
+        );
+
+        if (frameIndex !== currentFrame) {
+
+            frames.forEach((frame, index) => {
+                frame.classList.toggle("active", index === frameIndex);
+            });
+
+            currentCounter.textContent =
+                String(frameIndex + 1).padStart(2, "0");
+
+            currentFrame = frameIndex;
+        }
+
+        progressFill.style.width = (progress * 100) + "%";
+    }
+
+    window.addEventListener("scroll", updateInterior, { passive: true });
+    window.addEventListener("resize", updateInterior);
+
+    updateInterior();
+
+});
+</script>
+
+{% endblock %}

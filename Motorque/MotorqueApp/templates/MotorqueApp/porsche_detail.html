@@ -1,0 +1,580 @@
+
+{% extends 'MotorqueApp/base.html' %}
+{% load static %}
+
+{% block title %}Porsche 911 Carrera | MOTORQUE{% endblock %}
+
+{% block content %}
+
+<!-- =====================================
+     PORSCHE VIDEO HERO
+===================================== -->
+
+<section class="p911-hero">
+
+    <video class="p911-hero-video" autoplay muted loop playsinline>
+        <source src="{% static 'MotorqueApp/videos/Porsche911.mp4' %}" type="video/mp4">
+    </video>
+
+    <div class="p911-hero-overlay"></div>
+
+    <div class="p911-hero-content">
+        <p>PORSCHE COLLECTION</p>
+        <h1>911 CARRERA</h1>
+        <span>Driven by passion. Defined by performance.</span>
+    </div>
+
+</section>
+
+
+<!-- =====================================
+     PORSCHE OVERVIEW
+===================================== -->
+
+<section class="p911-overview" id="overview">
+
+    <div class="p911-gallery">
+
+        <div class="p911-main-image">
+
+            <button class="p911-arrow p911-prev" type="button"
+                    aria-label="Previous image">&#10094;</button>
+
+            <img
+                id="p911-main-img"
+                src="{% static 'MotorqueApp/images/Porsche911/Contrast/Black/911-ContrastBlack1.jpeg' %}"
+                alt="Porsche 911 Carrera"
+            >
+
+            <button class="p911-arrow p911-next" type="button"
+                    aria-label="Next image">&#10095;</button>
+
+            <span class="p911-counter" id="p911-counter">01 / 05</span>
+
+        </div>
+
+        <div class="p911-thumbnails" id="p911-thumbnails">
+
+            {% for number in "12345" %}
+            <button class="p911-thumb {% if forloop.first %}active{% endif %}"
+                    type="button"
+                    data-index="{{ forloop.counter0 }}">
+                <img
+                    src="{% if forloop.first %}{% static 'MotorqueApp/images/Porsche911/Contrast/Black/911-ContrastBlack1.jpeg' %}{% else %}{% static 'MotorqueApp/images/Porsche911/Contrast/Black/911-ContrastBlack' %}{{ number }}.avif{% endif %}"
+                    alt="Porsche 911 view {{ number }}">
+            </button>
+            {% endfor %}
+
+        </div>
+
+        <div class="p911-color-section">
+
+            <div class="p911-color-heading">
+                <span>EXTERIOR COLOR</span>
+                <strong id="p911-color-name">Contrast Black</strong>
+            </div>
+
+            <div class="p911-color-options">
+
+                <button class="p911-color-option active"
+                        type="button"
+                        data-color="black"
+                        data-name="Contrast Black"
+                        data-images="{% static 'MotorqueApp/images/Porsche911/Contrast/Black/911-ContrastBlack1.jpeg' %}|{% static 'MotorqueApp/images/Porsche911/Contrast/Black/911-ContrastBlack2.jpeg' %}|{% static 'MotorqueApp/images/Porsche911/Contrast/Black/911-ContrastBlack3.jpeg' %}|{% static 'MotorqueApp/images/Porsche911/Contrast/Black/911-ContrastBlack4.jpeg' %}|{% static 'MotorqueApp/images/Porsche911/Contrast/Black/911-ContrastBlack5.jpeg' %}">
+                    <span class="p911-color-dot black"></span>
+                    <span>Black</span>
+                </button>
+
+                <button class="p911-color-option"
+                        type="button"
+                        data-color="white"
+                        data-name="Contrast White"
+                        data-images="{% static 'MotorqueApp/images/Porsche911/Contrast/White/911-ContrastWhite1.jpeg' %}|{% static 'MotorqueApp/images/Porsche911/Contrast/White/911-ContrastWhite2.jpeg' %}|{% static 'MotorqueApp/images/Porsche911/Contrast/White/911-ContrastWhite3.jpeg' %}|{% static 'MotorqueApp/images/Porsche911/Contrast/White/911-ContrastWhite4.jpeg' %}|{% static 'MotorqueApp/images/Porsche911/Contrast/White/911-ContrastWhite5.jpeg' %}">
+                    <span class="p911-color-dot white"></span>
+                    <span>White</span>
+                </button>
+
+                <button class="p911-color-option"
+                        type="button"
+                        data-color="red"
+                        data-name="Dreams Red"
+                        data-images="{% static 'MotorqueApp/images/Porsche911/Dreams/Red/911-DreamsRed1.jpeg' %}|{% static 'MotorqueApp/images/Porsche911/Dreams/Red/911-DreamsRed2.jpeg' %}|{% static 'MotorqueApp/images/Porsche911/Dreams/Red/911-DreamsRed3.jpeg' %}|{% static 'MotorqueApp/images/Porsche911/Dreams/Red/911-DreamsRed4.jpeg' %}|{% static 'MotorqueApp/images/Porsche911/Dreams/Red/911-DreamsRed5.jpeg' %}">
+                    <span class="p911-color-dot red"></span>
+                    <span>Red</span>
+                </button>
+
+                <button class="p911-color-option"
+                        type="button"
+                        data-color="blue"
+                        data-name="Dreams Blue"
+                        data-images="{% static 'MotorqueApp/images/Porsche911/Dreams/Blue/911-DreamsBlue1.jpeg' %}|{% static 'MotorqueApp/images/Porsche911/Dreams/Blue/911-DreamsBlue2.jpeg' %}|{% static 'MotorqueApp/images/Porsche911/Dreams/Blue/911-DreamsBlue3.jpeg' %}|{% static 'MotorqueApp/images/Porsche911/Dreams/Blue/911-DreamsBlue4.jpeg' %}|{% static 'MotorqueApp/images/Porsche911/Dreams/Blue/911-DreamsBlue5.jpeg' %}">
+                    <span class="p911-color-dot blue"></span>
+                    <span>Blue</span>
+                </button>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- VEHICLE INFORMATION -->
+
+    <div class="p911-info">
+
+        <p class="p911-model-label">PORSCHE 911 SERIES</p>
+
+        <h2>911 CARRERA</h2>
+
+        <p class="p911-description">
+            An icon of performance and timeless design.
+            Engineered to deliver an unforgettable driving experience.
+        </p>
+
+        <div class="p911-price-label">Starting from</div>
+
+        <div class="p911-price">
+            650,000 <span>SAR</span>
+        </div>
+
+        <div class="p911-specs" id="specifications">
+
+            <div class="p911-spec-item">
+                <div class="p911-spec-icon">
+                    <i class="fa-solid fa-gears"></i>
+                </div>
+                <div>
+                    <span>ENGINE</span>
+                    <h3>3.0L Flat-6</h3>
+                </div>
+            </div>
+
+            <div class="p911-spec-item">
+                <div class="p911-spec-icon">
+                    <i class="fa-solid fa-horse-head"></i>
+                </div>
+                <div>
+                    <span>POWER</span>
+                    <h3>394 PS</h3>
+                </div>
+            </div>
+
+            <div class="p911-spec-item">
+                <div class="p911-spec-icon">
+                    <i class="fa-solid fa-stopwatch"></i>
+                </div>
+                <div>
+                    <span>0–100 KM/H</span>
+                    <h3>4.1 Sec</h3>
+                </div>
+            </div>
+
+            <div class="p911-spec-item">
+                <div class="p911-spec-icon">
+                    <i class="fa-solid fa-gauge-high"></i>
+                </div>
+                <div>
+                    <span>TOP SPEED</span>
+                    <h3>294 KM/H</h3>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="p911-actions">
+
+            <a href="#inquire" class="p911-inquire-btn">
+                INQUIRE NOW <span>→</span>
+            </a>
+
+            <button type="button" class="p911-watchlist-btn">
+                ♡ ADD TO WATCHLIST
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================
+     PORSCHE SECTION NAVIGATION
+===================================== -->
+
+<nav class="p911-section-nav">
+    <a href="#overview" class="active">Overview</a>
+    <a href="#specifications">Specifications</a>
+    <a href="#key-features">Features</a>
+    <a href="#gallery">Gallery</a>
+</nav>
+
+
+<!-- =====================================
+     PORSCHE HEADER BANNER
+===================================== -->
+
+<section class="p911-header" id="features">
+
+    <img
+        src="{% static 'MotorqueApp/images/Porsche911/911-Header.png' %}"
+        alt="Porsche 911 Carrera"
+        class="p911-header-image"
+    >
+
+    <div class="p911-header-overlay"></div>
+
+    <div class="p911-header-content">
+        <p>PORSCHE 911 CARRERA</p>
+        <h2>AN ICON OF PERFORMANCE</h2>
+        <span>Timeless design. Precision engineering. Pure driving exhilaration.</span>
+    </div>
+
+</section>
+
+
+<!-- =====================================
+     PORSCHE HORIZONTAL KEY FEATURES
+===================================== -->
+
+<section class="p911-showcase" id="key-features">
+
+    <div class="p911-showcase-heading">
+
+        <div>
+            <p>DISCOVER THE DETAILS</p>
+            <h2>KEY FEATURES<span>.</span></h2>
+        </div>
+
+        <div class="p911-gallery-hint">
+            <span>SCROLL TO EXPLORE</span>
+            <span class="p911-gallery-arrows">← &nbsp; →</span>
+        </div>
+
+    </div>
+
+
+    <div class="p911-features-track" id="p911FeaturesTrack">
+
+        <!-- DESIGN -->
+
+        <article class="p911-feature-card">
+
+            <div class="p911-feature-image">
+
+                <img
+                    src="{% static 'MotorqueApp/images/Porsche911/911-Design.avif' %}"
+                    alt="Porsche 911 Design"
+                    loading="lazy"
+                >
+
+                <span class="p911-image-number">01 / 03</span>
+
+            </div>
+
+            <div class="p911-feature-info">
+
+                <span class="p911-feature-category">EXTERIOR DESIGN</span>
+
+                <h3>Designed to stand out.</h3>
+
+                <p>
+                    Clear lines and a muscular rear section create
+                    a much sharper character. The redesigned front
+                    apron adds an unmistakable visual presence.
+                </p>
+
+            </div>
+
+        </article>
+
+
+        <!-- HEADLIGHTS -->
+
+        <article class="p911-feature-card">
+
+            <div class="p911-feature-image">
+
+                <img
+                    src="{% static 'MotorqueApp/images/Porsche911/911-Headlight.avif' %}"
+                    alt="Porsche 911 Matrix LED Headlights"
+                    loading="lazy"
+                >
+
+                <span class="p911-image-number">02 / 03</span>
+
+            </div>
+
+            <div class="p911-feature-info">
+
+                <span class="p911-feature-category">LIGHTING TECHNOLOGY</span>
+
+                <h3>Light up the road.</h3>
+
+                <p>
+                    Expressive Matrix LED headlights combine advanced
+                    lighting functions with Porsche's distinctive
+                    four-point daytime running light signature.
+                </p>
+
+            </div>
+
+        </article>
+
+
+        <!-- DYNAMICS -->
+
+        <article class="p911-feature-card">
+
+            <div class="p911-feature-image">
+
+                <img
+                    src="{% static 'MotorqueApp/images/Porsche911/911-Dynamic.avif' %}"
+                    alt="Porsche 911 Driving Dynamics"
+                    loading="lazy"
+                >
+
+                <span class="p911-image-number">03 / 03</span>
+
+            </div>
+
+            <div class="p911-feature-info">
+
+                <span class="p911-feature-category">DRIVING DYNAMICS</span>
+
+                <h3>Born for performance.</h3>
+
+                <p>
+                    The PASM sports chassis and rear-axle steering
+                    enhance precision, stability and driving
+                    performance on every road.
+                </p>
+
+            </div>
+
+        </article>
+
+    </div>
+
+
+    <div class="p911-gallery-footer">
+        <span>EXPLORE THE 911</span>
+        <span>03 SIGNATURE FEATURES</span>
+    </div>
+
+</section>
+
+
+<!-- =====================================
+     PORSCHE GALLERY SECTION
+===================================== -->
+
+<section id="gallery" class="p911-extra-gallery">
+    <!-- سيتم إضافة معرض الصور الإضافي هنا لاحقاً -->
+</section>
+
+
+<!-- =====================================
+     PORSCHE JAVASCRIPT
+===================================== -->
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    /* =====================================
+       OVERVIEW GALLERY
+    ===================================== */
+
+    const mainImage = document.getElementById("p911-main-img");
+    const thumbnailsContainer = document.getElementById("p911-thumbnails");
+    const counter = document.getElementById("p911-counter");
+    const colorName = document.getElementById("p911-color-name");
+    const colorOptions = document.querySelectorAll(".p911-color-option");
+
+    let currentImages = [];
+    let currentIndex = 0;
+
+    function showImage(index) {
+
+        if (!currentImages.length) return;
+
+        currentIndex = (index + currentImages.length) % currentImages.length;
+
+        mainImage.style.opacity = "0";
+
+        setTimeout(() => {
+
+            mainImage.src = currentImages[currentIndex];
+            mainImage.style.opacity = "1";
+
+        }, 120);
+
+        document.querySelectorAll(".p911-thumb").forEach((thumb, i) => {
+            thumb.classList.toggle("active", i === currentIndex);
+        });
+
+        counter.textContent =
+            String(currentIndex + 1).padStart(2, "0") +
+            " / " +
+            String(currentImages.length).padStart(2, "0");
+    }
+
+
+    function changeColor(option) {
+
+        currentImages = option.dataset.images.split("|");
+        currentIndex = 0;
+
+        colorOptions.forEach(item => {
+            item.classList.toggle("active", item === option);
+        });
+
+        colorName.textContent = option.dataset.name;
+
+        thumbnailsContainer.innerHTML = "";
+
+        currentImages.forEach((image, index) => {
+
+            const button = document.createElement("button");
+
+            button.type = "button";
+            button.className = "p911-thumb" + (index === 0 ? " active" : "");
+            button.dataset.index = index;
+
+            const img = document.createElement("img");
+
+            img.src = image;
+            img.alt = "Porsche 911 view " + (index + 1);
+
+            button.appendChild(img);
+
+            button.addEventListener("mouseenter", () => showImage(index));
+            button.addEventListener("click", () => showImage(index));
+
+            thumbnailsContainer.appendChild(button);
+
+        });
+
+        showImage(0);
+    }
+
+
+    colorOptions.forEach(option => {
+
+        option.addEventListener("mouseenter", () => changeColor(option));
+        option.addEventListener("click", () => changeColor(option));
+
+    });
+
+
+    document.querySelector(".p911-prev").addEventListener("click", () => {
+        showImage(currentIndex - 1);
+    });
+
+    document.querySelector(".p911-next").addEventListener("click", () => {
+        showImage(currentIndex + 1);
+    });
+
+
+    /* =====================================
+       THEME COLOR SYNC
+    ===================================== */
+
+    function syncThemeColor() {
+
+        const isDark = document.body.classList.contains("dark-mode");
+        const preferredColor = isDark ? "black" : "white";
+
+        const option = document.querySelector(
+            `.p911-color-option[data-color="${preferredColor}"]`
+        );
+
+        if (option) {
+            changeColor(option);
+        }
+    }
+
+    syncThemeColor();
+
+    const themeObserver = new MutationObserver(syncThemeColor);
+
+    themeObserver.observe(document.body, {
+        attributes: true,
+        attributeFilter: ["class"]
+    });
+
+
+    /* =====================================
+       SECTION NAVIGATION
+    ===================================== */
+
+    const navLinks = document.querySelectorAll(".p911-section-nav a");
+
+    navLinks.forEach(link => {
+
+        link.addEventListener("click", function () {
+
+            navLinks.forEach(item => item.classList.remove("active"));
+
+            this.classList.add("active");
+
+        });
+
+    });
+
+
+    /* =====================================
+       HORIZONTAL FEATURES DRAG SCROLL
+    ===================================== */
+
+    const featuresTrack = document.getElementById("p911FeaturesTrack");
+
+    if (featuresTrack) {
+
+        let isDragging = false;
+        let startX = 0;
+        let scrollStart = 0;
+
+        featuresTrack.addEventListener("mousedown", function (event) {
+
+            if (event.button !== 0) return;
+
+            isDragging = true;
+            startX = event.pageX;
+            scrollStart = featuresTrack.scrollLeft;
+
+            featuresTrack.classList.add("is-dragging");
+
+        });
+
+        window.addEventListener("mousemove", function (event) {
+
+            if (!isDragging) return;
+
+            event.preventDefault();
+
+            const distance = event.pageX - startX;
+
+            featuresTrack.scrollLeft = scrollStart - distance;
+
+        });
+
+        window.addEventListener("mouseup", function () {
+
+            isDragging = false;
+            featuresTrack.classList.remove("is-dragging");
+
+        });
+
+        featuresTrack.addEventListener("mouseleave", function () {
+
+            isDragging = false;
+            featuresTrack.classList.remove("is-dragging");
+
+        });
+
+    }
+
+});
+</script>
+
+{% endblock %}

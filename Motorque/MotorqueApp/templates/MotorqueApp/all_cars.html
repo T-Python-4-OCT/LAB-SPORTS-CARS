@@ -1,0 +1,239 @@
+
+{% extends 'MotorqueApp/base.html' %}
+{% load static %}
+
+{% block title %}Our Collection | MOTORQUE{% endblock %}
+
+{% block content %}
+
+<section class="collection-page">
+
+    <div class="collection-hero collection-video-hero">
+
+        <video class="collection-hero-video"
+               autoplay muted loop playsinline>
+            <source src="{% static 'MotorqueApp/videos/about-video-4.mp4' %}"
+                    type="video/mp4">
+        </video>
+    
+        <div class="collection-video-overlay"></div>
+        <p>PREMIUM COLLECTION</p>
+        <h1>Our Collection</h1>
+        <span>Discover exceptional performance and timeless design</span>
+    </div>
+
+    <div class="cars-filters">
+
+        <select id="brand-filter">
+            <option value="">All Brands</option>
+            <option value="Porsche">Porsche</option>
+            <option value="Genesis">Genesis</option>
+            <option value="Cadillac">Cadillac</option>
+        </select>
+
+        <select id="price-filter">
+            <option value="">All Prices</option>
+            <option value="0-300000">Under 300,000 SAR</option>
+            <option value="300000-600000">300,000 – 600,000 SAR</option>
+            <option value="600000-1000000">Above 600,000 SAR</option>
+        </select>
+
+        <select id="model-filter">
+            <option value="">All Models</option>
+            <option value="911 Carrera">911 Carrera</option>
+            <option value="G80">G80</option>
+            <option value="Escalade">Escalade</option>
+        </select>
+
+        <button id="filter-button">FILTER</button>
+
+    </div>
+
+    <div class="cars-grid">
+
+        {% for car in cars %}
+
+        <article class="car-card"
+                 data-brand="{{ car.brand }}"
+                 data-price="{{ car.price }}"
+                 data-model="{{ car.model }}">
+
+                 <div class="car-card-image">
+
+                    {% if car.brand == 'Porsche' %}
+                
+                        <img src="{% static car.image %}"
+                             alt="{{ car.name }}"
+                             class="car-default-image">
+                
+                        <img src="{% static 'MotorqueApp/images/Porsche911/911-WhiteDay.jpeg' %}"
+                             alt="Porsche 911 Carrera White"
+                             class="car-hover-image">
+                
+                    {% elif car.brand == 'Genesis' %}
+                
+                        <img src="{% static 'MotorqueApp/images/G80/G80-HeaderBlack.png' %}"
+                             alt="Genesis G80 Black"
+                             class="car-default-image">
+                
+                        <img src="{% static 'MotorqueApp/images/G80/G80-HeaderWhite.png' %}"
+                             alt="Genesis G80 White"
+                             class="car-hover-image">
+
+                             {% elif car.brand == 'Cadillac' %}
+
+                             <img src="{% static 'MotorqueApp/images/Escalade/Escalade 2.jpg' %}"
+                                  alt="Cadillac Escalade Black"
+                                  class="car-default-image">
+                         
+                             <img src="{% static 'MotorqueApp/images/Escalade/Escalade 1.jpg' %}"
+                                  alt="Cadillac Escalade White"
+                                  class="car-hover-image">
+                
+                    {% else %}
+                
+                        <img src="{% static car.image %}"
+                             alt="{{ car.name }}"
+                             class="car-default-image">
+                
+                    {% endif %}
+
+                <div class="car-card-overlay"></div>
+
+                <div class="car-card-content">
+
+                    <div class="car-brand-row">
+                        <span>{{ car.brand|upper }}</span>
+
+                        <button class="favorite-button"
+                                type="button"
+                                aria-label="Add to favorites"
+                                aria-pressed="false">
+                            <svg viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.7"
+                                 stroke-linecap="round"
+                                 stroke-linejoin="round">
+                                <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8z"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="car-main-info">
+                        <h2>{{ car.model }}</h2>
+                        <div class="price-line"></div>
+                        <p>{{ car.price|floatformat:0 }} SAR</p>
+                    </div>
+
+                    <div class="car-card-bottom">
+
+                        <span>{{ car.category }}</span>
+
+                        <a href="{% if car.model == 'G80' %}{% url 'genesis_g80' %}{% else %}#{% endif %}"
+                           class="view-details">
+                            VIEW DETAILS <span>→</span>
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </article>
+
+        {% empty %}
+        <p>No vehicles available.</p>
+        {% endfor %}
+
+    </div>
+
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    // Car filters
+    const brandFilter = document.getElementById('brand-filter');
+    const priceFilter = document.getElementById('price-filter');
+    const modelFilter = document.getElementById('model-filter');
+    const filterButton = document.getElementById('filter-button');
+
+    const carCards = document.querySelectorAll('.car-card');
+
+    filterButton.addEventListener('click', function () {
+
+        carCards.forEach(function (card) {
+
+            const brand = card.dataset.brand;
+            const price = Number(card.dataset.price);
+            const model = card.dataset.model;
+
+            let showCar = true;
+
+            if (brandFilter.value && brand !== brandFilter.value) {
+                showCar = false;
+            }
+
+            if (modelFilter.value && model !== modelFilter.value) {
+                showCar = false;
+            }
+
+            if (priceFilter.value) {
+                const [min, max] = priceFilter.value.split('-').map(Number);
+
+                if (price < min || price > max) {
+                    showCar = false;
+                }
+            }
+
+            card.style.display = showCar ? '' : 'none';
+
+        });
+
+    });
+
+    // Favorites
+    const favoriteButtons = document.querySelectorAll('.favorite-button');
+
+    let favorites = JSON.parse(
+        localStorage.getItem('motorque-favorites') || '[]'
+    );
+
+    favoriteButtons.forEach(function (button) {
+
+        const card = button.closest('.car-card');
+        const carName = card.querySelector('h2').textContent.trim();
+
+        function updateButton() {
+            const isFavorite = favorites.includes(carName);
+
+            button.classList.toggle('active', isFavorite);
+            button.setAttribute('aria-pressed', isFavorite);
+        }
+
+        updateButton();
+
+        button.addEventListener('click', function () {
+
+            if (favorites.includes(carName)) {
+                favorites = favorites.filter(name => name !== carName);
+            } else {
+                favorites.push(carName);
+            }
+
+            localStorage.setItem(
+                'motorque-favorites',
+                JSON.stringify(favorites)
+            );
+
+            updateButton();
+
+        });
+
+    });
+
+});
+</script>
+
+{% endblock %}
