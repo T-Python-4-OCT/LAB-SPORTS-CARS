@@ -1,0 +1,24 @@
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="{% url 'showroom:home' %}" class="brand header-brand" aria-label="SportsCars home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span class="brand-wordmark" aria-hidden="true">Sports<span class="brand-accent">Cars</span></span></a>
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <a href="{% url 'showroom:home' %}" {% if active == 'home' %}aria-current="page"{% endif %}>Home</a>
+      <a href="{% url 'showroom:cars' %}" {% if active == 'cars' %}aria-current="{% if vehicle %}true{% else %}page{% endif %}"{% endif %}>Cars</a>
+      <a href="{% url 'showroom:about' %}" {% if active == 'about' %}aria-current="page"{% endif %}>About Us</a>
+      <button type="button" data-inquire>Contact</button>
+    </nav>
+    <div class="header-actions">
+      <a class="icon-button" href="{% url 'showroom:cars' %}?search=1#collection" aria-label="Search cars">{% include 'components/icon.html' with name='search' %}</a>
+      <button class="icon-button theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false"><span class="theme-sun">{% include 'components/icon.html' with name='light_mode' %}</span><span class="theme-moon">{% include 'components/icon.html' with name='dark_mode' %}</span></button>
+      <a class="icon-button account-link" href="{% url 'showroom:cars' %}?wishlist=1#collection" aria-label="View saved cars">{% include 'components/icon.html' with name='person' %}</a>
+      <button class="icon-button menu-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open navigation" type="button">{% include 'components/icon.html' with name='menu' %}</button>
+    </div>
+  </div>
+  <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation" hidden>
+    <a href="{% url 'showroom:home' %}" {% if active == 'home' %}aria-current="page"{% endif %}>Home</a>
+    <a href="{% url 'showroom:cars' %}" {% if active == 'cars' %}aria-current="true"{% endif %}>Cars</a>
+    <a href="{% url 'showroom:about' %}" {% if active == 'about' %}aria-current="page"{% endif %}>About Us</a>
+    <a href="{% url 'showroom:cars' %}?wishlist=1#collection">Saved cars</a>
+    <button type="button" data-inquire>Contact</button>
+  </nav>
+</header>

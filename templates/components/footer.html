@@ -1,0 +1,13 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><a class="brand" href="{% url 'showroom:home' %}"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span class="brand-wordmark">Sports<span class="brand-accent">Cars</span></span></a><p>Iconic sports cars for those<br>who love to drive.</p></div>
+      <div class="footer-links"><h2>Explore</h2><a href="{% url 'showroom:home' %}">Home</a><a href="{% url 'showroom:cars' %}">Cars</a><a href="{% url 'showroom:about' %}">About Us</a><button type="button" data-inquire>Contact</button></div>
+      <div class="footer-links"><h2>Support</h2><button type="button" data-info="faqs">FAQs</button><button type="button" data-info="financing">Financing</button><button type="button" data-info="warranty">Warranty</button><button type="button" data-info="after-sales">After-Sales</button></div>
+      <div class="footer-newsletter"><h2>Stay in the Loop</h2><p>Get the latest arrivals, exclusive offers,<br>and automotive news.</p><form class="newsletter-form"><label class="sr-only" for="newsletter-email">Your email</label><input id="newsletter-email" name="email" type="email" placeholder="Your email" autocomplete="email" required><button type="submit" aria-label="Subscribe to newsletter">{% include 'components/icon.html' with name='arrow_forward' %}</button></form><span class="newsletter-status" role="status"></span></div>
+      <div class="social-links" aria-label="Hyundai Wallan Saudi Arabia">{% for social in social_links %}<a href="{{ social.url }}" target="_blank" rel="noopener noreferrer" aria-label="Hyundai Wallan on {{ social.name }}" title="Hyundai Wallan · {{ social.name }}">{% include 'components/social_icon.html' with name=social.icon %}</a>{% endfor %}</div>
+    </div>
+    <div class="footer-bottom"><p>© {% now 'Y' %} SportsCars. All rights reserved.</p><div><button type="button" data-info="privacy">Privacy Policy</button><span aria-hidden="true"></span><button type="button" data-info="terms">Terms of Service</button></div></div>
+  </div>
+</footer>
+<dialog id="info-dialog" class="info-dialog" aria-labelledby="info-title"><button class="icon-button dialog-close" type="button" data-close-dialog aria-label="Close information">{% include 'components/icon.html' with name='close' %}</button><h2 id="info-title"></h2><p id="info-content"></p><button class="button" type="button" data-close-dialog>Got it</button></dialog>

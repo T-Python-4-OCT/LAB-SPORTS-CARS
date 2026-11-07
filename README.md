@@ -1,5 +1,9 @@
 # LAB-SPORTS-CARS
 
+![Panoramic view of a Performance Blue Hyundai Elantra N on a forest road at sunset](readme-assets/elantra-n-panorama.webp)
+
+[![Open Site](readme-assets/open-site.svg)](https://suliman-altwaijry.github.io/LAB-SPORTS-CARS/)
+
 
 
 ## Create a website for a sports cars dealership (SportsCars) , the website should have a home page that looks like the image below , you should :

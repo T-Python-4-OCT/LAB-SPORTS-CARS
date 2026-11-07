@@ -1,0 +1,19 @@
+{% extends 'base.html' %}{% load static %}
+{% block title %}All Cars — SportsCars{% endblock %}
+{% block content %}
+<section class="hero page-hero collection-hero"><div class="hero-art"><img src="{% static collection_hero.path %}" alt="{{ collection_hero.alt }}" width="1920" height="1280" fetchpriority="high"></div><div class="container hero-content"><p class="eyebrow">OUR COLLECTION</p><h1>All Cars</h1><p>Explore our complete collection<br>of iconic sports cars.</p></div></section>
+<section id="collection" class="container collection-section" aria-label="Car collection">
+  <form class="collection-filters" id="collection-filters">
+    <label><span class="sr-only">Brand</span><select name="brand" id="brand-filter"><option value="">Brand</option>{% for brand in vehicle_brands %}<option value="{{ brand }}">{{ brand }}</option>{% endfor %}</select>{% include 'components/icon.html' with name='expand_more' %}</label>
+    <label class="secondary-filter"><span class="sr-only">Model</span><select name="model" id="model-filter"><option value="">Model</option>{% for car in vehicles %}<option value="{{ car.model }}">{{ car.model }}</option>{% endfor %}</select>{% include 'components/icon.html' with name='expand_more' %}</label>
+    <label class="secondary-filter"><span class="sr-only">Price</span><select name="price" id="price-filter"><option value="">Price</option><option value="low">Under SAR 125,000</option><option value="high">SAR 125,000 and above</option></select>{% include 'components/icon.html' with name='expand_more' %}</label>
+    <label class="secondary-filter"><span class="sr-only">Year</span><select name="year" id="year-filter"><option value="">Year</option>{% for year in vehicle_years %}<option>{{ year }}</option>{% endfor %}</select>{% include 'components/icon.html' with name='expand_more' %}</label>
+    <button class="icon-button filter-toggle" type="button" aria-label="More filters" aria-expanded="false" aria-controls="extra-filters">{% include 'components/icon.html' with name='tune' %}</button>
+    <div id="extra-filters" class="extra-filters" hidden><label class="search-label"><span>Search collection</span><input type="search" id="car-search" name="q" placeholder="Search cars…"></label><label class="saved-filter"><input type="checkbox" id="saved-filter"> Saved cars only</label><button type="reset" class="text-link">Clear filters {% include 'components/icon.html' with name='restart_alt' %}</button></div>
+  </form>
+  <p class="result-count" data-result-count aria-live="polite">{{ vehicles|length }} Cars Found</p>
+  <div class="car-grid collection-grid">{% for car in vehicles %}{% include 'components/car_card.html' %}{% endfor %}</div>
+  <div class="empty-state" hidden><span class="material-symbols-outlined">search_off</span><h2>No cars found</h2><p>Try another filter or explore the full collection.</p><button class="button" type="button" data-clear-filters>Clear filters</button></div>
+  <nav class="pagination" aria-label="Collection pages"><button class="icon-button" type="button" disabled aria-label="Previous page">{% include 'components/icon.html' with name='chevron_left' %}</button><span aria-current="page">1</span><button class="icon-button" type="button" disabled aria-label="Next page">{% include 'components/icon.html' with name='chevron_right' %}</button></nav>
+</section>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}{% load static %}
+{% block title %}About Us — SportsCars{% endblock %}
+{% block content %}
+<section class="hero page-hero about-hero"><div class="hero-art"><img src="{% static about_hero.path %}" alt="{{ about_hero.alt }}" width="1920" height="1440" fetchpriority="high"></div><div class="container hero-content"><p class="eyebrow">ABOUT US</p><h1>Driven by<br>Passion</h1><p>A team of Hyundai enthusiasts<br>sharing a passion for performance,<br>design, and the joy of driving.</p></div></section>
+<div class="container about-content">
+  <section id="our-story" class="story-section"><div><h2>Our Story</h2><p>Based in Saudi Arabia, we celebrate Hyundai performance, from the Genesis Coupe to the Elantra N and Sonata N Line, bringing distinctive design and driving enjoyment closer to you.</p></div><img src="{% static story_image.path %}" alt="{{ story_image.alt }}" width="925" height="590" loading="lazy"></section>
+  <section class="values-section"><h2>What Drives Us</h2><div class="values-grid"><div>{% include 'components/icon.html' with name='diamond' %}<div><h3>Drivers First</h3><p>Your drive.<br>Your choice.<br>Our focus.</p></div></div><div>{% include 'components/icon.html' with name='verified_user' %}<div><h3>Straight Answers</h3><p>Clear details.<br>Honest guidance.<br>No pressure.</p></div></div><div>{% include 'components/icon.html' with name='star' %}<div><h3>Everyday Excitement</h3><p>Discover more joy<br>behind the<br>wheel.</p></div></div></div></section>
+  <section class="dealer-section"><img src="{% static dealer_image.path %}" alt="{{ dealer_image.alt }}" width="1920" height="1280" loading="lazy"><div class="dealer-copy"><h2>More Than a Dealer</h2><p>We are your partner in the journey<br>of owning and enjoying an exceptional car.</p><a href="{% url 'showroom:cars' %}" class="button button-outline">Browse Cars {% include 'components/icon.html' with name='arrow_forward' %}</a></div></section>
+</div>
+{% endblock %}

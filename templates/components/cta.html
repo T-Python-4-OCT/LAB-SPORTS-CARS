@@ -1,0 +1,5 @@
+{% load static %}
+<section class="collection-cta container">
+  <img src="{% static cta_image.path %}" alt="{{ cta_image.alt }}" width="1920" height="1373" loading="lazy">
+  <div class="cta-copy"><h2>Ready to Drive<br>Your Dream Car?</h2><a href="{% url 'showroom:cars' %}" class="button">Browse Collection {% include 'components/icon.html' with name='arrow_forward' %}</a></div>
+</section>

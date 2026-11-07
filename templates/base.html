@@ -1,0 +1,37 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}SportsCars — Performance Without Limits{% endblock %}</title>
+  <meta name="description" content="Discover the Hyundai Genesis Coupe, Hyundai Elantra N 2025, and Hyundai Sonata N Line at SportsCars.">
+  <meta name="theme-color" content="#fbf9f8">
+  <script src="{% static 'js/theme.js' %}"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;650;700;750;800&family=Phudu:wght@600;700&family=Material+Symbols+Outlined:wght@400&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="{% static 'images/favicon.svg' %}?v=speed-accent">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}?v=speed-accent-logo">
+  <script src="{% static 'js/site.js' %}?v=autoplay-genesis-gallery" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  {% include 'components/nav.html' %}
+  <main id="main" tabindex="-1">{% block content %}{% endblock %}</main>
+  {% include 'components/footer.html' %}
+  <div class="toast" role="status" aria-live="polite" hidden></div>
+  <dialog id="inquiry-dialog" class="inquiry-dialog" aria-labelledby="inquiry-title">
+    <button class="icon-button dialog-close" type="button" data-close-dialog aria-label="Close inquiry">{% include 'components/icon.html' with name='close' %}</button>
+    <p class="eyebrow">LET’S TALK CARS</p><h2 id="inquiry-title">Your next chapter starts here.</h2>
+    <p data-inquiry-model>Tell us which car caught your eye.</p>
+    <form id="inquiry-form">
+      <label for="inquiry-name">Your name</label><input id="inquiry-name" name="name" autocomplete="name" required maxlength="100">
+      <label for="inquiry-email">Email address</label><input id="inquiry-email" name="email" type="email" autocomplete="email" required maxlength="254">
+      <label for="inquiry-message">Message</label><textarea id="inquiry-message" name="message" rows="3" required maxlength="2000"></textarea>
+      <button class="button" type="submit">Send inquiry {% include 'components/icon.html' with name='arrow_forward' %}</button>
+      <small>This is a demo. Your information stays in this browser.</small>
+    </form>
+  </dialog>
+</body>
+</html>
