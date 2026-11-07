@@ -1,0 +1,340 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}Lamborghini Huracan | SportsCars{% endblock %}
+
+{% block content %}
+
+<style>
+.car-details-page {
+    --panel: #f1f2f4;
+    --card: #fff;
+    --text: #111;
+    --secondary: #555;
+    --border: #e5e5e5;
+    color: var(--text);
+}
+
+.dark-mode .car-details-page {
+    --panel: #252525;
+    --card: #1c1c1c;
+    --text: #f5f5f5;
+    --secondary: #c5c5c5;
+    --border: #383838;
+}
+
+.car-details-page h1,
+.car-details-page h2,
+.car-details-page h3,
+.car-details-page h4,
+.car-details-page h5,
+.car-details-page h6 {
+    color: var(--text);
+}
+
+.car-details-page p,
+.car-details-page .text-body-secondary {
+    color: var(--secondary) !important;
+}
+
+.details-panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+}
+
+.details-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+}
+
+.details-icon {
+    color: #e63946;
+}
+
+.car-details-hero {
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    isolation: isolate;
+    background: #111;
+}
+
+.car-details-hero img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+.car-details-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg,
+        rgba(0,0,0,.93),
+        rgba(0,0,0,.7) 50%,
+        rgba(0,0,0,.15));
+    z-index: -1;
+}
+
+.car-details-content {
+    max-width: 650px;
+    padding: 60px;
+}
+
+.car-details-content h1 {
+    color: white !important;
+}
+
+.car-details-content p {
+    color: #eee !important;
+    line-height: 1.8;
+}
+
+.car-details-content .price {
+    border-top: 1px solid #777;
+    border-bottom: 1px solid #777;
+}
+
+.car-details-content .tag {
+    background: rgba(255,255,255,.15);
+    color: white;
+    border: 1px solid #777;
+    padding: 9px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+@media (max-width: 768px) {
+    .car-details-hero {
+        min-height: 550px;
+    }
+
+    .car-details-content {
+        padding: 30px 25px;
+    }
+
+    .car-details-overlay {
+        background: rgba(0,0,0,.75);
+    }
+}
+</style>
+
+
+<div class="container py-5 car-details-page">
+
+    <!-- Breadcrumb -->
+    <nav class="small mb-4">
+        <a href="{% url 'SportsCars:home_page' %}" class="text-danger text-decoration-none">Home</a>
+        <span class="mx-2">/</span>
+        <a href="{% url 'SportsCars:all_cars' %}" class="text-danger text-decoration-none">Cars</a>
+        <span class="mx-2">/</span>
+        <span>Car Details</span>
+    </nav>
+
+    <!-- Hero -->
+    <section class="car-details-hero rounded-4 overflow-hidden mb-5">
+
+        <img src="{% static 'imgas/lamborghini.jpg' %}" alt="Lamborghini Huracan">
+
+        <div class="car-details-overlay"></div>
+
+        <div class="car-details-content text-white">
+
+            <span class="badge bg-danger rounded-pill px-3 py-2">
+                PREMIUM SPORTS CAR
+            </span>
+
+            <h1 class="display-3 fw-bold mt-3">
+                Lamborghini
+                <span class="d-block text-danger">Huracan</span>
+            </h1>
+
+            <p class="lead">
+                Experience exceptional performance and timeless Italian design.
+                Discover power, precision and luxury.
+            </p>
+
+            <div class="price py-3 my-4">
+                <small>Starting Price</small>
+                <h2 class="text-danger fw-bold mt-2">SAR 850,000</h2>
+            </div>
+
+            <div class="d-flex flex-wrap gap-2 mb-4">
+                <span class="tag">V10 Engine</span>
+                <span class="tag">Supercar</span>
+                <span class="tag">Italian Design</span>
+            </div>
+
+            <a href="{% url 'SportsCars:contact' %}" class="btn btn-danger btn-lg">
+                Contact Dealer →
+            </a>
+
+        </div>
+    </section>
+
+    <!-- Specifications -->
+    <section class="py-5 border-top">
+        <div class="text-center mb-5">
+            <span class="text-danger fw-bold small">PERFORMANCE</span>
+            <h2 class="fw-bold mt-2">Technical Specifications</h2>
+            <p>Discover the technology behind the performance.</p>
+        </div>
+
+        <div class="row g-3">
+            {% for icon, value, label in specifications %}
+            <div class="col-6 col-lg-3">
+                <div class="details-panel rounded-4 p-4 text-center h-100">
+                    <span class="material-symbols-outlined details-icon fs-1">{{ icon }}</span>
+                    <h3 class="fw-bold mt-3">{{ value }}</h3>
+                    <p class="small mb-0">{{ label }}</p>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-6 col-lg-3">
+                <div class="details-panel rounded-4 p-4 text-center h-100">
+                    <span class="material-symbols-outlined details-icon fs-1">speed</span>
+                    <h3 class="fw-bold mt-3">2.9s</h3>
+                    <p class="small mb-0">0–100 km/h</p>
+                </div>
+            </div>
+            <div class="col-6 col-lg-3">
+                <div class="details-panel rounded-4 p-4 text-center h-100">
+                    <span class="material-symbols-outlined details-icon fs-1">rocket_launch</span>
+                    <h3 class="fw-bold mt-3">325</h3>
+                    <p class="small mb-0">Top Speed (km/h)</p>
+                </div>
+            </div>
+            <div class="col-6 col-lg-3">
+                <div class="details-panel rounded-4 p-4 text-center h-100">
+                    <span class="material-symbols-outlined details-icon fs-1">bolt</span>
+                    <h3 class="fw-bold mt-3">631 HP</h3>
+                    <p class="small mb-0">Maximum Power</p>
+                </div>
+            </div>
+            <div class="col-6 col-lg-3">
+                <div class="details-panel rounded-4 p-4 text-center h-100">
+                    <span class="material-symbols-outlined details-icon fs-1">settings</span>
+                    <h3 class="fw-bold mt-3">V10</h3>
+                    <p class="small mb-0">Engine</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="row align-items-center g-5 py-5 border-top">
+
+        <div class="col-lg-6">
+            <span class="text-danger fw-bold small">ABOUT THE CAR</span>
+            <h2 class="display-6 fw-bold mt-3">
+                More Than Performance.
+                <span class="text-danger">Pure Excellence.</span>
+            </h2>
+            <p class="lh-lg mt-4">
+                The Lamborghini Huracan combines distinctive Italian design,
+                a powerful V10 engine and precision handling.
+            </p>
+            <p class="lh-lg">
+                Designed for drivers who appreciate performance,
+                comfort and premium craftsmanship.
+            </p>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="details-panel rounded-4 p-4 p-lg-5 h-100">
+                <h4 class="fw-bold mb-4">What Makes It Special?</h4>
+
+                <div class="d-flex gap-3 mb-4">
+                    <span class="material-symbols-outlined details-icon fs-2">design_services</span>
+                    <div>
+                        <h6 class="fw-bold">Iconic Design</h6>
+                        <p class="small">Distinctive Italian styling.</p>
+                    </div>
+                </div>
+
+                <div class="d-flex gap-3 mb-4">
+                    <span class="material-symbols-outlined details-icon fs-2">bolt</span>
+                    <div>
+                        <h6 class="fw-bold">Powerful Performance</h6>
+                        <p class="small">Impressive V10 power and handling.</p>
+                    </div>
+                </div>
+
+                <div class="d-flex gap-3">
+                    <span class="material-symbols-outlined details-icon fs-2">diamond</span>
+                    <div>
+                        <h6 class="fw-bold">Premium Interior</h6>
+                        <p class="small">Comfort and luxury in every detail.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features -->
+    <section class="py-5 border-top">
+        <div class="text-center mb-5">
+            <span class="text-danger fw-bold small">THE DETAILS</span>
+            <h2 class="display-6 fw-bold mt-2">Key Features</h2>
+        </div>
+
+        <div class="row g-4">
+            {% for icon, title, description in features %}
+            <div class="col-md-4">
+                <div class="details-card rounded-4 p-4 h-100">
+                    <span class="material-symbols-outlined details-icon fs-1">{{ icon }}</span>
+                    <h5 class="fw-bold mt-3">{{ title }}</h5>
+                    <p class="small">{{ description }}</p>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-md-4">
+                <div class="details-card rounded-4 p-4 h-100">
+                    <span class="material-symbols-outlined details-icon fs-1">air</span>
+                    <h5 class="fw-bold mt-3">Aerodynamic Design</h5>
+                    <p class="small">Carefully designed bodywork for enhanced stability.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="details-card rounded-4 p-4 h-100">
+                    <span class="material-symbols-outlined details-icon fs-1">sports_score</span>
+                    <h5 class="fw-bold mt-3">Driving Experience</h5>
+                    <p class="small">Excellent handling and exciting acceleration.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="details-card rounded-4 p-4 h-100">
+                    <span class="material-symbols-outlined details-icon fs-1">chair</span>
+                    <h5 class="fw-bold mt-3">Premium Interior</h5>
+                    <p class="small">A comfortable cabin with modern technology.</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="my-5">
+        <div class="details-panel rounded-4 p-4 p-lg-5 text-center">
+            <span class="text-danger fw-bold small">YOUR NEXT EXPERIENCE</span>
+            <h2 class="display-6 fw-bold mt-3">Ready to Find Your Dream Car?</h2>
+            <p class="mt-3 mb-4">Explore our collection and discover your next sports car.</p>
+            <a href="{% url 'SportsCars:all_cars' %}" class="btn btn-danger btn-lg px-5">
+                Browse Collection →
+            </a>
+        </div>
+    </section>
+
+    <div class="text-center mt-5">
+        <a href="{% url 'SportsCars:all_cars' %}" class="text-danger text-decoration-none fw-bold">
+            ← Back to All Cars
+        </a>
+    </div>
+
+</div>
+
+{% endblock %}

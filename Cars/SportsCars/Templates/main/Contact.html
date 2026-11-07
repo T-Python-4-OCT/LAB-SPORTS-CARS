@@ -1,0 +1,558 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}Contact Us | SportsCars{% endblock %}
+
+{% block content %}
+
+<style>
+    .contact-page {
+        --contact-bg: #ffffff;
+        --contact-panel: #f1f2f4;
+        --contact-card: #ffffff;
+        --contact-text: #111111;
+        --contact-secondary: #555555;
+        --contact-border: #e5e5e5;
+    }
+
+    .dark-mode .contact-page {
+        --contact-bg: #121212;
+        --contact-panel: #252525;
+        --contact-card: #1c1c1c;
+        --contact-text: #f5f5f5;
+        --contact-secondary: #c5c5c5;
+        --contact-border: #383838;
+    }
+
+    .contact-page {
+        color: var(--contact-text);
+    }
+
+    /* Headings */
+
+    .contact-page h1,
+    .contact-page h2,
+    .contact-page h3,
+    .contact-page h4,
+    .contact-page h5,
+    .contact-page h6 {
+        color: var(--contact-text) !important;
+    }
+
+    .contact-page p,
+    .contact-page small,
+    .contact-page .text-body-secondary {
+        color: var(--contact-secondary) !important;
+    }
+
+    .contact-page .text-danger {
+        color: #e63946 !important;
+    }
+
+    /* Panels and Cards */
+
+    .contact-page .contact-panel {
+        background-color: var(--contact-panel);
+        border: 1px solid var(--contact-border);
+    }
+
+    .contact-page .contact-card {
+        background-color: var(--contact-card);
+        border: 1px solid var(--contact-border);
+    }
+
+    .contact-page .border {
+        border-color: var(--contact-border) !important;
+    }
+
+    .contact-page hr {
+        border-color: var(--contact-border);
+        opacity: 1;
+    }
+
+    /* Form Controls */
+
+    .contact-page .form-control,
+    .contact-page .form-select {
+        background-color: var(--contact-panel) !important;
+        color: var(--contact-text) !important;
+        border: 1px solid var(--contact-border) !important;
+    }
+
+    .contact-page .form-control::placeholder {
+        color: var(--contact-secondary) !important;
+        opacity: 1;
+    }
+
+    .contact-page .form-control:focus,
+    .contact-page .form-select:focus {
+        background-color: var(--contact-card) !important;
+        color: var(--contact-text) !important;
+        border-color: #e63946 !important;
+        box-shadow: 0 0 0 0.2rem rgba(230, 57, 70, 0.15);
+    }
+
+    .contact-page .form-select option {
+        background-color: var(--contact-card);
+        color: var(--contact-text);
+    }
+
+    .contact-page .form-label {
+        color: var(--contact-text);
+    }
+
+    /* Contact Icons */
+
+    .contact-page .contact-icon {
+        background-color: rgba(230, 57, 70, 0.12);
+    }
+
+    .contact-page .material-symbols-outlined {
+        color: #e63946;
+    }
+
+    /* Social Buttons */
+
+    .contact-page .social-btn {
+        color: var(--contact-text);
+        border-color: var(--contact-border);
+    }
+
+    .contact-page .social-btn:hover {
+        background-color: #e63946;
+        color: #ffffff;
+        border-color: #e63946;
+    }
+
+    .contact-page .social-btn:hover .material-symbols-outlined {
+        color: #ffffff;
+    }
+
+    /* Bottom Section */
+
+    .contact-page .bottom-panel {
+        background-color: var(--contact-panel);
+        border: 1px solid var(--contact-border);
+    }
+</style>
+
+
+<div class="contact-page">
+
+    <div class="container py-5">
+
+        <!-- Breadcrumb -->
+
+        <nav class="mb-4 small">
+
+            <a href="{% url 'SportsCars:home_page' %}"
+               class="text-danger text-decoration-none">
+                Home
+            </a>
+
+            <span class="mx-2">/</span>
+
+            <span>
+                Contact Us
+            </span>
+
+        </nav>
+
+
+        <!-- Page Header -->
+
+        <section class="text-center py-5 mb-4">
+
+            <span class="text-danger fw-bold small text-uppercase">
+                GET IN TOUCH
+            </span>
+
+            <h1 class="display-4 fw-bold mt-3">
+                Contact <span class="text-danger">Us</span>
+            </h1>
+
+            <p class="mx-auto mt-3"
+               style="max-width: 650px; line-height: 1.9;">
+
+                Have a question or looking for your dream sports car?
+                Our team is here to help you find the perfect driving experience.
+
+            </p>
+
+        </section>
+
+
+        <!-- Contact Section -->
+
+        <section class="row g-4 mb-5">
+
+
+            <!-- Contact Information -->
+
+            <div class="col-lg-5">
+
+                <div class="contact-panel rounded-4 p-4 p-lg-5 h-100">
+
+                    <span class="text-danger fw-bold small text-uppercase">
+                        CONTACT INFORMATION
+                    </span>
+
+                    <h2 class="fw-bold mt-3 mb-3">
+                        Let's Start a Conversation
+                    </h2>
+
+                    <p class="lh-lg mb-5">
+
+                        Whether you need more information about our collection
+                        or want to ask about a specific vehicle, feel free
+                        to contact us.
+
+                    </p>
+
+
+                    <!-- Email -->
+
+                    <div class="d-flex gap-3 mb-4">
+
+                        <div class="contact-icon rounded-3 p-3">
+
+                            <span class="material-symbols-outlined fs-3">
+                                mail
+                            </span>
+
+                        </div>
+
+                        <div>
+
+                            <h6 class="fw-bold mb-1">
+                                Email Us
+                            </h6>
+
+                            <p class="small mb-0">
+                                hello@sportscars.example
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Phone -->
+
+                    <div class="d-flex gap-3 mb-4">
+
+                        <div class="contact-icon rounded-3 p-3">
+
+                            <span class="material-symbols-outlined fs-3">
+                                call
+                            </span>
+
+                        </div>
+
+                        <div>
+
+                            <h6 class="fw-bold mb-1">
+                                Call Us
+                            </h6>
+
+                            <p class="small mb-0">
+                                +966 50 000 0000
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Location -->
+
+                    <div class="d-flex gap-3 mb-4">
+
+                        <div class="contact-icon rounded-3 p-3">
+
+                            <span class="material-symbols-outlined fs-3">
+                                location_on
+                            </span>
+
+                        </div>
+
+                        <div>
+
+                            <h6 class="fw-bold mb-1">
+                                Our Location
+                            </h6>
+
+                            <p class="small mb-0">
+                                Saudi Arabia
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <hr class="my-4">
+
+
+                    <h6 class="fw-bold mb-3">
+                        Follow Our Journey
+                    </h6>
+
+                    <div class="d-flex gap-3">
+
+                        <a href="#"
+                           class="btn btn-outline-secondary social-btn rounded-3">
+
+                            <span class="material-symbols-outlined align-middle">
+                                public
+                            </span>
+
+                        </a>
+
+                        <a href="#"
+                           class="btn btn-outline-secondary social-btn rounded-3">
+
+                            <span class="material-symbols-outlined align-middle">
+                                photo_camera
+                            </span>
+
+                        </a>
+
+                        <a href="#"
+                           class="btn btn-outline-secondary social-btn rounded-3">
+
+                            <span class="material-symbols-outlined align-middle">
+                                play_circle
+                            </span>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Contact Form -->
+
+            <div class="col-lg-7">
+
+                <div class="contact-card rounded-4 shadow-sm p-4 p-lg-5 h-100">
+
+                    <span class="text-danger fw-bold small text-uppercase">
+                        SEND US A MESSAGE
+                    </span>
+
+                    <h2 class="fw-bold mt-3 mb-2">
+                        We'd Love to Hear From You
+                    </h2>
+
+                    <p class="mb-4">
+                        Fill out the form below and we'll get back to you.
+                    </p>
+
+
+                    <form method="POST">
+
+                        {% csrf_token %}
+
+                        <div class="row g-3">
+
+
+                            <!-- Full Name -->
+
+                            <div class="col-md-6">
+
+                                <label for="fullName"
+                                       class="form-label fw-semibold">
+                                    Full Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="form-control form-control-lg"
+                                    id="fullName"
+                                    name="name"
+                                    placeholder="Enter your name"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <!-- Email -->
+
+                            <div class="col-md-6">
+
+                                <label for="email"
+                                       class="form-label fw-semibold">
+                                    Email Address
+                                </label>
+
+                                <input
+                                    type="email"
+                                    class="form-control form-control-lg"
+                                    id="email"
+                                    name="email"
+                                    placeholder="Enter your email"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <!-- Phone -->
+
+                            <div class="col-12">
+
+                                <label for="phone"
+                                       class="form-label fw-semibold">
+                                    Phone Number
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    class="form-control form-control-lg"
+                                    id="phone"
+                                    name="phone"
+                                    placeholder="Enter your phone number"
+                                >
+
+                            </div>
+
+
+                            <!-- Subject -->
+
+                            <div class="col-12">
+
+                                <label for="subject"
+                                       class="form-label fw-semibold">
+                                    Subject
+                                </label>
+
+                                <select
+                                    class="form-select form-select-lg"
+                                    id="subject"
+                                    name="subject"
+                                    required
+                                >
+
+                                    <option value="" selected disabled>
+                                        Select a subject
+                                    </option>
+
+                                    <option value="car-inquiry">
+                                        Car Inquiry
+                                    </option>
+
+                                    <option value="pricing">
+                                        Pricing Information
+                                    </option>
+
+                                    <option value="test-drive">
+                                        Test Drive
+                                    </option>
+
+                                    <option value="other">
+                                        Other
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <!-- Message -->
+
+                            <div class="col-12">
+
+                                <label for="message"
+                                       class="form-label fw-semibold">
+                                    Your Message
+                                </label>
+
+                                <textarea
+                                    class="form-control form-control-lg"
+                                    id="message"
+                                    name="message"
+                                    rows="5"
+                                    placeholder="Write your message here..."
+                                    required
+                                ></textarea>
+
+                            </div>
+
+
+                            <!-- Submit Button -->
+
+                            <div class="col-12 mt-4">
+
+                                <button
+                                    type="submit"
+                                    class="btn btn-danger btn-lg rounded-3 w-100 py-3"
+                                >
+
+                                    Send Message
+
+                                    <span class="material-symbols-outlined align-middle ms-2">
+                                        send
+                                    </span>
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Bottom Section -->
+
+        <section class="my-5">
+
+            <div class="bottom-panel rounded-4 p-4 p-lg-5 text-center">
+
+                <span class="material-symbols-outlined text-danger"
+                      style="font-size: 45px;">
+                    directions_car
+                </span>
+
+                <h2 class="fw-bold mt-3">
+                    Your Dream Car Is Waiting
+                </h2>
+
+                <p class="mt-3 mb-4">
+
+                    Explore our exclusive collection and discover
+                    the perfect sports car for you.
+
+                </p>
+
+                <a href="{% url 'SportsCars:all_cars' %}"
+                   class="btn btn-danger btn-lg rounded-3 px-5">
+
+                    Explore Our Collection
+
+                    <span class="material-symbols-outlined align-middle ms-2">
+                        arrow_forward
+                    </span>
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</div>
+
+{% endblock %}
