@@ -31,7 +31,7 @@
      ESCALADE OVERVIEW
 ===================================== -->
 
-<section class="p911-overview" id="overview">
+<section class="p911-overview escalade-overview" id="overview">
 
     <div class="p911-gallery">
 
@@ -442,130 +442,164 @@
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
-    /* =====================================
-       OVERVIEW GALLERY
-    ===================================== */
+/* =====================================
+   ESCALADE IMAGE GALLERY
+===================================== */
 
-    const mainImage = document.getElementById("p911-main-img");
-    const thumbnailsContainer = document.getElementById("p911-thumbnails");
-    const counter = document.getElementById("p911-counter");
-    const colorName = document.getElementById("p911-color-name");
-    const colorOptions = document.querySelectorAll(".p911-color-option");
+const mainImage = document.getElementById("p911-main-img");
+const thumbnailsContainer = document.getElementById("p911-thumbnails");
+const counter = document.getElementById("p911-counter");
+const colorName = document.getElementById("p911-color-name");
+const colorOptions = document.querySelectorAll(".p911-color-option");
 
-    let currentImages = [];
-    let currentIndex = 0;
+let currentImages = [];
+let currentIndex = 0;
 
-    function showImage(index) {
+function showImage(index) {
 
-        if (!currentImages.length) return;
+    if (!currentImages.length) return;
 
-        currentIndex = (index + currentImages.length) % currentImages.length;
+    currentIndex = (index + currentImages.length) % currentImages.length;
 
-        mainImage.style.opacity = "0";
+    const selectedImage = currentImages[currentIndex];
 
-        setTimeout(() => {
+    mainImage.style.opacity = "0";
 
-            mainImage.src = currentImages[currentIndex];
-            mainImage.style.opacity = "1";
+    const revealImage = () => {
+        mainImage.style.opacity = "1";
+    };
 
-        }, 120);
+    mainImage.onload = revealImage;
+    mainImage.onerror = revealImage;
 
-        document.querySelectorAll(".p911-thumb").forEach((thumb, i) => {
-            thumb.classList.toggle("active", i === currentIndex);
-        });
+    setTimeout(() => {
+        mainImage.src = selectedImage;
 
-        counter.textContent =
-            String(currentIndex + 1).padStart(2, "0") +
-            " / " +
-            String(currentImages.length).padStart(2, "0");
-    }
-
-
-    function changeColor(option) {
-
-        currentImages = option.dataset.images
-            .split("|")
-            .map(image => image.trim());
-
-        currentIndex = 0;
-
-        colorOptions.forEach(item => {
-            item.classList.toggle("active", item === option);
-        });
-
-        colorName.textContent = option.dataset.name;
-
-        thumbnailsContainer.innerHTML = "";
-
-        currentImages.forEach((image, index) => {
-
-            const button = document.createElement("button");
-
-            button.type = "button";
-            button.className = "p911-thumb" + (index === 0 ? " active" : "");
-            button.dataset.index = index;
-
-            const img = document.createElement("img");
-
-            img.src = image;
-            img.alt = "Cadillac Escalade view " + (index + 1);
-
-            button.appendChild(img);
-
-            button.addEventListener("mouseenter", () => showImage(index));
-            button.addEventListener("click", () => showImage(index));
-
-            thumbnailsContainer.appendChild(button);
-
-        });
-
-        showImage(0);
-    }
-
-
-    colorOptions.forEach(option => {
-
-        option.addEventListener("mouseenter", () => changeColor(option));
-        option.addEventListener("click", () => changeColor(option));
-
-    });
-
-
-    document.querySelector(".p911-prev").addEventListener("click", () => {
-        showImage(currentIndex - 1);
-    });
-
-    document.querySelector(".p911-next").addEventListener("click", () => {
-        showImage(currentIndex + 1);
-    });
-
-
-    /* =====================================
-       THEME COLOR SYNC
-    ===================================== */
-
-    function syncThemeColor() {
-
-        const isDark = document.body.classList.contains("dark-mode");
-        const preferredColor = isDark ? "black" : "white";
-
-        const option = document.querySelector(
-            `.p911-color-option[data-color="${preferredColor}"]`
-        );
-
-        if (option) {
-            changeColor(option);
+        if (mainImage.complete) {
+            revealImage();
         }
-    }
+    }, 150);
 
-    syncThemeColor();
+    const thumbnails = thumbnailsContainer.querySelectorAll(".p911-thumb");
 
-    const themeObserver = new MutationObserver(syncThemeColor);
+    thumbnails.forEach((thumb, i) => {
 
-    themeObserver.observe(document.body, {
-        attributes: true,
-        attributeFilter: ["class"]
+        const isActive = i === currentIndex;
+
+        thumb.classList.toggle("active", isActive);
+
+        if (isActive) {
+            thumb.scrollIntoView({
+                behavior: "smooth",
+                block: "nearest",
+                inline: "center"
+            });
+        }
     });
+
+    counter.textContent =
+        String(currentIndex + 1).padStart(2, "0") +
+        " / " +
+        String(currentImages.length).padStart(2, "0");
+}
+
+
+function changeColor(option) {
+
+    currentImages = option.dataset.images
+        .split("|")
+        .map(image => image.trim());
+
+    currentIndex = 0;
+
+    colorOptions.forEach(item => {
+        item.classList.toggle("active", item === option);
+    });
+
+    colorName.textContent = option.dataset.name;
+
+    thumbnailsContainer.innerHTML = "";
+
+    currentImages.forEach((image, index) => {
+
+        const button = document.createElement("button");
+
+        button.type = "button";
+        button.className = "p911-thumb" + (index === 0 ? " active" : "");
+
+        const img = document.createElement("img");
+
+        img.src = image;
+        img.alt = "Cadillac Escalade view " + (index + 1);
+
+        button.appendChild(img);
+
+        button.addEventListener("click", () => showImage(index));
+
+        thumbnailsContainer.appendChild(button);
+    });
+
+    showImage(0);
+}
+
+
+colorOptions.forEach(option => {
+    option.addEventListener("click", () => changeColor(option));
+});
+
+
+document.querySelector(".p911-prev").addEventListener("click", () => {
+    showImage(currentIndex - 1);
+});
+
+document.querySelector(".p911-next").addEventListener("click", () => {
+    showImage(currentIndex + 1);
+});
+
+
+/* KEYBOARD NAVIGATION */
+
+document.addEventListener("keydown", event => {
+
+    if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+
+    const target = event.target;
+
+    if (target && (
+        target.tagName === "INPUT" ||
+        target.tagName === "TEXTAREA" ||
+        target.isContentEditable
+    )) return;
+
+    if (event.key === "ArrowLeft") showImage(currentIndex - 1);
+    if (event.key === "ArrowRight") showImage(currentIndex + 1);
+});
+
+
+/* THEME COLOR SYNC */
+
+function syncThemeColor() {
+
+    const isDark = document.body.classList.contains("dark-mode");
+    const preferredColor = isDark ? "black" : "white";
+
+    const option = document.querySelector(
+        `.p911-color-option[data-color="${preferredColor}"]`
+    );
+
+    if (option) {
+        changeColor(option);
+    }
+}
+
+syncThemeColor();
+
+const themeObserver = new MutationObserver(syncThemeColor);
+
+themeObserver.observe(document.body, {
+    attributes: true,
+    attributeFilter: ["class"]
+});
 
 
     /* =====================================
