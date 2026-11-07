@@ -1,0 +1,72 @@
+{% extends 'cars/base.html' %}
+{% load static %}
+
+{% block title %}About Us{% endblock %}
+
+{% block content %}
+
+<!-- ================= HERO ================= -->
+<section class="hero hero-page" style="--hero-img: url('{% static 'images/g70-1.jpg' %}')">
+    <div class="container hero-content">
+        <span class="eyebrow">About Us</span>
+        <h1>Driven by<br>Passion</h1>
+        <p>A team of automotive enthusiasts dedicated to bringing the world’s finest sports cars closer to you.</p>
+    </div>
+</section>
+
+<!-- ================= OUR STORY ================= -->
+<section class="container section story">
+    <div class="story-text">
+        <h2>Our Story</h2>
+        <p>Founded in Saudi Arabia, we bring together a deep passion for performance, design, and engineering excellence, offering a curated selection of iconic sports cars and a premium ownership experience.</p>
+    </div>
+    <div class="story-img">
+        <img src="{% static 'images/g80-1.jpg' %}" alt="Genesis showroom">
+    </div>
+</section>
+
+<!-- ================= OUR VALUES ================= -->
+<section class="container section">
+    <div class="section-head">
+        <h2>Our Values</h2>
+    </div>
+
+    <div class="values-grid">
+        <div class="value-item">
+            <span class="material-symbols-outlined">diamond</span>
+            <div>
+                <h3>Excellence</h3>
+                <p>A commitment to world-class standards.</p>
+            </div>
+        </div>
+        <div class="value-item">
+            <span class="material-symbols-outlined">verified_user</span>
+            <div>
+                <h3>Trust</h3>
+                <p>Transparent, honest, and customer-first.</p>
+            </div>
+        </div>
+        <div class="value-item">
+            <span class="material-symbols-outlined">star</span>
+            <div>
+                <h3>Passion</h3>
+                <p>A shared love for exceptional cars.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= MORE THAN A DEALER ================= -->
+<section class="container">
+    <div class="dealer-banner" style="--banner-img: url('{% static 'images/hero-home.jpg' %}')">
+        <div class="dealer-text">
+            <h2>More Than a Dealer</h2>
+            <p>We are your partner in the journey <br>of owning and enjoying an exceptional car.</p>
+            <a href="{% url 'cars:all_cars' %}" class="btn btn-ghost btn-sm">
+                Browse Cars <span class="material-symbols-outlined">arrow_forward</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
