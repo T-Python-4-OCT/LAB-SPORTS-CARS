@@ -1,14 +1,15 @@
 
 /* ---------- 1. Variables ---------- */
-:root {
-  --bg: #f5f3f2;
-  --card: #ffffff;
-  --text: #14161a;
-  --muted: #6a6f78;
-  --red: #c8101e;
-  --line: #e7e3e1;
-  --shadow: 0 6px 22px rgba(0, 0, 0, .08);
-  --fade: 255, 255, 255;          /* color that fades over hero images */
+:root{
+--bg : #f5f5f5;
+--card:#ffffff;
+--texet:#14161a;
+--muted:#6a6f78;
+--red:#c8101e;
+--line:#e7e3e1;
+--shadow: 0 6px 22px rgba(0,0,0, .08);
+--fade :255,255,255;
+
 }
 
 [data-theme="dark"] {
