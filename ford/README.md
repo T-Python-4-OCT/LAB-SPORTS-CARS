@@ -1,19 +1,46 @@
-# Ford
+# Ford Showroom
 
-A local Django showroom with 20 Ford entries covering every model year from 2010 through 2027. Prices, cash purchase requests, financing estimates, test-drive bookings, and newsletter signup are for demonstration.
+A responsive Ford vehicle showroom built with Django for the LAB-SPORTS-CARS project. It features 20 vehicles covering every model year from 2010 through 2027, with Arabic and English interfaces.
 
-## Run on Windows
+## Features
 
-Open PowerShell in this folder. If `.venv` is already present, run:
+- Responsive layouts for desktop, tablet, and mobile.
+- Light and dark themes with saved preferences.
+- Homepage with a Mustang video and a smaller mobile version.
+- Vehicle search and filters for model, year, and price.
+- Individual vehicle pages with separate overview, specifications, and features.
+- Full-screen image galleries.
+- Two-car comparison with a differences-only option.
+- Test-drive booking with city, date, and time selection.
+- Cash-purchase requests and an installment calculator.
+- Local account registration and sign-in.
+- Remember me sessions lasting two days.
+- Account-based favorites and browser-based guest favorites.
+- Recently viewed vehicles and saved comparison selections.
+- An About Us page with Ford history and showroom information.
+- Animations that respect reduced-motion preferences.
 
-```powershell
-.\.venv\Scripts\python.exe manage.py migrate
-.\.venv\Scripts\python.exe manage.py runserver
-```
+Prices, purchase requests, bookings, financing estimates, and newsletter signup demonstrate the website's functionality. Payments are not collected, and requests are not sent to Ford Motor Company.
 
-Open [the local site](http://127.0.0.1:8000/).
+## Technologies
 
-For a fresh download, install Python 3.12 or 3.13 and open PowerShell in the repository's `ford` folder. Run the complete setup below.
+- Python
+- Django 5.2
+- SQLite
+- Django Templates
+- HTML and CSS
+- JavaScript
+- Locally hosted Google Fonts and icons
+
+## Requirements
+
+- Python 3.12 or 3.13
+- An internet connection for the initial dependency installation
+- A modern web browser
+
+## First-Time Setup on Windows
+
+Download or clone the repository, then open PowerShell in this ford folder.
 
 ```powershell
 py -m venv .venv
@@ -22,11 +49,15 @@ py -m venv .venv
 .\.venv\Scripts\python.exe manage.py runserver
 ```
 
-Open http://127.0.0.1:8000/home/. The migration step creates a new SQLite database and loads all 20 vehicles automatically. Existing accounts or a copied database are not needed. Create an account through the website to try sign-in and favorites.
+If your Python installation uses `python` instead of `py`, create the environment with `python -m venv .venv`.
 
-## Run on macOS or Linux
+Open [Ford Showroom](http://127.0.0.1:8000/home/).
 
-Install Python 3.12 or 3.13, open a terminal in `ford`, and run:
+The migration command creates the database and automatically adds all 20 vehicles. Register through the website to try accounts and favorites.
+
+## First-Time Setup on macOS or Linux
+
+Open a terminal in this ford folder.
 
 ```sh
 python3 -m venv .venv
@@ -35,48 +66,108 @@ python3 -m venv .venv
 .venv/bin/python manage.py runserver
 ```
 
-## Included assets and verification
+Some Linux distributions require their `python3-venv` package to create virtual environments.
 
-All vehicle images, the desktop and mobile hero videos, fonts, icons, and the compiled Arabic translation are included locally. After installing dependencies, the showroom's own pages and assets work without an external asset service. External Ford and social links need an internet connection.
+## Running the Project Again
 
-Keep `showroom/static/`, `showroom/locale/`, and every file in `showroom/migrations/` when downloading or submitting the project. The `.venv` folder and `db.sqlite3` are created on the receiving computer.
+From the `ford` folder on Windows.
 
 ```powershell
+.\.venv\Scripts\python.exe manage.py migrate
+.\.venv\Scripts\python.exe manage.py runserver
+```
+
+From the `ford` folder on macOS or Linux.
+
+```sh
+.venv/bin/python manage.py migrate
+.venv/bin/python manage.py runserver
+```
+
+Press `Ctrl+C` in the terminal to stop the server.
+
+If port 8000 is already in use, run `manage.py runserver 8001` with your environment's Python executable and open `http://127.0.0.1:8001/home/`.
+
+## Main Pages
+
+| Page | URL |
+|---|---|
+| Home | `/home/` |
+| All Cars | `/cars/` |
+| Vehicle Details Example | `/cars/mustang-gt/` |
+| About Us | `/about/` |
+| Sign In and Account | `/account/` |
+| Registration | `/account/register/` |
+| Django Admin | `/admin/` |
+
+## Admin Access
+
+Create an administrator from the `ford` folder.
+
+```powershell
+.\.venv\Scripts\python.exe manage.py createsuperuser
+```
+
+On macOS or Linux, use `.venv/bin/python manage.py createsuperuser`.
+
+Visit `/admin/` to manage vehicles and review purchase requests and test-drive bookings.
+
+## Checks and Tests
+
+Run from the `ford` folder on Windows.
+
+```powershell
+.\.venv\Scripts\python.exe manage.py check
 .\.venv\Scripts\python.exe manage.py test
 ```
 
+On macOS or Linux, replace the Python path with `.venv/bin/python`.
 
-## Project layout
+Tests cover filtering, comparisons, bookings, purchase requests, accounts, favorites, session expiration, and theme persistence.
 
-- `config/` contains the Django project settings and root URL configuration.
-- `showroom/` contains the views, URL mapping, and `Car` model. Migrations create the SQLite schema and populate the inventory.
-- `showroom/templates/showroom/` contains `base.html`, the page templates, and the shared car card.
-- `showroom/static/showroom/` contains styles, JavaScript, photos, and locally served Google fonts and icons.
+## Project Structure
 
-## Lab features
+```text
+ford/
+├── manage.py
+├── requirements.txt
+├── config/
+│   ├── settings.py
+│   └── urls.py
+└── showroom/
+    ├── models.py
+    ├── forms.py
+    ├── views.py
+    ├── urls.py
+    ├── tests.py
+    ├── migrations/
+    ├── templates/showroom/
+    ├── static/showroom/
+    └── locale/ar/
+```
 
-- The home, inventory, details and about views render inherited templates. The 20 vehicle detail pages share a detail template.
-- Template links use named URLs. `Car.get_absolute_url()` resolves a detail URL from the model.
-- `/cars/taurus/` passes the model slug as a path parameter. `/cars/?year=2026` filters the inventory via a query parameter.
-- The header theme button posts to Django and persists the preference in the `ford_theme` cookie.
-- The gallery, search, and mobile menu work locally. Guest favorites are stored in the browser, and signed-in favorites are stored against the account in SQLite. Recently viewed vehicles persist for seven days, comparison selections for two days, and filters for the tab session.
+## Assets and Data
 
-- All Cars compares two models via repeated query parameters, for example /cars/?compare=mustang-gt&compare=mustang-dark-horse#compare.
-- Each detail page includes a full-screen photo viewer and a monthly estimate using the demo price, down payment, term, and annual rate.
-- The header language toggle switches between English and Arabic, including right-to-left layout, vehicle information, forms and date labels. The language cookie preserves the choice. The Arabic PO source and compiled MO live in the showroom locale directory.
-- Each vehicle has separate links for cash purchase, test-drive booking and installment estimates. The URL fragment opens the selected panel and scrolls to it.
-- Test drives use Saudi time and offer six city choices. Bookings and purchase requests are saved in SQLite and can be reviewed in Django admin.
-- Archival photo attribution is retained in the gallery records in the inventory data migration. Vehicle information links point to the reference used for each model.
+Vehicle images, desktop and mobile videos, fonts, icons, and the compiled Arabic translation are included in the repository.
 
-## Vehicle specifications
+Keep the `static`, `locale`, and `migrations` folders when copying the project. The virtual environment and SQLite database are created during setup.
 
-- [Taurus on Ford Saudi Arabia](https://www.me.ford.com/en/sau/cars/taurus/) and [Al Jazirah Ford](https://ar.aljazirahford.com/vehicles/2026-ford-taurus/)
-- [Mustang on Ford Saudi Arabia](https://www.me.ford.com/en/sau/cars/mustang/) and [Al Jazirah Ford](https://en.aljazirahford.com/vehicles/2026-ford-mustang/)
-- [Territory on Ford Saudi Arabia](https://www.me.ford.com/en/sau/suvs/territory/)
-- [Mustang Dark Horse on Ford US](https://www.ford.com/cars/mustang/2025/models/dark-horse/)
-- [F-150 Raptor on Al Jazirah Ford](https://en.aljazirahford.com/vehicles/2025-ford-f-150-raptor/)
+External Ford and social-media links require an internet connection.
 
-## Additional vehicle photos
+## Saved Preferences
 
-- Mustang Dark Horse exterior from [Bayou Ford](https://www.bayouford.net/2025-ford-mustang.html) and cabin from [EV-Cars](https://www.ev-cars.pl/en-us/ford-mustang-dark-horse-rental/).
-- F-150 Raptor exterior from [Al Jazirah Ford](https://en.aljazirahford.com/vehicles/2025-ford-f-150-raptor/) and trail photo from [Pioneer Ford](https://www.pioneerfordmarietta.com/2025-ford-f-150-vs-toyota-tundra-marietta-oh.html).
+| Preference | Duration |
+|---|---|
+| Language and theme | 180 days |
+| Remember me | 2 days |
+| Vehicle comparison | 2 days |
+| Recently viewed vehicles | 7 days |
+| Search filters | Browser tab session |
+
+Signed-in favorites are stored in the database and linked to the user's account.
+
+## Lab Requirements
+
+The project implements template inheritance, static assets, Google Fonts and icons, dark mode, CSS transitions and animations, responsive layouts, and the required home, inventory, vehicle detail, and About Us pages.
+
+The included settings support local development and academic evaluation. Public deployment requires production configuration.

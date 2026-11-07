@@ -324,7 +324,7 @@ html[data-theme='dark'] :is(.brand, .footer-brand) img { filter: brightness(0) i
   .hero-dots { color: #fff; inset-inline-start: 50%; transform: translateX(-50%); bottom: .65rem; }
   .benefit-band { padding-block: .45rem; }
   .benefit-band .icon-grid, .values .icon-grid { grid-template-columns: 1fr; }
-  .benefit-band li, .values li { justify-items: start; grid-template-columns: 1.9rem 1fr; align-items: center; text-align: start; padding: .55rem .2rem; }
+  .benefit-band li, .values li { justify-items: start; grid-template-columns: max-content minmax(0, 1fr); column-gap: 1rem; align-items: center; text-align: start; padding: .75rem .2rem; }
   .benefit-band li + li, .values li + li { border-inline-start: 0; border-top: 1px solid var(--line); }
   .values small { grid-column: 2; max-width: none; }
   .featured-grid, .inventory-grid, .experience, .detail-grid, .story, .overview { grid-template-columns: minmax(0, 1fr); }
