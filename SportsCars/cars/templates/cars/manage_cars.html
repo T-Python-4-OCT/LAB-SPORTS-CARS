@@ -1,0 +1,380 @@
+
+{% extends "cars/base.html" %}
+{% load static %}
+
+{% block title %}Manage Cars | SportsCars{% endblock %}
+
+{% block extra_head %}
+<link
+    rel="stylesheet"
+    href="{% static 'cars/css/car-management.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="car-admin-page">
+
+    <div class="car-admin-container">
+
+        <!-- HEADER -->
+        <div class="car-admin-heading">
+
+            <div>
+                <a
+                    href="{% url 'cars:dashboard' %}"
+                    class="car-admin-back">
+                    <span class="material-symbols-outlined">
+                        arrow_back
+                    </span>
+                    BACK TO DASHBOARD
+                </a>
+
+                <span class="section-label">
+                    SHOWROOM MANAGEMENT
+                </span>
+
+                <h1>
+                    MANAGE <span>CARS.</span>
+                </h1>
+
+                <p>
+                    Add new vehicles and manage your
+                    showroom collection.
+                </p>
+            </div>
+
+            {% if can_add %}
+            <a
+                href="{% url 'cars:add_car' %}"
+                class="car-admin-primary-button">
+
+                <span class="material-symbols-outlined">
+                    add
+                </span>
+
+                ADD NEW CAR
+            </a>
+            {% endif %}
+
+        </div>
+
+
+        <!-- MESSAGES -->
+        {% if messages %}
+        <div class="car-admin-messages">
+            {% for message in messages %}
+            <div
+                class="car-admin-alert"
+                role="status">
+
+                <span class="material-symbols-outlined">
+                    check_circle
+                </span>
+
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+
+        <!-- STATISTICS -->
+        <div class="car-admin-stats">
+
+            <div class="car-admin-stat">
+                <span class="material-symbols-outlined">
+                    directions_car
+                </span>
+
+                <div>
+                    <small>TOTAL VEHICLES</small>
+                    <strong>{{ total_cars }}</strong>
+                </div>
+            </div>
+
+            <div class="car-admin-stat">
+                <span class="material-symbols-outlined">
+                    stars
+                </span>
+
+                <div>
+                    <small>FEATURED VEHICLES</small>
+                    <strong>{{ featured_count }}</strong>
+                </div>
+            </div>
+
+            <div class="car-admin-stat">
+                <span class="material-symbols-outlined">
+                    filter_alt
+                </span>
+
+                <div>
+                    <small>FILTERED RESULTS</small>
+                    <strong>{{ cars_count }}</strong>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- FILTERS -->
+        <form
+            method="get"
+            action="{% url 'cars:manage_cars' %}"
+            class="car-admin-filters">
+
+            <div class="car-admin-search">
+
+                <label for="admin-car-search">
+                    SEARCH VEHICLES
+                </label>
+
+                <div class="car-admin-search-input">
+                    <span class="material-symbols-outlined">
+                        search
+                    </span>
+
+                    <input
+                        type="search"
+                        name="search"
+                        id="admin-car-search"
+                        placeholder="Search by name, brand or engine..."
+                        value="{{ search_query }}">
+                </div>
+
+            </div>
+
+            <div class="car-admin-filter">
+
+                <label for="featured-filter">
+                    VISIBILITY
+                </label>
+
+                <select
+                    name="featured"
+                    id="featured-filter">
+
+                    <option
+                        value="all"
+                        {% if selected_featured == "all" %}selected{% endif %}>
+                        All Vehicles
+                    </option>
+
+                    <option
+                        value="yes"
+                        {% if selected_featured == "yes" %}selected{% endif %}>
+                        Featured Only
+                    </option>
+
+                    <option
+                        value="no"
+                        {% if selected_featured == "no" %}selected{% endif %}>
+                        Non-Featured
+                    </option>
+
+                </select>
+
+            </div>
+
+            <button
+                type="submit"
+                class="car-admin-filter-button">
+
+                <span class="material-symbols-outlined">
+                    tune
+                </span>
+
+                FILTER
+            </button>
+
+            <a
+                href="{% url 'cars:manage_cars' %}"
+                class="car-admin-reset">
+                RESET
+            </a>
+
+        </form>
+
+
+        <!-- CAR LIST -->
+        <div class="car-admin-list">
+
+            {% for car in cars %}
+
+            <article class="car-admin-item">
+
+                <!-- IMAGE -->
+                <a
+                    href="{% url 'cars:car_detail' car.id %}"
+                    class="car-admin-image">
+
+                    {% if car.image %}
+                    <img
+                        src="{% static car.image %}"
+                        alt="{{ car.name }}"
+                        loading="lazy">
+                    {% else %}
+                    <span class="material-symbols-outlined">
+                        directions_car
+                    </span>
+                    {% endif %}
+
+                </a>
+
+
+                <!-- INFORMATION -->
+                <div class="car-admin-item-info">
+
+                    <div class="car-admin-badges">
+
+                        <span class="car-admin-brand">
+                            {{ car.brand }}
+                        </span>
+
+                        {% if car.is_featured %}
+                        <span class="car-admin-featured">
+                            <span class="material-symbols-outlined">
+                                star
+                            </span>
+                            FEATURED
+                        </span>
+                        {% endif %}
+
+                    </div>
+
+                    <h2>{{ car.name }}</h2>
+
+                    <div class="car-admin-details">
+                        <span>
+                            <span class="material-symbols-outlined">
+                                calendar_month
+                            </span>
+                            {{ car.year }}
+                        </span>
+
+                        <span>
+                            <span class="material-symbols-outlined">
+                                speed
+                            </span>
+                            {{ car.horsepower }} HP
+                        </span>
+
+                        <span>
+                            <span class="material-symbols-outlined">
+                                settings
+                            </span>
+                            {{ car.engine }}
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <!-- ACTIONS -->
+                <div class="car-admin-item-actions">
+
+                    <strong>{{ car.formatted_price }}</strong>
+
+                    <div class="car-admin-action-buttons">
+
+                        <a
+                            href="{% url 'cars:car_detail' car.id %}"
+                            class="car-admin-view-button">
+
+                            <span class="material-symbols-outlined">
+                                visibility
+                            </span>
+
+                            VIEW
+                        </a>
+
+                        {% if can_edit %}
+                        <a
+                            href="{% url 'cars:edit_car' car.id %}"
+                            class="car-admin-edit-button">
+
+                            <span class="material-symbols-outlined">
+                                edit
+                            </span>
+
+                            EDIT
+                        </a>
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            </article>
+
+            {% empty %}
+
+            <div class="car-admin-empty">
+                <span class="material-symbols-outlined">
+                    no_crash
+                </span>
+
+                <h2>NO VEHICLES FOUND.</h2>
+
+                <p>
+                    Try changing your search or
+                    add a vehicle to the collection.
+                </p>
+
+                <a href="{% url 'cars:manage_cars' %}">
+                    SHOW ALL VEHICLES
+                </a>
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+
+        <!-- PAGINATION -->
+        {% if page_obj.has_other_pages %}
+
+        <nav
+            class="car-admin-pagination"
+            aria-label="Car management pages">
+
+            {% if page_obj.has_previous %}
+            <a href="{% querystring page=page_obj.previous_page_number %}">
+                <span class="material-symbols-outlined">
+                    chevron_left
+                </span>
+                PREVIOUS
+            </a>
+            {% endif %}
+
+            <div>
+                {% for number in page_obj.paginator.page_range %}
+
+                <a
+                    href="{% querystring page=number %}"
+                    class="{% if page_obj.number == number %}active{% endif %}"
+                    {% if page_obj.number == number %}aria-current="page"{% endif %}>
+                    {{ number }}
+                </a>
+
+                {% endfor %}
+            </div>
+
+            {% if page_obj.has_next %}
+            <a href="{% querystring page=page_obj.next_page_number %}">
+                NEXT
+                <span class="material-symbols-outlined">
+                    chevron_right
+                </span>
+            </a>
+            {% endif %}
+
+        </nav>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,344 @@
+
+{% extends "cars/base.html" %}
+{% load static %}
+
+{% block title %}
+{% if is_edit %}Edit Car{% else %}Add Car{% endif %} | SportsCars
+{% endblock %}
+
+{% block extra_head %}
+<link
+    rel="stylesheet"
+    href="{% static 'cars/css/car-management.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="car-admin-page">
+
+    <div class="car-admin-form-container">
+
+        <!-- HEADER -->
+        <div class="car-admin-form-heading">
+
+            <a
+                href="{% url 'cars:manage_cars' %}"
+                class="car-admin-back">
+
+                <span class="material-symbols-outlined">
+                    arrow_back
+                </span>
+
+                BACK TO MANAGE CARS
+            </a>
+
+            <span class="section-label">
+                VEHICLE MANAGEMENT
+            </span>
+
+            <h1>
+                {{ page_title }}
+                <span>{{ page_highlight }}</span>
+            </h1>
+
+            <p>{{ page_description }}</p>
+
+            {% if is_edit %}
+            <div class="car-admin-editing">
+                <span class="material-symbols-outlined">
+                    edit_note
+                </span>
+
+                Currently editing:
+                <strong>{{ car.name }}</strong>
+            </div>
+            {% endif %}
+
+        </div>
+
+
+        <!-- FORM -->
+        <form
+            method="post"
+            class="car-admin-form">
+
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+            <div class="car-admin-form-errors">
+                {{ form.non_field_errors }}
+            </div>
+            {% endif %}
+
+
+            <!-- BASIC INFORMATION -->
+            <div class="car-admin-form-panel">
+
+                <div class="car-admin-form-panel-heading">
+                    <span class="material-symbols-outlined">
+                        directions_car
+                    </span>
+
+                    <div>
+                        <h2>BASIC INFORMATION</h2>
+                        <p>
+                            Vehicle name, manufacturer and model year.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="car-admin-form-grid">
+
+                    <div class="car-admin-field">
+                        <label for="{{ form.name.id_for_label }}">
+                            CAR NAME
+                        </label>
+
+                        {{ form.name }}
+                        {{ form.name.errors }}
+                    </div>
+
+                    <div class="car-admin-field">
+                        <label for="{{ form.brand.id_for_label }}">
+                            MANUFACTURER
+                        </label>
+
+                        {{ form.brand }}
+                        {{ form.brand.errors }}
+                    </div>
+
+                    <div class="car-admin-field">
+                        <label for="{{ form.year.id_for_label }}">
+                            MODEL YEAR
+                        </label>
+
+                        {{ form.year }}
+                        {{ form.year.errors }}
+                    </div>
+
+                    <div class="car-admin-field">
+                        <label for="{{ form.price.id_for_label }}">
+                            PRICE (SAR)
+                        </label>
+
+                        {{ form.price }}
+                        {{ form.price.errors }}
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PERFORMANCE -->
+            <div class="car-admin-form-panel">
+
+                <div class="car-admin-form-panel-heading">
+                    <span class="material-symbols-outlined">
+                        speed
+                    </span>
+
+                    <div>
+                        <h2>PERFORMANCE</h2>
+                        <p>
+                            Engine specifications and horsepower.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="car-admin-form-grid">
+
+                    <div class="car-admin-field">
+                        <label for="{{ form.engine.id_for_label }}">
+                            ENGINE
+                        </label>
+
+                        {{ form.engine }}
+                        {{ form.engine.errors }}
+                    </div>
+
+                    <div class="car-admin-field">
+                        <label for="{{ form.horsepower.id_for_label }}">
+                            HORSEPOWER
+                        </label>
+
+                        {{ form.horsepower }}
+                        {{ form.horsepower.errors }}
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- MEDIA -->
+            <div class="car-admin-form-panel">
+
+                <div class="car-admin-form-panel-heading">
+                    <span class="material-symbols-outlined">
+                        deployed_code
+                    </span>
+
+                    <div>
+                        <h2>MEDIA & 3D MODEL</h2>
+                        <p>
+                            Enter the static file paths
+                            used by the showroom.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="car-admin-form-grid">
+
+                    <div class="car-admin-field car-admin-field-full">
+
+                        <label for="{{ form.image.id_for_label }}">
+                            CAR IMAGE PATH
+                        </label>
+
+                        {{ form.image }}
+                        {{ form.image.errors }}
+
+                        <small>
+                            Example: cars/images/Porsche 992 GT3 R.png
+                        </small>
+
+                    </div>
+
+                    <div class="car-admin-field car-admin-field-full">
+
+                        <label for="{{ form.model.id_for_label }}">
+                            3D MODEL PATH (.GLB)
+                        </label>
+
+                        {{ form.model }}
+                        {{ form.model.errors }}
+
+                        <small>
+                            Example: cars/models/2024_porsche_992_gt3_r.glb
+                        </small>
+
+                    </div>
+
+                </div>
+
+                {% if is_edit and car.image %}
+
+                <div class="car-admin-preview">
+
+                    <span class="section-label">
+                        CURRENT IMAGE
+                    </span>
+
+                    <img
+                        src="{% static car.image %}"
+                        alt="{{ car.name }}">
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- DESCRIPTION -->
+            <div class="car-admin-form-panel">
+
+                <div class="car-admin-form-panel-heading">
+                    <span class="material-symbols-outlined">
+                        description
+                    </span>
+
+                    <div>
+                        <h2>DESCRIPTION</h2>
+                        <p>
+                            Explain what makes this car special.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="car-admin-field">
+
+                    <label for="{{ form.description.id_for_label }}">
+                        CAR DESCRIPTION
+                    </label>
+
+                    {{ form.description }}
+                    {{ form.description.errors }}
+
+                </div>
+
+            </div>
+
+
+            <!-- SETTINGS -->
+            <div class="car-admin-form-panel">
+
+                <div class="car-admin-form-panel-heading">
+                    <span class="material-symbols-outlined">
+                        tune
+                    </span>
+
+                    <div>
+                        <h2>DISPLAY SETTINGS</h2>
+
+                        <p>
+                            Choose whether this vehicle appears
+                            in the featured collection.
+                        </p>
+                    </div>
+                </div>
+
+                <label class="car-admin-featured-toggle">
+
+                    {{ form.is_featured }}
+
+                    <span class="car-admin-switch"></span>
+
+                    <span class="car-admin-switch-text">
+
+                        <strong>FEATURED VEHICLE</strong>
+
+                        <small>
+                            Show this vehicle in the home page's
+                            featured collection.
+                        </small>
+
+                    </span>
+
+                </label>
+
+                {{ form.is_featured.errors }}
+
+            </div>
+
+
+            <!-- SAVE ACTIONS -->
+            <div class="car-admin-form-actions">
+
+                <a
+                    href="{% url 'cars:manage_cars' %}"
+                    class="car-admin-cancel-button">
+                    CANCEL
+                </a>
+
+                <button
+                    type="submit"
+                    class="car-admin-primary-button">
+
+                    <span class="material-symbols-outlined">
+                        {% if is_edit %}save{% else %}add_circle{% endif %}
+                    </span>
+
+                    {{ submit_label }}
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}

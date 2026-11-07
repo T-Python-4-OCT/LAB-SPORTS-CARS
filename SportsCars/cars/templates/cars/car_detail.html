@@ -1,0 +1,400 @@
+
+{% extends "cars/base.html" %}
+{% load static %}
+
+{% block title %}{{ car.name }} | SportsCars{% endblock %}
+
+{% block extra_head %}
+<link
+    rel="stylesheet"
+    href="{% static 'cars/css/inquiry.css' %}"
+>
+<script
+    src="{% static 'cars/js/inquiry.js' %}"
+    defer>
+</script>
+{% endblock %}
+
+{% block content %}
+
+<!-- ========== CAR DETAILS ========== -->
+<section class="detail-section">
+
+    <div class="detail-heading">
+
+        <a
+            href="{% url 'cars:all_cars' %}"
+            class="back-link">
+
+            <span class="material-symbols-outlined">
+                arrow_back
+            </span>
+
+            BACK TO COLLECTION
+        </a>
+
+        <span class="section-label">
+            {{ car.brand }} / {{ car.year }}
+        </span>
+
+        <h1>{{ car.name }}</h1>
+
+        <p>{{ car.description }}</p>
+
+    </div>
+
+
+    <!-- ========== 3D + SPECIFICATIONS ========== -->
+    <div class="detail-grid">
+
+        <!-- 3D MODEL -->
+        <div class="detail-viewer-wrap">
+
+            {% if car.model %}
+
+            <model-viewer
+                src="{% static car.model %}"
+                alt="Interactive 3D model of {{ car.name }}"
+                camera-controls
+                auto-rotate
+                rotation-per-second="10deg"
+                shadow-intensity="1"
+                exposure="1.15"
+                environment-image="neutral"
+                touch-action="pan-y"
+                loading="eager">
+            </model-viewer>
+
+            <div class="detail-viewer-label">
+
+                <span class="material-symbols-outlined">
+                    360
+                </span>
+
+                INTERACTIVE 3D VIEW
+
+            </div>
+
+            {% else %}
+
+            <div class="detail-model-unavailable">
+                <span class="material-symbols-outlined">
+                    directions_car
+                </span>
+
+                <p>3D model unavailable.</p>
+            </div>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- SPECIFICATIONS -->
+        <div class="detail-info">
+
+            <span class="section-label">
+                VEHICLE SPECIFICATIONS
+            </span>
+
+            <h2>
+                ENGINEERED FOR
+                <span>EXCELLENCE.</span>
+            </h2>
+
+            <div class="spec-row">
+                <span>MANUFACTURER</span>
+                <strong>{{ car.brand }}</strong>
+            </div>
+
+            <div class="spec-row">
+                <span>MODEL</span>
+                <strong>{{ car.name }}</strong>
+            </div>
+
+            <div class="spec-row">
+                <span>MODEL YEAR</span>
+                <strong>{{ car.year }}</strong>
+            </div>
+
+            <div class="spec-row">
+                <span>ENGINE</span>
+                <strong>{{ car.engine }}</strong>
+            </div>
+
+            <div class="spec-row">
+                <span>HORSEPOWER</span>
+                <strong>{{ car.horsepower }} HP</strong>
+            </div>
+
+            <div class="spec-row">
+                <span>PRICE</span>
+                <strong>{{ car.formatted_price }}</strong>
+            </div>
+
+
+            <!-- OPEN INQUIRY MODAL -->
+            <button
+                type="button"
+                class="btn btn-primary detail-button"
+                id="open-inquiry-modal"
+                aria-haspopup="dialog"
+                aria-controls="inquiry-modal">
+
+                INQUIRE ABOUT THIS CAR
+
+                <span class="material-symbols-outlined">
+                    arrow_outward
+                </span>
+
+            </button>
+
+            <div>
+                <a
+                    href="{% url 'cars:all_cars' %}"
+                    class="detail-secondary-link">
+
+                    EXPLORE MORE CARS
+
+                    <span class="material-symbols-outlined">
+                        arrow_outward
+                    </span>
+
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==========================================
+     INQUIRY MODAL
+========================================== -->
+<div
+    class="inquiry-modal"
+    id="inquiry-modal"
+    hidden>
+
+    <!-- BACKDROP -->
+    <div
+        class="inquiry-modal-backdrop"
+        data-close-inquiry
+        aria-hidden="true">
+    </div>
+
+
+    <!-- DIALOG -->
+    <div
+        class="inquiry-modal-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="inquiry-modal-title"
+        aria-describedby="inquiry-modal-description"
+        tabindex="-1">
+
+        <!-- MODAL HEADER -->
+        <div class="inquiry-modal-header">
+
+            <div>
+
+                <span class="section-label">
+                    PRIVATE INQUIRY
+                </span>
+
+                <h2 id="inquiry-modal-title">
+                    LET'S <span>TALK CARS.</span>
+                </h2>
+
+                <p id="inquiry-modal-description">
+                    Ask us anything about this vehicle.
+                </p>
+
+            </div>
+
+            <button
+                type="button"
+                class="inquiry-modal-close"
+                id="close-inquiry-modal"
+                aria-label="Close inquiry form">
+
+                <span class="material-symbols-outlined">
+                    close
+                </span>
+
+            </button>
+
+        </div>
+
+
+        <!-- SELECTED CAR -->
+        <div class="inquiry-selected-car">
+
+            <div class="inquiry-selected-car-icon">
+                <span class="material-symbols-outlined">
+                    directions_car
+                </span>
+            </div>
+
+            <div>
+                <span class="inquiry-car-caption">
+                    SELECTED VEHICLE
+                </span>
+
+                <strong>{{ car.name }}</strong>
+
+                <small>
+                    {{ car.brand }} / {{ car.year }}
+                </small>
+            </div>
+
+            <span class="inquiry-car-price">
+                {{ car.formatted_price }}
+            </span>
+
+        </div>
+
+
+        <!-- SUCCESS MESSAGE -->
+        {% if messages %}
+
+            {% for message in messages %}
+
+            <div
+                class="inquiry-success"
+                role="status"
+                data-inquiry-success>
+
+                <span class="material-symbols-outlined">
+                    check_circle
+                </span>
+
+                <div>
+                    <strong>INQUIRY RECEIVED!</strong>
+                    <p>{{ message }}</p>
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+
+        <!-- FORM -->
+        <form
+            method="post"
+            action="{% url 'cars:car_detail' car.id %}"
+            class="inquiry-modal-form"
+            id="inquiry-form">
+
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+            <div class="inquiry-form-errors">
+                {{ form.non_field_errors }}
+            </div>
+            {% endif %}
+
+
+            <!-- FULL NAME -->
+            <div class="inquiry-field">
+
+                <label for="{{ form.full_name.id_for_label }}">
+                    FULL NAME <span>*</span>
+                </label>
+
+                {{ form.full_name }}
+
+                {% for error in form.full_name.errors %}
+                <small class="inquiry-field-error">
+                    {{ error }}
+                </small>
+                {% endfor %}
+
+            </div>
+
+
+            <!-- EMAIL -->
+            <div class="inquiry-field">
+
+                <label for="{{ form.email.id_for_label }}">
+                    EMAIL ADDRESS <span>*</span>
+                </label>
+
+                {{ form.email }}
+
+                {% for error in form.email.errors %}
+                <small class="inquiry-field-error">
+                    {{ error }}
+                </small>
+                {% endfor %}
+
+            </div>
+
+
+            <!-- PHONE -->
+            <div class="inquiry-field">
+
+                <label for="{{ form.phone.id_for_label }}">
+                    PHONE NUMBER
+                    <span class="optional">(OPTIONAL)</span>
+                </label>
+
+                {{ form.phone }}
+
+                {% for error in form.phone.errors %}
+                <small class="inquiry-field-error">
+                    {{ error }}
+                </small>
+                {% endfor %}
+
+            </div>
+
+
+            <!-- MESSAGE -->
+            <div class="inquiry-field">
+
+                <label for="{{ form.message.id_for_label }}">
+                    YOUR MESSAGE <span>*</span>
+                </label>
+
+                {{ form.message }}
+
+                {% for error in form.message.errors %}
+                <small class="inquiry-field-error">
+                    {{ error }}
+                </small>
+                {% endfor %}
+
+            </div>
+
+
+            <!-- SUBMIT -->
+            <button
+                type="submit"
+                class="btn btn-primary inquiry-submit"
+                id="inquiry-submit">
+
+                SEND INQUIRY
+
+                <span class="material-symbols-outlined">
+                    send
+                </span>
+
+            </button>
+
+            <p class="inquiry-disclaimer">
+                * Required fields. Demo inquiries are saved
+                in our database.
+            </p>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

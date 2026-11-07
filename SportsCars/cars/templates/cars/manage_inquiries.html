@@ -1,0 +1,434 @@
+
+{% extends "cars/base.html" %}
+{% load static %}
+
+{% block title %}Manage Inquiries | SportsCars{% endblock %}
+
+{% block extra_head %}
+<link
+    rel="stylesheet"
+    href="{% static 'cars/css/inquiry-management.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="management-page">
+
+    <div class="management-container">
+
+        <!-- HEADER -->
+        <div class="management-header">
+
+            <div>
+                <a
+                    href="{% url 'cars:dashboard' %}"
+                    class="management-back">
+
+                    <span class="material-symbols-outlined">
+                        arrow_back
+                    </span>
+
+                    BACK TO DASHBOARD
+                </a>
+
+                <span class="section-label">
+                    CUSTOMER RELATIONS
+                </span>
+
+                <h1>
+                    MANAGE <span>INQUIRIES.</span>
+                </h1>
+
+                <p>
+                    Review customer messages and manage
+                    each inquiry from one place.
+                </p>
+            </div>
+
+            <a
+                href="{% url 'admin:cars_carinquiry_changelist' %}"
+                class="management-admin-link">
+
+                DJANGO ADMIN
+
+                <span class="material-symbols-outlined">
+                    arrow_outward
+                </span>
+            </a>
+
+        </div>
+
+
+        <!-- STATISTICS -->
+        <div class="management-stats">
+
+            <div class="management-stat">
+                <span>TOTAL INQUIRIES</span>
+                <strong>{{ stats.total }}</strong>
+            </div>
+
+            <div class="management-stat">
+                <span>NEW</span>
+                <strong>{{ stats.new }}</strong>
+            </div>
+
+            <div class="management-stat">
+                <span>IN PROGRESS</span>
+                <strong>{{ stats.in_progress }}</strong>
+            </div>
+
+            <div class="management-stat">
+                <span>COMPLETED</span>
+                <strong>{{ stats.completed }}</strong>
+            </div>
+
+        </div>
+
+
+        <!-- ALERTS -->
+        {% if messages %}
+        <div class="management-alerts">
+            {% for message in messages %}
+            <div
+                class="management-alert {% if message.tags %}management-alert-{{ message.tags }}{% endif %}"
+                role="status">
+                <span class="material-symbols-outlined">
+                    info
+                </span>
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+
+        <!-- FILTERS -->
+        <form
+            method="get"
+            action="{% url 'cars:manage_inquiries' %}"
+            class="management-filters">
+
+            <div class="management-filter-search">
+                <label for="inquiry-search">
+                    SEARCH INQUIRIES
+                </label>
+
+                <div class="management-search-wrap">
+                    <span class="material-symbols-outlined">
+                        search
+                    </span>
+
+                    <input
+                        type="search"
+                        id="inquiry-search"
+                        name="search"
+                        value="{{ search_query }}"
+                        placeholder="Customer, email, car, message...">
+                </div>
+            </div>
+
+            <div class="management-filter-status">
+                <label for="inquiry-status-filter">
+                    STATUS
+                </label>
+
+                <select
+                    name="status"
+                    id="inquiry-status-filter">
+
+                    <option value="all"
+                        {% if selected_status == "all" %}selected{% endif %}>
+                        All Statuses
+                    </option>
+
+                    <option value="new"
+                        {% if selected_status == "new" %}selected{% endif %}>
+                        New
+                    </option>
+
+                    <option value="in_progress"
+                        {% if selected_status == "in_progress" %}selected{% endif %}>
+                        In Progress
+                    </option>
+
+                    <option value="completed"
+                        {% if selected_status == "completed" %}selected{% endif %}>
+                        Completed
+                    </option>
+                </select>
+            </div>
+
+            <button
+                type="submit"
+                class="management-filter-button">
+
+                <span class="material-symbols-outlined">
+                    tune
+                </span>
+
+                APPLY
+            </button>
+
+            <a
+                href="{% url 'cars:manage_inquiries' %}"
+                class="management-clear">
+                CLEAR
+            </a>
+
+        </form>
+
+
+        <div class="management-results">
+            <span>
+                {{ results_count }}
+                INQUIR{{ results_count|pluralize:"Y,IES" }} FOUND
+            </span>
+        </div>
+
+
+        <!-- INQUIRY CARDS -->
+        <div class="management-list">
+
+            {% for inquiry in inquiries %}
+
+            <article class="management-card">
+
+                <!-- CARD TOP -->
+                <div class="management-card-header">
+
+                    <div class="management-customer">
+
+                        <div class="management-avatar">
+                            <span class="material-symbols-outlined">
+                                person
+                            </span>
+                        </div>
+
+                        <div>
+                            <h2>{{ inquiry.full_name }}</h2>
+
+                            <span>
+                                INQUIRY #{{ inquiry.id }}
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <span
+                        class="management-status status-{{ inquiry.status }}">
+                        {{ inquiry.get_status_display }}
+                    </span>
+
+                </div>
+
+
+                <!-- VEHICLE -->
+                <div class="management-car-info">
+
+                    <span class="material-symbols-outlined">
+                        directions_car
+                    </span>
+
+                    <div>
+                        <small>INTERESTED IN</small>
+
+                        <a
+                            href="{% url 'cars:car_detail' inquiry.car.id %}">
+                            {{ inquiry.car.name }}
+                        </a>
+                    </div>
+
+                    <span class="management-date">
+                        {{ inquiry.created_at|date:"d M Y, H:i" }}
+                    </span>
+
+                </div>
+
+
+                <!-- MESSAGE -->
+                <div class="management-message">
+
+                    <span>MESSAGE</span>
+
+                    <p>
+                        {{ inquiry.message|linebreaksbr }}
+                    </p>
+
+                </div>
+
+
+                <!-- CONTACT INFO -->
+                <div class="management-contact">
+
+                    <div>
+                        <span class="material-symbols-outlined">
+                            mail
+                        </span>
+
+                        <a href="mailto:{{ inquiry.email }}">
+                            {{ inquiry.email }}
+                        </a>
+                    </div>
+
+                    {% if inquiry.phone %}
+                    <div>
+                        <span class="material-symbols-outlined">
+                            call
+                        </span>
+
+                        <span>{{ inquiry.phone }}</span>
+                    </div>
+                    {% endif %}
+
+                </div>
+
+
+                <!-- STATUS UPDATE -->
+                <div class="management-card-footer">
+
+                    {% if can_change %}
+
+                    <form
+                        method="post"
+                        action="{% url 'cars:update_inquiry_status' inquiry.id %}"
+                        class="management-update-form">
+
+                        {% csrf_token %}
+
+                        <input
+                            type="hidden"
+                            name="next"
+                            value="{{ request.get_full_path }}">
+
+                        <label
+                            for="status-{{ inquiry.id }}">
+                            UPDATE STATUS
+                        </label>
+
+                        <select
+                            id="status-{{ inquiry.id }}"
+                            name="status">
+
+                            <option value="new"
+                                {% if inquiry.status == "new" %}selected{% endif %}>
+                                New
+                            </option>
+
+                            <option value="in_progress"
+                                {% if inquiry.status == "in_progress" %}selected{% endif %}>
+                                In Progress
+                            </option>
+
+                            <option value="completed"
+                                {% if inquiry.status == "completed" %}selected{% endif %}>
+                                Completed
+                            </option>
+
+                        </select>
+
+                        <button type="submit">
+                            <span class="material-symbols-outlined">
+                                save
+                            </span>
+                            SAVE STATUS
+                        </button>
+
+                    </form>
+
+                    {% else %}
+
+                    <span class="management-readonly">
+                        Read-only access
+                    </span>
+
+                    {% endif %}
+
+                    <a
+                        href="{% url 'admin:cars_carinquiry_change' inquiry.id %}"
+                        class="management-details-link">
+
+                        VIEW DETAILS
+
+                        <span class="material-symbols-outlined">
+                            arrow_outward
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </article>
+
+            {% empty %}
+
+            <div class="management-empty">
+                <span class="material-symbols-outlined">
+                    inbox
+                </span>
+
+                <h2>NO INQUIRIES FOUND.</h2>
+
+                <p>
+                    There are no inquiries matching your
+                    current search or filters.
+                </p>
+
+                <a href="{% url 'cars:manage_inquiries' %}">
+                    SHOW ALL INQUIRIES
+                </a>
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+
+        <!-- PAGINATION -->
+        {% if page_obj.has_other_pages %}
+
+        <nav
+            class="management-pagination"
+            aria-label="Inquiry pages">
+
+            {% if page_obj.has_previous %}
+            <a href="{% querystring page=page_obj.previous_page_number %}">
+                <span class="material-symbols-outlined">
+                    chevron_left
+                </span>
+                PREVIOUS
+            </a>
+            {% endif %}
+
+            <div class="management-page-numbers">
+
+                {% for number in paginator.page_range %}
+
+                <a
+                    href="{% querystring page=number %}"
+                    class="{% if page_obj.number == number %}active{% endif %}"
+                    {% if page_obj.number == number %}aria-current="page"{% endif %}>
+                    {{ number }}
+                </a>
+
+                {% endfor %}
+
+            </div>
+
+            {% if page_obj.has_next %}
+            <a href="{% querystring page=page_obj.next_page_number %}">
+                NEXT
+                <span class="material-symbols-outlined">
+                    chevron_right
+                </span>
+            </a>
+            {% endif %}
+
+        </nav>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+{% endblock %}

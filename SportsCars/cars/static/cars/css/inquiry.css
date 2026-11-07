@@ -1,0 +1,469 @@
+
+/* =========================================
+   SPORTSCARS - INQUIRY MODAL
+========================================= */
+
+/* =========================================
+   OVERLAY
+========================================= */
+
+.inquiry-modal[hidden] {
+    display: none !important;
+}
+
+.inquiry-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 24px;
+}
+
+.inquiry-modal-backdrop {
+    position: absolute;
+    inset: 0;
+
+    background: rgba(6, 6, 10, 0.78);
+    backdrop-filter: blur(9px);
+    -webkit-backdrop-filter: blur(9px);
+}
+
+/* Prevent page scrolling while modal is open */
+
+body.inquiry-modal-open {
+    overflow: hidden;
+}
+
+/* =========================================
+   DIALOG
+========================================= */
+
+.inquiry-modal-dialog {
+    position: relative;
+    z-index: 1;
+
+    width: min(100%, 570px);
+    max-height: calc(100dvh - 48px);
+
+    display: flex;
+    flex-direction: column;
+
+    overflow-y: auto;
+    overscroll-behavior: contain;
+
+    padding: 32px;
+
+    border: 1px solid var(--border);
+    border-radius: 18px;
+
+    background: var(--bg);
+    color: var(--text);
+
+    box-shadow: 0 30px 100px rgba(0, 0, 0, 0.35);
+
+    animation: inquiry-modal-appear 0.25s ease both;
+}
+
+@keyframes inquiry-modal-appear {
+    from {
+        opacity: 0;
+        transform: translateY(22px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* =========================================
+   MODAL HEADER
+========================================= */
+
+.inquiry-modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+
+    margin-bottom: 25px;
+}
+
+.inquiry-modal-header h2 {
+    margin: 12px 0;
+
+    font-family: "Phudu", sans-serif;
+    font-size: clamp(27px, 3.5vw, 38px);
+    line-height: 1.1;
+}
+
+.inquiry-modal-header h2 span {
+    color: var(--accent);
+}
+
+.inquiry-modal-header p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.inquiry-modal-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 40px;
+    height: 40px;
+
+    border: 1px solid var(--border);
+    border-radius: 50%;
+
+    background: var(--surface);
+    color: var(--text);
+
+    transition: 0.2s ease;
+}
+
+.inquiry-modal-close:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #ffffff;
+    transform: rotate(90deg);
+}
+
+.inquiry-modal-close:focus-visible,
+.inquiry-submit:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+/* =========================================
+   SELECTED CAR
+========================================= */
+
+.inquiry-selected-car {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    margin-bottom: 26px;
+    padding: 16px;
+
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+.inquiry-selected-car-icon {
+    flex-shrink: 0;
+
+    width: 46px;
+    height: 46px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: rgba(237, 28, 36, 0.1);
+    color: var(--accent);
+}
+
+.inquiry-selected-car-icon .material-symbols-outlined {
+    font-size: 28px;
+}
+
+.inquiry-selected-car > div:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 0;
+}
+
+.inquiry-car-caption {
+    color: var(--accent);
+    font-family: "Phudu", sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.inquiry-selected-car strong {
+    font-family: "Phudu", sans-serif;
+    font-size: 16px;
+    overflow-wrap: anywhere;
+}
+
+.inquiry-selected-car small {
+    font-size: 11px;
+    color: var(--muted);
+}
+
+.inquiry-car-price {
+    margin-left: auto;
+    text-align: right;
+
+    font-family: "Phudu", sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--accent);
+
+    white-space: nowrap;
+}
+
+/* =========================================
+   FORM
+========================================= */
+
+.inquiry-modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.inquiry-field {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.inquiry-field label {
+    font-family: "Phudu", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+}
+
+.inquiry-field label > span:not(.optional) {
+    color: var(--accent);
+}
+
+.inquiry-field .optional {
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 500;
+}
+
+.inquiry-field input,
+.inquiry-field textarea {
+    width: 100%;
+    min-width: 0;
+
+    padding: 13px 15px;
+
+    border: 1px solid var(--border);
+    border-radius: 9px;
+
+    background: var(--surface);
+    color: var(--text);
+
+    font-family: "Inter", sans-serif;
+    font-size: 13px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.inquiry-field input {
+    min-height: 49px;
+}
+
+.inquiry-field textarea {
+    min-height: 115px;
+    line-height: 1.7;
+    resize: vertical;
+}
+
+.inquiry-field input::placeholder,
+.inquiry-field textarea::placeholder {
+    color: var(--muted);
+    opacity: 0.8;
+}
+
+.inquiry-field input:focus,
+.inquiry-field textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(237, 28, 36, 0.10);
+}
+
+/* =========================================
+   SUBMIT BUTTON
+========================================= */
+
+.inquiry-submit {
+    width: 100%;
+    min-height: 52px;
+
+    border: 0;
+    border-radius: 9px;
+    margin-top: 4px;
+
+    cursor: pointer;
+}
+
+.inquiry-disclaimer {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.7;
+    text-align: center;
+}
+
+/* =========================================
+   SUCCESS / ERRORS
+========================================= */
+
+.inquiry-success {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+
+    margin-bottom: 24px;
+    padding: 18px;
+
+    background: rgba(38, 152, 94, 0.08);
+    border: 1px solid rgba(38, 152, 94, 0.3);
+    border-radius: 10px;
+}
+
+.inquiry-success > .material-symbols-outlined {
+    color: #26985e;
+    font-size: 25px;
+}
+
+.inquiry-success strong {
+    font-family: "Phudu", sans-serif;
+    font-size: 14px;
+}
+
+.inquiry-success p {
+    margin-top: 6px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.inquiry-field-error,
+.inquiry-form-errors {
+    color: #df2532;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.inquiry-form-errors ul {
+    padding-left: 18px;
+}
+
+/* =========================================
+   DETAIL PAGE LINKS
+========================================= */
+
+.detail-secondary-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    margin-top: 18px;
+
+    font-family: "Phudu", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+
+    color: var(--muted);
+    transition: color 0.2s ease;
+}
+
+.detail-secondary-link:hover {
+    color: var(--accent);
+}
+
+.detail-secondary-link .material-symbols-outlined {
+    font-size: 19px;
+}
+
+/* =========================================
+   3D FALLBACK
+========================================= */
+
+.detail-model-unavailable {
+    min-height: 500px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+
+    color: #ccc;
+}
+
+.detail-model-unavailable .material-symbols-outlined {
+    font-size: 75px;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .inquiry-modal {
+        padding: 12px;
+        align-items: center;
+    }
+
+    .inquiry-modal-dialog {
+        width: 100%;
+        max-height: calc(100dvh - 24px);
+
+        padding: 22px 18px;
+
+        border-radius: 15px;
+    }
+
+    .inquiry-modal-header h2 {
+        font-size: 29px;
+    }
+
+    .inquiry-selected-car {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .inquiry-car-price {
+        margin-left: 60px;
+    }
+
+    .inquiry-modal-close {
+        width: 36px;
+        height: 36px;
+    }
+
+    .inquiry-field input {
+        min-height: 46px;
+    }
+
+    .detail-model-unavailable {
+        min-height: 340px;
+    }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .inquiry-modal-dialog {
+        animation: none;
+    }
+
+    .inquiry-modal-close {
+        transition: none;
+    }
+}

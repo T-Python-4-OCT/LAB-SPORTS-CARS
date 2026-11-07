@@ -1,0 +1,177 @@
+
+{% extends "cars/base.html" %}
+{% load static %}
+
+{% block title %}My Wishlist | SportsCars{% endblock %}
+
+{% block content %}
+
+<!-- PAGE INTRO -->
+<section class="page-intro">
+
+    <span class="section-label">
+        YOUR PERSONAL COLLECTION
+    </span>
+
+    <h1>
+        MY <span>WISHLIST.</span>
+    </h1>
+
+    <p>
+        Keep your favorite sports cars together
+        and revisit them anytime.
+    </p>
+
+</section>
+
+
+<section
+    class="featured-section wishlist-section"
+    id="wishlist-page">
+
+    <!-- HEADER -->
+    <div class="section-header">
+
+        <div>
+            <span class="section-label">
+                SAVED VEHICLES
+            </span>
+
+            <h2>
+                YOUR <span>FAVORITES.</span>
+            </h2>
+        </div>
+
+        <span class="collection-count">
+            {{ cars_count }}
+            VEHICLE{{ cars_count|pluralize }}
+        </span>
+
+    </div>
+
+
+    <!-- SAVED CAR CARDS -->
+    <div class="cars-grid">
+
+        {% for car in cars %}
+
+        <article class="car-card">
+
+            <!-- IMAGE -->
+            <a
+                href="{% url 'cars:car_detail' car.id %}"
+                class="car-preview car-preview-{{ car.id }}">
+
+                {% if car.image %}
+
+                <img
+                    src="{% static car.image %}"
+                    alt="{{ car.name }}"
+                    class="car-preview-image"
+                    loading="lazy">
+
+                {% else %}
+
+                <span class="material-symbols-outlined car-preview-icon">
+                    directions_car
+                </span>
+
+                {% endif %}
+
+                <span class="car-badge">
+                    EXCLUSIVE
+                </span>
+
+            </a>
+
+
+            <!-- INFORMATION -->
+            <div class="car-info">
+
+                <span class="car-brand">
+                    {{ car.brand }} / {{ car.year }}
+                </span>
+
+                <h3>{{ car.name }}</h3>
+
+                <div class="car-specs">
+
+                    <span>
+                        <span class="material-symbols-outlined">
+                            speed
+                        </span>
+                        {{ car.horsepower }} HP
+                    </span>
+
+                    <span>
+                        <span class="material-symbols-outlined">
+                            settings
+                        </span>
+                        {{ car.engine }}
+                    </span>
+
+                </div>
+
+
+                <div class="car-bottom">
+
+                    <div>
+                        <small>PRICE</small>
+                        <strong>
+                            {{ car.formatted_price }}
+                        </strong>
+                    </div>
+
+                    <a
+                        href="{% url 'cars:car_detail' car.id %}"
+                        class="car-arrow"
+                        aria-label="View {{ car.name }}">
+
+                        <span class="material-symbols-outlined">
+                            arrow_outward
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </article>
+
+        {% empty %}
+
+        <div class="wishlist-empty">
+
+            <span class="material-symbols-outlined">
+                favorite_border
+            </span>
+
+            <h3>YOUR WISHLIST IS EMPTY.</h3>
+
+            <p>
+                Explore our collection and save the cars
+                that catch your eye.
+            </p>
+
+            <a
+                href="{% url 'cars:all_cars' %}"
+                class="btn btn-primary">
+
+                EXPLORE CARS
+
+                <span class="material-symbols-outlined">
+                    arrow_outward
+                </span>
+
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

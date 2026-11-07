@@ -1,0 +1,394 @@
+
+/* =========================================
+   SPORTSCARS - COMPARE
+========================================= */
+
+/* =========================================
+   COMPARE CONTROLS ON ALL CARS PAGE
+========================================= */
+
+.compare-selection-form {
+    width: 100%;
+}
+
+.compare-intro {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 25px;
+    padding: 25px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+}
+
+.compare-intro h3 {
+    margin: 10px 0;
+    font-family: "Phudu", sans-serif;
+    font-size: clamp(20px, 2.5vw, 28px);
+}
+
+.compare-intro p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.compare-limit {
+    flex-shrink: 0;
+    padding: 10px 13px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: "Phudu", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* Checkbox */
+
+.compare-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 22px;
+    padding: 14px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Phudu", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.compare-checkbox:hover {
+    border-color: var(--accent);
+}
+
+.compare-checkbox:has(input:checked) {
+    border-color: var(--accent);
+    background: var(--surface);
+    color: var(--accent);
+}
+
+.compare-checkbox input {
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+    accent-color: var(--accent);
+    cursor: pointer;
+}
+
+.compare-checkbox .material-symbols-outlined {
+    font-size: 19px;
+}
+
+/* Compare button area */
+
+.compare-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 35px;
+    padding: 25px 0;
+    border-top: 1px solid var(--border);
+}
+
+.compare-actions p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* =========================================
+   COMPARE PAGE
+========================================= */
+
+.compare-page {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 70px 5% 110px;
+}
+
+.compare-page-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 35px;
+}
+
+.compare-page-heading h2 {
+    margin-top: 15px;
+    font-family: "Phudu", sans-serif;
+    font-size: clamp(32px, 4vw, 56px);
+}
+
+.compare-page-heading h2 span {
+    color: var(--accent);
+}
+
+.compare-page-heading > p {
+    font-family: "Phudu", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--muted);
+}
+
+/* =========================================
+   COMPARISON TABLE
+========================================= */
+
+.compare-table-scroll {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    scrollbar-width: thin;
+}
+
+.compare-table {
+    width: 100%;
+    min-width: 700px;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.compare-table th,
+.compare-table td {
+    padding: 22px 18px;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+    vertical-align: middle;
+}
+
+.compare-table tr > *:last-child {
+    border-right: none;
+}
+
+.compare-table tbody tr:last-child > * {
+    border-bottom: none;
+}
+
+.compare-table thead th {
+    background: var(--surface);
+    vertical-align: top;
+}
+
+.compare-table thead th:first-child,
+.compare-table tbody th {
+    width: 165px;
+    text-align: left;
+    font-family: "Phudu", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.compare-table tbody th {
+    background: var(--surface);
+    color: var(--muted);
+}
+
+.compare-table tbody td {
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+/* =========================================
+   CAR HEADER
+========================================= */
+
+.compare-car-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.compare-car-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    background: #202026;
+}
+
+.compare-car-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.compare-car-image .material-symbols-outlined {
+    color: #999;
+    font-size: 70px;
+}
+
+.compare-car-heading h3 {
+    font-family: "Phudu", sans-serif;
+    font-size: clamp(16px, 2vw, 22px);
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+}
+
+.compare-detail-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--accent);
+    font-family: "Phudu", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    transition: opacity 0.2s;
+}
+
+.compare-detail-link:hover {
+    opacity: 0.7;
+}
+
+.compare-detail-link .material-symbols-outlined {
+    font-size: 16px;
+}
+
+/* =========================================
+   COMPARISON HIGHLIGHTS
+========================================= */
+
+.compare-best {
+    color: var(--accent);
+    font-weight: 800;
+}
+
+.compare-best-label {
+    display: block;
+    margin-top: 8px;
+    color: var(--accent);
+    font-family: "Phudu", sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.compare-price {
+    font-family: "Phudu", sans-serif;
+    font-size: 15px !important;
+    font-weight: 800 !important;
+}
+
+/* =========================================
+   BOTTOM ACTION
+========================================= */
+
+.compare-page-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 35px;
+}
+
+.compare-page-actions p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* =========================================
+   ERROR STATE
+========================================= */
+
+.compare-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    min-height: 350px;
+    padding: 50px 25px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    text-align: center;
+}
+
+.compare-error > .material-symbols-outlined {
+    font-size: 60px;
+    color: var(--accent);
+}
+
+.compare-error h2 {
+    font-family: "Phudu", sans-serif;
+    font-size: clamp(22px, 3vw, 36px);
+}
+
+.compare-error p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+    .compare-page {
+        padding: 55px 5% 80px;
+    }
+
+    .compare-table {
+        min-width: 650px;
+    }
+
+    .compare-car-image {
+        height: 140px;
+    }
+}
+
+@media (max-width: 600px) {
+    .compare-intro {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+    }
+
+    .compare-page-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .compare-table {
+        min-width: 600px;
+    }
+
+    .compare-table thead th:first-child,
+    .compare-table tbody th {
+        width: 120px;
+    }
+
+    .compare-table th,
+    .compare-table td {
+        padding: 15px 12px;
+    }
+
+    .compare-car-image {
+        height: 110px;
+    }
+
+    .compare-actions,
+    .compare-page-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .compare-actions .btn,
+    .compare-page-actions .btn {
+        width: 100%;
+    }
+}

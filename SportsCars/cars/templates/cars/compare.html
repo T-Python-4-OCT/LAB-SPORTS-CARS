@@ -1,0 +1,281 @@
+
+{% extends "cars/base.html" %}
+{% load static %}
+
+{% block title %}Compare Cars | SportsCars{% endblock %}
+
+{% block extra_head %}
+<link
+    rel="stylesheet"
+    href="{% static 'cars/css/compare.css' %}"
+>
+{% endblock %}
+
+{% block content %}
+
+<!-- PAGE INTRO -->
+<section class="page-intro">
+
+    <span class="section-label">
+        FIND YOUR PERFECT DRIVE
+    </span>
+
+    <h1>
+        COMPARE <span>CARS.</span>
+    </h1>
+
+    <p>
+        Explore vehicle specifications side by side
+        and discover which machine suits you best.
+    </p>
+
+</section>
+
+
+<section class="compare-page">
+
+    <a
+        href="{% url 'cars:all_cars' %}"
+        class="back-link">
+
+        <span class="material-symbols-outlined">
+            arrow_back
+        </span>
+
+        BACK TO COLLECTION
+
+    </a>
+
+
+    {% if error %}
+
+    <!-- VALIDATION ERROR -->
+    <div class="compare-error">
+
+        <span class="material-symbols-outlined">
+            error_outline
+        </span>
+
+        <h2>CAN'T COMPARE THESE CARS.</h2>
+
+        <p>{{ error }}</p>
+
+        <a
+            href="{% url 'cars:all_cars' %}"
+            class="btn btn-primary">
+
+            SELECT CARS
+
+            <span class="material-symbols-outlined">
+                arrow_outward
+            </span>
+
+        </a>
+
+    </div>
+
+    {% else %}
+
+    <!-- HEADING -->
+    <div class="compare-page-heading">
+
+        <div>
+            <span class="section-label">
+                VEHICLE COMPARISON
+            </span>
+
+            <h2>
+                SIDE BY <span>SIDE.</span>
+            </h2>
+        </div>
+
+        <p>
+            {{ cars|length }}
+            VEHICLES SELECTED
+        </p>
+
+    </div>
+
+
+    <!-- COMPARISON TABLE -->
+    <div
+        class="compare-table-scroll"
+        tabindex="0"
+        aria-label="Scrollable car comparison table">
+
+        <table class="compare-table">
+
+            <thead>
+                <tr>
+
+                    <th scope="col">
+                        SPECIFICATION
+                    </th>
+
+                    {% for car in cars %}
+
+                    <th scope="col">
+
+                        <div class="compare-car-heading">
+
+                            <div class="compare-car-image">
+
+                                {% if car.image %}
+
+                                <img
+                                    src="{% static car.image %}"
+                                    alt="{{ car.name }}"
+                                    loading="lazy">
+
+                                {% else %}
+
+                                <span class="material-symbols-outlined">
+                                    directions_car
+                                </span>
+
+                                {% endif %}
+
+                            </div>
+
+                            <span class="car-brand">
+                                {{ car.brand }}
+                            </span>
+
+                            <h3>{{ car.name }}</h3>
+
+                            <a
+                                href="{% url 'cars:car_detail' car.id %}"
+                                class="compare-detail-link">
+
+                                VIEW DETAILS
+
+                                <span class="material-symbols-outlined">
+                                    arrow_outward
+                                </span>
+
+                            </a>
+
+                        </div>
+
+                    </th>
+
+                    {% endfor %}
+
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <!-- MANUFACTURER -->
+                <tr>
+                    <th scope="row">MANUFACTURER</th>
+
+                    {% for car in cars %}
+                    <td>{{ car.brand }}</td>
+                    {% endfor %}
+                </tr>
+
+                <!-- MODEL -->
+                <tr>
+                    <th scope="row">MODEL</th>
+
+                    {% for car in cars %}
+                    <td>{{ car.name }}</td>
+                    {% endfor %}
+                </tr>
+
+                <!-- MODEL YEAR -->
+                <tr>
+                    <th scope="row">MODEL YEAR</th>
+
+                    {% for car in cars %}
+
+                    <td>
+                        <span class="{% if car.year == newest_year %}compare-best{% endif %}">
+                            {{ car.year }}
+                        </span>
+
+                        {% if car.year == newest_year %}
+                        <span class="compare-best-label">
+                            NEWEST
+                        </span>
+                        {% endif %}
+                    </td>
+
+                    {% endfor %}
+                </tr>
+
+                <!-- ENGINE -->
+                <tr>
+                    <th scope="row">ENGINE</th>
+
+                    {% for car in cars %}
+                    <td>{{ car.engine }}</td>
+                    {% endfor %}
+                </tr>
+
+                <!-- HORSEPOWER -->
+                <tr>
+                    <th scope="row">HORSEPOWER</th>
+
+                    {% for car in cars %}
+
+                    <td>
+                        <span class="{% if car.horsepower == highest_horsepower %}compare-best{% endif %}">
+                            {{ car.horsepower }} HP
+                        </span>
+
+                        {% if car.horsepower == highest_horsepower %}
+                        <span class="compare-best-label">
+                            MOST POWERFUL
+                        </span>
+                        {% endif %}
+                    </td>
+
+                    {% endfor %}
+                </tr>
+
+                <!-- PRICE -->
+                <tr>
+                    <th scope="row">PRICE</th>
+
+                    {% for car in cars %}
+                    <td class="compare-price">
+                        {{ car.formatted_price }}
+                    </td>
+                    {% endfor %}
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <!-- BOTTOM ACTION -->
+    <div class="compare-page-actions">
+
+        <p>
+            Want to explore more vehicles?
+        </p>
+
+        <a
+            href="{% url 'cars:all_cars' %}"
+            class="btn btn-primary">
+
+            COMPARE OTHER CARS
+
+            <span class="material-symbols-outlined">
+                arrow_outward
+            </span>
+
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

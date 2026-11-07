@@ -1,0 +1,344 @@
+
+/* =========================================
+   SPORTSCARS - ADMIN NAVIGATION
+========================================= */
+
+/* =========================================
+   ADMIN LOGIN BUTTON
+========================================= */
+
+.admin-nav-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    min-height: 42px;
+    padding: 0 15px;
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    background: var(--surface);
+    color: var(--text);
+
+    font-family: "Phudu", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+
+    text-decoration: none;
+    white-space: nowrap;
+
+    transition: all 0.25s ease;
+}
+
+.admin-nav-button:hover {
+    color: #ffffff;
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+.admin-nav-button .material-symbols-outlined {
+    font-size: 19px;
+}
+
+
+/* =========================================
+   DROPDOWN CONTAINER
+========================================= */
+
+.admin-dropdown {
+    position: relative;
+    flex-shrink: 0;
+    z-index: 100;
+}
+
+.admin-dropdown summary {
+    list-style: none;
+}
+
+.admin-dropdown summary::-webkit-details-marker {
+    display: none;
+}
+
+
+/* =========================================
+   DROPDOWN TRIGGER
+========================================= */
+
+.admin-dropdown-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    min-height: 43px;
+    padding: 0 14px;
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    background: var(--surface);
+    color: var(--text);
+
+    font-family: "Phudu", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+
+    white-space: nowrap;
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+}
+
+.admin-dropdown-trigger:hover,
+.admin-dropdown[open] .admin-dropdown-trigger {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.admin-dropdown-trigger:focus-visible,
+.admin-dropdown-menu a:focus-visible,
+.admin-dropdown-logout:focus-visible,
+.admin-nav-button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+.admin-dropdown-trigger > .material-symbols-outlined:first-child {
+    font-size: 21px;
+    color: var(--accent);
+}
+
+.admin-dropdown-arrow {
+    font-size: 19px;
+    color: var(--muted);
+
+    transition: transform 0.25s ease;
+}
+
+.admin-dropdown[open] .admin-dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+
+/* =========================================
+   DROPDOWN MENU
+========================================= */
+
+.admin-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+
+    width: 255px;
+    padding: 8px;
+
+    border: 1px solid var(--border);
+    border-radius: 14px;
+
+    background: var(--surface);
+    color: var(--text);
+
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.16);
+
+    animation: admin-menu-appear 0.2s ease both;
+}
+
+@keyframes admin-menu-appear {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================
+   SIGNED IN USER
+========================================= */
+
+.admin-dropdown-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 13px 11px;
+    margin-bottom: 7px;
+
+    border-radius: 10px;
+    background: var(--bg);
+}
+
+.admin-dropdown-user-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+
+    border-radius: 50%;
+
+    background: rgba(237, 28, 36, 0.1);
+    color: var(--accent);
+}
+
+.admin-dropdown-user-icon .material-symbols-outlined {
+    font-size: 26px;
+}
+
+.admin-dropdown-user > div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 0;
+}
+
+.admin-dropdown-user small {
+    font-family: "Phudu", sans-serif;
+    color: var(--muted);
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.admin-dropdown-user strong {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+/* =========================================
+   MENU LINKS
+========================================= */
+
+.admin-dropdown-menu > a,
+.admin-dropdown-logout {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    width: 100%;
+    min-height: 45px;
+    padding: 10px 13px;
+
+    border: 0;
+    border-radius: 9px;
+
+    background: transparent;
+    color: var(--text);
+
+    font-family: "Phudu", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    text-align: left;
+
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.admin-dropdown-menu > a:hover {
+    background: rgba(237, 28, 36, 0.09);
+    color: var(--accent);
+}
+
+.admin-dropdown-menu > a .material-symbols-outlined,
+.admin-dropdown-logout .material-symbols-outlined {
+    font-size: 20px;
+}
+
+
+/* =========================================
+   DIVIDER
+========================================= */
+
+.admin-dropdown-divider {
+    height: 1px;
+    margin: 8px 5px;
+
+    background: var(--border);
+}
+
+
+/* =========================================
+   LOGOUT
+========================================= */
+
+.admin-dropdown-menu form {
+    margin: 0;
+}
+
+.admin-dropdown-logout {
+    color: #df2532;
+}
+
+.admin-dropdown-logout:hover {
+    background: rgba(237, 28, 36, 0.09);
+    color: var(--accent);
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1000px) {
+    .admin-dropdown-trigger {
+        padding: 0 10px;
+    }
+
+    .admin-dropdown-menu {
+        width: 235px;
+    }
+}
+
+@media (max-width: 760px) {
+
+    .admin-dropdown-title {
+        display: none;
+    }
+
+    .admin-dropdown-trigger {
+        min-width: 43px;
+        padding: 0 9px;
+        gap: 3px;
+    }
+
+    .admin-dropdown-menu {
+        width: min(255px, 85vw);
+        right: -15px;
+    }
+
+    .admin-nav-button {
+        min-width: 43px;
+        padding: 0 11px;
+    }
+
+    .admin-nav-button > span:last-child:not(
+        .material-symbols-outlined
+    ) {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .admin-dropdown-menu {
+        animation: none;
+    }
+
+    .admin-dropdown-arrow {
+        transition: none;
+    }
+}

@@ -1,0 +1,442 @@
+
+{% extends "cars/base.html" %}
+{% load static %}
+
+{% block title %}Admin Dashboard | SportsCars{% endblock %}
+
+{% block extra_head %}
+<link
+    rel="stylesheet"
+    href="{% static 'cars/css/dashboard.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="dashboard-section">
+
+    <div class="dashboard-container">
+
+        <!-- HEADER -->
+        <div class="dashboard-heading">
+
+            <div>
+                <span class="section-label">
+                    ADMINISTRATION
+                </span>
+
+                <h1>
+                    ADMIN <span>DASHBOARD.</span>
+                </h1>
+
+                <p>
+                    Manage your showroom, vehicles and
+                    customer inquiries.
+                </p>
+            </div>
+
+            <a
+                href="{% url 'admin:index' %}"
+                class="btn btn-primary">
+
+                DJANGO ADMIN
+
+                <span class="material-symbols-outlined">
+                    arrow_outward
+                </span>
+
+            </a>
+
+        </div>
+
+
+        <!-- STATS -->
+        <div class="dashboard-stats">
+
+            <article class="dashboard-stat-card">
+                <div class="dashboard-stat-icon">
+                    <span class="material-symbols-outlined">
+                        directions_car
+                    </span>
+                </div>
+
+                <span class="dashboard-stat-label">
+                    TOTAL CARS
+                </span>
+
+                <strong>{{ total_cars }}</strong>
+
+                <small>
+                    {{ featured_cars_count }} featured vehicles
+                </small>
+            </article>
+
+
+            <article class="dashboard-stat-card">
+                <div class="dashboard-stat-icon">
+                    <span class="material-symbols-outlined">
+                        mail
+                    </span>
+                </div>
+
+                <span class="dashboard-stat-label">
+                    TOTAL INQUIRIES
+                </span>
+
+                <strong>{{ total_inquiries }}</strong>
+
+                <small>All received requests</small>
+            </article>
+
+
+            <article class="dashboard-stat-card">
+                <div class="dashboard-stat-icon">
+                    <span class="material-symbols-outlined">
+                        mark_email_unread
+                    </span>
+                </div>
+
+                <span class="dashboard-stat-label">
+                    NEW INQUIRIES
+                </span>
+
+                <strong>{{ new_inquiries }}</strong>
+
+                <small>Waiting for review</small>
+            </article>
+
+
+            <article class="dashboard-stat-card">
+                <div class="dashboard-stat-icon">
+                    <span class="material-symbols-outlined">
+                        pending_actions
+                    </span>
+                </div>
+
+                <span class="dashboard-stat-label">
+                    IN PROGRESS
+                </span>
+
+                <strong>{{ in_progress_inquiries }}</strong>
+
+                <small>Currently being handled</small>
+            </article>
+
+
+            <article class="dashboard-stat-card">
+                <div class="dashboard-stat-icon">
+                    <span class="material-symbols-outlined">
+                        task_alt
+                    </span>
+                </div>
+
+                <span class="dashboard-stat-label">
+                    COMPLETED
+                </span>
+
+                <strong>{{ completed_inquiries }}</strong>
+
+                <small>Resolved requests</small>
+            </article>
+
+        </div>
+
+
+        <!-- MAIN GRID -->
+        <div class="dashboard-grid">
+
+            <!-- MOST INQUIRED CARS -->
+            <section class="dashboard-panel">
+
+                <div class="dashboard-panel-header">
+
+                    <div>
+                        <span class="section-label">
+                            PERFORMANCE
+                        </span>
+
+                        <h2>
+                            MOST INQUIRED <span>CARS.</span>
+                        </h2>
+                    </div>
+
+                    <span class="material-symbols-outlined">
+                        trending_up
+                    </span>
+
+                </div>
+
+
+                <div class="dashboard-popular-list">
+
+                    {% for car in popular_cars %}
+
+                    <div class="dashboard-popular-item">
+
+                        <span class="dashboard-rank">
+                            {{ forloop.counter|stringformat:"02d" }}
+                        </span>
+
+                        <div class="dashboard-popular-info">
+
+                            <a
+                                href="{% url 'cars:car_detail' car.id %}">
+                                {{ car.name }}
+                            </a>
+
+                            <small>{{ car.brand }}</small>
+
+                        </div>
+
+                        <div class="dashboard-popular-count">
+
+                            <strong>
+                                {{ car.inquiry_count }}
+                            </strong>
+
+                            <small>
+                                INQUIR{{ car.inquiry_count|pluralize:"Y,IES" }}
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                    {% empty %}
+
+                    <div class="dashboard-empty">
+                        <span class="material-symbols-outlined">
+                            monitoring
+                        </span>
+                        <p>No inquiries have been received yet.</p>
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+            </section>
+
+
+            <!-- QUICK ACTIONS -->
+            <section class="dashboard-panel">
+
+                <div class="dashboard-panel-header">
+
+                    <div>
+                        <span class="section-label">
+                            MANAGEMENT
+                        </span>
+
+                        <h2>
+                            QUICK <span>ACTIONS.</span>
+                        </h2>
+                    </div>
+
+                    <span class="material-symbols-outlined">
+                        settings
+                    </span>
+
+                </div>
+
+
+                <div class="dashboard-actions">
+
+                    {% if perms.cars.add_car %}
+                    <a href="{% url 'cars:add_car' %}">
+
+                        <span class="material-symbols-outlined">
+                            add_circle
+                        </span>
+
+                        <span>
+                            <strong>ADD NEW CAR</strong>
+                            <small>
+                                Create a new showroom vehicle
+                            </small>
+                        </span>
+
+                        <span class="material-symbols-outlined">
+                            arrow_outward
+                        </span>
+
+                    </a>
+                    {% endif %}
+
+
+                    {% if perms.cars.view_car %}
+                    <a href="{% url 'cars:manage_cars' %}">
+
+                        <span class="material-symbols-outlined">
+                            directions_car
+                        </span>
+
+                        <span>
+                            <strong>MANAGE CARS</strong>
+                            <small>
+                                View and edit showroom vehicles
+                            </small>
+                        </span>
+
+                        <span class="material-symbols-outlined">
+                            arrow_outward
+                        </span>
+
+                    </a>
+                    {% endif %}
+
+
+                    {% if perms.cars.view_carinquiry %}
+                    <a href="{% url 'cars:manage_inquiries' %}">
+
+                        <span class="material-symbols-outlined">
+                            inbox
+                        </span>
+
+                        <span>
+                            <strong>MANAGE INQUIRIES</strong>
+                            <small>
+                                Review customer requests
+                            </small>
+                        </span>
+
+                        <span class="material-symbols-outlined">
+                            arrow_outward
+                        </span>
+
+                    </a>
+                    {% endif %}
+
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <!-- RECENT INQUIRIES -->
+        <section class="dashboard-panel dashboard-recent">
+
+            <div class="dashboard-panel-header">
+
+                <div>
+                    <span class="section-label">
+                        CUSTOMER ACTIVITY
+                    </span>
+
+                    <h2>
+                        RECENT <span>INQUIRIES.</span>
+                    </h2>
+                </div>
+
+                {% if perms.cars.view_carinquiry %}
+                <a
+                    href="{% url 'cars:manage_inquiries' %}"
+                    class="dashboard-view-all">
+
+                    VIEW ALL
+
+                    <span class="material-symbols-outlined">
+                        arrow_outward
+                    </span>
+
+                </a>
+                {% endif %}
+
+            </div>
+
+
+            <div class="dashboard-table-wrap">
+
+                <table class="dashboard-table">
+
+                    <thead>
+                        <tr>
+                            <th>CUSTOMER</th>
+                            <th>VEHICLE</th>
+                            <th>DATE</th>
+                            <th>STATUS</th>
+                            <th>ACTION</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for inquiry in recent_inquiries %}
+
+                        <tr>
+
+                            <td>
+                                <strong>{{ inquiry.full_name }}</strong>
+                                <small>{{ inquiry.email }}</small>
+                            </td>
+
+                            <td>
+                                {{ inquiry.car.name }}
+                            </td>
+
+                            <td>
+                                {{ inquiry.created_at|date:"d M Y" }}
+                            </td>
+
+                            <td>
+                                <span
+                                    class="dashboard-status status-{{ inquiry.status }}">
+                                    {{ inquiry.get_status_display }}
+                                </span>
+                            </td>
+
+                            <td>
+
+                                {% if perms.cars.view_carinquiry %}
+                                <a
+                                    href="{% url 'cars:manage_inquiries' %}"
+                                    class="dashboard-open">
+
+                                    MANAGE
+
+                                    <span class="material-symbols-outlined">
+                                        arrow_outward
+                                    </span>
+
+                                </a>
+                                {% else %}
+                                <span>—</span>
+                                {% endif %}
+
+                            </td>
+
+                        </tr>
+
+                        {% empty %}
+
+                        <tr>
+                            <td colspan="5">
+                                <div class="dashboard-empty">
+
+                                    <span class="material-symbols-outlined">
+                                        inbox
+                                    </span>
+
+                                    <p>
+                                        No customer inquiries yet.
+                                    </p>
+
+                                </div>
+                            </td>
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</section>
+
+{% endblock %}

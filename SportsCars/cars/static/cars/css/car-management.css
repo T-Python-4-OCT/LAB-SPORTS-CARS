@@ -1,0 +1,832 @@
+
+/* =========================================
+   SPORTSCARS - CAR MANAGEMENT
+========================================= */
+
+.car-admin-page {
+    min-height: 80vh;
+    padding: 65px 5% 110px;
+    background: var(--bg);
+    color: var(--text);
+}
+
+.car-admin-container {
+    max-width: 1350px;
+    margin: 0 auto;
+}
+
+.car-admin-heading,
+.car-admin-form-heading {
+    margin-bottom: 35px;
+}
+
+.car-admin-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.car-admin-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+    font-family: "Phudu", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--muted);
+}
+
+.car-admin-back:hover {
+    color: var(--accent);
+}
+
+.car-admin-heading h1,
+.car-admin-form-heading h1 {
+    margin: 16px 0;
+    font-family: "Phudu", sans-serif;
+    font-size: clamp(36px, 5vw, 65px);
+    line-height: 1.1;
+}
+
+.car-admin-heading h1 span,
+.car-admin-form-heading h1 span {
+    color: var(--accent);
+}
+
+.car-admin-heading p,
+.car-admin-form-heading p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* BUTTONS */
+
+.car-admin-primary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 52px;
+    padding: 14px 24px;
+    border: 0;
+    border-radius: 11px;
+    background: var(--accent);
+    color: #fff;
+    font-family: "Phudu", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform .2s, filter .2s;
+}
+
+.car-admin-primary-button:hover {
+    color: #fff;
+    filter: brightness(.9);
+    transform: translateY(-2px);
+}
+
+.car-admin-primary-button .material-symbols-outlined {
+    font-size: 20px;
+}
+
+/* NOTIFICATIONS */
+
+.car-admin-messages {
+    margin-bottom: 24px;
+}
+
+.car-admin-alert {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 17px 20px;
+    border: 1px solid rgba(38, 152, 94, .35);
+    border-radius: 12px;
+    background: rgba(38, 152, 94, .08);
+    font-size: 13px;
+}
+
+.car-admin-alert .material-symbols-outlined {
+    color: #26985e;
+}
+
+/* STATS */
+
+.car-admin-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin-bottom: 28px;
+}
+
+.car-admin-stat {
+    display: flex;
+    align-items: center;
+    gap: 19px;
+    min-width: 0;
+    padding: 24px;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    background: var(--surface);
+}
+
+.car-admin-stat > .material-symbols-outlined {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    background: rgba(237, 28, 36, .09);
+    color: var(--accent);
+    font-size: 26px;
+}
+
+.car-admin-stat > div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.car-admin-stat small {
+    color: var(--muted);
+    font-family: "Phudu", sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.car-admin-stat strong {
+    font-family: "Phudu", sans-serif;
+    font-size: 32px;
+    line-height: 1;
+}
+
+/* FILTERS */
+
+.car-admin-filters {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 26px;
+    padding: 22px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--surface);
+}
+
+.car-admin-search {
+    flex: 2 1 320px;
+    min-width: 0;
+}
+
+.car-admin-filter {
+    flex: 1 1 185px;
+}
+
+.car-admin-filters label {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--muted);
+    font-family: "Phudu", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.car-admin-search-input {
+    position: relative;
+}
+
+.car-admin-search-input .material-symbols-outlined {
+    position: absolute;
+    top: 50%;
+    left: 14px;
+    transform: translateY(-50%);
+    color: var(--muted);
+    pointer-events: none;
+}
+
+.car-admin-filters input,
+.car-admin-filters select {
+    width: 100%;
+    height: 50px;
+    padding: 0 16px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    outline: none;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Inter", sans-serif;
+    font-size: 13px;
+}
+
+.car-admin-search-input input {
+    padding-left: 47px;
+}
+
+.car-admin-filters input:focus,
+.car-admin-filters select:focus {
+    border-color: var(--accent);
+}
+
+.car-admin-filter-button,
+.car-admin-reset {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 50px;
+    padding: 0 19px;
+    border-radius: 10px;
+    font-family: "Phudu", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.car-admin-filter-button {
+    background: var(--accent);
+    border: 0;
+    color: white;
+}
+
+.car-admin-reset {
+    border: 1px solid var(--border);
+    color: var(--text);
+}
+
+/* CAR LIST */
+
+.car-admin-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.car-admin-item {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 26px;
+    min-width: 0;
+    padding: 18px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    transition: border-color .2s, transform .2s;
+}
+
+.car-admin-item:hover {
+    border-color: var(--accent);
+}
+
+.car-admin-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 220px;
+    height: 145px;
+    overflow: hidden;
+    border-radius: 12px;
+    background: var(--bg);
+}
+
+.car-admin-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 8px;
+    transition: transform .3s;
+}
+
+.car-admin-item:hover .car-admin-image img {
+    transform: scale(1.05);
+}
+
+.car-admin-image > .material-symbols-outlined {
+    color: var(--muted);
+    font-size: 60px;
+}
+
+.car-admin-item-info {
+    min-width: 0;
+}
+
+.car-admin-badges {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.car-admin-brand {
+    color: var(--accent);
+    font-family: "Phudu", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.car-admin-featured {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 5px 9px;
+    border-radius: 7px;
+    background: rgba(237,28,36,.10);
+    color: var(--accent);
+    font-family: "Phudu", sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.car-admin-featured .material-symbols-outlined {
+    font-size: 14px;
+}
+
+.car-admin-item-info h2 {
+    margin-bottom: 18px;
+    font-family: "Phudu", sans-serif;
+    font-size: clamp(18px, 2vw, 25px);
+    overflow-wrap: anywhere;
+}
+
+.car-admin-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 20px;
+}
+
+.car-admin-details > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.car-admin-details .material-symbols-outlined {
+    color: var(--accent);
+    font-size: 17px;
+}
+
+.car-admin-item-actions {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    gap: 22px;
+    min-width: 175px;
+}
+
+.car-admin-item-actions > strong {
+    color: var(--text);
+    font-family: "Phudu", sans-serif;
+    font-size: 20px;
+    white-space: nowrap;
+}
+
+.car-admin-action-buttons {
+    display: flex;
+    gap: 9px;
+}
+
+.car-admin-view-button,
+.car-admin-edit-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    min-height: 42px;
+    padding: 0 14px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    font-family: "Phudu", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.car-admin-view-button:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.car-admin-edit-button {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+}
+
+.car-admin-edit-button:hover {
+    color: #fff;
+    filter: brightness(.9);
+}
+
+.car-admin-action-buttons .material-symbols-outlined {
+    font-size: 17px;
+}
+
+/* PAGINATION */
+
+.car-admin-pagination,
+.car-admin-pagination > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.car-admin-pagination {
+    margin-top: 35px;
+}
+
+.car-admin-pagination a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    min-width: 44px;
+    height: 44px;
+    padding: 0 12px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface);
+    font-family: "Phudu", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.car-admin-pagination a.active,
+.car-admin-pagination a:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+}
+
+/* EMPTY STATE */
+
+.car-admin-empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+    padding: 65px 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    text-align: center;
+}
+
+.car-admin-empty .material-symbols-outlined {
+    color: var(--accent);
+    font-size: 60px;
+}
+
+.car-admin-empty h2 {
+    font-family: "Phudu", sans-serif;
+    font-size: 26px;
+}
+
+.car-admin-empty p {
+    color: var(--muted);
+}
+
+.car-admin-empty a {
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* =========================================
+   ADD / EDIT CAR FORM
+========================================= */
+
+.car-admin-form-container {
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
+.car-admin-editing {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 22px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    background: rgba(237,28,36,.08);
+    color: var(--text);
+    font-size: 13px;
+}
+
+.car-admin-editing .material-symbols-outlined {
+    color: var(--accent);
+}
+
+.car-admin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.car-admin-form-panel {
+    padding: 30px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--surface);
+}
+
+.car-admin-form-panel-heading {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 30px;
+}
+
+.car-admin-form-panel-heading > .material-symbols-outlined {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    background: rgba(237,28,36,.08);
+    color: var(--accent);
+    font-size: 27px;
+}
+
+.car-admin-form-panel-heading h2 {
+    margin-bottom: 7px;
+    font-family: "Phudu", sans-serif;
+    font-size: 19px;
+}
+
+.car-admin-form-panel-heading p {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.car-admin-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.car-admin-field {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 0;
+}
+
+.car-admin-field-full {
+    grid-column: 1 / -1;
+}
+
+.car-admin-field label {
+    font-family: "Phudu", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .5px;
+}
+
+.car-admin-field input,
+.car-admin-field textarea {
+    width: 100%;
+    min-width: 0;
+    min-height: 52px;
+    padding: 13px 15px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    outline: none;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    transition: border-color .2s, box-shadow .2s;
+}
+
+.car-admin-field textarea {
+    min-height: 170px;
+    resize: vertical;
+    line-height: 1.7;
+}
+
+.car-admin-field input:focus,
+.car-admin-field textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(237,28,36,.1);
+}
+
+.car-admin-field input::placeholder,
+.car-admin-field textarea::placeholder {
+    color: var(--muted);
+}
+
+.car-admin-field > small {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.car-admin-form .errorlist,
+.car-admin-form-errors {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: #e33434;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.car-admin-preview {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 28px;
+}
+
+.car-admin-preview img {
+    width: 260px;
+    max-width: 100%;
+    height: 155px;
+    object-fit: contain;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--bg);
+}
+
+/* FEATURED TOGGLE */
+
+.car-admin-featured-toggle {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    cursor: pointer;
+}
+
+.car-admin-featured-toggle input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+.car-admin-switch {
+    position: relative;
+    display: block;
+    width: 56px;
+    height: 30px;
+    flex-shrink: 0;
+    border-radius: 40px;
+    background: #a1a1aa;
+    transition: background .2s;
+}
+
+.car-admin-switch::after {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: white;
+    transition: transform .2s;
+}
+
+.car-admin-featured-toggle input:checked + .car-admin-switch {
+    background: var(--accent);
+}
+
+.car-admin-featured-toggle input:checked + .car-admin-switch::after {
+    transform: translateX(26px);
+}
+
+.car-admin-featured-toggle input:focus-visible + .car-admin-switch {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+.car-admin-switch-text {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.car-admin-switch-text strong {
+    font-family: "Phudu", sans-serif;
+    font-size: 13px;
+}
+
+.car-admin-switch-text small {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+/* FORM BUTTONS */
+
+.car-admin-form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 10px 0;
+}
+
+.car-admin-cancel-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
+    padding: 0 26px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface);
+    font-family: "Phudu", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.car-admin-cancel-button:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1050px) {
+    .car-admin-item {
+        grid-template-columns: 175px minmax(0, 1fr);
+    }
+
+    .car-admin-image {
+        width: 175px;
+        height: 125px;
+    }
+
+    .car-admin-item-actions {
+        grid-column: 2;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 750px) {
+    .car-admin-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .car-admin-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .car-admin-form-panel {
+        padding: 22px;
+    }
+}
+
+@media (max-width: 600px) {
+    .car-admin-page {
+        padding: 40px 5% 75px;
+    }
+
+    .car-admin-item {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .car-admin-image {
+        width: 100%;
+        height: 180px;
+    }
+
+    .car-admin-item-actions {
+        grid-column: 1;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .car-admin-heading .car-admin-primary-button {
+        width: 100%;
+    }
+
+    .car-admin-form-actions > * {
+        flex: 1;
+    }
+}

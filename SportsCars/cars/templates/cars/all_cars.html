@@ -1,0 +1,599 @@
+
+{% extends "cars/base.html" %}
+{% load static %}
+
+{% block title %}All Cars | SportsCars{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'cars/css/search.css' %}">
+<link rel="stylesheet" href="{% static 'cars/css/compare.css' %}">
+<link rel="stylesheet" href="{% static 'cars/css/compare-selection.css' %}">
+<link rel="stylesheet" href="{% static 'cars/css/catalog.css' %}">
+<link rel="stylesheet" href="{% static 'cars/css/dropdown.css' %}">
+
+<script src="{% static 'cars/js/compare.js' %}" defer></script>
+<script src="{% static 'cars/js/dropdown.js' %}" defer></script>
+{% endblock %}
+
+{% block content %}
+
+<!-- ========== PAGE INTRO ========== -->
+<section class="page-intro cars-page-banner">
+
+    <span class="section-label">
+        THE SPORTS CARS COLLECTION
+    </span>
+
+    <h1>OUR <span>CARS.</span></h1>
+
+    <p>
+        Discover our exclusive selection of extraordinary
+        sports cars and hypercars.
+    </p>
+
+</section>
+
+
+<!-- ========== CAR COLLECTION ========== -->
+<section class="featured-section collection-section">
+
+    <div class="section-header">
+
+        <div>
+            <span class="section-label">
+                EXPLORE THE COLLECTION
+            </span>
+
+            <h2>ALL <span>MODELS.</span></h2>
+        </div>
+
+        <span class="collection-count">
+            {{ cars_count }} VEHICLE{{ cars_count|pluralize }}
+        </span>
+
+    </div>
+
+
+    <!-- ========== FILTER FORM ========== -->
+    <form
+        method="get"
+        action="{% url 'cars:all_cars' %}"
+        class="car-filter-form catalog-filter-form"
+        role="search">
+
+        <!-- SEARCH -->
+        <div class="filter-field catalog-search">
+
+            <label for="car-search">
+                SEARCH CARS
+            </label>
+
+            <div class="search-input-wrap">
+
+                <span class="material-symbols-outlined">
+                    search
+                </span>
+
+                <input
+                    type="search"
+                    id="car-search"
+                    name="search"
+                    value="{{ search_query }}"
+                    placeholder="Search cars, brands, engines...">
+
+            </div>
+
+        </div>
+
+
+        <!-- MANUFACTURER -->
+        <div class="filter-field">
+
+            <label for="brand-filter">
+                MANUFACTURER
+            </label>
+
+            <select
+                id="brand-filter"
+                name="brand"
+                data-custom-select>
+
+                <option value="">All Brands</option>
+
+                {% for brand in brands %}
+
+                <option
+                    value="{{ brand }}"
+                    {% if selected_brand == brand %}selected{% endif %}>
+                    {{ brand }}
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+        </div>
+
+
+        <!-- HORSEPOWER -->
+        <div class="filter-field">
+
+            <label for="power-filter">
+                HORSEPOWER
+            </label>
+
+            <select
+                id="power-filter"
+                name="power"
+                data-custom-select>
+
+                <option value="">Any Power</option>
+
+                <option
+                    value="500"
+                    {% if selected_power == "500" %}selected{% endif %}>
+                    500+ HP
+                </option>
+
+                <option
+                    value="1000"
+                    {% if selected_power == "1000" %}selected{% endif %}>
+                    1000+ HP
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- MAX PRICE -->
+        <div class="filter-field">
+
+            <label for="price-filter">
+                MAX PRICE
+            </label>
+
+            <select
+                id="price-filter"
+                name="max_price"
+                data-custom-select>
+
+                <option value="">Any Price</option>
+
+                <option
+                    value="1000000"
+                    {% if selected_price == "1000000" %}selected{% endif %}>
+                    Up to 1M SAR
+                </option>
+
+                <option
+                    value="3000000"
+                    {% if selected_price == "3000000" %}selected{% endif %}>
+                    Up to 3M SAR
+                </option>
+
+                <option
+                    value="8000000"
+                    {% if selected_price == "8000000" %}selected{% endif %}>
+                    Up to 8M SAR
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- MODEL YEAR -->
+        <div class="filter-field">
+
+            <label for="year-filter">
+                MODEL YEAR
+            </label>
+
+            <select
+                id="year-filter"
+                name="min_year"
+                data-custom-select>
+
+                <option value="">Any Year</option>
+
+                <option
+                    value="2020"
+                    {% if selected_year == "2020" %}selected{% endif %}>
+                    2020+
+                </option>
+
+                <option
+                    value="2024"
+                    {% if selected_year == "2024" %}selected{% endif %}>
+                    2024+
+                </option>
+
+                <option
+                    value="2025"
+                    {% if selected_year == "2025" %}selected{% endif %}>
+                    2025+
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- SORT -->
+        <div class="filter-field">
+
+            <label for="sort-filter">
+                SORT BY
+            </label>
+
+            <select
+                id="sort-filter"
+                name="sort"
+                data-custom-select>
+
+                <option
+                    value="default"
+                    {% if selected_sort == "default" %}selected{% endif %}>
+                    Default
+                </option>
+
+                <option
+                    value="name"
+                    {% if selected_sort == "name" %}selected{% endif %}>
+                    Name A-Z
+                </option>
+
+                <option
+                    value="newest"
+                    {% if selected_sort == "newest" %}selected{% endif %}>
+                    Newest First
+                </option>
+
+                <option
+                    value="oldest"
+                    {% if selected_sort == "oldest" %}selected{% endif %}>
+                    Oldest First
+                </option>
+
+                <option
+                    value="power_desc"
+                    {% if selected_sort == "power_desc" %}selected{% endif %}>
+                    Most Powerful
+                </option>
+
+                <option
+                    value="power_asc"
+                    {% if selected_sort == "power_asc" %}selected{% endif %}>
+                    Least Powerful
+                </option>
+
+                <option
+                    value="price_asc"
+                    {% if selected_sort == "price_asc" %}selected{% endif %}>
+                    Price: Low to High
+                </option>
+
+                <option
+                    value="price_desc"
+                    {% if selected_sort == "price_desc" %}selected{% endif %}>
+                    Price: High to Low
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- SUBMIT -->
+        <div class="filter-actions catalog-actions">
+
+            <button
+                type="submit"
+                class="filter-submit">
+
+                <span class="material-symbols-outlined">
+                    tune
+                </span>
+
+                APPLY FILTERS
+
+            </button>
+
+        </div>
+
+    </form>
+
+
+    <!-- ========== RESULTS BAR ========== -->
+    <div class="search-results-bar">
+
+        <p>
+            <span class="material-symbols-outlined">
+                directions_car
+            </span>
+
+            {{ cars_count }}
+            VEHICLE{{ cars_count|pluralize }}
+            FOUND
+        </p>
+
+        {% if has_filters or selected_sort != "default" %}
+
+        <a
+            href="{% url 'cars:all_cars' %}"
+            class="clear-filters">
+
+            <span class="material-symbols-outlined">
+                close
+            </span>
+
+            CLEAR FILTERS
+
+        </a>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- ========== COMPARE FORM ========== -->
+    <form
+        id="compare-selection-form"
+        method="get"
+        action="{% url 'cars:compare_cars' %}"
+        class="compare-selection-form">
+
+        <div class="compare-intro">
+
+            <div>
+                <span class="section-label">
+                    SIDE BY SIDE
+                </span>
+
+                <h3>
+                    COMPARE YOUR FAVORITES.
+                </h3>
+
+                <p>
+                    Select 2 or 3 cars to compare their specifications.
+                </p>
+            </div>
+
+            <span
+                class="compare-limit"
+                id="compare-counter"
+                role="status"
+                aria-live="polite">
+                0 / 3 SELECTED
+            </span>
+
+        </div>
+
+
+        <!-- CARS -->
+        <div class="cars-grid">
+
+            {% for car in cars %}
+
+            <article class="car-card">
+
+                <a
+                    href="{% url 'cars:car_detail' car.id %}"
+                    class="car-preview car-preview-{{ car.id }}">
+
+                    {% if car.image %}
+
+                    <img
+                        src="{% static car.image %}"
+                        alt="{{ car.name }}"
+                        class="car-preview-image"
+                        loading="lazy">
+
+                    {% else %}
+
+                    <span class="material-symbols-outlined car-preview-icon">
+                        directions_car
+                    </span>
+
+                    {% endif %}
+
+                    <span class="car-badge">
+                        EXCLUSIVE
+                    </span>
+
+                </a>
+
+                <div class="car-info">
+
+                    <span class="car-brand">
+                        {{ car.brand }} / {{ car.year }}
+                    </span>
+
+                    <h3>{{ car.name }}</h3>
+
+                    <div class="car-specs">
+
+                        <span>
+                            <span class="material-symbols-outlined">
+                                speed
+                            </span>
+
+                            {{ car.horsepower }} HP
+                        </span>
+
+                        <span>
+                            <span class="material-symbols-outlined">
+                                settings
+                            </span>
+
+                            {{ car.engine }}
+                        </span>
+
+                    </div>
+
+                    <div class="car-bottom">
+
+                        <div>
+                            <small>PRICE</small>
+                            <strong>{{ car.formatted_price }}</strong>
+                        </div>
+
+                        <a
+                            href="{% url 'cars:car_detail' car.id %}"
+                            class="car-arrow"
+                            aria-label="View {{ car.name }}">
+
+                            <span class="material-symbols-outlined">
+                                arrow_outward
+                            </span>
+
+                        </a>
+
+                    </div>
+
+                    <!-- COMPARE -->
+                    <label class="compare-checkbox">
+
+                        <input
+                            type="checkbox"
+                            name="cars"
+                            value="{{ car.id }}"
+                            aria-label="Compare {{ car.name }}">
+
+                        <span
+                            class="material-symbols-outlined"
+                            aria-hidden="true">
+                            compare_arrows
+                        </span>
+
+                        ADD TO COMPARE
+
+                    </label>
+
+                </div>
+
+            </article>
+
+            {% empty %}
+
+            <div class="no-results">
+
+                <span class="material-symbols-outlined">
+                    search_off
+                </span>
+
+                <h3>NO CARS FOUND.</h3>
+
+                <p>
+                    No vehicles match your search or filters.
+                    Try changing your selection.
+                </p>
+
+                <a
+                    href="{% url 'cars:all_cars' %}"
+                    class="btn btn-primary">
+                    SHOW ALL CARS
+                </a>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+
+        {% if cars|length > 1 %}
+
+        <div class="compare-actions">
+
+            <p
+                id="compare-message"
+                aria-live="polite">
+                Select at least 2 cars to start comparing.
+            </p>
+
+            <button
+                type="submit"
+                class="btn btn-primary"
+                id="compare-submit"
+                disabled>
+
+                COMPARE SELECTED
+
+                <span class="material-symbols-outlined">
+                    compare_arrows
+                </span>
+
+            </button>
+
+        </div>
+
+        {% endif %}
+
+    </form>
+
+
+    <!-- ========== PAGINATION ========== -->
+    {% if page_obj.has_other_pages %}
+
+    <nav
+        class="catalog-pagination"
+        aria-label="Car pages">
+
+        {% if page_obj.has_previous %}
+
+        <a
+            href="{% querystring page=page_obj.previous_page_number %}"
+            class="pagination-link">
+
+            <span class="material-symbols-outlined">
+                chevron_left
+            </span>
+
+            PREVIOUS
+
+        </a>
+
+        {% endif %}
+
+        <div class="pagination-numbers">
+
+            {% for number in paginator.page_range %}
+
+            <a
+                href="{% querystring page=number %}"
+                class="pagination-number {% if page_obj.number == number %}active{% endif %}"
+                {% if page_obj.number == number %}aria-current="page"{% endif %}>
+
+                {{ number }}
+
+            </a>
+
+            {% endfor %}
+
+        </div>
+
+        {% if page_obj.has_next %}
+
+        <a
+            href="{% querystring page=page_obj.next_page_number %}"
+            class="pagination-link">
+
+            NEXT
+
+            <span class="material-symbols-outlined">
+                chevron_right
+            </span>
+
+        </a>
+
+        {% endif %}
+
+    </nav>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

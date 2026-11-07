@@ -1,0 +1,199 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}SportsCars{% endblock %}</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Phudu:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+    <!-- SPORTSCARS FAVICON -->
+    <link
+    rel="icon"
+    type="image/png"
+    href="{% static 'cars/images/favicon.ico' %}"
+    >
+
+    <!-- Material Symbols -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+        rel="stylesheet"
+    >
+
+    <!-- Main CSS -->
+    <link
+        rel="stylesheet"
+        href="{% static 'cars/css/style.css' %}"
+    >
+
+    <!-- 3D Model Viewer -->
+    <script
+        type="module"
+        src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.1.0/model-viewer.min.js">
+    </script>
+
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header class="site-header">
+        <nav class="navbar">
+
+            <a href="{% url 'cars:home' %}" class="brand-logo" aria-label="SportsCars Home">
+                <img
+                    src="{% static 'cars/images/logo-dark.png' %}"
+                    alt="SportsCars Logo"
+                    class="logo-dark"
+                >
+                <img
+                    src="{% static 'cars/images/logo-light.png' %}"
+                    alt="SportsCars Logo"
+                    class="logo-light"
+                >
+            </a>
+
+            <div class="nav-links">
+                <a href="{% url 'cars:home' %}">HOME</a>
+                <a href="{% url 'cars:all_cars' %}">OUR CARS</a>
+                <a href="{% url 'cars:about' %}">ABOUT US</a>
+            </div>
+
+            <div class="nav-actions">
+
+                <button
+                    type="button"
+                    class="icon-btn"
+                    id="theme-toggle"
+                    aria-label="Toggle dark mode"
+                    aria-pressed="false">
+                    <span class="material-symbols-outlined">
+                        dark_mode
+                    </span>
+                </button>
+
+                {% if user.is_authenticated %}
+                    <a href="/admin/" class="admin-btn">
+                        <span class="material-symbols-outlined">admin_panel_settings</span>
+                        ADMIN PANEL
+                    </a>
+                {% endif %}
+
+                <a href="{% url 'cars:all_cars' %}" class="nav-cta">
+                    EXPLORE CARS
+                    <span class="material-symbols-outlined">arrow_outward</span>
+                </a>
+
+            </div>
+
+        </nav>
+    </header>
+
+    <!-- PAGE CONTENT -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+
+        <div class="footer-content">
+
+            <div class="footer-brand">
+                <a href="{% url 'cars:home' %}" class="brand-logo footer-logo" aria-label="SportsCars Home">
+                    <img
+                        src="{% static 'cars/images/logo-dark.png' %}"
+                        alt="SportsCars Logo"
+                        class="logo-dark"
+                    >
+                    <img
+                        src="{% static 'cars/images/logo-light.png' %}"
+                        alt="SportsCars Logo"
+                        class="logo-light"
+                    >
+                </a>
+
+                <p class="footer-brand-text">
+                    Iconic sports cars for those who live to drive.
+                </p>
+
+                <span class="footer-tagline">
+                    THE ART OF PERFORMANCE.
+                </span>
+            </div>
+
+            <div class="footer-column">
+                <h4>EXPLORE</h4>
+                <a href="{% url 'cars:home' %}">Home</a>
+                <a href="{% url 'cars:all_cars' %}">Our Cars</a>
+                <a href="#">Wishlist</a>
+                <a href="{% url 'cars:about' %}">About Us</a>
+            </div>
+
+            <div class="footer-column">
+                <h4>SHOWROOM</h4>
+                <a href="{% url 'cars:all_cars' %}">Explore Collection</a>
+                <a href="#">Latest Models</a>
+                <a href="#">Most Powerful</a>
+                {% if user.is_authenticated %}
+                    <a href="/admin/">Admin Dashboard</a>
+                {% endif %}
+            </div>
+
+            <div class="footer-column footer-newsletter">
+                <h4>STAY IN THE LOOP</h4>
+                <p>
+                    Discover extraordinary vehicles and the latest
+                    additions to our collection.
+                </p>
+
+                <form class="newsletter-form">
+                    <input type="text" placeholder="EXPLORE LATEST CARS" readonly>
+                    <button type="button" aria-label="Go">
+                        <span class="material-symbols-outlined">arrow_forward</span>
+                    </button>
+                </form>
+            </div>
+
+            <div class="footer-column footer-social">
+                <h4>CONNECT</h4>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/my_cars1?cplk=OW83ZnBrcTlvb3di" aria-label="Instagram">
+                        <span class="material-symbols-outlined">photo_camera</span>
+                    </a>
+                    <a href="https://youtube.com/@hasankutbi?si=_mPA1wxXh3Mu_oPi" aria-label="YouTube">
+                        <span class="material-symbols-outlined">smart_display</span>
+                    </a>
+                    <a href="https://www.linkedin.com/company/ceer-motors/" aria-label="LinkedIn">
+                        <span class="material-symbols-outlined">business_center</span>
+                    </a>
+                    <a href="https://x.com/mnomanalia?s=21&t=tRvjyukIpizSlkzgsDc5Hw" aria-label="X">
+                        <span class="material-symbols-outlined">close</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 SportsCars. All rights reserved.</p>
+            <div class="footer-bottom-right">
+                <span>Designed for car enthusiasts.</span>
+                <span class="footer-divider">|</span>
+                <span>Built with Django & Python</span>
+            </div>
+        </div>
+
+    </footer>
+
+    <script src="{% static 'cars/js/main.js' %}" defer></script>
+</body>
+</html>
