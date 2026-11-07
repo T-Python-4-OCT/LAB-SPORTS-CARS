@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ car.name }} | Lexus{% endblock %}
+
+{% block content %}
+<section class="section detail-section">
+    <div class="container">
+        <div class="product-breadcrumb">
+            <a href="{% url 'cars' %}">Cars</a><span>›</span><span>Lexus</span><span>›</span><strong>{{ car.name }}</strong>
+        </div>
+
+        <div class="product-layout">
+            <div class="product-gallery {{ car.slug }}">
+                {% for slide in gallery %}
+                    <input type="radio" name="car-gallery" id="gallery-{{ slide.n }}" class="gallery-radio" {% if forloop.first %}checked{% endif %}>
+                {% endfor %}
+
+                <div class="gallery-stage">
+                    {% for slide in gallery %}
+                        <div class="gallery-slide slide-{{ slide.n }}">
+                            <img src="{% static slide.photo %}" alt="{{ car.name }} photo {{ slide.n }}">
+                            <div class="gallery-controls">
+                                <label for="gallery-{{ slide.prev }}" class="gallery-arrow" aria-label="Previous photo"><span class="material-symbols-outlined">chevron_left</span></label>
+                                <label for="gallery-{{ slide.next }}" class="gallery-arrow" aria-label="Next photo"><span class="material-symbols-outlined">chevron_right</span></label>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="gallery-thumbnails">
+                    {% for slide in gallery %}
+                        <label for="gallery-{{ slide.n }}" class="gallery-thumb"><img src="{% static slide.photo %}" alt="Select photo {{ slide.n }}"></label>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="product-information">
+                <span class="tag">LEXUS COLLECTION</span>
+                <h1>{{ car.name }}</h1>
+                <p class="product-year">Model Year: {{ car.year }}</p>
+                <h2 class="product-price">{{ car.price }}</h2>
+                <p class="product-description">{{ car.description }}</p>
+
+                <div class="product-specifications">
+                    {% for icon, label, value, caption in specs %}
+                        <div><span class="material-symbols-outlined">{{ icon }}</span><span>{{ label }}</span><strong>{{ value }}</strong></div>
+                    {% endfor %}
+                </div>
+
+                <div class="product-actions">
+                    <button type="button" class="btn btn-red">Inquire Now</button>
+                    <button type="button" class="wishlist-button"><span class="material-symbols-outlined">favorite</span> Save to Wishlist</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-tabs">
+            <span class="product-tab active-tab">Overview</span>
+            <span class="product-tab">Specifications</span>
+            <span class="product-tab">Features</span>
+            <span class="product-tab">Gallery</span>
+        </div>
+
+        <section class="product-overview">
+            <div class="overview-heading">
+                <div>
+                    <h2>The Iconic {{ car.name }}</h2>
+                    <p>{{ car.description }} Discover a combination of elegant design, premium comfort, and the distinctive Lexus driving experience.</p>
+                </div>
+                <img src="{% static car.gallery.1 %}" alt="{{ car.name }} details">
+            </div>
+
+            <div class="overview-stats">
+                {% for icon, label, value, caption in specs %}
+                    <div><span class="material-symbols-outlined">{{ icon }}</span><strong>{{ value }}</strong><span>{{ caption }}</span></div>
+                {% endfor %}
+            </div>
+
+            <h2 class="features-title">Key Features</h2>
+            <div class="product-features">
+                <div class="feature-card">
+                    <img src="{% static car.gallery.0 %}" alt="{{ car.name }} exterior design">
+                    <h3>Signature Design</h3>
+                    <p>Distinctive Lexus styling with a premium presence and beautifully crafted proportions.</p>
+                </div>
+                <div class="feature-card">
+                    <img src="{% static car.gallery.1 %}" alt="{{ car.name }} engineering">
+                    <h3>Advanced Engineering</h3>
+                    <p>Thoughtful engineering focused on refinement, smooth performance, and driver confidence.</p>
+                </div>
+                <div class="feature-card">
+                    <img src="{% static car.gallery.2 %}" alt="{{ car.name }} interior">
+                    <h3>Luxury Interior</h3>
+                    <p>A cabin designed around comfort, craftsmanship, and intuitive Lexus technology.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+{% endblock %}

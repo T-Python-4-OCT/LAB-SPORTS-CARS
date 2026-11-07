@@ -1,0 +1,53 @@
+{% load static %}
+
+<article class="car-card{% if not car.has_detail %} no-detail{% endif %}">
+
+    {% if car.has_detail %}
+        <a
+            class="car-photo"
+            href="{% url 'car_detail' car.slug %}"
+        >
+            <img
+                src="{% static car.image %}"
+                alt="{{ car.name }}"
+                loading="lazy"
+            >
+        </a>
+    {% else %}
+        <div class="car-photo">
+            <img
+                src="{% static car.image %}"
+                alt="{{ car.name }}"
+                loading="lazy"
+            >
+        </div>
+    {% endif %}
+
+    <div class="car-info">
+        <div>
+            {% if car.has_detail %}
+                <a
+                    class="car-name"
+                    href="{% url 'car_detail' car.slug %}"
+                >
+                    {{ car.name }}
+                </a>
+            {% else %}
+                <span class="car-name">
+                    {{ car.name }}
+                </span>
+            {% endif %}
+
+            <p class="price">
+                {{ car.price }}
+            </p>
+        </div>
+
+        <span
+            class="material-symbols-outlined heart-icon"
+            title="Wishlist preview"
+        >
+            favorite
+        </span>
+    </div>
+</article>

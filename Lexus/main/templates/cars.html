@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}All Cars | Lexus{% endblock %}
+
+{% block content %}
+<section class="page-hero cars-page-hero">
+    <img src="{% static 'images/is_card.jpg' %}" alt="Lexus IS 350 luxury sports sedan">
+    <div class="container page-hero-content">
+        <span class="tag">OUR COLLECTION</span>
+        <h1>All Cars</h1>
+        <p>Explore our curated Lexus lineup with high-quality visuals and official Saudi pricing.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="filters-bar">
+            <select aria-label="Brand"><option>Brand</option><option>Lexus</option></select>
+            <select aria-label="Model">
+                <option>Model</option>
+                {% for car in cars %}<option>{{ car.name }}</option>{% endfor %}
+            </select>
+            <select aria-label="Price"><option>Price</option><option>Under SAR 250,000</option><option>SAR 250,000 - 400,000</option><option>Above SAR 400,000</option></select>
+            <select aria-label="Year"><option>Year</option><option>2026</option><option>2025</option></select>
+            <button type="button" class="filter-icon-button" aria-label="Filter options"><span class="material-symbols-outlined">tune</span></button>
+        </div>
+
+        <p class="found">{{ cars|length }} Cars Found</p>
+
+        <div class="car-grid">
+            {% for car in cars %}{% include '_car_card.html' %}{% endfor %}
+        </div>
+
+        <div class="pagination-preview">
+            <span class="page-arrow"><span class="material-symbols-outlined">chevron_left</span></span>
+            <span class="page-current">1</span>
+            <span class="page-arrow"><span class="material-symbols-outlined">chevron_right</span></span>
+        </div>
+    </div>
+</section>
+{% endblock %}
