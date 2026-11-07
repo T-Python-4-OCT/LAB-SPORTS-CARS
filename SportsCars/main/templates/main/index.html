@@ -1,0 +1,136 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}{{ t.nav_home }}{% endblock %}
+
+{% block content %}
+
+  <!-- ===== الواجهة (Hero) ===== -->
+  <section class="container">
+    <div class="hero">
+      <img src="{% static 'images/hero.jpg' %}" alt="{{ t.hero_title }}" class="hero-img">
+
+      <div class="hero-content">
+        <span class="eyebrow fade-up">{{ t.hero_eyebrow }}</span>
+        <h1 class="fade-up delay-1">{{ t.hero_title }}</h1>
+        <p class="fade-up delay-2">{{ t.hero_text }}</p>
+        <a href="{% url 'main:cars' %}" class="btn btn-primary fade-up delay-3">
+          {{ t.browse_cars }}
+          <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== شريط المميزات ===== -->
+  <section class="container">
+    <div class="features">
+      <div class="feature">
+        <span class="material-symbols-outlined">bolt</span>
+        <p>{{ t.f1 }}</p>
+      </div>
+      <div class="feature">
+        <span class="material-symbols-outlined">diamond</span>
+        <p>{{ t.f2 }}</p>
+      </div>
+      <div class="feature">
+        <span class="material-symbols-outlined">verified_user</span>
+        <p>{{ t.f3 }}</p>
+      </div>
+      <div class="feature">
+        <span class="material-symbols-outlined">support_agent</span>
+        <p>{{ t.f4 }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== السيارات المميزة ===== -->
+  <section class="container section">
+    <div class="section-head">
+      <h2>{{ t.featured }}</h2>
+      <a href="{% url 'main:cars' %}" class="link-arrow">
+        {{ t.view_all }}
+        <span class="material-symbols-outlined">arrow_forward</span>
+      </a>
+    </div>
+
+    <div class="cards">
+      {% for car in cars %}
+        <a href="{% url 'main:car_detail' car.slug %}" class="card">
+          <div class="card-img">
+            <img src="{% static car.image %}" alt="{{ car.name }}">
+          </div>
+          <div class="card-body">
+            <div>
+              <h3>{{ car.name }}</h3>
+              <p class="price">{{ car.price_label }}</p>
+            </div>
+            <span class="material-symbols-outlined heart">favorite</span>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- ===== قسم التجربة ===== -->
+  <section class="container section">
+    <div class="experience">
+      <div class="experience-img">
+        <img src="{% static 'images/experience.jpg' %}" alt="{{ t.exp_title }}">
+      </div>
+      <div class="experience-text">
+        <span class="eyebrow">{{ t.exp_eyebrow }}</span>
+        <h2>{{ t.exp_title }}</h2>
+        <p>{{ t.exp_text }}</p>
+        <a href="{% url 'main:about' %}" class="btn btn-primary">
+          {{ t.learn_more }}
+          <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ليش تختارنا ===== -->
+  <section class="container section">
+    <h2 class="section-title">{{ t.why_title }}</h2>
+    <div class="why">
+      <div class="why-item">
+        <span class="material-symbols-outlined">directions_car</span>
+        <h3>{{ t.why1_title }}</h3>
+        <p>{{ t.why1_text }}</p>
+      </div>
+      <div class="why-item">
+        <span class="material-symbols-outlined">shield</span>
+        <h3>{{ t.why2_title }}</h3>
+        <p>{{ t.why2_text }}</p>
+      </div>
+      <div class="why-item">
+        <span class="material-symbols-outlined">star</span>
+        <h3>{{ t.why3_title }}</h3>
+        <p>{{ t.why3_text }}</p>
+      </div>
+      <div class="why-item">
+        <span class="material-symbols-outlined">build</span>
+        <h3>{{ t.why4_title }}</h3>
+        <p>{{ t.why4_text }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== بانر الدعوة (CTA) ===== -->
+  <section class="container section">
+    <div class="cta">
+      <img src="{% static 'images/cta.jpg' %}" alt="{{ t.cta_title }}" class="cta-img">
+      <div class="cta-content">
+        <h2>{{ t.cta_title }}</h2>
+        <a href="{% url 'main:cars' %}" class="btn btn-primary">
+          {{ t.browse_collection }}
+          <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
+
+<!-- Mohammed Alnsafi -->

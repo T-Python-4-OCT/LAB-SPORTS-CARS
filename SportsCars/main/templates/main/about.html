@@ -1,0 +1,135 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}{{ t.nav_about }}{% endblock %}
+
+{% block content %}
+
+  <!-- ===== واجهة الصفحة ===== -->
+  <section class="container">
+    <div class="page-hero">
+      <img src="{% static 'images/about-hero.jpg' %}" alt="{{ t.about_title }}" class="page-hero-img">
+      <div class="page-hero-content">
+        <span class="eyebrow fade-up">{{ t.nav_about }}</span>
+        <h1 class="fade-up delay-1">{{ t.about_title }}</h1>
+        <p class="fade-up delay-2">{{ t.about_text }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== قصتنا ===== -->
+  <section class="container section">
+    <div class="story">
+      <div class="story-text">
+        <span class="eyebrow">{{ t.since }}</span>
+        <h2>{{ t.story_title }}</h2>
+        <p>{{ t.story_p1 }}</p>
+        <p>{{ t.story_p2 }}</p>
+      </div>
+      <div class="story-img">
+        <img src="{% static 'images/our-story.jpg' %}" alt="{{ t.story_title }}">
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== الأرقام ===== -->
+  <section class="container">
+    <div class="stats">
+      <div class="stat">
+        <strong>55+</strong>
+        <span>{{ t.stat1 }}</span>
+      </div>
+      <div class="stat">
+        <strong>1,880+</strong>
+        <span>{{ t.stat2 }}</span>
+      </div>
+      <div class="stat">
+        <strong>{{ t.stat3_value }}</strong>
+        <span>{{ t.stat3 }}</span>
+      </div>
+      <div class="stat">
+        <strong>24/7</strong>
+        <span>{{ t.stat4 }}</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== قيمنا ===== -->
+  <section class="container section">
+    <h2 class="section-title">{{ t.values_title }}</h2>
+    <div class="values">
+      <div class="why-item">
+        <span class="material-symbols-outlined">diamond</span>
+        <h3>{{ t.v1_title }}</h3>
+        <p>{{ t.v1_text }}</p>
+      </div>
+      <div class="why-item">
+        <span class="material-symbols-outlined">verified_user</span>
+        <h3>{{ t.v2_title }}</h3>
+        <p>{{ t.v2_text }}</p>
+      </div>
+      <div class="why-item">
+        <span class="material-symbols-outlined">favorite</span>
+        <h3>{{ t.v3_title }}</h3>
+        <p>{{ t.v3_text }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== زورونا ===== -->
+  <section class="container section" id="visit">
+    <div class="visit">
+      <div class="visit-info">
+        <span class="eyebrow">{{ t.visit_eyebrow }}</span>
+        <h2>{{ t.visit_title }}</h2>
+        <p class="visit-note">{{ t.visit_note }}</p>
+
+        <ul class="visit-list">
+          <li>
+            <span class="material-symbols-outlined">location_on</span>
+            <span>{{ t.address }}</span>
+          </li>
+          <li>
+            <span class="material-symbols-outlined">storefront</span>
+            <span>{{ t.distributor }}</span>
+          </li>
+          <li>
+            <span class="material-symbols-outlined">call</span>
+            <a href="tel:8001190190" dir="ltr">800 119 0190</a>
+          </li>
+          <li>
+            <span class="material-symbols-outlined">language</span>
+            <a href="https://www.landrover-saudi.com" target="_blank">landrover-saudi.com</a>
+          </li>
+        </ul>
+
+        <a href="https://maps.google.com/?q=Land+Rover+Northern+Ring+Road+Riyadh" target="_blank" class="btn btn-primary">
+          {{ t.directions }}
+          <span class="material-symbols-outlined">directions</span>
+        </a>
+      </div>
+
+      <div class="visit-map">
+        <iframe src="https://maps.google.com/maps?q=Land%20Rover%20Northern%20Ring%20Road%20Riyadh&output=embed" title="{{ t.visit_title }}" loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== البانر ===== -->
+  <section class="container section">
+    <div class="cta">
+      <img src="{% static 'images/dealer.jpg' %}" alt="{{ t.dealer_title }}" class="cta-img">
+      <div class="cta-content">
+        <h2>{{ t.dealer_title }}</h2>
+        <p>{{ t.dealer_text }}</p>
+        <a href="{% url 'main:cars' %}" class="btn btn-primary">
+          {{ t.browse_cars }}
+          <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
+
+<!-- Mohammed Alnsafi -->
