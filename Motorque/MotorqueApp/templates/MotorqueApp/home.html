@@ -22,7 +22,7 @@
             From everyday comfort to extraordinary performance.
         </p>
 
-        <a href="#" class="primary-button">Explore Collection →</a>
+        <a href="{% url 'all_cars' %}" class="about-explore-btn">Explore Collection →</a>
     </div>
 
 
@@ -176,10 +176,11 @@
     
                         <span>{{ car.category }}</span>
     
-                        <a href="{% if car.model == 'G80' %}{% url 'genesis_g80' %}{% else %}{% url 'all_cars' %}{% endif %}"
-                           class="view-details">
+                        <a href="{% if car.brand == 'Porsche' %}{% url 'porsche_911' %}{% elif car.brand == 'Genesis' %}{% url 'genesis_g80' %}{% elif car.brand == 'Cadillac' %}{% url 'cadillac_escalade' %}{% else %}{% url 'all_cars' %}{% endif %}" class="view-details">
                             VIEW DETAILS <span>→</span>
                         </a>
+
+                        
     
                     </div>
     

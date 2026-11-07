@@ -15,4 +15,7 @@ urlpatterns = [
 
     # Cadillac Escalade
     path('cars/cadillac-escalade/', views.cadillac_escalade, name='cadillac_escalade'),
+
+    path('about/', views.about_us, name='about_us'),
+    
 ]
