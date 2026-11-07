@@ -53,3 +53,6 @@ def porsche_911(request: HttpRequest):
 
 def cadillac_escalade(request: HttpRequest):
     return render(request, 'MotorqueApp/escalade_detail.html')
+
+def about_us(request: HttpRequest):
+    return render(request, 'MotorqueApp/about_us.html')
