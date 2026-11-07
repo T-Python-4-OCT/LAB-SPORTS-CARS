@@ -16,7 +16,7 @@ PRICE_RANGES = {
 
 
 def home(request: HttpRequest):
-    return render(request, 'home.html')
+    return render(request, 'cars/home.html')
 
 
 def all_cars(request: HttpRequest):
@@ -44,15 +44,15 @@ def all_cars(request: HttpRequest):
         'price': price,
         'year': year,
     }
-    return render(request, 'all_cars.html', context)
+    return render(request, 'cars/all_cars.html', context)
 
 
 def car_detail(request: HttpRequest, car_slug):
-    return render(request, 'car_detail.html', {'car_slug': car_slug})
+    return render(request, 'cars/car_detail.html', {'car_slug': car_slug})
 
 
 def about(request: HttpRequest):
-    return render(request, 'about.html')
+    return render(request, 'cars/about.html')
 
 
 def set_theme(request: HttpRequest, theme):
@@ -61,7 +61,7 @@ def set_theme(request: HttpRequest, theme):
 
     next_url = request.GET.get('next')
     if not url_has_allowed_host_and_scheme(next_url, allowed_hosts={request.get_host()}):
-        next_url = resolve_url('home')
+        next_url = resolve_url('cars:home')
 
     response = redirect(next_url)
     response.set_cookie('site_theme', theme, max_age=60 * 60 * 24 * 365)

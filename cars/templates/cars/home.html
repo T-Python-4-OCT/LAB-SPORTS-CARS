@@ -1,0 +1,152 @@
+{% extends 'cars/base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<!-- ================= HERO ================= -->
+<section class="hero" style="--hero-img: url('{% static 'images/hero-home.jpg' %}')">
+    <div class="container hero-content">
+        <h1>Performance<br>Without Limits</h1>
+        <p>Explore a curated collection of <br>iconic sports cars.</p>
+        <a href="{% url 'cars:all_cars' %}" class="btn btn-primary">
+            Browse Cars <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+    </div>
+    <div class="container hero-dots" aria-hidden="true">
+        <i class="active"></i><i></i><i></i><i></i>
+    </div>
+</section>
+
+<section class="container highlights">
+    <div class="highlight">
+        <span class="material-symbols-outlined">bolt</span>
+        <p>High Performance</p>
+    </div>
+    <div class="highlight">
+        <span class="material-symbols-outlined">diamond</span>
+        <p>Premium Selection</p>
+    </div>
+    <div class="highlight">
+        <span class="material-symbols-outlined">verified_user</span>
+        <p>Verified &amp; Inspected</p>
+    </div>
+    <div class="highlight">
+        <span class="material-symbols-outlined">support_agent</span>
+        <p>Dedicated Support</p>
+    </div>
+</section>
+
+<section class="container section">
+    <div class="section-head">
+        <h2>Featured Cars</h2>
+        <a href="{% url 'cars:all_cars' %}" class="link-arrow">
+            View All <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+    </div>
+
+    <div class="cards-grid">
+
+        <article class="car-card">
+            <a href="{% url 'cars:car_detail' 'genesis-gv80-coupe' %}">
+                <div class="card-img">
+                    <img src="{% static 'images/ferrari-card.jpg' %}" alt="Genesis GV80 Coupe">
+                </div>
+                <div class="card-body">
+                    <div>
+                        <h3>Genesis GV80 Coupe</h3>
+                        <p class="card-price">SAR 329,000</p>
+                    </div>
+                    <span class="material-symbols-outlined card-heart">favorite</span>
+                </div>
+            </a>
+        </article>
+
+        <article class="car-card">
+            <a href="{% url 'cars:car_detail' 'genesis-g70' %}">
+                <div class="card-img">
+                    <img src="{% static 'images/porsche-card.jpg' %}" alt="Genesis G70">
+                </div>
+                <div class="card-body">
+                    <div>
+                        <h3>Genesis G70</h3>
+                        <p class="card-price">SAR 192,435</p>
+                    </div>
+                    <span class="material-symbols-outlined card-heart">favorite</span>
+                </div>
+            </a>
+        </article>
+
+        <article class="car-card">
+            <a href="{% url 'cars:car_detail' 'genesis-g80' %}">
+                <div class="card-img">
+                    <img src="{% static 'images/genses-car3.jpg' %}" alt="Genesis G80">
+                </div>
+                <div class="card-body">
+                    <div>
+                        <h3>Genesis G90</h3>
+                        <p class="card-price">SAR 201,500</p>
+                    </div>
+                    <span class="material-symbols-outlined card-heart">favorite</span>
+                </div>
+            </a>
+        </article>
+
+    </div>
+</section>
+
+<section class="experience">
+    <div class="experience-img">
+        <img src="{% static 'images/genses2.jpg' %}" alt="Genesis rear lights" loading="lazy">
+    </div>
+    <div class="experience-text">
+        <span class="eyebrow">The Experience</span>
+        <h2>More Than a Car</h2>
+        <p>A seamless journey from discovery to ownership, with expert support every step of the way.</p>
+        <a href="{% url 'cars:about' %}" class="btn btn-primary btn-sm">
+            Learn More <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+    </div>
+</section>
+
+<section class="container section">
+    <div class="section-head">
+        <h2>Why Choose Us</h2>
+    </div>
+
+    <div class="why-grid">
+        <div class="why-item">
+            <span class="material-symbols-outlined">emoji_events</span>
+            <h3>Iconic Models</h3>
+            <p>A handpicked range of world-class cars.</p>
+        </div>
+        <div class="why-item">
+            <span class="material-symbols-outlined">verified_user</span>
+            <h3>Full Transparency</h3>
+            <p>Detailed history and inspection.</p>
+        </div>
+        <div class="why-item">
+            <span class="material-symbols-outlined">star</span>
+            <h3>Expert Guidance</h3>
+            <p>Personalized advice from automotive experts.</p>
+        </div>
+        <div class="why-item">
+            <span class="material-symbols-outlined">diamond</span>
+            <h3>After-Sales Care</h3>
+            <p>Ongoing support and exclusive benefits.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ================= CALL TO ACTION ================= -->
+<section class="container">
+    <div class="cta" style="--cta-img: url('{% static 'images/genses5.jpg' %}')">
+        <h2>Ready to Drive<br>Your Dream Car?</h2>
+        <a href="{% url 'cars:all_cars' %}" class="btn btn-primary btn-sm">
+            Browse Collection <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+    </div>
+</section>
+
+{% endblock %}
