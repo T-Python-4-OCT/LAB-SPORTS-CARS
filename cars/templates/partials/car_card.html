@@ -1,0 +1,18 @@
+{% load static %}
+<a class="card reveal" href="{% url 'car_detail' car.slug %}">
+  {% if car.is_featured %}<span class="badge">Featured</span>{% endif %}
+  <div class="card-img">
+    <img src="{% static car.image %}" alt="{{ car.name }}">
+    <div class="chips">
+      <span>{{ car.power }} hp</span>
+      <span>{{ car.drive }}</span>
+    </div>
+  </div>
+  <div class="card-body">
+    <div>
+      <h3>{{ car.name }}</h3>
+      <p>SAR {{ car.price|floatformat:"0g" }}</p>
+    </div>
+    <span class="material-symbols-outlined">favorite</span>
+  </div>
+</a>

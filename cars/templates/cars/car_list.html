@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}FordKSA | All Cars{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <small>Our collection</small>
+  <h1>All Cars</h1>
+  <p>Explore our complete collection of Ford sports cars.</p>
+</section>
+
+<section class="section">
+  <form class="filters" method="get">
+    <select name="category" aria-label="Category">
+      <option value="">All categories</option>
+      {% for category in categories %}
+        <option value="{{ category }}" {% if category == selected %}selected{% endif %}>{{ category }}</option>
+      {% endfor %}
+    </select>
+
+    <select name="sort" aria-label="Sort by price">
+      <option value="">Sort by</option>
+      <option value="price_asc" {% if sort == 'price_asc' %}selected{% endif %}>Price: low to high</option>
+      <option value="price_desc" {% if sort == 'price_desc' %}selected{% endif %}>Price: high to low</option>
+    </select>
+
+    <noscript><button class="btn" type="submit">Filter</button></noscript>
+  </form>
+
+  <p class="count">{{ count }} Cars Found</p>
+
+  <div class="grid">
+    {% for car in cars %}
+      {% include 'partials/car_card.html' %}
+    {% empty %}
+      <p>No cars match this filter.</p>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
