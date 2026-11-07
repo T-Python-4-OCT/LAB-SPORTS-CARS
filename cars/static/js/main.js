@@ -1,39 +1,64 @@
 const root = document.documentElement;
-const toggle = document.getElementById('theme-toggle');
-const icon = toggle.querySelector('span');
+const themeToggle = document.getElementById('theme-toggle');
+const themeIcon = themeToggle.querySelector('span');
 
 function setTheme(theme) {
   root.dataset.theme = theme;
   localStorage.setItem('theme', theme);
-  icon.textContent = theme === 'dark' ? 'light_mode' : 'dark_mode';
+  themeIcon.textContent = theme === 'dark' ? 'light_mode' : 'dark_mode';
 }
+
 setTheme(root.dataset.theme);
-toggle.addEventListener('click', () => setTheme(root.dataset.theme === 'dark' ? 'light' : 'dark'));
+themeToggle.addEventListener('click', () => {
+  setTheme(root.dataset.theme === 'dark' ? 'light' : 'dark');
+});
 
-document.getElementById('menu-btn').addEventListener('click',
-  () => document.getElementById('links').classList.toggle('open'));
+// mobile menu
+document.getElementById('menu-btn').addEventListener('click', () => {
+  document.getElementById('links').classList.toggle('open');
+});
 
-const io = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('show'); io.unobserve(e.target); }
+// reveal elements when they scroll into view
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+      observer.unobserve(entry.target);
+    }
   });
 }, { threshold: 0.15 });
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-document.querySelectorAll('.tab').forEach(tab => {
+document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+// tabs on the car detail page
+document.querySelectorAll('.tab').forEach((tab) => {
   tab.addEventListener('click', () => {
-    document.querySelectorAll('.tab, .tab-panel').forEach(x => x.classList.remove('active'));
+    document.querySelectorAll('.tab, .tab-panel').forEach((el) => el.classList.remove('active'));
     tab.classList.add('active');
     document.getElementById(tab.dataset.tab).classList.add('active');
   });
 });
 
-document.querySelectorAll('.filters select').forEach(sel =>
-  sel.addEventListener('change', () => sel.form.submit()));
-
-const news = document.getElementById('newsletter');
-if (news) news.addEventListener('submit', e => {
-  e.preventDefault();
-  news.hidden = true;
-  document.getElementById('thanks').hidden = false;
+// submit the filter form as soon as a select changes
+document.querySelectorAll('.filters select').forEach((select) => {
+  select.addEventListener('change', () => select.form.submit());
 });
+
+// newsletter form (demo only)
+const newsletter = document.getElementById('newsletter');
+if (newsletter) {
+  newsletter.addEventListener('submit', (event) => {
+    event.preventDefault();
+    newsletter.hidden = true;
+    document.getElementById('thanks').hidden = false;
+  });
+}
+
+// wishlist button on the car detail page
+const wishlistBtn = document.getElementById('wishlist-btn');
+if (wishlistBtn) {
+  wishlistBtn.addEventListener('click', () => {
+    const saved = wishlistBtn.classList.toggle('saved');
+    document.getElementById('wishlist-text').textContent = saved ? 'Saved' : 'Save to Wishlist';
+  });
+}
