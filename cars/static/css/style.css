@@ -1771,3 +1771,196 @@ body[data-theme="dark"] .footer-logo img {
         border-left: 0;
     }
 }
+/* =========================================================
+   ABOUT
+   ========================================================= */
+
+.story {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    align-items: center;
+    gap: 64px;
+    border-bottom: 1px solid var(--border);
+}
+
+.story-text {
+    animation: fadeUp .8s ease both;
+}
+
+.story h2 {
+    margin-bottom: 14px;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.story p {
+    max-width: 520px;
+    color: var(--muted);
+}
+
+.story-img {
+    aspect-ratio: 4 / 3;
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--surface-2);
+}
+
+.story-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .7s;
+}
+
+.story-img:hover img {
+    transform: scale(1.05);
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.value-item {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 6px 24px;
+}
+
+.value-item:first-child {
+    padding-left: 0;
+}
+
+.value-item + .value-item {
+    border-left: 1px solid var(--border);
+}
+
+.value-item .material-symbols-outlined {
+    font-size: 30px;
+    transition: color .3s, transform .3s;
+}
+
+.value-item:hover .material-symbols-outlined {
+    color: var(--accent);
+    transform: translateY(-3px);
+}
+
+.value-item h3 {
+    margin-bottom: 4px;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.value-item p {
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.dealer-banner {
+    position: relative;
+    min-height: 400px;
+    display: flex;
+    align-items: flex-end;
+    border-radius: 16px;
+    overflow: hidden;
+    isolation: isolate;
+    background-color: #1c242a;
+}
+
+.dealer-banner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background: var(--banner-img) center / cover no-repeat;
+    transition: transform .8s;
+}
+
+.dealer-banner::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(0deg, rgba(10, 12, 14, .85) 0%, rgba(10, 12, 14, .35) 50%, transparent 75%);
+}
+
+.dealer-banner:hover::before {
+    transform: scale(1.04);
+}
+
+.dealer-text {
+    padding: 40px;
+    color: #fff;
+}
+
+.dealer-text h2 {
+    margin-bottom: 10px;
+    font-size: 34px;
+    font-weight: 700;
+}
+
+.dealer-text p {
+    margin-bottom: 22px;
+    color: rgba(255, 255, 255, .85);
+}
+
+.btn-ghost {
+    background: transparent;
+    border-color: rgba(255, 255, 255, .85);
+    color: #fff;
+}
+
+.btn-ghost:hover {
+    background: #fff;
+    color: #15191d;
+}
+
+@media (max-width: 900px) {
+    .story {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+}
+
+@media (max-width: 600px) {
+    .story h2 {
+        font-size: 24px;
+    }
+
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .value-item {
+        flex-direction: row;
+        align-items: center;
+        gap: 16px;
+        padding: 14px 0;
+    }
+
+    .value-item + .value-item {
+        border-left: 0;
+        border-top: 1px solid var(--border);
+    }
+
+    .value-item p {
+        display: none;
+    }
+
+    .dealer-banner {
+        min-height: 360px;
+    }
+
+    .dealer-text {
+        padding: 24px;
+    }
+
+    .dealer-text h2 {
+        font-size: 26px;
+    }
+
+    .dealer-text p br {
+        display: none;
+    }
+}
