@@ -10,20 +10,33 @@ includes both light and dark themes across its pages.
 
 ------------------------------------------------------------------------
 
-## 📸 Screenshots
+---
 
-The screenshots below show both **Light Mode** and **Dark Mode** for
-each page.
+## 🖥️ Screenshots
 
-### 🏠 Home
+Explore MOTORQUE in both **Light Mode ☀️** and **Dark Mode 🌙**.
 
-![MOTORQUE Home --- Light and Dark
-Modes](Motorque/MotorqueApp/Screenshots/Home.png)
+### 🏠 Home Page
+![MOTORQUE Home](Motorque/MotorqueApp/Screenshots/Home.png)
 
 ### 🚗 Cars Collection
+![MOTORQUE Cars](Motorque/MotorqueApp/Screenshots/Cars.png)
 
-![MOTORQUE Cars Collection --- Light and Dark
-Modes](Motorque/MotorqueApp/Screenshots/Cars.png)
+### 🏁 Genesis G80
+![Genesis G80](Motorque/MotorqueApp/Screenshots/Genesis%20G80.png)
+
+### 🏎️ Porsche 911 Carrera
+![Porsche 911 Carrera](Motorque/MotorqueApp/Screenshots/Porsch%20911.png)
+
+### 🛻 Cadillac Escalade
+![Cadillac Escalade](Motorque/MotorqueApp/Screenshots/Escalade.png)
+
+### ℹ️ About Us
+![MOTORQUE About Us](Motorque/MotorqueApp/Screenshots/About.png)
+
+---
+
+
 
 ## 🎞️ Animated Website Preview
 
