@@ -13,12 +13,12 @@ themeToggle.addEventListener('click', () => {
   setTheme(root.dataset.theme === 'dark' ? 'light' : 'dark');
 });
 
-//mobile menu
+// mobile menu
 document.getElementById('menu-btn').addEventListener('click', () => {
   document.getElementById('links').classList.toggle('open');
 });
 
-//reveal elements when they scroll into view
+// reveal elements when they scroll into view
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
@@ -30,7 +30,7 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
 
-//tabs on the car detail page
+// tabs on the car detail page
 document.querySelectorAll('.tab').forEach((tab) => {
   tab.addEventListener('click', () => {
     document.querySelectorAll('.tab, .tab-panel').forEach((el) => el.classList.remove('active'));
@@ -44,7 +44,7 @@ document.querySelectorAll('.filters select').forEach((select) => {
   select.addEventListener('change', () => select.form.submit());
 });
 
-//newsletter form (demo only)
+// newsletter form (demo only)
 const newsletter = document.getElementById('newsletter');
 if (newsletter) {
   newsletter.addEventListener('submit', (event) => {
@@ -54,7 +54,7 @@ if (newsletter) {
   });
 }
 
-//wishlist button on the car detail page
+// wishlist button on the car detail page
 const wishlistBtn = document.getElementById('wishlist-btn');
 if (wishlistBtn) {
   wishlistBtn.addEventListener('click', () => {
@@ -63,7 +63,7 @@ if (wishlistBtn) {
   });
 }
 
-//scroll progress bar
+// scroll progress bar
 const progressBar = document.getElementById('progress');
 window.addEventListener('scroll', () => {
   const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
@@ -71,7 +71,7 @@ window.addEventListener('scroll', () => {
   progressBar.style.width = `${ratio * 100}%`;
 });
 
-//count-up numbers in the hero
+// count-up numbers in the hero
 document.querySelectorAll('[data-count]').forEach((el) => {
   const target = Number(el.dataset.count);
   const suffix = el.dataset.suffix || '';
