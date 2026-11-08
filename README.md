@@ -141,7 +141,14 @@ LAB-SPORTS-CARS/
             ├── Genesis G80.png
             ├── Porsch 911.png
             ├── Escalade.png
+            ├── Escalade.gif
+            ├── Home.gif
+            ├── Cars.gif
+            ├── 911.gif
+            ├── G80.gif
+            ├── About.gif
             └── About.png
+
 ```
 
 ------------------------------------------------------------------------
