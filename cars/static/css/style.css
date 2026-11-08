@@ -407,3 +407,15 @@ select,
 }
 
 @keyframes fill { from { width: 0; } }
+
+.section-head h2::after,
+.why h2::after,
+h2.mt::after {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 4px;
+  margin-top: 8px;
+  border-radius: 4px;
+  background: var(--accent);
+}
