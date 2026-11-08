@@ -1,5 +1,30 @@
 # LAB-SPORTS-CARS
 
+FordKSA is a Django website for a Ford sports cars dealership in Saudi Arabia.
+
+## Features
+- Home, All Cars, Car Detail and About Us pages
+- Template inheritance with reusable partials
+- Google Fonts (Phudu) and Material Symbols icons
+- Dark mode, CSS transitions and animations
+- Responsive layout for desktop and mobile
+- Category filter and price sorting
+
+## Run
+```bash
+pip install django
+python manage.py runserver
+```
+
+Note: car prices are approximate.
+
+---
+
+
+
+
+# LAB-SPORTS-CARS
+
 
 
 ## Create a website for a sports cars dealership (SportsCars) , the website should have a home page that looks like the image below , you should :
