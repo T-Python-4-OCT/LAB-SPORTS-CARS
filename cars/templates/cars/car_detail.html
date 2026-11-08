@@ -22,10 +22,11 @@
         <li><span class="material-symbols-outlined">airline_seat_recline_normal</span> Seats <b>{{ car.seats }}</b></li>
         <li><span class="material-symbols-outlined">swap_driving_apps_wheel</span> Drive <b>{{ car.drive }}</b></li>
       </ul>
-    <div class="meter">
-      <div class="meter-label"><span>Performance</span><b>{{ car.power }} hp</b></div>
-      <div class="meter-bar"><span style="--value: {{ power_percent }}%"></span></div>
-    </div>
+
+      <div class="meter">
+        <div class="meter-label"><span>Performance</span><b>{{ car.power }} hp</b></div>
+        <div class="meter-bar"><span style="--value: {{ power_percent }}%"></span></div>
+      </div>
 
       <div class="actions">
         <a class="btn" href="mailto:sales@fordksa.example?subject=Inquiry%20about%20{{ car.name|urlencode }}">
