@@ -392,3 +392,18 @@ select,
 .marquee:hover .marquee-track { animation-play-state: paused; }
 
 @keyframes scroll { to { transform: translateX(-50%); } }
+
+.meter { margin-bottom: 22px; }
+.meter-label { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: .9rem; }
+.meter-bar { height: 8px; overflow: hidden; border-radius: 8px; background: var(--border); }
+
+.meter-bar span {
+  display: block;
+  height: 100%;
+  width: var(--value);
+  border-radius: 8px;
+  background: linear-gradient(90deg, var(--accent), #5aa2ff);
+  animation: fill 1.2s ease-out both;
+}
+
+@keyframes fill { from { width: 0; } }

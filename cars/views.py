@@ -46,9 +46,11 @@ def car_list(request):
 
 def car_detail(request, slug):
     car = find_car(slug)
-    related = [other for other in CARS if other['slug'] != slug][:3]
-    return render(request, 'cars/car_detail.html', {'car': car, 'related': related})
-
-
+    context = {
+        'car': car,
+        'related': [other for other in CARS if other['slug'] != slug][:3],
+        'power_percent': min(car['power'] // 5, 100),
+    }
+    return render(request, 'cars/car_detail.html', context)
 def about(request):
     return render(request, 'cars/about.html')
