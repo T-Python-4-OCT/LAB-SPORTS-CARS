@@ -25,31 +25,39 @@ Modes](Motorque/MotorqueApp/Screenshots/Home.png)
 ![MOTORQUE Cars Collection --- Light and Dark
 Modes](Motorque/MotorqueApp/Screenshots/Cars.png)
 
-### ✨ Genesis G80
+## 🎞️ Animated Website Preview
 
-![Genesis G80 --- Light and Dark
-Modes](Motorque/MotorqueApp/Screenshots/Genesis%20G80.png)
+The GIFs below demonstrate the interactive experience across the website.
 
-#### 🎬 Genesis G80 Demo
-
+### 🏠 Home
 <p align="center">
-  <img src="Motorque/MotorqueApp/Screenshots/G80.gif" alt="Genesis G80 animated preview" width="800">
+  <img src="Motorque/MotorqueApp/Screenshots/Home.gif" alt="MOTORQUE Home preview" width="800">
+</p>
+
+### 🚗 Cars Collection
+<p align="center">
+  <img src="Motorque/MotorqueApp/Screenshots/Cars.gif" alt="MOTORQUE Cars Collection preview" width="800">
 </p>
 
 ### 🏎️ Porsche 911 Carrera
+<p align="center">
+  <img src="Motorque/MotorqueApp/Screenshots/911.gif" alt="Porsche 911 Carrera preview" width="800">
+</p>
 
-![Porsche 911 Carrera --- Light and Dark
-Modes](Motorque/MotorqueApp/Screenshots/Porsch%20911.png)
+### ✨ Genesis G80
+<p align="center">
+  <img src="Motorque/MotorqueApp/Screenshots/G80.gif" alt="Genesis G80 preview" width="800">
+</p>
 
 ### 🛻 Cadillac Escalade
-
-![Cadillac Escalade --- Light and Dark
-Modes](Motorque/MotorqueApp/Screenshots/Escalade.png)
+<p align="center">
+  <img src="Motorque/MotorqueApp/Screenshots/Escalade.gif" alt="Cadillac Escalade preview" width="800">
+</p>
 
 ### 🏢 About Us
-
-![MOTORQUE About Us --- Light and Dark
-Modes](Motorque/MotorqueApp/Screenshots/About.png)
+<p align="center">
+  <img src="Motorque/MotorqueApp/Screenshots/About.gif" alt="MOTORQUE About Us preview" width="800">
+</p>
 
 ------------------------------------------------------------------------
 
