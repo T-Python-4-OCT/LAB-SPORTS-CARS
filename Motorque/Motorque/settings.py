@@ -40,6 +40,10 @@ CSRF_TRUSTED_ORIGINS = [
 ] if RENDER_EXTERNAL_HOSTNAME else []
 
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+if not DEBUG and SECRET_KEY == "django-insecure-local-development-only":
+    from django.core.exceptions import ImproperlyConfigured
+    raise ImproperlyConfigured("Set a secure SECRET_KEY environment variable for production.")
+
 if not DEBUG:
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
