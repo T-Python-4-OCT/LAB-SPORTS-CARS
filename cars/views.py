@@ -3,6 +3,8 @@ from django.shortcuts import render
 
 from .data import CARS
 
+METER_MAX_POWER = 500  # horsepower that fills the power meter
+
 
 def find_car(slug):
     """Return the car with the given slug, or raise Http404."""
@@ -20,6 +22,7 @@ def home(request):
         'max_power': max(car['power'] for car in CARS),
     }
     return render(request, 'cars/home.html', context)
+
 
 def car_list(request):
     category = request.GET.get('category', '')
@@ -49,8 +52,10 @@ def car_detail(request, slug):
     context = {
         'car': car,
         'related': [other for other in CARS if other['slug'] != slug][:3],
-        'power_percent': min(car['power'] // 5, 100),
+        'power_percent': min(car['power'] * 100 // METER_MAX_POWER, 100),
     }
     return render(request, 'cars/car_detail.html', context)
+
+
 def about(request):
     return render(request, 'cars/about.html')
