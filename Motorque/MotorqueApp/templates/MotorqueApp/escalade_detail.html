@@ -1,0 +1,729 @@
+
+{% extends 'MotorqueApp/base.html' %}
+{% load static %}
+
+{% block title %}Cadillac Escalade | MOTORQUE{% endblock %}
+
+{% block content %}
+
+<!-- =====================================
+     ESCALADE VIDEO HERO
+===================================== -->
+
+<section class="p911-hero">
+
+    <video class="p911-hero-video" autoplay muted loop playsinline>
+        <source src="{% static 'MotorqueApp/videos/EscaladeHeader.mp4' %}" type="video/mp4">
+    </video>
+
+    <div class="p911-hero-overlay"></div>
+
+    <div class="p911-hero-content">
+        <p>CADILLAC COLLECTION</p>
+        <h1>ESCALADE</h1>
+        <span>Commanding presence. Defined by luxury.</span>
+    </div>
+
+</section>
+
+
+<!-- =====================================
+     ESCALADE OVERVIEW
+===================================== -->
+
+<section class="p911-overview escalade-overview" id="overview">
+
+    <div class="p911-gallery">
+
+        <div class="p911-main-image">
+
+            <button class="p911-arrow p911-prev" type="button"
+                    aria-label="Previous image">&#10094;</button>
+
+            <img
+                id="p911-main-img"
+                src="{% static 'MotorqueApp/images/Escalade/Black/EscaladeBlack1.jpg' %}"
+                alt="Cadillac Escalade"
+            >
+
+            <button class="p911-arrow p911-next" type="button"
+                    aria-label="Next image">&#10095;</button>
+
+            <span class="p911-counter" id="p911-counter">01 / 09</span>
+
+        </div>
+
+        <div class="p911-thumbnails" id="p911-thumbnails"></div>
+
+        <div class="p911-color-section">
+
+            <div class="p911-color-heading">
+                <span>EXTERIOR COLOR</span>
+                <strong id="p911-color-name">Onyx Black</strong>
+            </div>
+
+            <div class="p911-color-options">
+
+                <button class="p911-color-option active"
+                        type="button"
+                        data-color="black"
+                        data-name="Onyx Black"
+                        data-images="{% static 'MotorqueApp/images/Escalade/Black/EscaladeBlack1.jpg' %}|{% static 'MotorqueApp/images/Escalade/Black/EscaladeBlack2.jpg' %}|{% static 'MotorqueApp/images/Escalade/Black/EscaladeBlack3.jpg' %}|{% static 'MotorqueApp/images/Escalade/Black/EscaladeBlack4.jpg' %}|{% static 'MotorqueApp/images/Escalade/Black/EscaladeBlack5.jpg' %}|{% static 'MotorqueApp/images/Escalade/Black/EscaladeBlack6.jpg' %}|{% static 'MotorqueApp/images/Escalade/Black/EscaladeBlack7.jpg' %}|{% static 'MotorqueApp/images/Escalade/Black/EscaladeBlack8.jpg' %}|{% static 'MotorqueApp/images/Escalade/Black/EscaladeBlack9.jpg' %}">
+                    <span class="p911-color-dot black"></span>
+                    <span>Black</span>
+                </button>
+
+                <button class="p911-color-option"
+                        type="button"
+                        data-color="white"
+                        data-name="Crystal White"
+                        data-images="{% static 'MotorqueApp/images/Escalade/White/EscaladeWhite1.jpg' %}|{% static 'MotorqueApp/images/Escalade/White/EscaladeWhite2.jpg' %}|{% static 'MotorqueApp/images/Escalade/White/EscaladeWhite3.jpg' %}|{% static 'MotorqueApp/images/Escalade/White/EscaladeWhite4.jpg' %}|{% static 'MotorqueApp/images/Escalade/White/EscaladeWhite5.jpg' %}|{% static 'MotorqueApp/images/Escalade/White/EscaladeWhite6.jpg' %}|{% static 'MotorqueApp/images/Escalade/White/EscaladeWhite7.jpg' %}">
+                    <span class="p911-color-dot white"></span>
+                    <span>White</span>
+                </button>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- VEHICLE INFORMATION -->
+
+    <div class="p911-info">
+
+        <p class="p911-model-label">CADILLAC ESCALADE SERIES</p>
+
+        <h2>ESCALADE</h2>
+
+        <p class="p911-description">
+            A bold expression of American luxury and timeless design.
+            Engineered to deliver exceptional comfort, power and presence.
+        </p>
+
+        <div class="p911-price-label">Starting from</div>
+
+        <div class="p911-price">
+            550,000 <span>SAR</span>
+        </div>
+
+        <div class="p911-specs" id="specifications">
+
+            <div class="p911-spec-item">
+                <div class="p911-spec-icon">
+                    <i class="fa-solid fa-gears"></i>
+                </div>
+                <div>
+                    <span>ENGINE</span>
+                    <h3>6.2L V8</h3>
+                </div>
+            </div>
+
+            <div class="p911-spec-item">
+                <div class="p911-spec-icon">
+                    <i class="fa-solid fa-horse-head"></i>
+                </div>
+                <div>
+                    <span>POWER</span>
+                    <h3>420 HP</h3>
+                </div>
+            </div>
+
+            <div class="p911-spec-item">
+                <div class="p911-spec-icon">
+                    <i class="fa-solid fa-stopwatch"></i>
+                </div>
+                <div>
+                    <span>TORQUE</span>
+                    <h3>460 LB-FT</h3>
+                </div>
+            </div>
+
+            <div class="p911-spec-item">
+                <div class="p911-spec-icon">
+                    <i class="fa-solid fa-gauge-high"></i>
+                </div>
+                <div>
+                    <span>TRANSMISSION</span>
+                    <h3>10-SPEED AUTO</h3>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="p911-actions">
+
+            <a href="#inquire" class="p911-inquire-btn">
+                INQUIRE NOW <span>→</span>
+            </a>
+
+            <button type="button" class="p911-watchlist-btn">
+                ♡ ADD TO WATCHLIST
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================
+     ESCALADE SECTION NAVIGATION
+===================================== -->
+
+<nav class="p911-section-nav">
+    <a href="#overview" class="active">Overview</a>
+    <a href="#specifications">Specifications</a>
+    <a href="#key-features">Features</a>
+    <a href="#gallery">Gallery</a>
+</nav>
+
+
+<!-- =====================================
+     ESCALADE HEADER BANNER
+===================================== -->
+
+<section class="p911-header" id="features">
+
+    <img
+        src="{% static 'MotorqueApp/images/Escalade/Header.avif' %}"
+        alt="Cadillac Escalade"
+        class="p911-header-image"
+    >
+
+    <div class="p911-header-overlay"></div>
+
+    <div class="p911-header-content">
+        <p>CADILLAC ESCALADE</p>
+        <h2>THE POWER OF PRESENCE</h2>
+        <span>Bold design. Exceptional comfort. Unmistakable luxury.</span>
+    </div>
+
+</section>
+
+
+<!-- =====================================
+     ESCALADE KEY FEATURES
+===================================== -->
+
+<section class="escalade-key-features" id="key-features">
+
+    <div class="escalade-features-heading">
+        <span>DISCOVER CADILLAC ESCALADE</span>
+        <h2>KEY FEATURES</h2>
+    </div>
+
+    <div class="escalade-features-grid">
+
+        <!-- FEATURE 1 -->
+        <article class="escalade-feature-card">
+            <div class="escalade-feature-image">
+                <img
+                    src="{% static 'MotorqueApp/images/Escalade/Interior/1.avif' %}"
+                    alt="Escalade Interior"
+                    loading="lazy"
+                >
+            </div>
+    
+            <h3>Refined Interior</h3>
+            <p>
+                Discover an interior designed around comfort,
+                craftsmanship and attention to detail.
+            </p>
+        </article>
+    
+        <!-- FEATURE 2 -->
+        <article class="escalade-feature-card">
+            <div class="escalade-feature-image">
+                <img
+                    src="{% static 'MotorqueApp/images/Escalade/Features/6.avif' %}"
+                    alt="Escalade Exterior"
+                    loading="lazy"
+                >
+            </div>
+    
+            <h3>Bold Exterior</h3>
+            <p>
+                A commanding presence defined by distinctive
+                proportions and unmistakable styling.
+            </p>
+        </article>
+    
+        <!-- FEATURE 3 -->
+        <article class="escalade-feature-card">
+            <div class="escalade-feature-image">
+                <img
+                    src="{% static 'MotorqueApp/images/Escalade/Exterior/6.avif' %}"
+                    alt="Escalade Design"
+                    loading="lazy"
+                >
+            </div>
+    
+            <h3>Distinctive Design</h3>
+            <p>
+                Every detail contributes to the Escalade's
+                unmistakable character and presence.
+            </p>
+        </article>
+    
+        <!-- FEATURE 4: NIGHT VISION -->
+        <article class="escalade-feature-card">
+            <div class="escalade-feature-image">
+                <img
+                    src="{% static 'MotorqueApp/images/Escalade/Features/NightVision.avif' %}"
+                    alt="Cadillac Escalade Night Vision"
+                    loading="lazy"
+                >
+            </div>
+    
+            <h3>Night Vision</h3>
+            <p>
+                The available Night Vision§ feature helps you
+                see beyond your headlamps.
+            </p>
+        </article>
+    
+        <!-- FEATURE 5: CURVED DISPLAY -->
+        <article class="escalade-feature-card">
+            <div class="escalade-feature-image">
+                <img
+                    src="{% static 'MotorqueApp/images/Escalade/Features/Display.avif' %}"
+                    alt="Cadillac Escalade Curved Display"
+                    loading="lazy"
+                >
+            </div>
+    
+            <h3>CURVED PILLAR-TO-PILLAR 55” DIAGONAL DISPLAY</h3>
+            <p>
+                A SCREEN THAT SPANS THE FRONT ROW
+            </p>
+        </article>
+    
+    </div>
+
+</section>
+
+
+<!-- =====================================
+     ESCALADE GALLERY SECTION
+===================================== -->
+
+<!-- =====================================
+     ESCALADE GALLERY
+===================================== -->
+
+<section class="escalade-gallery-section" id="gallery">
+
+<!-- =====================================
+     ESCALADE GALLERY FULL SCREEN HERO
+===================================== -->
+
+<div class="escalade-gallery-hero">
+
+    <img
+        src="{% static 'MotorqueApp/images/Escalade/GalleryHeader1.jpg' %}"
+        alt="Cadillac Escalade Gallery"
+    >
+
+    <div class="escalade-gallery-hero-content">
+
+        <span>DISCOVER EVERY DETAIL</span>
+
+        <h1>ESCALADE GALLERY</h1>
+
+        <p>
+            Preproduction models shown throughout.
+            Actual production model will vary.
+        </p>
+
+        <div class="escalade-gallery-filters">
+
+            <button class="escalade-filter active" data-filter="all">
+                ALL
+            </button>
+
+            <button class="escalade-filter" data-filter="exterior">
+                EXTERIOR
+            </button>
+
+            <button class="escalade-filter" data-filter="interior">
+                INTERIOR
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+    <div class="escalade-gallery-grid">
+
+        <!-- EXTERIOR -->
+    
+        <div class="escalade-gallery-item" data-category="exterior">
+            <img src="{% static 'MotorqueApp/images/Escalade/Exterior/1.avif' %}" alt="Escalade Exterior 1" loading="lazy">
+        </div>
+    
+        <div class="escalade-gallery-item" data-category="exterior">
+            <img src="{% static 'MotorqueApp/images/Escalade/Exterior/2.avif' %}" alt="Escalade Exterior 2" loading="lazy">
+        </div>
+    
+        <div class="escalade-gallery-item" data-category="exterior">
+            <img src="{% static 'MotorqueApp/images/Escalade/Exterior/3.avif' %}" alt="Escalade Exterior 3" loading="lazy">
+        </div>
+    
+        <div class="escalade-gallery-item" data-category="exterior">
+            <img src="{% static 'MotorqueApp/images/Escalade/Exterior/4.avif' %}" alt="Escalade Exterior 4" loading="lazy">
+        </div>
+    
+        <div class="escalade-gallery-item" data-category="exterior">
+            <img src="{% static 'MotorqueApp/images/Escalade/Exterior/5.avif' %}" alt="Escalade Exterior 5" loading="lazy">
+        </div>
+    
+        <div class="escalade-gallery-item" data-category="exterior">
+            <img src="{% static 'MotorqueApp/images/Escalade/Exterior/6.avif' %}" alt="Escalade Exterior 6" loading="lazy">
+        </div>
+    
+        <div class="escalade-gallery-item" data-category="exterior">
+            <img src="{% static 'MotorqueApp/images/Escalade/Exterior/7.avif' %}" alt="Escalade Exterior 7" loading="lazy">
+        </div>
+
+        <!-- INTERIOR -->
+    
+        <div class="escalade-gallery-item" data-category="interior">
+            <img src="{% static 'MotorqueApp/images/Escalade/Interior/1.avif' %}" alt="Escalade Interior 1" loading="lazy">
+        </div>
+    
+        <div class="escalade-gallery-item" data-category="interior">
+            <img src="{% static 'MotorqueApp/images/Escalade/Interior/2.avif' %}" alt="Escalade Interior 2" loading="lazy">
+        </div>
+    
+        <div class="escalade-gallery-item" data-category="interior">
+            <img src="{% static 'MotorqueApp/images/Escalade/Interior/3.avif' %}" alt="Escalade Interior 3" loading="lazy">
+        </div>
+    
+        <div class="escalade-gallery-item" data-category="interior">
+            <img src="{% static 'MotorqueApp/images/Escalade/Interior/4.avif' %}" alt="Escalade Interior 4" loading="lazy">
+        </div>
+    
+        <div class="escalade-gallery-item" data-category="interior">
+            <img src="{% static 'MotorqueApp/images/Escalade/Interior/5.avif' %}" alt="Escalade Interior 5" loading="lazy">
+        </div>
+    
+        <div class="escalade-gallery-item" data-category="interior">
+            <img src="{% static 'MotorqueApp/images/Escalade/Interior/6.avif' %}" alt="Escalade Interior 6" loading="lazy">
+        </div>
+    
+        <div class="escalade-gallery-item" data-category="interior">
+            <img src="{% static 'MotorqueApp/images/Escalade/Interior/7.avif' %}" alt="Escalade Interior 7" loading="lazy">
+        </div>
+    
+        <div class="escalade-gallery-item" data-category="interior">
+            <img src="{% static 'MotorqueApp/images/Escalade/Interior/8.avif' %}" alt="Escalade Interior 8" loading="lazy">
+        </div>
+    
+        <div class="escalade-gallery-item" data-category="interior">
+            <img src="{% static 'MotorqueApp/images/Escalade/Interior/9.avif' %}" alt="Escalade Interior 9" loading="lazy">
+        </div>
+    
+        <div class="escalade-gallery-item" data-category="interior">
+            <img src="{% static 'MotorqueApp/images/Escalade/Interior/10.avif' %}" alt="Escalade Interior 10" loading="lazy">
+        </div>
+    
+    </div>
+
+</section>
+
+
+<!-- =====================================
+     ESCALADE JAVASCRIPT
+===================================== -->
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+/* =====================================
+   ESCALADE IMAGE GALLERY
+===================================== */
+
+const mainImage = document.getElementById("p911-main-img");
+const thumbnailsContainer = document.getElementById("p911-thumbnails");
+const counter = document.getElementById("p911-counter");
+const colorName = document.getElementById("p911-color-name");
+const colorOptions = document.querySelectorAll(".p911-color-option");
+
+let currentImages = [];
+let currentIndex = 0;
+
+function showImage(index) {
+
+    if (!currentImages.length) return;
+
+    currentIndex = (index + currentImages.length) % currentImages.length;
+
+    const selectedImage = currentImages[currentIndex];
+
+    mainImage.style.opacity = "0";
+
+    const revealImage = () => {
+        mainImage.style.opacity = "1";
+    };
+
+    mainImage.onload = revealImage;
+    mainImage.onerror = revealImage;
+
+    setTimeout(() => {
+        mainImage.src = selectedImage;
+
+        if (mainImage.complete) {
+            revealImage();
+        }
+    }, 150);
+
+    const thumbnails = thumbnailsContainer.querySelectorAll(".p911-thumb");
+
+    thumbnails.forEach((thumb, i) => {
+
+        const isActive = i === currentIndex;
+
+        thumb.classList.toggle("active", isActive);
+
+        if (isActive) {
+            thumb.scrollIntoView({
+                behavior: "smooth",
+                block: "nearest",
+                inline: "center"
+            });
+        }
+    });
+
+    counter.textContent =
+        String(currentIndex + 1).padStart(2, "0") +
+        " / " +
+        String(currentImages.length).padStart(2, "0");
+}
+
+
+function changeColor(option) {
+
+    currentImages = option.dataset.images
+        .split("|")
+        .map(image => image.trim());
+
+    currentIndex = 0;
+
+    colorOptions.forEach(item => {
+        item.classList.toggle("active", item === option);
+    });
+
+    colorName.textContent = option.dataset.name;
+
+    thumbnailsContainer.innerHTML = "";
+
+    currentImages.forEach((image, index) => {
+
+        const button = document.createElement("button");
+
+        button.type = "button";
+        button.className = "p911-thumb" + (index === 0 ? " active" : "");
+
+        const img = document.createElement("img");
+
+        img.src = image;
+        img.alt = "Cadillac Escalade view " + (index + 1);
+
+        button.appendChild(img);
+
+        button.addEventListener("click", () => showImage(index));
+
+        thumbnailsContainer.appendChild(button);
+    });
+
+    showImage(0);
+}
+
+
+colorOptions.forEach(option => {
+    option.addEventListener("click", () => changeColor(option));
+});
+
+
+document.querySelector(".p911-prev").addEventListener("click", () => {
+    showImage(currentIndex - 1);
+});
+
+document.querySelector(".p911-next").addEventListener("click", () => {
+    showImage(currentIndex + 1);
+});
+
+
+/* KEYBOARD NAVIGATION */
+
+document.addEventListener("keydown", event => {
+
+    if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+
+    const target = event.target;
+
+    if (target && (
+        target.tagName === "INPUT" ||
+        target.tagName === "TEXTAREA" ||
+        target.isContentEditable
+    )) return;
+
+    if (event.key === "ArrowLeft") showImage(currentIndex - 1);
+    if (event.key === "ArrowRight") showImage(currentIndex + 1);
+});
+
+
+/* THEME COLOR SYNC */
+
+function syncThemeColor() {
+
+    const isDark = document.body.classList.contains("dark-mode");
+    const preferredColor = isDark ? "black" : "white";
+
+    const option = document.querySelector(
+        `.p911-color-option[data-color="${preferredColor}"]`
+    );
+
+    if (option) {
+        changeColor(option);
+    }
+}
+
+syncThemeColor();
+
+const themeObserver = new MutationObserver(syncThemeColor);
+
+themeObserver.observe(document.body, {
+    attributes: true,
+    attributeFilter: ["class"]
+});
+
+
+    /* =====================================
+       SECTION NAVIGATION
+    ===================================== */
+
+    const navLinks = document.querySelectorAll(".p911-section-nav a");
+
+    navLinks.forEach(link => {
+
+        link.addEventListener("click", function () {
+
+            navLinks.forEach(item => item.classList.remove("active"));
+
+            this.classList.add("active");
+
+        });
+
+    });
+
+
+    /* =====================================
+       HORIZONTAL FEATURES DRAG SCROLL
+    ===================================== */
+
+    const featuresTrack = document.getElementById("p911FeaturesTrack");
+
+    if (featuresTrack) {
+
+        let isDragging = false;
+        let startX = 0;
+        let scrollStart = 0;
+
+        featuresTrack.addEventListener("mousedown", function (event) {
+
+            if (event.button !== 0) return;
+
+            isDragging = true;
+            startX = event.pageX;
+            scrollStart = featuresTrack.scrollLeft;
+
+            featuresTrack.classList.add("is-dragging");
+
+        });
+
+        window.addEventListener("mousemove", function (event) {
+
+            if (!isDragging) return;
+
+            event.preventDefault();
+
+            const distance = event.pageX - startX;
+
+            featuresTrack.scrollLeft = scrollStart - distance;
+
+        });
+
+        window.addEventListener("mouseup", function () {
+
+            isDragging = false;
+            featuresTrack.classList.remove("is-dragging");
+
+        });
+
+        featuresTrack.addEventListener("mouseleave", function () {
+
+            isDragging = false;
+            featuresTrack.classList.remove("is-dragging");
+
+        });
+
+    }
+
+});
+
+// =====================================
+// ESCALADE GALLERY FILTERS
+// =====================================
+
+document.addEventListener("DOMContentLoaded", function () {
+
+const filters = document.querySelectorAll(".escalade-filter");
+const galleryItems = document.querySelectorAll(".escalade-gallery-item");
+
+filters.forEach(filter => {
+
+    filter.addEventListener("click", function () {
+
+        const selectedCategory = this.dataset.filter;
+
+        filters.forEach(button => {
+            button.classList.remove("active");
+        });
+
+        this.classList.add("active");
+
+        galleryItems.forEach(item => {
+
+            const category = item.dataset.category;
+
+            const shouldShow =
+                selectedCategory === "all" ||
+                category === selectedCategory;
+
+            if (shouldShow) {
+                item.classList.remove("is-hidden");
+
+                // Restart reveal animation
+                item.classList.remove("is-visible");
+                void item.offsetWidth;
+                item.classList.add("is-visible");
+
+            } else {
+                item.classList.remove("is-visible");
+                item.classList.add("is-hidden");
+            }
+
+        });
+
+    });
+
+});
+
+});
+</script>
+
+{% endblock %}

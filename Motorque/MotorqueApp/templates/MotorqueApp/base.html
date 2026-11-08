@@ -1,0 +1,232 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <title>{% block title %}MOTORQUE{% endblock %}</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Phudu:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{% static 'MotorqueApp/css/style.css' %}">
+
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body class="light-mode">
+
+
+<!-- Navigation Bar -->
+<header class="navbar">
+
+    <!-- Logo -->
+    <a href="{% url 'home' %}" class="logo">
+        <img src="{% static 'MotorqueApp/images/logo.png' %}" alt="MOTORQUE Logo">
+    </a>
+
+    <!-- Navigation Links -->
+    <nav class="nav-links">
+        <a href="{% url 'home' %}"
+           class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">
+            Home
+        </a>
+
+        <a href="{% url 'all_cars' %}"
+           class="{% if request.resolver_match.url_name == 'all_cars' or request.resolver_match.url_name == 'genesis_g80' %}active{% endif %}">
+            Cars
+        </a>
+
+        <a href="{% url 'about_us' %}"
+        class="{% if request.resolver_match.url_name == 'about_us' %}active{% endif %}">
+         About Us
+     </a>
+        <a href="{% url 'home' %}#contact">Contact</a>
+    </nav>
+
+    <!-- Navigation Actions -->
+    <div class="nav-actions">
+
+        <!-- Search -->
+        <button type="button" class="nav-icon" aria-label="Search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="1.8" stroke-linecap="round">
+                <circle cx="11" cy="11" r="7"></circle>
+                <path d="m16 16 4 4"></path>
+            </svg>
+        </button>
+
+        <!-- Dark Mode -->
+        <button type="button" class="nav-icon" id="theme-toggle"
+                aria-label="Toggle dark mode">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.9 13A9 9 0 0 1 11 3.1 9 9 0 1 0 20.9 13Z"></path>
+            </svg>
+        </button>
+
+        <!-- User -->
+        <a href="#" class="nav-icon" aria-label="User Account">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="8" r="4"></circle>
+                <path d="M5 21a7 7 0 0 1 14 0"></path>
+            </svg>
+        </a>
+
+    </div>
+
+</header>
+
+
+    <!-- Page Content -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+<!-- MOTORQUE FOOTER -->
+<footer class="motorque-footer">
+
+    <div class="footer-main">
+
+        <!-- Brand -->
+        <div class="footer-brand">
+            <a href="{% url 'home' %}">
+                <img src="{% static 'MotorqueApp/images/logo.png' %}"
+                     alt="MOTORQUE Logo">
+            </a>
+
+            <p>
+                YOUR DRIVE. YOUR CHOICE.
+            </p>
+
+            <span>
+                Discover excellence. Experience the drive.
+            </span>
+        </div>
+
+        <!-- Explore -->
+        <div class="footer-column">
+            <h3>Explore</h3>
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'all_cars' %}">Cars</a>
+            <a href="{% url 'home' %}#about-us">About Us</a>
+            <a href="{% url 'home' %}#contact">Contact</a>
+        </div>
+
+        <!-- Support -->
+        <div class="footer-column">
+            <h3>Support</h3>
+            <a href="#">FAQs</a>
+            <a href="#">Financing</a>
+            <a href="#">Warranty</a>
+            <a href="#">After-Sales</a>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="footer-newsletter">
+            <h3>Stay in the Loop</h3>
+
+            <p>
+                Get the latest arrivals, exclusive offers,
+                and automotive news.
+            </p>
+
+            <form class="newsletter-form">
+                <input type="email"
+                       placeholder="Enter your email address"
+                       aria-label="Email address"
+                       required>
+
+                <button type="submit" aria-label="Subscribe">
+                    →
+                </button>
+            </form>
+        </div>
+
+        <!-- Social Media -->
+        <div class="footer-social">
+            <h3>Follow Us</h3>
+
+            <div class="social-links">
+
+                <a href="https://www.instagram.com/porsche/"
+                target="_blank" rel="noopener noreferrer"
+                aria-label="Instagram">
+                 <i class="fa-brands fa-instagram"></i>
+             </a>
+             
+             <a href="https://www.linkedin.com/company/genesisworldwide/"
+                target="_blank" rel="noopener noreferrer"
+                aria-label="LinkedIn">
+                 <i class="fa-brands fa-linkedin-in"></i>
+             </a>
+             
+             <a href="https://www.youtube.com/@GenesisWorldwide"
+                target="_blank" rel="noopener noreferrer"
+                aria-label="YouTube">
+                 <i class="fa-brands fa-youtube"></i>
+             </a>
+             
+             <a href="https://x.com/Porsche"
+                target="_blank" rel="noopener noreferrer"
+                aria-label="X">
+                 <i class="fa-brands fa-x-twitter"></i>
+             </a>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+        <p>© 2026 MOTORQUE. All rights reserved.</p>
+        <p>BUILT FOR THOSE WHO LOVE THE DRIVE.</p>
+    </div>
+
+</footer>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+        
+            // Restore saved theme, default is Light Mode
+            const savedTheme = localStorage.getItem('motorque-theme') || 'light';
+        
+            body.classList.remove('light-mode', 'dark-mode');
+            body.classList.add(savedTheme + '-mode');
+        
+            // Toggle theme
+            themeToggle.addEventListener('click', function () {
+        
+                const isLightMode = body.classList.contains('light-mode');
+        
+                body.classList.remove('light-mode', 'dark-mode');
+        
+                const newTheme = isLightMode ? 'dark' : 'light';
+        
+                body.classList.add(newTheme + '-mode');
+        
+                localStorage.setItem('motorque-theme', newTheme);
+        
+            });
+        
+        });
+        </script>
+</body>
+</html>

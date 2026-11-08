@@ -1,0 +1,341 @@
+{% extends 'MotorqueApp/base.html' %}
+
+{% load static %}
+
+{% block title %}Home | MOTORQUE{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+
+    <video class="hero-video" autoplay muted loop playsinline>
+        <source src="{% static 'MotorqueApp/videos/hero-video.mp4' %}" type="video/mp4">
+    </video>
+
+    <div class="hero-content">
+        <p class="hero-label">WELCOME TO MOTORQUE</p>
+
+        <h1>FIND YOUR<br>PERFECT DRIVE.</h1>
+
+        <p class="hero-description">
+            Discover a collection of exceptional vehicles.
+            From everyday comfort to extraordinary performance.
+        </p>
+
+        <a href="{% url 'all_cars' %}" class="about-explore-btn">Explore Collection →</a>
+    </div>
+
+
+</section>
+
+<!-- MOTORQUE Advantages -->
+<section class="advantages-section">
+
+    <div class="advantages">
+
+        <!-- High Performance -->
+        <div class="advantage-item">
+            <div class="advantage-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 18a9 9 0 1 1 16 0"/>
+                    <path d="m12 13 4-5"/>
+                    <circle cx="12" cy="13" r="1"/>
+                </svg>
+            </div>
+            <h3>High Performance</h3>
+        </div>
+
+        <!-- Premium Selection -->
+        <div class="advantage-item">
+            <div class="advantage-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 3h12l4 6-10 12L2 9z"/>
+                    <path d="M2 9h20"/>
+                    <path d="m9 3 3 18 3-18"/>
+                </svg>
+            </div>
+            <h3>Premium Selection</h3>
+        </div>
+
+        <!-- Verified Quality -->
+        <div class="advantage-item">
+            <div class="advantage-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11z"/>
+                    <path d="m9 12 2 2 4-4"/>
+                </svg>
+            </div>
+            <h3>Verified Quality</h3>
+        </div>
+
+        <!-- Dedicated Support -->
+        <div class="advantage-item">
+            <div class="advantage-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 12a9 9 0 0 1 18 0"/>
+                    <path d="M3 12v5a2 2 0 0 0 2 2h2v-7H5a2 2 0 0 0-2 2z"/>
+                    <path d="M21 12v5a2 2 0 0 1-2 2h-2v-7h2a2 2 0 0 1 2 2z"/>
+                    <path d="M17 19a5 5 0 0 1-5 3"/>
+                </svg>
+            </div>
+            <h3>Dedicated Support</h3>
+        </div>
+
+    </div>
+
+</section>
+<!-- Featured Cars -->
+<section class="featured-cars">
+
+    <div class="section-heading">
+        <div>
+            <p class="section-label">OUR COLLECTION</p>
+            <h2>Featured Cars</h2>
+        </div>
+
+        <a href="{% url 'all_cars' %}" class="view-all">
+            View All <span>→</span>
+        </a>
+    </div>
+
+    <div class="featured-grid">
+
+        {% for car in cars %}
+    
+        <article class="car-card featured-car-card">
+    
+            <div class="car-card-image">
+    
+                {% if car.brand == 'Porsche' %}
+    
+                    <img src="{% static car.image %}"
+                         alt="Porsche 911 Black"
+                         class="car-default-image">
+    
+                    <img src="{% static 'MotorqueApp/images/Porsche911/911-WhiteDay.jpeg' %}"
+                         alt="Porsche 911 White"
+                         class="car-hover-image">
+    
+                {% elif car.brand == 'Genesis' %}
+    
+                    <img src="{% static 'MotorqueApp/images/G80/G80-HeaderBlack.png' %}"
+                         alt="Genesis G80 Black"
+                         class="car-default-image">
+    
+                    <img src="{% static 'MotorqueApp/images/G80/G80-HeaderWhite.png' %}"
+                         alt="Genesis G80 White"
+                         class="car-hover-image">
+    
+                {% elif car.brand == 'Cadillac' %}
+    
+                    <img src="{% static 'MotorqueApp/images/Escalade/Escalade 2.jpg' %}"
+                         alt="Cadillac Escalade Black"
+                         class="car-default-image">
+    
+                    <img src="{% static 'MotorqueApp/images/Escalade/Escalade 1.jpg' %}"
+                         alt="Cadillac Escalade White"
+                         class="car-hover-image">
+    
+                {% endif %}
+    
+                <div class="car-card-overlay"></div>
+    
+                <div class="car-card-content">
+    
+                    <div class="car-brand-row">
+                        <span>{{ car.brand|upper }}</span>
+    
+                        <button class="favorite-button"
+                                type="button"
+                                aria-label="Add to favorites"
+                                aria-pressed="false">
+    
+                            <svg viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.7"
+                                 stroke-linecap="round"
+                                 stroke-linejoin="round">
+                                <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8z"/>
+                            </svg>
+    
+                        </button>
+                    </div>
+    
+                    <div class="car-main-info">
+                        <h2>{{ car.model }}</h2>
+                        <div class="price-line"></div>
+                        <p>{{ car.price|floatformat:0 }} SAR</p>
+                    </div>
+    
+                    <div class="car-card-bottom">
+    
+                        <span>{{ car.category }}</span>
+    
+                        <a href="{% if car.brand == 'Porsche' %}{% url 'porsche_911' %}{% elif car.brand == 'Genesis' %}{% url 'genesis_g80' %}{% elif car.brand == 'Cadillac' %}{% url 'cadillac_escalade' %}{% else %}{% url 'all_cars' %}{% endif %}" class="view-details">
+                            VIEW DETAILS <span>→</span>
+                        </a>
+
+                        
+    
+                    </div>
+    
+                </div>
+    
+            </div>
+    
+        </article>
+    
+        {% endfor %}
+    
+    </div>
+
+
+    </div>
+
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    
+        const favoriteButtons = document.querySelectorAll('.featured-card .favorite-button');
+    
+        let favorites = JSON.parse(
+            localStorage.getItem('motorque-favorites') || '[]'
+        );
+    
+        favoriteButtons.forEach(function (button) {
+    
+            const card = button.closest('.featured-card');
+            const carName = card.querySelector('h3').textContent.trim();
+    
+            function updateButton() {
+                const isFavorite = favorites.includes(carName);
+    
+                button.classList.toggle('active', isFavorite);
+                button.setAttribute('aria-pressed', isFavorite);
+            }
+    
+            updateButton();
+    
+            button.addEventListener('click', function () {
+    
+                if (favorites.includes(carName)) {
+                    favorites = favorites.filter(name => name !== carName);
+                } else {
+                    favorites.push(carName);
+                }
+    
+                localStorage.setItem(
+                    'motorque-favorites',
+                    JSON.stringify(favorites)
+                );
+    
+                updateButton();
+    
+            });
+    
+        });
+    
+    });
+    </script>
+
+<!-- About MOTORQUE -->
+<section class="about-section" id="about-us">
+
+    <!-- Video Slider -->
+    <div class="about-video-slider">
+
+        <video class="about-slide active" autoplay muted playsinline>
+            <source src="{% static 'MotorqueApp/videos/about-video-1.mp4' %}" type="video/mp4">
+        </video>
+
+        <video class="about-slide" muted playsinline>
+            <source src="{% static 'MotorqueApp/videos/about-video-2.mp4' %}" type="video/mp4">
+        </video>
+
+        <video class="about-slide" muted playsinline>
+            <source src="{% static 'MotorqueApp/videos/about-video-3.mp4' %}" type="video/mp4">
+        </video>
+
+    </div>
+
+    <!-- Dark Overlay -->
+    <div class="about-overlay"></div>
+
+    <!-- Content -->
+    <div class="about-content">
+
+        <p class="about-label">THE MOTORQUE EXPERIENCE</p>
+
+        <h2>
+            MORE THAN CARS.<br>
+            A STATEMENT.
+        </h2>
+
+        <p class="about-description">
+            Discover a world where luxury meets performance.
+            Find the car that reflects your style.
+        </p>
+
+        <a href="{% url 'all_cars' %}" class="about-button">
+            DISCOVER OUR COLLECTION
+            <span>→</span>
+        </a>
+
+    </div>
+
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    
+        const videos = document.querySelectorAll('.about-slide');
+    
+        if (videos.length === 0) return;
+    
+        let currentIndex = 0;
+    
+        function playNextVideo() {
+    
+            const currentVideo = videos[currentIndex];
+    
+            currentVideo.classList.remove('active');
+            currentVideo.pause();
+    
+            currentIndex = (currentIndex + 1) % videos.length;
+    
+            const nextVideo = videos[currentIndex];
+    
+            nextVideo.currentTime = 0;
+            nextVideo.classList.add('active');
+    
+            nextVideo.play().catch(error => {
+                console.log('Video playback error:', error);
+            });
+        }
+    
+        videos.forEach(function (video, index) {
+    
+            video.addEventListener('ended', function () {
+    
+                if (index === currentIndex) {
+                    playNextVideo();
+                }
+    
+            });
+    
+        });
+    
+        videos[0].play().catch(error => {
+            console.log('Video playback error:', error);
+        });
+    
+    });
+    </script>
+
+{% endblock %}

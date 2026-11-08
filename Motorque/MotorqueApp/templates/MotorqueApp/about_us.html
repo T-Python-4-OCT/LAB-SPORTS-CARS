@@ -1,0 +1,171 @@
+
+{% extends 'MotorqueApp/base.html' %}
+{% load static %}
+
+{% block title %}About Us | MOTORQUE{% endblock %}
+
+{% block content %}
+
+<!-- CINEMATIC HERO -->
+<section class="about-cinema-hero">
+
+    <img
+        src="{% static 'MotorqueApp/images/Backgrounds/futuristic-tunnel.jpeg' %}"
+        alt="MOTORQUE Experience"
+        class="about-cinema-hero-image"
+    >
+
+    <div class="about-cinema-hero-overlay"></div>
+
+    <div class="about-cinema-hero-content">
+        <span class="about-cinema-eyebrow">THE ART OF AUTOMOTIVE</span>
+
+        <h1>
+            BEYOND<br>
+            THE DRIVE.
+        </h1>
+
+        <p>
+            A different perspective on exceptional automobiles.
+        </p>
+
+        <a href="#our-story" class="about-cinema-discover">
+            DISCOVER OUR STORY <span>↓</span>
+        </a>
+    </div>
+
+    <span class="about-cinema-hero-index">MOTORQUE / 01</span>
+
+</section>
+
+
+<!-- OUR STORY -->
+<section class="about-cinema-story" id="our-story">
+
+    <div class="about-cinema-story-image">
+        <img
+            src="{% static 'MotorqueApp/images/Backgrounds/Header1.jpeg' %}"
+            alt="Automotive design"
+            loading="lazy"
+        >
+    </div>
+
+    <div class="about-cinema-story-content">
+        <span class="about-cinema-eyebrow">01 — OUR STORY</span>
+
+        <h2>
+            IT'S NOT<br>
+            JUST ABOUT<br>
+            <span>THE CAR.</span>
+        </h2>
+
+        <p>
+            At MOTORQUE, we see automobiles differently.
+            Every vehicle has a character, a story and a presence
+            that goes beyond the road.
+        </p>
+
+        <p>
+            We bring together distinctive automobiles for those
+            who appreciate design, performance and individuality.
+        </p>
+
+        <span class="about-cinema-signature">THIS IS MOTORQUE.</span>
+    </div>
+
+</section>
+
+
+<!-- CINEMATIC STATEMENT -->
+<section class="about-cinema-statement">
+
+    <img
+        src="{% static 'MotorqueApp/images/Backgrounds/futuristic-tunnel.jpeg' %}"
+        alt="Beyond the ordinary"
+        loading="lazy"
+    >
+
+    <div class="about-cinema-statement-overlay"></div>
+
+    <div class="about-cinema-statement-content">
+        <span class="about-cinema-eyebrow">02 — OUR PHILOSOPHY</span>
+
+        <h2>
+            SOME THINGS<br>
+            ARE MEANT TO BE<br>
+            <span>EXPERIENCED.</span>
+        </h2>
+
+        <p>BEYOND EXPECTATIONS. BEYOND THE ORDINARY.</p>
+    </div>
+
+</section>
+
+
+<!-- OUR VALUES -->
+<section class="about-cinema-values">
+
+    <div class="about-cinema-values-heading">
+        <div>
+            <span class="about-cinema-eyebrow">03 — WHAT DRIVES US</span>
+            <h2>OUR<br><span>PHILOSOPHY.</span></h2>
+        </div>
+
+        <p>
+            A considered approach to every automobile
+            and every experience.
+        </p>
+    </div>
+
+    <div class="about-cinema-values-grid">
+
+        <article class="about-cinema-value">
+            <span>01</span>
+            <h3>EXCELLENCE</h3>
+            <p>Attention to detail in every selection.</p>
+        </article>
+
+        <article class="about-cinema-value">
+            <span>02</span>
+            <h3>INDIVIDUALITY</h3>
+            <p>Automobiles with character and distinction.</p>
+        </article>
+
+        <article class="about-cinema-value">
+            <span>03</span>
+            <h3>CONFIDENCE</h3>
+            <p>An experience built around trust.</p>
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- FINAL EXPERIENCE -->
+<section class="about-cinema-final">
+
+    <img
+        src="{% static 'MotorqueApp/images/Backgrounds/Header1.jpeg' %}"
+        alt="Discover MOTORQUE"
+        loading="lazy"
+    >
+
+    <div class="about-cinema-final-overlay"></div>
+
+    <div class="about-cinema-final-content">
+        <span class="about-cinema-eyebrow">THE NEXT CHAPTER STARTS HERE</span>
+
+        <h2>
+            FIND YOUR<br>
+            <span>STATEMENT.</span>
+        </h2>
+
+        <a href="{% url 'all_cars' %}" class="about-cinema-final-button">
+            EXPLORE COLLECTION <span>↗</span>
+        </a>
+    </div>
+
+</section>
+
+{% endblock %}
