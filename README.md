@@ -30,6 +30,12 @@ Modes](Motorque/MotorqueApp/Screenshots/Cars.png)
 ![Genesis G80 --- Light and Dark
 Modes](Motorque/MotorqueApp/Screenshots/Genesis%20G80.png)
 
+#### 🎬 Genesis G80 Demo
+
+<p align="center">
+  <img src="Motorque/MotorqueApp/Screenshots/G80.gif" alt="Genesis G80 animated preview" width="800">
+</p>
+
 ### 🏎️ Porsche 911 Carrera
 
 ![Porsche 911 Carrera --- Light and Dark
